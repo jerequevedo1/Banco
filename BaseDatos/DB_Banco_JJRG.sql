@@ -1,4 +1,4 @@
---Creación de la base de datos "Banco JJRG"
+--CreaciÃ³n de la base de datos "Banco JJRG"
 create database BancoJJRG
 go
 use BancoJJRG
@@ -46,7 +46,7 @@ create table Usuarios
 (
 	id_usuario int identity(1,1) not null,
 	usuario varchar(50),
-	contraseña varchar(18),
+	contraseÃ±a varchar(18),
 	constraint pk_id_usuario primary key(id_usuario)
 )
 go
@@ -71,7 +71,7 @@ create table Cuentas
 	cbu varchar(22),
 	alias varchar(20),
 	saldo_actual decimal,
-	ultimo_movimiento int,
+	ultimo_movimiento varchar(100),
 	saldo_en_descubierto decimal,
 	id_cliente int,
 	id_tipo_cuenta int,
