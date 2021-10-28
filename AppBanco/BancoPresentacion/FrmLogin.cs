@@ -16,9 +16,9 @@ namespace BancoPresentacion
         {
             InitializeComponent();
             this.txtUser.AutoSize = false;
-            this.txtUser.Size = new Size(480, 28);
+            this.txtUser.Size = new Size(338, 20);
             this.txtPass.AutoSize = false;
-            this.txtPass.Size = new Size(480, 28);
+            this.txtPass.Size = new Size(338, 20);
             this.txtPass.UseSystemPasswordChar = true;
         }
 
