@@ -29,5 +29,10 @@ namespace BancoPresentacion
                MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                this.Close();
         }
+
+        private void btnMinimize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
     }
 }

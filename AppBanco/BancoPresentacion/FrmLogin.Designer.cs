@@ -68,6 +68,7 @@ namespace BancoPresentacion
             this.btnMinimize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnMinimize.TabIndex = 1;
             this.btnMinimize.TabStop = false;
+            this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
             // 
             // btnClose
             // 
