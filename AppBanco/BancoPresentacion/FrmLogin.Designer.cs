@@ -58,6 +58,7 @@ namespace BancoPresentacion
             this.TitleBar.Name = "TitleBar";
             this.TitleBar.Size = new System.Drawing.Size(531, 36);
             this.TitleBar.TabIndex = 1;
+           // this.TitleBar.Paint += new System.Windows.Forms.PaintEventHandler(this.77TitleBar_Paint);
             // 
             // btnMinimize
             // 
