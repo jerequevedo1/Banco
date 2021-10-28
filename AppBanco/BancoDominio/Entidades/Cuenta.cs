@@ -9,7 +9,7 @@ namespace BancoDominio.Entidades
     public class Cuenta
     {
         public int IdCuenta { get; set; }
-        public int Cbu { get; set; }
+        public string Cbu { get; set; }
         public string Alias { get; set; }
         public double Saldo { get; set; }
         public List<Transaccion> Ltransaccion { get; set; }
@@ -17,7 +17,7 @@ namespace BancoDominio.Entidades
         public Cliente Cliente { get; set; }
         public TipoCuenta TipoCuenta { get; set; }
         public string TipoMoneda { get; set; }
-        public Cuenta(int idCuenta, int cbu, string alias, double saldo, int saldoDescubierto, Cliente cliente,
+        public Cuenta(int idCuenta, string cbu, string alias, double saldo, int saldoDescubierto, Cliente cliente,
                         TipoCuenta tipoCuenta, string tipoMoneda)
         {
             IdCuenta = idCuenta;
