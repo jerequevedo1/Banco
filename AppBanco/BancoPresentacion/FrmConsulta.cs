@@ -27,5 +27,10 @@ namespace BancoPresentacion
 			//new FrmPrincipal().OpenChildForm(new FrmNuevo(), sender);
 			new FrmNuevo().ShowDialog();
 		}
+
+		private void btnConsultar_Click(object sender, EventArgs e)
+		{
+
+		}
 	}
 }
