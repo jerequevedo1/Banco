@@ -90,7 +90,7 @@ namespace BancoPresentacion
 			// btnAceptar
 			// 
 			this.btnAceptar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnAceptar.Location = new System.Drawing.Point(471, 407);
+			this.btnAceptar.Location = new System.Drawing.Point(521, 407);
 			this.btnAceptar.MaximumSize = new System.Drawing.Size(708, 464);
 			this.btnAceptar.Name = "btnAceptar";
 			this.btnAceptar.Size = new System.Drawing.Size(75, 23);
@@ -101,7 +101,7 @@ namespace BancoPresentacion
 			// btnCancelar
 			// 
 			this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnCancelar.Location = new System.Drawing.Point(611, 407);
+			this.btnCancelar.Location = new System.Drawing.Point(661, 407);
 			this.btnCancelar.MaximumSize = new System.Drawing.Size(708, 464);
 			this.btnCancelar.Name = "btnCancelar";
 			this.btnCancelar.Size = new System.Drawing.Size(75, 23);
@@ -114,7 +114,7 @@ namespace BancoPresentacion
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(698, 442);
+			this.ClientSize = new System.Drawing.Size(748, 442);
 			this.Controls.Add(this.btnCancelar);
 			this.Controls.Add(this.btnAceptar);
 			this.Controls.Add(this.textBox3);

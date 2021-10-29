@@ -119,7 +119,7 @@ namespace BancoPresentacion
 			this.btnEditar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btnEditar.FlatAppearance.BorderSize = 0;
 			this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnEditar.Location = new System.Drawing.Point(486, 407);
+			this.btnEditar.Location = new System.Drawing.Point(536, 407);
 			this.btnEditar.Name = "btnEditar";
 			this.btnEditar.Size = new System.Drawing.Size(75, 23);
 			this.btnEditar.TabIndex = 4;
@@ -140,7 +140,7 @@ namespace BancoPresentacion
 			this.btnNuevo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btnNuevo.FlatAppearance.BorderSize = 0;
 			this.btnNuevo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnNuevo.Location = new System.Drawing.Point(369, 407);
+			this.btnNuevo.Location = new System.Drawing.Point(419, 407);
 			this.btnNuevo.Name = "btnNuevo";
 			this.btnNuevo.Size = new System.Drawing.Size(75, 23);
 			this.btnNuevo.TabIndex = 3;
@@ -162,7 +162,7 @@ namespace BancoPresentacion
 			this.btnEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btnEliminar.FlatAppearance.BorderSize = 0;
 			this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnEliminar.Location = new System.Drawing.Point(611, 407);
+			this.btnEliminar.Location = new System.Drawing.Point(661, 407);
 			this.btnEliminar.Name = "btnEliminar";
 			this.btnEliminar.Size = new System.Drawing.Size(75, 23);
 			this.btnEliminar.TabIndex = 5;
@@ -195,7 +195,7 @@ namespace BancoPresentacion
 			this.dgvConsulta.Name = "dgvConsulta";
 			this.dgvConsulta.ReadOnly = true;
 			this.dgvConsulta.RowTemplate.Height = 25;
-			this.dgvConsulta.Size = new System.Drawing.Size(674, 255);
+			this.dgvConsulta.Size = new System.Drawing.Size(724, 255);
 			this.dgvConsulta.TabIndex = 0;
 			// 
 			// cId
@@ -239,7 +239,7 @@ namespace BancoPresentacion
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(698, 442);
+			this.ClientSize = new System.Drawing.Size(748, 442);
 			this.Controls.Add(this.btnEliminar);
 			this.Controls.Add(this.btnNuevo);
 			this.Controls.Add(this.dgvConsulta);
