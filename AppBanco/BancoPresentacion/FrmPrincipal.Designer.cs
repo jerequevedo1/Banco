@@ -210,6 +210,7 @@ namespace BancoPresentacion
             this.panelTitleBar.PerformLayout();
             this.ResumeLayout(false);
 
+
 		}
 
 		#endregion

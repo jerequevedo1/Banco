@@ -71,10 +71,10 @@ Insert into Barrios (id_localidad, nom_barrio) values (16, 'Santa Laura')
 
 --Usuarios
 
-Insert into Usuarios (usuario, contraseña) values ('jpoltenguerci', 'C123456')
-Insert into Usuarios (usuario, contraseña) values ('jquevedo', '102030$')
-Insert into Usuarios (usuario, contraseña) values ('gmedrano', '405060$')
-Insert into Usuarios (usuario, contraseña) values ('rmedina', '708090$')
+Insert into Usuarios (usuario, contrasenia) values ('jpoltenguerci', 'C123456')
+Insert into Usuarios (usuario, contrasenia) values ('jquevedo', '102030$')
+Insert into Usuarios (usuario, contrasenia) values ('gmedrano', '405060$')
+Insert into Usuarios (usuario, contrasenia) values ('rmedina', '708090$')
 
 --Select *
 --From Usuarios

@@ -46,7 +46,7 @@ create table Usuarios
 (
 	id_usuario int identity(1,1) not null,
 	usuario varchar(50),
-	contraseña varchar(18),
+	contrasenia varchar(18),
 	constraint pk_id_usuario primary key(id_usuario)
 )
 go
@@ -94,3 +94,14 @@ create table Transacciones
 )
 go
 
+-- SP Login
+
+CREATE PROCEDURE [SP_CONSULTAR_USUARIO]
+@usuario varchar(50),
+@password varchar(18)
+AS
+BEGIN
+	
+	SELECT top 1 * from USUARIOS WHERE usuario=@usuario and contrasenia=@password;
+END
+GO
