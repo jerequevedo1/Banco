@@ -1,5 +1,5 @@
 -- Datos Insertados - BD Farmacéutica
-
+set dateformat dmy
 --Provincias
 
 Insert into Provincias (nom_provincia) values ('Córdoba')
@@ -134,4 +134,10 @@ Insert into Transacciones (fecha, monto, id_tipo_transac, id_cuenta) values ('20
 
 --Select *
 --From Transacciones
+
+--hacer esto por unica vez y eliminar lineas
+update Cuentas
+set fecha_alta=getdate()
+update Clientes
+set fecha_alta=getdate()
 
