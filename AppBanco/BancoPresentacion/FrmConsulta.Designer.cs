@@ -128,7 +128,7 @@ namespace BancoPresentacion
 			this.btnNuevo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btnNuevo.FlatAppearance.BorderSize = 0;
 			this.btnNuevo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnNuevo.Location = new System.Drawing.Point(346, 393);
+			this.btnNuevo.Location = new System.Drawing.Point(369, 407);
 			this.btnNuevo.Name = "btnNuevo";
 			this.btnNuevo.Size = new System.Drawing.Size(75, 23);
 			this.btnNuevo.TabIndex = 3;
@@ -141,7 +141,7 @@ namespace BancoPresentacion
 			this.btnEditar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btnEditar.FlatAppearance.BorderSize = 0;
 			this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnEditar.Location = new System.Drawing.Point(463, 393);
+			this.btnEditar.Location = new System.Drawing.Point(486, 407);
 			this.btnEditar.Name = "btnEditar";
 			this.btnEditar.Size = new System.Drawing.Size(75, 23);
 			this.btnEditar.TabIndex = 4;
@@ -153,7 +153,7 @@ namespace BancoPresentacion
 			this.btnEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btnEliminar.FlatAppearance.BorderSize = 0;
 			this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnEliminar.Location = new System.Drawing.Point(588, 393);
+			this.btnEliminar.Location = new System.Drawing.Point(611, 407);
 			this.btnEliminar.Name = "btnEliminar";
 			this.btnEliminar.Size = new System.Drawing.Size(75, 23);
 			this.btnEliminar.TabIndex = 5;

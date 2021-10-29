@@ -89,7 +89,8 @@ namespace BancoPresentacion
 			// 
 			// btnAceptar
 			// 
-			this.btnAceptar.Location = new System.Drawing.Point(201, 407);
+			this.btnAceptar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnAceptar.Location = new System.Drawing.Point(471, 407);
 			this.btnAceptar.MaximumSize = new System.Drawing.Size(708, 464);
 			this.btnAceptar.Name = "btnAceptar";
 			this.btnAceptar.Size = new System.Drawing.Size(75, 23);
@@ -99,7 +100,8 @@ namespace BancoPresentacion
 			// 
 			// btnCancelar
 			// 
-			this.btnCancelar.Location = new System.Drawing.Point(430, 407);
+			this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnCancelar.Location = new System.Drawing.Point(611, 407);
 			this.btnCancelar.MaximumSize = new System.Drawing.Size(708, 464);
 			this.btnCancelar.Name = "btnCancelar";
 			this.btnCancelar.Size = new System.Drawing.Size(75, 23);
