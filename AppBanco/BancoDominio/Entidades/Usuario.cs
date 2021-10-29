@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BancoDominio.Entidades
 {
-    class Usuario
+    public class Usuario
     {
         public int IdUsuario { get; set; }
         public string NomUsuario { get; set; }
@@ -16,6 +16,12 @@ namespace BancoDominio.Entidades
             IdUsuario = idUsuario;
             NomUsuario = nomUsuario;
             Pass = pass;
+        }
+        public Usuario()
+        {
+            IdUsuario = -1;
+            NomUsuario = string.Empty;
+            Pass = string.Empty;
         }
     }
 }

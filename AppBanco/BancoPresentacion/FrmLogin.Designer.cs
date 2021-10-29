@@ -38,7 +38,7 @@ namespace BancoPresentacion
             this.lblUser = new System.Windows.Forms.Label();
             this.lblPass = new System.Windows.Forms.Label();
             this.chkbRecordarme = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnLogin = new System.Windows.Forms.Button();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.TitleBar.SuspendLayout();
@@ -58,7 +58,6 @@ namespace BancoPresentacion
             this.TitleBar.Name = "TitleBar";
             this.TitleBar.Size = new System.Drawing.Size(531, 36);
             this.TitleBar.TabIndex = 1;
-           // this.TitleBar.Paint += new System.Windows.Forms.PaintEventHandler(this.77TitleBar_Paint);
             // 
             // btnMinimize
             // 
@@ -157,20 +156,21 @@ namespace BancoPresentacion
             this.chkbRecordarme.Text = "Recordarme";
             this.chkbRecordarme.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnLogin
             // 
-            this.button1.BackColor = System.Drawing.Color.Gray;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Century Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(87, 435);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(337, 37);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "Iniciar Sesión";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnLogin.BackColor = System.Drawing.Color.Gray;
+            this.btnLogin.FlatAppearance.BorderSize = 0;
+            this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogin.Font = new System.Drawing.Font("Century Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnLogin.ForeColor = System.Drawing.Color.White;
+            this.btnLogin.Location = new System.Drawing.Point(87, 435);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(2);
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.Size = new System.Drawing.Size(337, 37);
+            this.btnLogin.TabIndex = 9;
+            this.btnLogin.Text = "Iniciar Sesión";
+            this.btnLogin.UseVisualStyleBackColor = false;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // linkLabel1
             // 
@@ -205,7 +205,7 @@ namespace BancoPresentacion
             this.ClientSize = new System.Drawing.Size(531, 655);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.linkLabel1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.chkbRecordarme);
             this.Controls.Add(this.lblPass);
             this.Controls.Add(this.lblUser);
@@ -219,6 +219,7 @@ namespace BancoPresentacion
             this.Opacity = 0.98D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.FrmLogin_Load);
             this.TitleBar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnMinimize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnClose)).EndInit();
@@ -239,7 +240,7 @@ namespace BancoPresentacion
         private System.Windows.Forms.Label lblUser;
         private System.Windows.Forms.Label lblPass;
         private System.Windows.Forms.CheckBox chkbRecordarme;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.PictureBox pictureBox1;
     }

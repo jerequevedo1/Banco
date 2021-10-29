@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BancoPresentacion", "BancoPresentacion\BancoPresentacion.csproj", "{0EE5EA1B-6CAF-48A9-8FBC-BFDBFF7473B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BancoPresentacion", "BancoPresentacion\BancoPresentacion.csproj", "{0EE5EA1B-6CAF-48A9-8FBC-BFDBFF7473B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BancoDominio", "BancoDominio\BancoDominio.csproj", "{648BBCA9-6CD1-4662-9AC6-49D4A3B16288}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BancoDominio", "BancoDominio\BancoDominio.csproj", "{648BBCA9-6CD1-4662-9AC6-49D4A3B16288}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BancoServicios", "BancoServicios\BancoServicios.csproj", "{142018B6-805A-423F-A243-93230BCD58D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BancoServicios", "BancoServicios\BancoServicios.csproj", "{142018B6-805A-423F-A243-93230BCD58D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BancoAccesoDatos", "BancoAccesoDatos\BancoAccesoDatos.csproj", "{7DB57E55-2217-405C-8361-9AE664164A08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BancoAccesoDatos", "BancoAccesoDatos\BancoAccesoDatos.csproj", "{7DB57E55-2217-405C-8361-9AE664164A08}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BancoWebApi", "BancoWebApi\BancoWebApi.csproj", "{C43A5B15-B2BD-413A-8006-36119ABF12AA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{7DB57E55-2217-405C-8361-9AE664164A08}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DB57E55-2217-405C-8361-9AE664164A08}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DB57E55-2217-405C-8361-9AE664164A08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C43A5B15-B2BD-413A-8006-36119ABF12AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C43A5B15-B2BD-413A-8006-36119ABF12AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C43A5B15-B2BD-413A-8006-36119ABF12AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C43A5B15-B2BD-413A-8006-36119ABF12AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
