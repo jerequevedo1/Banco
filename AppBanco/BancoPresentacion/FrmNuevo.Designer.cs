@@ -35,8 +35,8 @@ namespace BancoPresentacion
 			this.label2 = new System.Windows.Forms.Label();
 			this.textBox3 = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
-			this.button1 = new System.Windows.Forms.Button();
-			this.button2 = new System.Windows.Forms.Button();
+			this.btnAceptar = new System.Windows.Forms.Button();
+			this.btnCancelar = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -87,31 +87,32 @@ namespace BancoPresentacion
 			this.label3.TabIndex = 4;
 			this.label3.Text = "label3";
 			// 
-			// button1
+			// btnAceptar
 			// 
-			this.button1.Location = new System.Drawing.Point(32, 271);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(75, 23);
-			this.button1.TabIndex = 6;
-			this.button1.Text = "button1";
-			this.button1.UseVisualStyleBackColor = true;
+			this.btnAceptar.Location = new System.Drawing.Point(32, 271);
+			this.btnAceptar.Name = "btnAceptar";
+			this.btnAceptar.Size = new System.Drawing.Size(75, 23);
+			this.btnAceptar.TabIndex = 6;
+			this.btnAceptar.Text = "Aceptar";
+			this.btnAceptar.UseVisualStyleBackColor = true;
 			// 
-			// button2
+			// btnCancelar
 			// 
-			this.button2.Location = new System.Drawing.Point(261, 271);
-			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(75, 23);
-			this.button2.TabIndex = 7;
-			this.button2.Text = "button2";
-			this.button2.UseVisualStyleBackColor = true;
+			this.btnCancelar.Location = new System.Drawing.Point(261, 271);
+			this.btnCancelar.Name = "btnCancelar";
+			this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+			this.btnCancelar.TabIndex = 7;
+			this.btnCancelar.Text = "Cancelar";
+			this.btnCancelar.UseVisualStyleBackColor = true;
+			this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
 			// 
 			// FrmNuevo
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(400, 371);
-			this.Controls.Add(this.button2);
-			this.Controls.Add(this.button1);
+			this.Controls.Add(this.btnCancelar);
+			this.Controls.Add(this.btnAceptar);
 			this.Controls.Add(this.textBox3);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.textBox2);
@@ -133,7 +134,7 @@ namespace BancoPresentacion
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.TextBox textBox3;
 		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.Button button1;
-		private System.Windows.Forms.Button button2;
+		private System.Windows.Forms.Button btnAceptar;
+		private System.Windows.Forms.Button btnCancelar;
 	}
 }

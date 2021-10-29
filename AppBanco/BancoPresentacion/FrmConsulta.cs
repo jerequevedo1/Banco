@@ -18,6 +18,8 @@ namespace BancoPresentacion
 	public partial class FrmConsulta : Form
 	{
 		public IService gestor;
+		private Form activeForm;
+
 		public FrmConsulta()
 		{
 			InitializeComponent();
@@ -28,11 +30,11 @@ namespace BancoPresentacion
 		{
 			//	while (FrmPrincipal.ActiveForm.Controls.Count>0)
 			//	{
+
 			//	}
 			//new FrmPrincipal().OpenChildForm(new FrmNuevo(), sender);
 			new FrmNuevo().ShowDialog();
 		}
-
 		private void btnConsultar_Click(object sender, EventArgs e)
 		{
 			CargarGrillaClientes();
