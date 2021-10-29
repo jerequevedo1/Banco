@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace BancoAccesoDatos.Implementaciones
 {
-    class ClienteDao :IDao
+    class ClienteDao :IClienteDao
     {
         public List<Cliente> GetByFiltersCliente(List<Parametro> parametros)
         {

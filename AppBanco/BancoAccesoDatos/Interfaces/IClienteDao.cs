@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BancoAccesoDatos.Interfaces
 {
-    public interface IDao
+    public interface IClienteDao
     {
         List<Cliente> GetByFiltersCliente(List<Parametro> parametro);
 

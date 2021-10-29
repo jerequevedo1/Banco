@@ -11,7 +11,7 @@ namespace BancoAccesoDatos
     public class DaoFactory : AbstractDaoFactory
     {
 
-        public override IDao CrearClienteDao()
+        public override IClienteDao CrearClienteDao()
         {
             return new ClienteDao();
         }

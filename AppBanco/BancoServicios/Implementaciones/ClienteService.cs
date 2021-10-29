@@ -13,7 +13,7 @@ namespace BancoServicios.Implementaciones
 {
     class ClienteService: IService
     {
-        private IDao daoCliente;
+        private IClienteDao daoCliente;
 
         public ClienteService(AbstractDaoFactory factory)
         {
