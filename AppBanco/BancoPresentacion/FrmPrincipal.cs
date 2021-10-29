@@ -14,6 +14,7 @@ namespace BancoPresentacion
 	public partial class FrmPrincipal : Form
 	{
 		private Form activeForm;
+		private Tipo tipo;
 		public FrmPrincipal()
 		{
 			InitializeComponent();
@@ -63,17 +64,20 @@ namespace BancoPresentacion
 		}
 		private void btnCuenta_Click(object sender, EventArgs e)
 		{
-			OpenChildForm(new FrmConsulta(Tipo.Cuenta), sender);
+			tipo = Tipo.Cuenta;
+			OpenChildForm(new FrmConsulta(tipo), sender);
 		}
 
 		private void btnCliente_Click(object sender, EventArgs e)
 		{
-			OpenChildForm(new FrmConsulta(Tipo.Cliente), sender); ;
+			tipo = Tipo.Cliente;
+			OpenChildForm(new FrmConsulta(tipo), sender); ;
 		}
 
 		private void btnTransaccion_Click(object sender, EventArgs e)
 		{
-			OpenChildForm(new FrmConsulta(Tipo.Transaccion), sender);
+			tipo = Tipo.Cuenta;
+			OpenChildForm(new FrmConsulta(tipo), sender);
 		}
 
 		private void btnConfiguracion_Click(object sender, EventArgs e)

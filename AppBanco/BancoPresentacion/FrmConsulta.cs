@@ -18,15 +18,17 @@ namespace BancoPresentacion
 {
 	public partial class FrmConsulta : Form
 	{
-		public IClienteService gestor;
+		public IClienteService gestorCliente;
 		public Tipo tipo;
+		public ICuentaService gestorCuenta;
 		//private Form activeForm;
 
 
 		public FrmConsulta(Tipo tipo)
 		{
 			InitializeComponent();
-			gestor = new ServiceFactory().CrearService(new DaoFactory());
+			gestorCliente = new ServiceFactory().CrearClienteService(new DaoFactory());
+			gestorCuenta = new ServiceFactory().CrearCuentaService(new DaoFactory());
 			this.tipo = tipo;
 		}
 
@@ -38,7 +40,7 @@ namespace BancoPresentacion
 		}
 		private void btnConsultar_Click(object sender, EventArgs e)
 		{
-			CargarGrillaClientes();
+			CargarGrilla(tipo);
 		}
 
         private void FrmConsulta_Load(object sender, EventArgs e)
@@ -48,10 +50,17 @@ namespace BancoPresentacion
 				CargarTiposFiltros(tipo);
 				CargarFiltroFecha(tipo);
 				CargarHeaderGrid(tipo);
+				CargarGrilla(tipo);
 			}
-			
+			if (tipo.Equals(Tipo.Cuenta))
+			{
+				CargarTiposFiltros(tipo);
+				//CargarFiltroFecha(tipo);
+				CargarHeaderGrid(tipo);
+				CargarGrilla(tipo);
+			}
 
-        }
+		}
 
         private void CargarHeaderGrid(Tipo tipo)
         {
@@ -64,53 +73,113 @@ namespace BancoPresentacion
 				this.dgvConsulta.Columns[4].HeaderText = "TELEFONO";
 				this.dgvConsulta.Columns[5].HeaderText = "EMAIL";
 			}
+			if (tipo.Equals(Tipo.Cuenta))
+			{
+				this.dgvConsulta.Columns[0].HeaderText = "NRO CUENTA";
+				this.dgvConsulta.Columns[1].HeaderText = "CLIENTE";
+				this.dgvConsulta.Columns[2].HeaderText = "DNI";
+				this.dgvConsulta.Columns[3].HeaderText = "TIPO CUENTA";
+				this.dgvConsulta.Columns[4].HeaderText = "CBU";
+				this.dgvConsulta.Columns[5].HeaderText = "ALIAS";
+				this.dgvConsulta.Columns.Add("cExtra","SALDO");
+
+			}
 		}
 
-        private void CargarGrillaClientes()
+        private void CargarGrilla(Tipo tipo)
 		{
+			List<Parametro> filtros = CargarParametros(tipo);
 
-			List<Cliente> lst = new List<Cliente>();
-			List<Parametro> filtros = CargarParametros();// Acá una acción de acuerdo a como venía el form
-
-			dgvConsulta.Rows.Clear();
-			lst = gestor.GetByFiltersCliente(filtros);
-
-
-			foreach (Cliente item in lst)
+			if (tipo.Equals(Tipo.Cliente))
 			{
-				dgvConsulta.Rows.Add(new object[] { item.IdCliente, item.NomCliente.ToString() +" "+
-			    item.ApeCliente.ToString(), item.Dni, item.Direccion.ToString(), item.Telefono, item.Email.ToString(), ""/*item.GetFechaBajaFormato()*/ }) ;
+				List<Cliente> lst = new List<Cliente>();
+
+				dgvConsulta.Rows.Clear();
+				lst = gestorCliente.GetClienteByFilters(filtros);
+
+
+				foreach (Cliente item in lst)
+				{
+					dgvConsulta.Rows.Add(new object[] { item.IdCliente, item.NombreCompleto(), item.Dni, item.Direccion.ToString(), item.Telefono, item.Email.ToString()/*item.GetFechaBajaFormato()*/ });
+				}
+			}
+			if (tipo.Equals(Tipo.Cuenta))
+			{
+				List<Cuenta> lst = new List<Cuenta>();
+
+				dgvConsulta.Rows.Clear();
+				lst = gestorCuenta.GetCuentaByFilters(filtros);
+
+
+				foreach (Cuenta item in lst)
+				{
+					if (item.TipoMoneda.Equals("P"))
+					{
+						dgvConsulta.Rows.Add(new object[] { item.IdCuenta, item.Cliente.NombreCompleto(), item.Cliente.Dni, item.TipoCuenta.DescTipoCuenta, item.Cbu, item.Alias, "$ "+item.Saldo});
+					}
+					if (item.TipoMoneda.Equals("D"))
+					{
+						dgvConsulta.Rows.Add(new object[] { item.IdCuenta, item.Cliente.NombreCompleto(), item.Cliente.Dni, item.TipoCuenta.DescTipoCuenta, item.Cbu, item.Alias, "U$S " + item.Saldo });
+					}
+
+				}
 			}
 
 		}
 
-		private List<Parametro> CargarParametros()
+		private List<Parametro> CargarParametros(Tipo tipo)
 		{
             List<Parametro> filtros = new List<Parametro>();
-           // filtros.Add(new Parametro("@fechaDesde", dtpFechaDesde.Value)); //Esta comentado para definir si agregamos enum
-          // filtros.Add(new Parametro("@fechaHasta", dtpFechaHasta.Value));
+			object filtroTexto = DBNull.Value;
+			string conBaja = "N";
 
-            object filtroTexto = DBNull.Value;
-            if (!String.IsNullOrEmpty(txtFiltro.Text))
-                filtroTexto = txtFiltro.Text;
+			// filtros.Add(new Parametro("@fechaDesde", dtpFechaDesde.Value)); //Esta comentado para definir si agregamos enum
+			// filtros.Add(new Parametro("@fechaHasta", dtpFechaHasta.Value));
 
-			// aca tambien modos
-            if (cboFiltro.SelectedIndex == 0)
-            {
-                filtros.Add(new Parametro("@nroCliente", filtroTexto));
-            }
-            else
-            {
-                filtros.Add(new Parametro("@clienteNombre", filtroTexto));
-            }
+			if (!String.IsNullOrEmpty(txtFiltro.Text))
+			{
+				filtroTexto = txtFiltro.Text;
+				if (tipo.Equals(Tipo.Cliente))
+				{
+					if (cboFiltro.SelectedIndex == 0)
+					{
+						filtros.Add(new Parametro("@nroCliente", filtroTexto));
+					}
+					else
+					{
+						filtros.Add(new Parametro("@ClienteNombre", filtroTexto));
+					}
+				}
+				if (tipo.Equals(Tipo.Cuenta))
+				{
+					switch (cboFiltro.SelectedIndex)
+					{
+						case 0:
+							filtros.Add(new Parametro("@nroCuenta", filtroTexto));
+							break;
+						case 1:
+							filtros.Add(new Parametro("@ClienteNombre", filtroTexto));
+							break;
+						case 2:
+							filtros.Add(new Parametro("@cbu", filtroTexto));
+							break;
+						case 3:
+							filtros.Add(new Parametro("@alias", filtroTexto));
+							break;
+						case 4:
+							filtros.Add(new Parametro("@clienteNombre", filtroTexto));
+							break;
+					}
+				}
+			}
+				
 
-            //string conInactivos = "N";
-            //if (chkBajas.Checked)
-            //    conInactivos = "S";
-           // filtros.Add(new Parametro("@activo", conInactivos));
+			if (chkBaja.Checked) conBaja = "S";
 
-            filtros.Add(new Parametro("@tipo", cboFiltro.SelectedIndex));
+			filtros.Add(new Parametro("@activo", conBaja));
 
+			filtros.Add(new Parametro("@tipo", cboFiltro.SelectedIndex));
+		
             return filtros;
         }
 
@@ -130,6 +199,13 @@ namespace BancoPresentacion
 			if (tipo.Equals(Tipo.Cliente))
 			{
 				string[] tiposFiltros = new string[] { "Numero de Cliente", "Nombre Cliente", "Inactivos" };
+
+				cboFiltro.Items.Clear();
+				cboFiltro.Items.AddRange(tiposFiltros);
+			}
+			if (tipo.Equals(Tipo.Cuenta))
+			{
+				string[] tiposFiltros = new string[] { "Numero de Cuenta", "Nombre Cliente","Cbu","Alias", "Inactivos" };
 
 				cboFiltro.Items.Clear();
 				cboFiltro.Items.AddRange(tiposFiltros);

@@ -21,7 +21,7 @@ namespace BancoServicios.Implementaciones
 
         }
 
-        public List<Cliente> GetByFiltersCliente(List<Parametro> parametros)
+        public List<Cliente> GetClienteByFilters(List<Parametro> parametros)
         {
             return daoCliente.GetClienteByFilters(parametros);
         }

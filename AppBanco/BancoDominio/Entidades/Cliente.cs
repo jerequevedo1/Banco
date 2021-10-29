@@ -34,5 +34,9 @@ namespace BancoDominio.Entidades
         public Cliente()
         {
         }
-    }
+		public string NombreCompleto()
+		{
+			return  ApeCliente+", "+NomCliente;
+		}
+	}
 }

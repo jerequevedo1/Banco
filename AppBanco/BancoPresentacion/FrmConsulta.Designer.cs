@@ -43,6 +43,7 @@ namespace BancoPresentacion
 			this.btnEliminar = new System.Windows.Forms.Button();
 			this.txtFiltro = new System.Windows.Forms.TextBox();
 			this.dgvConsulta = new System.Windows.Forms.DataGridView();
+			this.chkBaja = new System.Windows.Forms.CheckBox();
 			this.cId = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.cCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.cCbu = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -191,19 +192,28 @@ namespace BancoPresentacion
             this.cTipoCuenta,
             this.cSaldo,
             this.cUltimoMov});
-			this.dgvConsulta.Location = new System.Drawing.Point(12, 134);
+			this.dgvConsulta.Location = new System.Drawing.Point(12, 164);
 			this.dgvConsulta.Name = "dgvConsulta";
 			this.dgvConsulta.ReadOnly = true;
 			this.dgvConsulta.RowTemplate.Height = 25;
-			this.dgvConsulta.Size = new System.Drawing.Size(724, 255);
+			this.dgvConsulta.Size = new System.Drawing.Size(724, 225);
 			this.dgvConsulta.TabIndex = 0;
+			// 
+			// chkBaja
+			// 
+			this.chkBaja.AutoSize = true;
+			this.chkBaja.Location = new System.Drawing.Point(652, 139);
+			this.chkBaja.Name = "chkBaja";
+			this.chkBaja.Size = new System.Drawing.Size(84, 19);
+			this.chkBaja.TabIndex = 19;
+			this.chkBaja.Text = "Incluir Baja";
+			this.chkBaja.UseVisualStyleBackColor = true;
 			// 
 			// cId
 			// 
 			this.cId.HeaderText = "Id";
 			this.cId.Name = "cId";
 			this.cId.ReadOnly = true;
-			this.cId.Visible = false;
 			// 
 			// cCliente
 			// 
@@ -240,6 +250,7 @@ namespace BancoPresentacion
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(748, 442);
+			this.Controls.Add(this.chkBaja);
 			this.Controls.Add(this.btnEliminar);
 			this.Controls.Add(this.btnNuevo);
 			this.Controls.Add(this.dgvConsulta);
@@ -279,6 +290,7 @@ namespace BancoPresentacion
 		private System.Windows.Forms.Button btnEliminar;
 		private System.Windows.Forms.TextBox txtFiltro;
 		private System.Windows.Forms.DataGridView dgvConsulta;
+		private System.Windows.Forms.CheckBox chkBaja;
 		private System.Windows.Forms.DataGridViewTextBoxColumn cId;
 		private System.Windows.Forms.DataGridViewTextBoxColumn cCliente;
 		private System.Windows.Forms.DataGridViewTextBoxColumn cCbu;
