@@ -30,5 +30,9 @@ namespace BancoDominio.Entidades
             Telefono = telefono;
             Email = email;
         }
+
+        public Cliente()
+        {
+        }
     }
 }
