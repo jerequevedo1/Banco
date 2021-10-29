@@ -46,7 +46,7 @@ create table Usuarios
 (
 	id_usuario int identity(1,1) not null,
 	usuario varchar(50),
-	contraseña varchar(18),
+	contrasenia varchar(18),
 	constraint pk_id_usuario primary key(id_usuario)
 )
 go
