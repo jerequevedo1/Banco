@@ -18,7 +18,7 @@ namespace BancoPresentacion
 {
 	public partial class FrmConsulta : Form
 	{
-		public IService gestor;
+		public IClienteService gestor;
 		public Tipo tipo;
 		//private Form activeForm;
 

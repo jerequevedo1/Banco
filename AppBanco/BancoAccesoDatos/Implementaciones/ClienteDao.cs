@@ -13,7 +13,7 @@ namespace BancoAccesoDatos.Implementaciones
 {
     class ClienteDao :IClienteDao
     {
-        public List<Cliente> GetByFiltersCliente(List<Parametro> parametros)
+        public List<Cliente> GetClienteByFilters(List<Parametro> parametros)
         {
 
             List<Cliente> lst = new List<Cliente>();

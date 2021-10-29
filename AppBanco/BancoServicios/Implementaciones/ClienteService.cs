@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace BancoServicios.Implementaciones
 {
-    class ClienteService: IService
+    class ClienteService: IClienteService
     {
         private IClienteDao daoCliente;
 
@@ -23,7 +23,7 @@ namespace BancoServicios.Implementaciones
 
         public List<Cliente> GetByFiltersCliente(List<Parametro> parametros)
         {
-            return daoCliente.GetByFiltersCliente(parametros);
+            return daoCliente.GetClienteByFilters(parametros);
         }
     }
 }

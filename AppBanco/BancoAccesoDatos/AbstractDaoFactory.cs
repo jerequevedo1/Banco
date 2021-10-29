@@ -10,6 +10,7 @@ namespace BancoAccesoDatos
     public abstract class AbstractDaoFactory
     {
         public abstract IClienteDao CrearClienteDao();
+        public abstract ICuentaDao CrearCuentaDao();
 
     }
 }

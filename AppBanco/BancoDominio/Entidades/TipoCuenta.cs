@@ -15,5 +15,8 @@ namespace BancoDominio.Entidades
             IdTipoCuenta = idTipoCuenta;
             DescTipoCuenta = descTipoCuenta;
         }
+        public TipoCuenta()
+        {
+        }
     }
 }

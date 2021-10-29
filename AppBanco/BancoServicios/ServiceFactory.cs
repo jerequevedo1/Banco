@@ -17,7 +17,7 @@ namespace BancoServicios
             return new LoginService();
         }
 
-        public override IService CrearService(AbstractDaoFactory factory)
+        public override IClienteService CrearService(AbstractDaoFactory factory)
         {
             return new ClienteService(factory);
         }

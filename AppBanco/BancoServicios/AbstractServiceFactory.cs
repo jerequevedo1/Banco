@@ -10,7 +10,7 @@ namespace BancoServicios
 {
     public abstract class AbstractServiceFactory
     {
-      public abstract IService CrearService(AbstractDaoFactory factory);
+      public abstract IClienteService CrearService(AbstractDaoFactory factory);
       public abstract ILoginService CrearLoginService();
 
     }
