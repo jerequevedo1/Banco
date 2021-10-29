@@ -34,7 +34,7 @@ namespace BancoAccesoDatos.Implementaciones
                     oCliente.Telefono = row["Telefono"].ToString(); 
                     oCliente.Email = row["Email"].ToString();
 
-                    if (!row["fechaB"].Equals(DBNull.Value))
+                    if (!row["fechaBaja"].Equals(DBNull.Value))
                     {
                         //aca se agrega el campo si existe fecha de baja, dejo a modo ejemplo hasta que agreguemos esto en bd
                         //oPedido.FechaBaja = Convert.ToDateTime(row["fecha_baja"].ToString());

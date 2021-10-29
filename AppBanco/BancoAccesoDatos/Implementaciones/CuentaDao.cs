@@ -30,7 +30,10 @@ namespace BancoAccesoDatos.Implementaciones
                     oCuenta.Alias = row["Alias"].ToString();
                     oCuenta.Saldo = Convert.ToDouble(row["saldo"].ToString());
                     oCuenta.TipoMoneda = row["Tipo Moneda"].ToString();
-                    oCuenta.FechaBaja =Convert.ToDateTime(row["fechaBaja"].ToString());
+                    if (!row["fechaBaja"].Equals(DBNull.Value))
+                    {
+                        oCuenta.FechaBaja = Convert.ToDateTime(row["fechaBaja"]);
+                    }
                     oCuenta.FechaAlta = Convert.ToDateTime(row["fechaAlta"].ToString());
 
                     TipoCuenta oTipoCta = new TipoCuenta();
@@ -41,11 +44,8 @@ namespace BancoAccesoDatos.Implementaciones
                     oCliente.NomCliente = row["Nombre"].ToString();
                     oCliente.Dni =Convert.ToInt32(row["DNI"].ToString());
 
-                    if (!row["fechaB"].Equals(DBNull.Value))
-                    {
-                        //aca se agrega el campo si existe fecha de baja, dejo a modo ejemplo hasta que agreguemos esto en bd
-                        //oPedido.FechaBaja = Convert.ToDateTime(row["fecha_baja"].ToString());
-                    }
+                    oCuenta.Cliente = oCliente;
+                    oCuenta.TipoCuenta = oTipoCta;                
 
                     lst.Add(oCuenta);
                 }
