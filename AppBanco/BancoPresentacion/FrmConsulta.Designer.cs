@@ -49,7 +49,7 @@ namespace BancoPresentacion
             this.lblFechaDesde = new System.Windows.Forms.Label();
             this.cboFiltroFecha = new System.Windows.Forms.ComboBox();
             this.lblFiltroFecha = new System.Windows.Forms.Label();
-            this.chkBajas = new System.Windows.Forms.CheckBox();
+            //this.chkBajas = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvConsulta)).BeginInit();
             this.SuspendLayout();
             // 

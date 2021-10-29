@@ -96,10 +96,10 @@ namespace BancoPresentacion
                 filtros.Add(new Parametro("@clienteNombre", filtroTexto));
             }
 
-            string conInactivos = "N";
-            if (chkBajas.Checked)
-                conInactivos = "S";
-            filtros.Add(new Parametro("@activo", conInactivos));
+            //string conInactivos = "N";
+            //if (chkBajas.Checked)
+            //    conInactivos = "S";
+           // filtros.Add(new Parametro("@activo", conInactivos));
 
             filtros.Add(new Parametro("@tipo", cboFiltro.SelectedIndex));
 
