@@ -94,3 +94,14 @@ create table Transacciones
 )
 go
 
+-- SP Login
+
+CREATE PROCEDURE [SP_CONSULTAR_USUARIO]
+@usuario varchar(50),
+@password varchar(18)
+AS
+BEGIN
+	
+	SELECT top 1 * from USUARIOS WHERE usuario=@usuario and contrasenia=@password;
+END
+GO
