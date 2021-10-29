@@ -20,7 +20,7 @@ namespace BancoAccesoDatos
 
 		private HelperDao()
 		{
-			ConnectionString = @" ";
+			ConnectionString = @"Data Source=LAPTOP-JULI\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
 			cnn = new SqlConnection(ConnectionString);
 
 		}
