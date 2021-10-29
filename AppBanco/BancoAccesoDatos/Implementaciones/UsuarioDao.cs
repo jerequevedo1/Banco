@@ -25,7 +25,7 @@ namespace BancoAccesoDatos.Implementaciones
             if (tabla != null && tabla.Rows.Count > 0)
             {
                 //existe el usuario
-                return new Usuario() { IdUsuario = (int)tabla.Rows[0]["id_usuario"], NomUsuario = tabla.Rows[0]["usuario"].ToString(), Pass = tabla.Rows[0]["contraseña"].ToString() };
+                return new Usuario() { IdUsuario = (int)tabla.Rows[0]["id_usuario"], NomUsuario = tabla.Rows[0]["usuario"].ToString(), Pass = tabla.Rows[0]["contrasenia"].ToString() };
             }
             return null; // no existe el usuario
         }
