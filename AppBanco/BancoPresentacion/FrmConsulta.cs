@@ -28,12 +28,30 @@ namespace BancoPresentacion
 
 		private void btnNuevo_Click(object sender, EventArgs e)
 		{
-			//	while (FrmPrincipal.ActiveForm.Controls.Count>0)
-			//	{
+			//opcion con ventana emergente
+			//new FrmNuevo().ShowDialog(); 
 
-			//	}
-			//new FrmPrincipal().OpenChildForm(new FrmNuevo(), sender);
-			new FrmNuevo().ShowDialog();
+			//opcion con ventana embebida
+			panelConsulta.Visible = false;
+			OpenChildForm(new FrmNuevo(), sender);
+			panelConsulta.Visible = true;
+		}
+		public void OpenChildForm(Form childForm, object btnSender)
+		{
+
+			if (activeForm != null)
+			{
+				activeForm.Close();
+			}
+			//ActivateButton(btnSender);
+			activeForm = childForm;
+			childForm.TopLevel = false;
+			childForm.FormBorderStyle = FormBorderStyle.None;
+			childForm.Dock = DockStyle.Fill;
+			this.panelConsulta.Controls.Add(childForm);
+			this.panelConsulta.Tag = childForm;
+			childForm.BringToFront();
+			childForm.Show();
 		}
 		private void btnConsultar_Click(object sender, EventArgs e)
 		{
