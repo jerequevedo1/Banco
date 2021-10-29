@@ -18,7 +18,8 @@ namespace BancoPresentacion
 {
     public partial class FrmLogin : Form
     {
-        public FrmLogin()
+        Usuario usuario;
+        public FrmLogin(Usuario id)
         {
             InitializeComponent();
             this.txtUser.AutoSize = false;
@@ -26,6 +27,7 @@ namespace BancoPresentacion
             this.txtPass.AutoSize = false;
             this.txtPass.Size = new Size(338, 20);
             this.txtPass.UseSystemPasswordChar = true;
+            this.usuario = id;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -68,11 +70,16 @@ namespace BancoPresentacion
                     {
                         //logueado OK 
                         //Dispose();
-                        var principal = new FrmPrincipal();
-                        principal.Show();
+                        this.usuario.IdUsuario= user.IdUsuario;
+                        this.usuario.NomUsuario = user.NomUsuario;
+                        this.usuario.Pass = user.Pass;
+                        //var principal = new FrmPrincipal();
+                        //principal.Show();
+                        this.Close();
                     }
                     else
-                    { 
+                    {
+                        MessageBox.Show("Error sesion");
                         //usuario Rechazado, informar al usuario
                     }
 

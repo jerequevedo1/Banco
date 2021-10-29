@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BancoDominio.Entidades;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,9 +16,11 @@ namespace BancoPresentacion
 	{
 		private Form activeForm;
 		private Tipo tipo;
-		public FrmPrincipal()
+		private Usuario usuario;
+		public FrmPrincipal(Usuario id)
 		{
 			InitializeComponent();
+			this.usuario = id;
 		}
 		//private void AbrirFormulario<MiForm>() where MiForm : Form, new()
 		//{
@@ -88,6 +91,11 @@ namespace BancoPresentacion
 		private void btnSalir_Click(object sender, EventArgs e)
 		{
 
+		}
+
+		private void FrmPrincipal_Load(object sender, EventArgs e)
+		{
+			lblBienvenida.Text = "Bienvenido/a " + usuario.NomUsuario;
 		}
 	}
 }

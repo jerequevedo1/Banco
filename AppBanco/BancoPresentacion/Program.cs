@@ -1,3 +1,4 @@
+using BancoDominio.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,14 +12,18 @@ namespace BancoPresentacion
 		/// <summary>
 		///  The main entry point for the application.
 		/// </summary>
+		/// 
 		[STAThread]
 		static void Main()
 		{
+			Usuario usuario = new Usuario();
+
 			Application.SetHighDpiMode(HighDpiMode.SystemAware);
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			//Application.Run(new FrmLogin());
-			Application.Run(new FrmPrincipal());
+			Application.Run(new FrmLogin(usuario));
+
+			Application.Run(new FrmPrincipal(usuario));
 		}
 	}
 }
