@@ -1,7 +1,7 @@
 ﻿
 namespace BancoPresentacion
 {
-	partial class FrmNuevo
+	partial class FrmNuevoEditarCliente
 	{
 		/// <summary>
 		/// Required designer variable.

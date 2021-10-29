@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace BancoPresentacion
 {
-	public partial class FrmNuevo : Form
+	public partial class FrmNuevoEditarCliente : Form
 	{
-		public FrmNuevo()
+		public FrmNuevoEditarCliente()
 		{
 			InitializeComponent();
 		}

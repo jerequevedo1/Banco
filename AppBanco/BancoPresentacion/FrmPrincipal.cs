@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static BancoDominio.Enumeraciones;
 
 namespace BancoPresentacion
 {
@@ -62,17 +63,17 @@ namespace BancoPresentacion
 		}
 		private void btnCuenta_Click(object sender, EventArgs e)
 		{
-			OpenChildForm(new FrmConsulta(), sender);
+			OpenChildForm(new FrmConsulta(Tipo.Cuenta), sender);
 		}
 
 		private void btnCliente_Click(object sender, EventArgs e)
 		{
-			OpenChildForm(new FrmConsulta(), sender);
+			OpenChildForm(new FrmConsulta(Tipo.Cliente), sender); ;
 		}
 
 		private void btnTransaccion_Click(object sender, EventArgs e)
 		{
-			OpenChildForm(new FrmConsulta(), sender);
+			OpenChildForm(new FrmConsulta(Tipo.Transaccion), sender);
 		}
 
 		private void btnConfiguracion_Click(object sender, EventArgs e)
