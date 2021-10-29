@@ -63,16 +63,6 @@ namespace BancoPresentacion.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ic {
-            get {
-                object obj = ResourceManager.GetObject("ic", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap ic_close {
             get {
                 object obj = ResourceManager.GetObject("ic_close", resourceCulture);
@@ -86,16 +76,6 @@ namespace BancoPresentacion.Properties {
         internal static System.Drawing.Bitmap ic_min {
             get {
                 object obj = ResourceManager.GetObject("ic_min", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Logo_JJRG_bco {
-            get {
-                object obj = ResourceManager.GetObject("Logo_JJRG_bco", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

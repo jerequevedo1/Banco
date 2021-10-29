@@ -1,8 +1,8 @@
--- Datos Insertados - BD FarmacÈutica
+-- Datos Insertados - BD Farmac√©utica
 
 --Provincias
 
-Insert into Provincias (nom_provincia) values ('CÛrdoba')
+Insert into Provincias (nom_provincia) values ('C√≥rdoba')
 Insert into Provincias (nom_provincia) values ('San Luis')
 Insert into Provincias (nom_provincia) values ('Santa Fe')
 Insert into Provincias (nom_provincia) values ('Buenos Aires')
@@ -12,7 +12,7 @@ Insert into Provincias (nom_provincia) values ('Buenos Aires')
 
 --Localidades
 
-Insert into Localidades (id_provincia, nom_localidad) values (1,'CÛrdoba Capital')
+Insert into Localidades (id_provincia, nom_localidad) values (1,'C√≥rdoba Capital')
 Insert into Localidades (id_provincia, nom_localidad) values (1, 'Villa Allende')
 Insert into Localidades (id_provincia, nom_localidad) values (1, 'Alta Gracia')
 Insert into Localidades (id_provincia, nom_localidad) values (1, 'Mendiolaza')
@@ -30,7 +30,7 @@ Insert into Localidades (id_provincia, nom_localidad) values (3, 'Sunchales')
 Insert into Localidades (id_provincia, nom_localidad) values (4,'CABA')
 Insert into Localidades (id_provincia, nom_localidad) values (4, 'La Plata')
 Insert into Localidades (id_provincia, nom_localidad) values (4, 'Avellaneda')
-Insert into Localidades (id_provincia, nom_localidad) values (4, 'MorÛn')
+Insert into Localidades (id_provincia, nom_localidad) values (4, 'Mor√≥n')
 
 --Select *
 --From Localidades
@@ -39,16 +39,16 @@ Insert into Localidades (id_provincia, nom_localidad) values (4, 'MorÛn')
 
 Insert into Barrios (id_localidad, nom_barrio) values (1, 'Centro')
 Insert into Barrios (id_localidad, nom_barrio) values (1, 'Alberdi')
-Insert into Barrios (id_localidad, nom_barrio) values (1, 'Nueva CÛrdoba')
+Insert into Barrios (id_localidad, nom_barrio) values (1, 'Nueva C√≥rdoba')
 Insert into Barrios (id_localidad, nom_barrio) values (1, 'Cerro de las Rosas')
 Insert into Barrios (id_localidad, nom_barrio) values (2, 'San Isidro')
-Insert into Barrios (id_localidad, nom_barrio) values (2, 'San MartÌn')
+Insert into Barrios (id_localidad, nom_barrio) values (2, 'San Mart√≠n')
 Insert into Barrios (id_localidad, nom_barrio) values (3, 'Parque del Virrey')
 Insert into Barrios (id_localidad, nom_barrio) values (3, 'Portales del Sol')
 Insert into Barrios (id_localidad, nom_barrio) values (4, 'El Talar')
 
-Insert into Barrios (id_localidad, nom_barrio) values (5, 'UniÛn')
-Insert into Barrios (id_localidad, nom_barrio) values (6, 'JardÌn del Sur')
+Insert into Barrios (id_localidad, nom_barrio) values (5, 'Uni√≥n')
+Insert into Barrios (id_localidad, nom_barrio) values (6, 'Jard√≠n del Sur')
 Insert into Barrios (id_localidad, nom_barrio) values (7, 'Barranca Colorada')
 Insert into Barrios (id_localidad, nom_barrio) values (8, 'La Candelaria')
 
@@ -58,12 +58,12 @@ Insert into Barrios (id_localidad, nom_barrio) values (10, 'Parque')
 Insert into Barrios (id_localidad, nom_barrio) values (10, 'Abasto')
 Insert into Barrios (id_localidad, nom_barrio) values (11, '2 de Abril')
 Insert into Barrios (id_localidad, nom_barrio) values (11, 'Barranquitas')
-Insert into Barrios (id_localidad, nom_barrio) values (12, 'ColÛn')
+Insert into Barrios (id_localidad, nom_barrio) values (12, 'Col√≥n')
 
 Insert into Barrios (id_localidad, nom_barrio) values (13, 'Almagro')
 Insert into Barrios (id_localidad, nom_barrio) values (13, 'Parque Avellaneda')
 Insert into Barrios (id_localidad, nom_barrio) values (14, 'Carmen Oeste')
-Insert into Barrios (id_localidad, nom_barrio) values (15, 'SarandÌ')
+Insert into Barrios (id_localidad, nom_barrio) values (15, 'Sarand√≠')
 Insert into Barrios (id_localidad, nom_barrio) values (16, 'Santa Laura')
 
 --Select *
@@ -71,10 +71,10 @@ Insert into Barrios (id_localidad, nom_barrio) values (16, 'Santa Laura')
 
 --Usuarios
 
-Insert into Usuarios (usuario, contraseÒa) values ('jpoltenguerci', 'C123456')
-Insert into Usuarios (usuario, contraseÒa) values ('jquevedo', '102030$')
-Insert into Usuarios (usuario, contraseÒa) values ('gmedrano', '405060$')
-Insert into Usuarios (usuario, contraseÒa) values ('rmedina', '708090$')
+Insert into Usuarios (usuario, contrase√±a) values ('jpoltenguerci', 'C123456')
+Insert into Usuarios (usuario, contrase√±a) values ('jquevedo', '102030$')
+Insert into Usuarios (usuario, contrase√±a) values ('gmedrano', '405060$')
+Insert into Usuarios (usuario, contrase√±a) values ('rmedina', '708090$')
 
 --Select *
 --From Usuarios
@@ -90,12 +90,12 @@ Insert into Tipos_Cuentas (descripcion) values ('Cuenta Sueldo')
 
 --Tipos de Transacciones
 
-Insert into Tipos_Transacciones (descripcion) values ('DepÛsito')
+Insert into Tipos_Transacciones (descripcion) values ('Dep√≥sito')
 Insert into Tipos_Transacciones (descripcion) values ('Transferencia')
-Insert into Tipos_Transacciones (descripcion) values ('AcreditaciÛn')
-Insert into Tipos_Transacciones (descripcion) values ('AcreditaciÛn de haberes')
+Insert into Tipos_Transacciones (descripcion) values ('Acreditaci√≥n')
+Insert into Tipos_Transacciones (descripcion) values ('Acreditaci√≥n de haberes')
 Insert into Tipos_Transacciones (descripcion) values ('Pago de Servicio')
-Insert into Tipos_Transacciones (descripcion) values ('ExtracciÛn Por Cajero')
+Insert into Tipos_Transacciones (descripcion) values ('Extracci√≥n Por Cajero')
 
 --Select *
 --From Tipos_Transacciones
@@ -111,8 +111,8 @@ Insert into Clientes (nom_cliente, ape_cliente, dni, cuil, direccion, telefono, 
 
 --Cuentas
 
-Insert into Cuentas (cbu, alias, saldo_actual, ultimo_movimiento, saldo_en_descubierto, id_cliente, id_tipo_cuenta, tipo_moneda) values ('0200557341000007712948', 'rosalia.suarez', 34785, 5, 0, 1, 3, 'P')
-Insert into Cuentas (cbu, alias, saldo_actual, ultimo_movimiento, saldo_en_descubierto, id_cliente, id_tipo_cuenta, tipo_moneda) values ('0200746241000006183303', 'fran.flores', 12790, 4, 0, 2, 1, 'P')
+Insert into Cuentas (cbu, alias, saldo_actual, ultimo_movimiento, saldo_en_descubierto, id_cliente, id_tipo_cuenta, tipo_moneda) values ('0200557341000007712948', 'rosalia.suarez', 34785, 'Extracci√≥n por Cajero Autom√°tico Banco Macro Suc 1189', 0, 1, 3, 'P')
+Insert into Cuentas (cbu, alias, saldo_actual, ultimo_movimiento, saldo_en_descubierto, id_cliente, id_tipo_cuenta, tipo_moneda) values ('0200746241000006183303', 'fran.flores', 12790, 'Dep√≥sito por ventanilla Banco Galicia Suc 04689', 0, 2, 1, 'P')
 
 
 --Select *
