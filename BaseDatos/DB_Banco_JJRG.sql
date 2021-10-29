@@ -105,3 +105,26 @@ BEGIN
 	SELECT top 1 * from USUARIOS WHERE usuario=@usuario and contrasenia=@password;
 END
 GO
+CREATE proc PA_CONSULTA_CLIENTE_FILTRO
+@nroCliente int =null,
+@ClienteNombre varchar(150)=null,
+@tipo int=null,
+@activo varchar(1)
+AS
+	 if @tipo=0 --filtro por numero cliente 
+	select id_cliente 'ID Cliente', nom_cliente Nombre,ape_cliente Apellido, dni DNI,
+    direccion Direccion, telefono Telefono, email Email,  'fecha_baja' fechaB from Clientes
+	WHERE (@nroCliente is null OR id_cliente=@nroCliente)
+		 AND (@activo is null OR (@activo = 'S') OR (@activo = 'N'))
+		order by id_cliente asc     
+	 if @tipo=1 --filtro por nombre
+		select id_cliente 'ID Cliente', nom_cliente Nombre,ape_cliente Apellido, dni DNI,
+        direccion Direccion, telefono Telefono, email Email,  'fecha_baja' fechaB from Clientes
+		 WHERE (@ClienteNombre is null OR (nom_cliente like '%' + @ClienteNombre + '%'))
+		 AND (@activo is null OR (@activo = 'S') OR (@activo = 'N'))
+		 order by id_cliente asc  
+    if @tipo=2 --filtro por bajas
+	   select id_cliente 'ID Cliente', nom_cliente Nombre,ape_cliente Apellido, dni DNI,
+        direccion Direccion, telefono Telefono, email Email,  'fecha_baja' fechaB from Clientes
+		 WHERE 'fecha_baja' is not null
+	     order by id_cliente asc

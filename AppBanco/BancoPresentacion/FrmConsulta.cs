@@ -12,47 +12,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static BancoDominio.Enumeraciones;
 
 namespace BancoPresentacion
 {
 	public partial class FrmConsulta : Form
 	{
 		public IService gestor;
+		public Tipo tipo;
 		//private Form activeForm;
 
-		public FrmConsulta()
+
+		public FrmConsulta(Tipo tipo)
 		{
 			InitializeComponent();
 			gestor = new ServiceFactory().CrearService(new DaoFactory());
+			this.tipo = tipo;
 		}
 
 		private void btnNuevo_Click(object sender, EventArgs e)
 		{
 			//opcion con ventana emergente
-			new FrmNuevo().ShowDialog(); 
+			new FrmNuevoEditarCliente().ShowDialog(); 
 
-			//opcion con ventana embebida
-			//panelConsulta.Visible = false;
-			//OpenChildForm(new FrmNuevo(), sender);
-			//panelConsulta.Visible = true;
 		}
-		//public void OpenChildForm(Form childForm, object btnSender)
-		//{
-
-		//	if (activeForm != null)
-		//	{
-		//		activeForm.Close();
-		//	}
-		//	//ActivateButton(btnSender);
-		//	activeForm = childForm;
-		//	childForm.TopLevel = false;
-		//	childForm.FormBorderStyle = FormBorderStyle.None;
-		//	childForm.Dock = DockStyle.Fill;
-		//	this.panelConsulta.Controls.Add(childForm);
-		//	this.panelConsulta.Tag = childForm;
-		//	childForm.BringToFront();
-		//	childForm.Show();
-		//}
 		private void btnConsultar_Click(object sender, EventArgs e)
 		{
 			CargarGrillaClientes();
@@ -60,20 +43,27 @@ namespace BancoPresentacion
 
         private void FrmConsulta_Load(object sender, EventArgs e)
         {
-			CargarTiposFiltros();
-			CargarFiltroFecha();
-			Cargarheadergrid();
+			if (tipo.Equals(Tipo.Cliente))
+			{
+				CargarTiposFiltros(tipo);
+				CargarFiltroFecha(tipo);
+				CargarHeaderGrid(tipo);
+			}
+			
 
         }
 
-        private void Cargarheadergrid()
+        private void CargarHeaderGrid(Tipo tipo)
         {
-			this.dgvConsulta.Columns[0].HeaderText = "NRO CLIENTE";
-			this.dgvConsulta.Columns[1].HeaderText = "NOMBRE";
-			this.dgvConsulta.Columns[2].HeaderText = "DNI";
-			this.dgvConsulta.Columns[3].HeaderText = "DIRECCION";
-			this.dgvConsulta.Columns[4].HeaderText = "TELEFONO";
-			this.dgvConsulta.Columns[5].HeaderText = "EMAIL";
+			if (tipo.Equals(Tipo.Cliente))
+			{
+				this.dgvConsulta.Columns[0].HeaderText = "NRO CLIENTE";
+				this.dgvConsulta.Columns[1].HeaderText = "NOMBRE";
+				this.dgvConsulta.Columns[2].HeaderText = "DNI";
+				this.dgvConsulta.Columns[3].HeaderText = "DIRECCION";
+				this.dgvConsulta.Columns[4].HeaderText = "TELEFONO";
+				this.dgvConsulta.Columns[5].HeaderText = "EMAIL";
+			}
 		}
 
         private void CargarGrillaClientes()
@@ -124,20 +114,27 @@ namespace BancoPresentacion
             return filtros;
         }
 
-		private void CargarFiltroFecha()
+		private void CargarFiltroFecha(Tipo tipo)
 		{
-			string[] filtrosFecha = new string[] { "Hoy", "Ayer", "Ultimos 7 dias", "Ultimos 14 dias", "Ultimos 28 dias" };
-			cboFiltroFecha.Items.Clear();
-			cboFiltroFecha.Items.AddRange(filtrosFecha);
+			if (tipo.Equals(Tipo.Cliente))
+			{
+				string[] filtrosFecha = new string[] { "Hoy", "Ayer", "Ultimos 7 dias", "Ultimos 14 dias", "Ultimos 28 dias" };
+				cboFiltroFecha.Items.Clear();
+				cboFiltroFecha.Items.AddRange(filtrosFecha);
+			}
+			
 			cboFiltroFecha.SelectedIndex = 4;
 		}
-		private void CargarTiposFiltros()
+		private void CargarTiposFiltros(Tipo tipo)
 		{
+			if (tipo.Equals(Tipo.Cliente))
+			{
 				string[] tiposFiltros = new string[] { "Numero de Cliente", "Nombre Cliente", "Inactivos" };
 
 				cboFiltro.Items.Clear();
 				cboFiltro.Items.AddRange(tiposFiltros);
-				cboFiltro.SelectedIndex = 0;
+			}
+			cboFiltro.SelectedIndex = 0;
 		}
 
         private void cboFiltroFecha_SelectedIndexChanged(object sender, EventArgs e)
