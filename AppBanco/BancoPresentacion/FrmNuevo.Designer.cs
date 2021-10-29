@@ -125,6 +125,7 @@ namespace BancoPresentacion
 			this.Controls.Add(this.label1);
 			this.MinimumSize = new System.Drawing.Size(708, 464);
 			this.Name = "FrmNuevo";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "FrmNuevo";
 			this.ResumeLayout(false);
 			this.PerformLayout();
