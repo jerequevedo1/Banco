@@ -18,7 +18,10 @@ namespace BancoDominio.Entidades
         public Cliente Cliente { get; set; }
         public TipoCuenta TipoCuenta { get; set; }
         public string TipoMoneda { get; set; }
-        public Cuenta(int idCuenta, string cbu, string alias, double saldo, string ultiMovi, int saldoDescubierto, Cliente cliente,
+		public DateTime FechaBaja { get; set; }
+		public DateTime FechaAlta { get; set; }
+
+		public Cuenta(int idCuenta, string cbu, string alias, double saldo, string ultiMovi, int saldoDescubierto, Cliente cliente,
                         TipoCuenta tipoCuenta, string tipoMoneda)
         {
             IdCuenta = idCuenta;

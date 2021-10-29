@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BancoServicios.Interfaces
 {
-    public interface IService
+    public interface IClienteService
     {
 
         public List<Cliente> GetByFiltersCliente(List<Parametro> parametros);

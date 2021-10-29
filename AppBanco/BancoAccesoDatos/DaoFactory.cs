@@ -15,5 +15,9 @@ namespace BancoAccesoDatos
         {
             return new ClienteDao();
         }
+        public override ICuentaDao CrearCuentaDao()
+		{
+            return new CuentaDao();
+		}
     }
 }

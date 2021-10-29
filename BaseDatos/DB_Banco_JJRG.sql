@@ -139,7 +139,7 @@ go
 alter table Clientes
 ADD fecha_alta datetime, fecha_baja datetime
 GO
-CREATE PROC PA_CONSULTA_CUENTA_FILTRO
+alter PROC PA_CONSULTA_CUENTA_FILTRO
 @nroCuenta int =null,
 @cbu varchar(22)=null,
 @alias varchar(22)=null,
@@ -148,37 +148,47 @@ CREATE PROC PA_CONSULTA_CUENTA_FILTRO
 @activo varchar(1)
 AS
 	  if @tipo=0 --filtro por numero cuenta 
-		select id_cuenta 'ID Cuenta', nom_cliente Nombre,ape_cliente Apellido, dni DNI,cbu Cbu,
-		alias Alias,tipo_moneda 'Tipo Moneda',c.fecha_baja fechaBaja,c.fecha_alta fechaAlta 
-		from Cuentas c join Clientes cl on c.id_cliente=cl.id_cliente
+		select id_cuenta 'ID Cuenta',nom_cliente Nombre,ape_cliente Apellido, dni DNI,
+		tc.descripcion,cbu Cbu,alias Alias,tipo_moneda 'Tipo Moneda',saldo_actual saldo,
+		c.fecha_baja fechaBaja,c.fecha_alta fechaAlta 
+		from Cuentas c join Clientes cl on c.id_cliente=cl.id_cliente 
+		join Tipos_Cuentas tc on tc.id_tipo_cuenta=c.id_tipo_cuenta
 		WHERE (@nroCuenta is null OR id_cuenta=@nroCuenta)
 			 AND (@activo is null OR (@activo = 'S') OR (@activo = 'N' and c.fecha_baja IS  NULL))
 		order by id_cuenta asc     
 	 if @tipo=1 --filtro por cliente
-		select id_cuenta 'ID Cuenta', nom_cliente Nombre,ape_cliente Apellido, dni DNI,cbu Cbu,
-		alias Alias,tipo_moneda 'Tipo Moneda',c.fecha_baja fechaBaja,c.fecha_alta fechaAlta 
-		from Cuentas c join Clientes cl on c.id_cliente=cl.id_cliente
+		select id_cuenta 'ID Cuenta',nom_cliente Nombre,ape_cliente Apellido, dni DNI,
+		tc.descripcion,cbu Cbu,alias Alias,tipo_moneda 'Tipo Moneda',saldo_actual saldo,
+		c.fecha_baja fechaBaja,c.fecha_alta fechaAlta 
+		from Cuentas c join Clientes cl on c.id_cliente=cl.id_cliente 
+		join Tipos_Cuentas tc on tc.id_tipo_cuenta=c.id_tipo_cuenta
 		WHERE (@ClienteNombre is null OR (nom_cliente like '%' + @ClienteNombre + '%')OR(ape_cliente like '%' + @ClienteNombre + '%'))
 		 AND (@activo is null OR (@activo = 'S') OR (@activo = 'N' and c.fecha_baja IS  NULL))
 		order by id_cuenta asc  
     if @tipo=2 --filtro por cbu
-		select id_cuenta 'ID Cuenta', nom_cliente Nombre,ape_cliente Apellido, dni DNI,cbu Cbu,
-		alias Alias,tipo_moneda 'Tipo Moneda',c.fecha_baja fechaBaja,c.fecha_alta fechaAlta 
-		from Cuentas c join Clientes cl on c.id_cliente=cl.id_cliente
+		select id_cuenta 'ID Cuenta',nom_cliente Nombre,ape_cliente Apellido, dni DNI,
+		tc.descripcion,cbu Cbu,alias Alias,tipo_moneda 'Tipo Moneda',saldo_actual saldo,
+		c.fecha_baja fechaBaja,c.fecha_alta fechaAlta 
+		from Cuentas c join Clientes cl on c.id_cliente=cl.id_cliente 
+		join Tipos_Cuentas tc on tc.id_tipo_cuenta=c.id_tipo_cuenta
 		WHERE (@cbu is null OR cbu=@cbu)
 			 AND (@activo is null OR (@activo = 'S') OR (@activo = 'N' and c.fecha_baja IS  NULL))
 	    order by id_cuenta asc
 	if @tipo=3 --filtro por alias
-		select id_cuenta 'ID Cuenta', nom_cliente Nombre,ape_cliente Apellido, dni DNI,cbu Cbu,
-		alias Alias,tipo_moneda 'Tipo Moneda',c.fecha_baja fechaBaja,c.fecha_alta fechaAlta 
-		from Cuentas c join Clientes cl on c.id_cliente=cl.id_cliente
+		select id_cuenta 'ID Cuenta',nom_cliente Nombre,ape_cliente Apellido, dni DNI,
+		tc.descripcion,cbu Cbu,alias Alias,tipo_moneda 'Tipo Moneda',saldo_actual saldo,
+		c.fecha_baja fechaBaja,c.fecha_alta fechaAlta 
+		from Cuentas c join Clientes cl on c.id_cliente=cl.id_cliente 
+		join Tipos_Cuentas tc on tc.id_tipo_cuenta=c.id_tipo_cuenta
 		WHERE (@alias is null OR alias=@alias)
 			 AND (@activo is null OR (@activo = 'S') OR (@activo = 'N' and c.fecha_baja IS  NULL))
 	    order by id_cuenta asc
 	if @tipo=4 --filtro por bajas
-		select id_cuenta 'ID Cuenta', nom_cliente Nombre,ape_cliente Apellido, dni DNI,cbu Cbu,
-		alias Alias,tipo_moneda 'Tipo Moneda',c.fecha_baja fechaBaja,c.fecha_alta fechaAlta 
-		from Cuentas c join Clientes cl on c.id_cliente=cl.id_cliente
+		select id_cuenta 'ID Cuenta',nom_cliente Nombre,ape_cliente Apellido, dni DNI,
+		tc.descripcion,cbu Cbu,alias Alias,tipo_moneda 'Tipo Moneda',saldo_actual saldo,
+		c.fecha_baja fechaBaja,c.fecha_alta fechaAlta 
+		from Cuentas c join Clientes cl on c.id_cliente=cl.id_cliente 
+		join Tipos_Cuentas tc on tc.id_tipo_cuenta=c.id_tipo_cuenta
 		WHERE (@activo = 'n' and c.fecha_baja IS  NULL) and 
 		(@ClienteNombre is null OR (nom_cliente like '%' + @ClienteNombre + '%')OR(ape_cliente like '%' + @ClienteNombre + '%'))
 	    order by id_cuenta asc
