@@ -43,12 +43,12 @@ namespace BancoPresentacion
 			this.btnEliminar = new System.Windows.Forms.Button();
 			this.txtFiltro = new System.Windows.Forms.TextBox();
 			this.dgvConsulta = new System.Windows.Forms.DataGridView();
-			this.cUltimoMov = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.cSaldo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.cTipoCuenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.cCbu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.cCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.cId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.cCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.cCbu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.cTipoCuenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.cSaldo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.cUltimoMov = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			((System.ComponentModel.ISupportInitialize)(this.dgvConsulta)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -198,29 +198,12 @@ namespace BancoPresentacion
 			this.dgvConsulta.Size = new System.Drawing.Size(674, 255);
 			this.dgvConsulta.TabIndex = 0;
 			// 
-			// cUltimoMov
+			// cId
 			// 
-			this.cUltimoMov.HeaderText = "Ultimo Mov";
-			this.cUltimoMov.Name = "cUltimoMov";
-			this.cUltimoMov.ReadOnly = true;
-			// 
-			// cSaldo
-			// 
-			this.cSaldo.HeaderText = "Saldo";
-			this.cSaldo.Name = "cSaldo";
-			this.cSaldo.ReadOnly = true;
-			// 
-			// cTipoCuenta
-			// 
-			this.cTipoCuenta.HeaderText = "Tipo de Cuenta";
-			this.cTipoCuenta.Name = "cTipoCuenta";
-			this.cTipoCuenta.ReadOnly = true;
-			// 
-			// cCbu
-			// 
-			this.cCbu.HeaderText = "CBU";
-			this.cCbu.Name = "cCbu";
-			this.cCbu.ReadOnly = true;
+			this.cId.HeaderText = "Id";
+			this.cId.Name = "cId";
+			this.cId.ReadOnly = true;
+			this.cId.Visible = false;
 			// 
 			// cCliente
 			// 
@@ -228,12 +211,29 @@ namespace BancoPresentacion
 			this.cCliente.Name = "cCliente";
 			this.cCliente.ReadOnly = true;
 			// 
-			// cId
+			// cCbu
 			// 
-			this.cId.HeaderText = "Id";
-			this.cId.Name = "cId";
-			this.cId.ReadOnly = true;
-			this.cId.Visible = false;
+			this.cCbu.HeaderText = "CBU";
+			this.cCbu.Name = "cCbu";
+			this.cCbu.ReadOnly = true;
+			// 
+			// cTipoCuenta
+			// 
+			this.cTipoCuenta.HeaderText = "Tipo de Cuenta";
+			this.cTipoCuenta.Name = "cTipoCuenta";
+			this.cTipoCuenta.ReadOnly = true;
+			// 
+			// cSaldo
+			// 
+			this.cSaldo.HeaderText = "Saldo";
+			this.cSaldo.Name = "cSaldo";
+			this.cSaldo.ReadOnly = true;
+			// 
+			// cUltimoMov
+			// 
+			this.cUltimoMov.HeaderText = "Ultimo Mov";
+			this.cUltimoMov.Name = "cUltimoMov";
+			this.cUltimoMov.ReadOnly = true;
 			// 
 			// FrmConsulta
 			// 
@@ -256,6 +256,7 @@ namespace BancoPresentacion
 			this.Controls.Add(this.btnConsultar);
 			this.Name = "FrmConsulta";
 			this.Text = "FrmConsulta";
+			this.Load += new System.EventHandler(this.FrmConsulta_Load);
 			((System.ComponentModel.ISupportInitialize)(this.dgvConsulta)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
