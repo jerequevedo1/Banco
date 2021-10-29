@@ -37,9 +37,9 @@ namespace BancoPresentacion
 			this.btnCuenta = new System.Windows.Forms.Button();
 			this.panelIcono = new System.Windows.Forms.Panel();
 			this.panelTitleBar = new System.Windows.Forms.Panel();
+			this.lblTitle = new System.Windows.Forms.Label();
 			this.lblBienvenida = new System.Windows.Forms.Label();
 			this.panelChild = new System.Windows.Forms.Panel();
-			this.lblTitle = new System.Windows.Forms.Label();
 			this.panelMenu.SuspendLayout();
 			this.panelTitleBar.SuspendLayout();
 			this.SuspendLayout();
@@ -56,7 +56,7 @@ namespace BancoPresentacion
 			this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
 			this.panelMenu.Location = new System.Drawing.Point(0, 0);
 			this.panelMenu.Name = "panelMenu";
-			this.panelMenu.Size = new System.Drawing.Size(220, 450);
+			this.panelMenu.Size = new System.Drawing.Size(220, 561);
 			this.panelMenu.TabIndex = 0;
 			// 
 			// btnSalir
@@ -65,7 +65,7 @@ namespace BancoPresentacion
 			this.btnSalir.FlatAppearance.BorderSize = 0;
 			this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSalir.ForeColor = System.Drawing.Color.Silver;
-			this.btnSalir.Location = new System.Drawing.Point(0, 401);
+			this.btnSalir.Location = new System.Drawing.Point(0, 512);
 			this.btnSalir.Name = "btnSalir";
 			this.btnSalir.Size = new System.Drawing.Size(220, 49);
 			this.btnSalir.TabIndex = 5;
@@ -146,8 +146,19 @@ namespace BancoPresentacion
 			this.panelTitleBar.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panelTitleBar.Location = new System.Drawing.Point(220, 0);
 			this.panelTitleBar.Name = "panelTitleBar";
-			this.panelTitleBar.Size = new System.Drawing.Size(580, 80);
+			this.panelTitleBar.Size = new System.Drawing.Size(714, 80);
 			this.panelTitleBar.TabIndex = 1;
+			// 
+			// lblTitle
+			// 
+			this.lblTitle.AutoSize = true;
+			this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			this.lblTitle.ForeColor = System.Drawing.Color.White;
+			this.lblTitle.Location = new System.Drawing.Point(241, 32);
+			this.lblTitle.Name = "lblTitle";
+			this.lblTitle.Size = new System.Drawing.Size(46, 19);
+			this.lblTitle.TabIndex = 1;
+			this.lblTitle.Text = "Home";
 			// 
 			// lblBienvenida
 			// 
@@ -164,29 +175,20 @@ namespace BancoPresentacion
 			// 
 			this.panelChild.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panelChild.Location = new System.Drawing.Point(220, 80);
+			this.panelChild.MinimumSize = new System.Drawing.Size(708, 464);
 			this.panelChild.Name = "panelChild";
-			this.panelChild.Size = new System.Drawing.Size(580, 370);
+			this.panelChild.Size = new System.Drawing.Size(714, 481);
 			this.panelChild.TabIndex = 2;
-			// 
-			// lblTitle
-			// 
-			this.lblTitle.AutoSize = true;
-			this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-			this.lblTitle.ForeColor = System.Drawing.Color.White;
-			this.lblTitle.Location = new System.Drawing.Point(241, 32);
-			this.lblTitle.Name = "lblTitle";
-			this.lblTitle.Size = new System.Drawing.Size(46, 19);
-			this.lblTitle.TabIndex = 1;
-			this.lblTitle.Text = "Home";
 			// 
 			// FrmPrincipal
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.ClientSize = new System.Drawing.Size(934, 561);
 			this.Controls.Add(this.panelChild);
 			this.Controls.Add(this.panelTitleBar);
 			this.Controls.Add(this.panelMenu);
+			this.MinimumSize = new System.Drawing.Size(950, 600);
 			this.Name = "FrmPrincipal";
 			this.Text = "Form1";
 			this.panelMenu.ResumeLayout(false);

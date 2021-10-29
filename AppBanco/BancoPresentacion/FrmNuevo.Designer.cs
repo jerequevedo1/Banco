@@ -89,7 +89,8 @@ namespace BancoPresentacion
 			// 
 			// btnAceptar
 			// 
-			this.btnAceptar.Location = new System.Drawing.Point(32, 271);
+			this.btnAceptar.Location = new System.Drawing.Point(201, 407);
+			this.btnAceptar.MaximumSize = new System.Drawing.Size(708, 464);
 			this.btnAceptar.Name = "btnAceptar";
 			this.btnAceptar.Size = new System.Drawing.Size(75, 23);
 			this.btnAceptar.TabIndex = 6;
@@ -98,7 +99,8 @@ namespace BancoPresentacion
 			// 
 			// btnCancelar
 			// 
-			this.btnCancelar.Location = new System.Drawing.Point(261, 271);
+			this.btnCancelar.Location = new System.Drawing.Point(430, 407);
+			this.btnCancelar.MaximumSize = new System.Drawing.Size(708, 464);
 			this.btnCancelar.Name = "btnCancelar";
 			this.btnCancelar.Size = new System.Drawing.Size(75, 23);
 			this.btnCancelar.TabIndex = 7;
@@ -110,7 +112,7 @@ namespace BancoPresentacion
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(400, 371);
+			this.ClientSize = new System.Drawing.Size(698, 442);
 			this.Controls.Add(this.btnCancelar);
 			this.Controls.Add(this.btnAceptar);
 			this.Controls.Add(this.textBox3);
@@ -119,6 +121,7 @@ namespace BancoPresentacion
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.textBox1);
 			this.Controls.Add(this.label1);
+			this.MinimumSize = new System.Drawing.Size(708, 464);
 			this.Name = "FrmNuevo";
 			this.Text = "FrmNuevo";
 			this.ResumeLayout(false);

@@ -69,11 +69,11 @@ namespace BancoPresentacion
             this.cTipoCuenta,
             this.cSaldo,
             this.cUltimoMov});
-			this.dgvConsulta.Location = new System.Drawing.Point(15, 127);
+			this.dgvConsulta.Location = new System.Drawing.Point(12, 127);
 			this.dgvConsulta.Name = "dgvConsulta";
 			this.dgvConsulta.ReadOnly = true;
 			this.dgvConsulta.RowTemplate.Height = 25;
-			this.dgvConsulta.Size = new System.Drawing.Size(683, 351);
+			this.dgvConsulta.Size = new System.Drawing.Size(674, 244);
 			this.dgvConsulta.TabIndex = 0;
 			// 
 			// cId
@@ -115,7 +115,7 @@ namespace BancoPresentacion
 			// 
 			// btnConsultar
 			// 
-			this.btnConsultar.Location = new System.Drawing.Point(599, 87);
+			this.btnConsultar.Location = new System.Drawing.Point(611, 87);
 			this.btnConsultar.Name = "btnConsultar";
 			this.btnConsultar.Size = new System.Drawing.Size(75, 23);
 			this.btnConsultar.TabIndex = 1;
@@ -128,7 +128,7 @@ namespace BancoPresentacion
 			this.btnNuevo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btnNuevo.FlatAppearance.BorderSize = 0;
 			this.btnNuevo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnNuevo.Location = new System.Drawing.Point(369, 500);
+			this.btnNuevo.Location = new System.Drawing.Point(346, 393);
 			this.btnNuevo.Name = "btnNuevo";
 			this.btnNuevo.Size = new System.Drawing.Size(75, 23);
 			this.btnNuevo.TabIndex = 3;
@@ -141,7 +141,7 @@ namespace BancoPresentacion
 			this.btnEditar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btnEditar.FlatAppearance.BorderSize = 0;
 			this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnEditar.Location = new System.Drawing.Point(486, 500);
+			this.btnEditar.Location = new System.Drawing.Point(463, 393);
 			this.btnEditar.Name = "btnEditar";
 			this.btnEditar.Size = new System.Drawing.Size(75, 23);
 			this.btnEditar.TabIndex = 4;
@@ -153,7 +153,7 @@ namespace BancoPresentacion
 			this.btnEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btnEliminar.FlatAppearance.BorderSize = 0;
 			this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnEliminar.Location = new System.Drawing.Point(611, 500);
+			this.btnEliminar.Location = new System.Drawing.Point(588, 393);
 			this.btnEliminar.Name = "btnEliminar";
 			this.btnEliminar.Size = new System.Drawing.Size(75, 23);
 			this.btnEliminar.TabIndex = 5;
@@ -162,7 +162,7 @@ namespace BancoPresentacion
 			// 
 			// txtFiltro
 			// 
-			this.txtFiltro.Location = new System.Drawing.Point(324, 87);
+			this.txtFiltro.Location = new System.Drawing.Point(336, 87);
 			this.txtFiltro.Name = "txtFiltro";
 			this.txtFiltro.Size = new System.Drawing.Size(261, 23);
 			this.txtFiltro.TabIndex = 18;
@@ -171,7 +171,7 @@ namespace BancoPresentacion
 			// 
 			this.cboFiltro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cboFiltro.FormattingEnabled = true;
-			this.cboFiltro.Location = new System.Drawing.Point(78, 87);
+			this.cboFiltro.Location = new System.Drawing.Point(90, 87);
 			this.cboFiltro.Name = "cboFiltro";
 			this.cboFiltro.Size = new System.Drawing.Size(223, 23);
 			this.cboFiltro.TabIndex = 17;
@@ -179,7 +179,7 @@ namespace BancoPresentacion
 			// lblFiltro
 			// 
 			this.lblFiltro.AutoSize = true;
-			this.lblFiltro.Location = new System.Drawing.Point(34, 91);
+			this.lblFiltro.Location = new System.Drawing.Point(46, 91);
 			this.lblFiltro.Name = "lblFiltro";
 			this.lblFiltro.Size = new System.Drawing.Size(34, 15);
 			this.lblFiltro.TabIndex = 16;
@@ -188,7 +188,7 @@ namespace BancoPresentacion
 			// dtpFechaHasta
 			// 
 			this.dtpFechaHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-			this.dtpFechaHasta.Location = new System.Drawing.Point(548, 27);
+			this.dtpFechaHasta.Location = new System.Drawing.Point(560, 27);
 			this.dtpFechaHasta.Name = "dtpFechaHasta";
 			this.dtpFechaHasta.Size = new System.Drawing.Size(126, 23);
 			this.dtpFechaHasta.TabIndex = 15;
@@ -196,7 +196,7 @@ namespace BancoPresentacion
 			// lblFechaHasta
 			// 
 			this.lblFechaHasta.AutoSize = true;
-			this.lblFechaHasta.Location = new System.Drawing.Point(504, 31);
+			this.lblFechaHasta.Location = new System.Drawing.Point(516, 31);
 			this.lblFechaHasta.Name = "lblFechaHasta";
 			this.lblFechaHasta.Size = new System.Drawing.Size(40, 15);
 			this.lblFechaHasta.TabIndex = 14;
@@ -205,7 +205,7 @@ namespace BancoPresentacion
 			// dtpFechaDesde
 			// 
 			this.dtpFechaDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-			this.dtpFechaDesde.Location = new System.Drawing.Point(368, 27);
+			this.dtpFechaDesde.Location = new System.Drawing.Point(380, 27);
 			this.dtpFechaDesde.Name = "dtpFechaDesde";
 			this.dtpFechaDesde.Size = new System.Drawing.Size(126, 23);
 			this.dtpFechaDesde.TabIndex = 13;
@@ -213,7 +213,7 @@ namespace BancoPresentacion
 			// lblFechaDesde
 			// 
 			this.lblFechaDesde.AutoSize = true;
-			this.lblFechaDesde.Location = new System.Drawing.Point(324, 31);
+			this.lblFechaDesde.Location = new System.Drawing.Point(336, 31);
 			this.lblFechaDesde.Name = "lblFechaDesde";
 			this.lblFechaDesde.Size = new System.Drawing.Size(42, 15);
 			this.lblFechaDesde.TabIndex = 12;
@@ -223,7 +223,7 @@ namespace BancoPresentacion
 			// 
 			this.cboFiltroFecha.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cboFiltroFecha.FormattingEnabled = true;
-			this.cboFiltroFecha.Location = new System.Drawing.Point(78, 27);
+			this.cboFiltroFecha.Location = new System.Drawing.Point(90, 27);
 			this.cboFiltroFecha.Name = "cboFiltroFecha";
 			this.cboFiltroFecha.Size = new System.Drawing.Size(223, 23);
 			this.cboFiltroFecha.TabIndex = 11;
@@ -231,7 +231,7 @@ namespace BancoPresentacion
 			// lblFiltroFecha
 			// 
 			this.lblFiltroFecha.AutoSize = true;
-			this.lblFiltroFecha.Location = new System.Drawing.Point(34, 31);
+			this.lblFiltroFecha.Location = new System.Drawing.Point(46, 31);
 			this.lblFiltroFecha.Name = "lblFiltroFecha";
 			this.lblFiltroFecha.Size = new System.Drawing.Size(34, 15);
 			this.lblFiltroFecha.TabIndex = 10;
@@ -256,14 +256,14 @@ namespace BancoPresentacion
 			this.panelConsulta.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panelConsulta.Location = new System.Drawing.Point(0, 0);
 			this.panelConsulta.Name = "panelConsulta";
-			this.panelConsulta.Size = new System.Drawing.Size(721, 549);
+			this.panelConsulta.Size = new System.Drawing.Size(698, 442);
 			this.panelConsulta.TabIndex = 19;
 			// 
 			// FrmConsulta
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(721, 549);
+			this.ClientSize = new System.Drawing.Size(698, 442);
 			this.Controls.Add(this.panelConsulta);
 			this.Name = "FrmConsulta";
 			this.Text = "FrmConsulta";
