@@ -20,7 +20,7 @@ namespace BancoAccesoDatos
 
 		private HelperDao()
 		{
-			ConnectionString = @" ";
+			ConnectionString = @"Data Source=HOME\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
 			cnn = new SqlConnection(ConnectionString);
 
 		}
@@ -52,13 +52,13 @@ namespace BancoAccesoDatos
 
 
 			}
-			catch (Exception)
-			{
-				tabla = null;
-			}
-			finally
-			{
-				if (cnn.State == ConnectionState.Open) cnn.Close();
+            catch (Exception)
+            {
+                tabla = null;
+            }
+            finally
+            {
+                if (cnn.State == ConnectionState.Open) cnn.Close();
 			}
 
 			return tabla;

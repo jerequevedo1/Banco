@@ -32,5 +32,9 @@ namespace BancoDominio.Entidades
             TipoCuenta = tipoCuenta;
             TipoMoneda = tipoMoneda;
         }
+
+        public Cuenta()
+        {
+        }
     }
 }

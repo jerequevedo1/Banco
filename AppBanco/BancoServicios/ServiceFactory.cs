@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BancoServicios
 {
-    class ServiceFactory : AbstractServiceFactory
+   public class ServiceFactory : AbstractServiceFactory
     {
         public override IService CrearService(AbstractDaoFactory factory)
         {

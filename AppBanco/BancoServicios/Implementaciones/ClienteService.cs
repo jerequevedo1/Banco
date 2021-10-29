@@ -1,5 +1,7 @@
 ﻿using BancoAccesoDatos;
 using BancoAccesoDatos.Interfaces;
+using BancoDominio;
+using BancoDominio.Entidades;
 using BancoServicios.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -19,5 +21,9 @@ namespace BancoServicios.Implementaciones
 
         }
 
+        public List<Cliente> GetByFiltersCliente(List<Parametro> parametros)
+        {
+            return daoCliente.GetByFiltersCliente(parametros);
+        }
     }
 }
