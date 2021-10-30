@@ -118,6 +118,7 @@ namespace BancoPresentacion
             this.txtPass.Name = "txtPass";
             this.txtPass.Size = new System.Drawing.Size(337, 17);
             this.txtPass.TabIndex = 4;
+            this.txtPass.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPass_KeyPress);
             // 
             // lblUser
             // 
