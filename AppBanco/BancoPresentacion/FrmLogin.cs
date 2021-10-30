@@ -86,5 +86,16 @@ namespace BancoPresentacion
                 }
             }
         }
+
+        private void txtPass_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            
+            if (Convert.ToInt32(e.KeyChar) == 13)//enter
+            {
+                btnLogin_Click(sender, e);
+            }
+        }
+
     }
 }
