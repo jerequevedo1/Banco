@@ -79,6 +79,7 @@ namespace BancoPresentacion
                     }
                     else
                     {
+                        this.usuario.IdUsuario = -1;
                         MessageBox.Show("Error sesion");
                         //usuario Rechazado, informar al usuario
                     }
