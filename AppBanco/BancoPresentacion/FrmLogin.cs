@@ -97,9 +97,5 @@ namespace BancoPresentacion
             }
         }
 
-        //private void txtPass_Enter(object sender, EventArgs e)
-        //{
-        //    btnLogin_Click(sender, e);
-        //}
     }
 }
