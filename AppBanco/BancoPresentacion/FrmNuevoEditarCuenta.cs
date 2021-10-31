@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static BancoDominio.Enumeraciones;
 
 namespace BancoPresentacion
 {
@@ -60,7 +61,7 @@ namespace BancoPresentacion
 		private void btnNuevo_Click(object sender, EventArgs e)
 		{
 			//aca se abre el form nuevo cliente
-			new FrmNuevoEditarCliente().ShowDialog();
+			new FrmNuevoEditarCliente(Accion.Create,0).ShowDialog();
 		}
 
 		private void FrmNuevoEditarCuenta_Load(object sender, EventArgs e)

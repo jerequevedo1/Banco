@@ -123,7 +123,7 @@ namespace BancoAccesoDatos
                 }
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
             }
@@ -136,11 +136,6 @@ namespace BancoAccesoDatos
             return oCliente;
 
         }
-
-
-
-
-    }
 
 		public DataTable ConsultaSQL(string nombreSP)
 		{

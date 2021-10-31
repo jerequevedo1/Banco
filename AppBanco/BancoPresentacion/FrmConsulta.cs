@@ -38,7 +38,7 @@ namespace BancoPresentacion
 
 			if (tipo.Equals(Tipo.Cliente))
 			{
-				new FrmNuevoEditarCliente().ShowDialog();
+				new FrmNuevoEditarCliente(Accion.Create,0).ShowDialog();
 			}
 			if (tipo.Equals(Tipo.Cuenta))
 			{

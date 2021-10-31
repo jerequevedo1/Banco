@@ -27,13 +27,10 @@ namespace BancoServicios.Implementaciones
             return daoCliente.GetClienteByFilters(parametros);
         }
 
-
         public Cliente GetClienteId(int nro)
         {
             return daoCliente.GetClienteId(nro);
         }
-    }
-
 		public List<Cliente> GetClienteByName(List<Parametro> parametro)
 		{
             return daoCliente.GetClienteByName(parametro);
