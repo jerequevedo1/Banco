@@ -194,7 +194,7 @@ AS
 	    order by id_cuenta asc
 
 go
-alter PROC PA_CONSULTA_CLIENTE_SIMPLE
+Create PROC PA_CONSULTA_CLIENTE_SIMPLE
 @ClienteNombre varchar(150)
 as
 		if @ClienteNombre not like ''
@@ -202,3 +202,20 @@ as
 			from Clientes
 			WHERE (nom_cliente like '%' + @ClienteNombre + '%')OR(ape_cliente like '%' + @ClienteNombre + '%')
 			order by id_cliente asc  
+go
+Create PROC PA_CONSULTA_TIPO_CUENTA
+as
+			select *
+			from Tipos_Cuentas
+			order by 2 asc 
+go
+create PROC SP_CONSULTAR_CLIENTE_POR_ID
+	@nro int	
+AS
+BEGIN
+	SELECT *
+	FROM Clientes c, Cuentas cu, Barrios b
+	WHERE c.id_cliente = cu.id_cliente
+	AND c.id_barrio= b.id_barrio
+	AND c.id_cliente= @nro;
+END
