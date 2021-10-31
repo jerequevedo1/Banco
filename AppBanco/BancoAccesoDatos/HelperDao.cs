@@ -24,7 +24,7 @@ namespace BancoAccesoDatos
 			//ConnectionString = @"Data Source=LAPTOP-JULI\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
 
 			//ConnectionString = @"Data Source=HOME\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
-			//ConnectionString = @"Data Source=NOTEBOOK-JERE\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
+			ConnectionString = @"Data Source=NOTEBOOK-JERE\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
 
 			cnn = new SqlConnection(ConnectionString);
 
@@ -66,6 +66,29 @@ namespace BancoAccesoDatos
                 if (cnn.State == ConnectionState.Open) cnn.Close();
 			}
 
+			return tabla;
+		}
+		public DataTable ConsultaSQL(string nombreSP)
+		{
+			DataTable tabla = new DataTable();
+			try
+			{
+				cmd.Parameters.Clear();
+				cnn.Open();
+				cmd.Connection = cnn;
+				cmd.CommandType = CommandType.StoredProcedure;
+				cmd.CommandText = nombreSP;
+				tabla.Load(cmd.ExecuteReader());
+			}
+			catch (Exception)
+			{
+				tabla = null;
+			}
+			finally
+			{
+				if (cnn.State == ConnectionState.Open)
+					cnn.Close();
+			}
 			return tabla;
 		}
 	}

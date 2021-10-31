@@ -192,3 +192,13 @@ AS
 		WHERE (@activo = 'n' and c.fecha_baja IS  NULL) and 
 		(@ClienteNombre is null OR (nom_cliente like '%' + @ClienteNombre + '%')OR(ape_cliente like '%' + @ClienteNombre + '%'))
 	    order by id_cuenta asc
+
+go
+alter PROC PA_CONSULTA_CLIENTE_SIMPLE
+@ClienteNombre varchar(150)
+as
+		if @ClienteNombre not like ''
+			select id_cliente 'ID Cliente', nom_cliente Nombre,ape_cliente Apellido, dni DNI, email Email
+			from Clientes
+			WHERE (nom_cliente like '%' + @ClienteNombre + '%')OR(ape_cliente like '%' + @ClienteNombre + '%')
+			order by id_cliente asc  
