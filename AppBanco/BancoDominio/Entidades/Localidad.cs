@@ -18,5 +18,11 @@ namespace BancoDominio.Entidades
             lBarrio = new List<Barrio>();
 
         }
+
+
+       
+
+
+
     }
 }

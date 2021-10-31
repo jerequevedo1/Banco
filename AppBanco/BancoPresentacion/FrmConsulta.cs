@@ -35,6 +35,7 @@ namespace BancoPresentacion
 		private void btnNuevo_Click(object sender, EventArgs e)
 		{
 			//opcion con ventana emergente
+
 			if (tipo.Equals(Tipo.Cliente))
 			{
 				new FrmNuevoEditarCliente().ShowDialog();
@@ -43,6 +44,7 @@ namespace BancoPresentacion
 			{
 				new FrmNuevoEditarCuenta().ShowDialog();
 			}
+
 		}
 		private void btnConsultar_Click(object sender, EventArgs e)
 		{
@@ -241,8 +243,18 @@ namespace BancoPresentacion
 			}
 		}
 
-
-
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+			if (dgvConsulta.RowCount > 0)
+			{   
+				int nro = Convert.ToInt32(dgvConsulta.CurrentRow.Cells[0].Value.ToString());
+				new FrmNuevoEditarCliente(Accion.Update, nro).ShowDialog();
+			}
+			else
+			{
+				MessageBox.Show("No hay clientes en consulta", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
     }
 
 

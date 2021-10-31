@@ -15,5 +15,9 @@ namespace BancoDominio.Entidades
             IdBarrio = idBarrio;
             NomBarrio = nomBarrio;
         }
+
+        public Barrio()
+        {
+        }
     }
 }

@@ -5,6 +5,7 @@ using BancoDominio.Entidades;
 using BancoServicios.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,9 +27,17 @@ namespace BancoServicios.Implementaciones
             return daoCliente.GetClienteByFilters(parametros);
         }
 
+
+        public Cliente GetClienteId(int nro)
+        {
+            return daoCliente.GetClienteId(nro);
+        }
+    }
+
 		public List<Cliente> GetClienteByName(List<Parametro> parametro)
 		{
             return daoCliente.GetClienteByName(parametro);
 		}
 	}
+
 }

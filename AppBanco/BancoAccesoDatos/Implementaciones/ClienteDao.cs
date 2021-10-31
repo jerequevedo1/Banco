@@ -11,8 +11,11 @@ using System.Threading.Tasks;
 
 namespace BancoAccesoDatos.Implementaciones
 {
-    class ClienteDao :IClienteDao
-    {
+    class ClienteDao : IClienteDao
+    {    
+
+
+
         public List<Cliente> GetClienteByFilters(List<Parametro> parametros)
         {
 
@@ -50,6 +53,15 @@ namespace BancoAccesoDatos.Implementaciones
             return lst;
         }
 
+
+        public Cliente GetClienteId(int nro)
+        {
+            HelperDao helper = HelperDao.ObtenerInstancia();
+            return helper.GetClienteId(nro);
+
+        }
+    }
+
 		public List<Cliente> GetClienteByName(List<Parametro> parametro)
 		{
             List<Cliente> lst = new List<Cliente>();
@@ -78,4 +90,5 @@ namespace BancoAccesoDatos.Implementaciones
             return lst;
         }
 	}
+
 }
