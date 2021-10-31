@@ -13,6 +13,6 @@ namespace BancoAccesoDatos.Interfaces
     {
         List<Cliente> GetClienteByFilters(List<Parametro> parametros);
         Cliente GetClienteId(int nro);
-        DataTable CargarCombo();
+        
     }
 }

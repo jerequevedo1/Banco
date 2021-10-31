@@ -14,12 +14,6 @@ namespace BancoAccesoDatos.Implementaciones
     class ClienteDao : IClienteDao
     {    
 
-        public DataTable CargarCombo()
-        {
-            HelperDao helper = HelperDao.ObtenerInstancia();
-            return helper.CargarCombo();
-
-        }
 
 
         public List<Cliente> GetClienteByFilters(List<Parametro> parametros)

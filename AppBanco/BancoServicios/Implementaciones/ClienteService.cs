@@ -22,11 +22,6 @@ namespace BancoServicios.Implementaciones
 
         }
 
-        public DataTable CargarCombo()
-        {
-            return daoCliente.CargarCombo();
-        }
-
         public List<Cliente> GetClienteByFilters(List<Parametro> parametros)
         {
             return daoCliente.GetClienteByFilters(parametros);
