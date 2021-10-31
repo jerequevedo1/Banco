@@ -55,7 +55,6 @@ namespace BancoPresentacion
             {
                 using (var client = new HttpClient())
                 {
-                    //System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
                     client.BaseAddress = new Uri("https://localhost:44304/");
 
                     UsuarioDto usuario = new UsuarioDto { nombreUsuario = txtUser.Text.ToString(), password = txtPass.Text.ToString() };
@@ -69,12 +68,9 @@ namespace BancoPresentacion
                     if (user.NomUsuario == txtUser.Text.ToString().Trim())
                     {
                         //logueado OK 
-                        //Dispose();
                         this.usuario.IdUsuario= user.IdUsuario;
                         this.usuario.NomUsuario = user.NomUsuario;
                         this.usuario.Pass = user.Pass;
-                        //var principal = new FrmPrincipal();
-                        //principal.Show();
                         this.Close();
                     }
                     else

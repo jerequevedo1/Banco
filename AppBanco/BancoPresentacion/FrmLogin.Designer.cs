@@ -100,7 +100,7 @@ namespace BancoPresentacion
             // 
             this.txtUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(94)))), ((int)(((byte)(125)))));
             this.txtUser.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtUser.Font = new System.Drawing.Font("Century", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtUser.ForeColor = System.Drawing.Color.White;
             this.txtUser.Location = new System.Drawing.Point(87, 306);
             this.txtUser.Margin = new System.Windows.Forms.Padding(2);
@@ -112,7 +112,7 @@ namespace BancoPresentacion
             // 
             this.txtPass.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(94)))), ((int)(((byte)(125)))));
             this.txtPass.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtPass.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtPass.ForeColor = System.Drawing.Color.White;
             this.txtPass.Location = new System.Drawing.Point(87, 354);
             this.txtPass.Margin = new System.Windows.Forms.Padding(2);
