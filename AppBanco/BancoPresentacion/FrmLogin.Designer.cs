@@ -58,6 +58,7 @@ namespace BancoPresentacion
             this.TitleBar.Name = "TitleBar";
             this.TitleBar.Size = new System.Drawing.Size(531, 36);
             this.TitleBar.TabIndex = 1;
+            this.TitleBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TitleBar_MouseMove);
             // 
             // btnMinimize
             // 
@@ -99,60 +100,60 @@ namespace BancoPresentacion
             // 
             this.txtUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(94)))), ((int)(((byte)(125)))));
             this.txtUser.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtUser.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtUser.ForeColor = System.Drawing.Color.White;
             this.txtUser.Location = new System.Drawing.Point(87, 306);
             this.txtUser.Margin = new System.Windows.Forms.Padding(2);
             this.txtUser.Name = "txtUser";
-            this.txtUser.Size = new System.Drawing.Size(337, 17);
+            this.txtUser.Size = new System.Drawing.Size(337, 16);
             this.txtUser.TabIndex = 3;
             // 
             // txtPass
             // 
             this.txtPass.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(94)))), ((int)(((byte)(125)))));
             this.txtPass.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtPass.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtPass.ForeColor = System.Drawing.Color.White;
             this.txtPass.Location = new System.Drawing.Point(87, 354);
             this.txtPass.Margin = new System.Windows.Forms.Padding(2);
             this.txtPass.Name = "txtPass";
-            this.txtPass.Size = new System.Drawing.Size(337, 17);
+            this.txtPass.Size = new System.Drawing.Size(337, 16);
             this.txtPass.TabIndex = 4;
             this.txtPass.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPass_KeyPress);
             // 
             // lblUser
             // 
             this.lblUser.AutoSize = true;
-            this.lblUser.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblUser.ForeColor = System.Drawing.Color.Silver;
             this.lblUser.Location = new System.Drawing.Point(84, 283);
             this.lblUser.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblUser.Name = "lblUser";
-            this.lblUser.Size = new System.Drawing.Size(63, 20);
+            this.lblUser.Size = new System.Drawing.Size(60, 18);
             this.lblUser.TabIndex = 5;
             this.lblUser.Text = "Usuario";
             // 
             // lblPass
             // 
             this.lblPass.AutoSize = true;
-            this.lblPass.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblPass.ForeColor = System.Drawing.Color.Silver;
             this.lblPass.Location = new System.Drawing.Point(84, 332);
             this.lblPass.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPass.Name = "lblPass";
-            this.lblPass.Size = new System.Drawing.Size(95, 20);
+            this.lblPass.Size = new System.Drawing.Size(85, 18);
             this.lblPass.TabIndex = 6;
             this.lblPass.Text = "Contraseña";
             // 
             // chkbRecordarme
             // 
             this.chkbRecordarme.AutoSize = true;
-            this.chkbRecordarme.Font = new System.Drawing.Font("Century Gothic", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.chkbRecordarme.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.chkbRecordarme.ForeColor = System.Drawing.Color.Silver;
             this.chkbRecordarme.Location = new System.Drawing.Point(87, 381);
             this.chkbRecordarme.Margin = new System.Windows.Forms.Padding(2);
             this.chkbRecordarme.Name = "chkbRecordarme";
-            this.chkbRecordarme.Size = new System.Drawing.Size(89, 19);
+            this.chkbRecordarme.Size = new System.Drawing.Size(82, 17);
             this.chkbRecordarme.TabIndex = 8;
             this.chkbRecordarme.Text = "Recordarme";
             this.chkbRecordarme.UseVisualStyleBackColor = true;
@@ -162,7 +163,7 @@ namespace BancoPresentacion
             this.btnLogin.BackColor = System.Drawing.Color.Gray;
             this.btnLogin.FlatAppearance.BorderSize = 0;
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLogin.Font = new System.Drawing.Font("Century Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnLogin.ForeColor = System.Drawing.Color.White;
             this.btnLogin.Location = new System.Drawing.Point(87, 435);
             this.btnLogin.Margin = new System.Windows.Forms.Padding(2);
@@ -177,12 +178,12 @@ namespace BancoPresentacion
             // 
             this.linkLabel1.ActiveLinkColor = System.Drawing.Color.DarkGray;
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Font = new System.Drawing.Font("Century", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.linkLabel1.LinkColor = System.Drawing.Color.Silver;
             this.linkLabel1.Location = new System.Drawing.Point(178, 486);
             this.linkLabel1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(150, 16);
+            this.linkLabel1.Size = new System.Drawing.Size(148, 15);
             this.linkLabel1.TabIndex = 10;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "¿Olvidaste tu contraseña?";

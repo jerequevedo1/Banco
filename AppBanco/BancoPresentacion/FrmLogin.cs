@@ -97,6 +97,21 @@ namespace BancoPresentacion
                 btnLogin_Click(sender, e);
             }
         }
+        int PosY = 0;
+        int PosX = 0;
+        private void TitleBar_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button != MouseButtons.Left)
+            {
+                PosX = e.X;
+                PosY = e.Y;
+            }
+            else
+            {
+                Left = Left + (e.X - PosX);
+                Top = Top + (e.Y - PosY);
+            }
 
+        }
     }
 }
