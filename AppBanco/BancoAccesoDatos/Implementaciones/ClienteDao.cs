@@ -11,8 +11,17 @@ using System.Threading.Tasks;
 
 namespace BancoAccesoDatos.Implementaciones
 {
-    class ClienteDao :IClienteDao
-    {
+    class ClienteDao : IClienteDao
+    {    
+
+        public DataTable CargarCombo()
+        {
+            HelperDao helper = HelperDao.ObtenerInstancia();
+            return helper.CargarCombo();
+
+        }
+
+
         public List<Cliente> GetClienteByFilters(List<Parametro> parametros)
         {
 
@@ -50,5 +59,12 @@ namespace BancoAccesoDatos.Implementaciones
             return lst;
         }
 
+     
+        public Cliente GetClienteId(int nro)
+        {
+            HelperDao helper = HelperDao.ObtenerInstancia();
+            return helper.GetClienteId(nro);
+
+        }
     }
 }

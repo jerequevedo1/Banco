@@ -17,5 +17,8 @@ namespace BancoDominio.Entidades
             this.NomProvincia = nomProv;
             this.lLocalidad = new List<Localidad>();
         }
+
+
+
     }
 }

@@ -15,5 +15,13 @@ namespace BancoDominio
 			Transaccion,
 			Configuracion
 		}
+
+		public enum Accion
+        {
+			Create,
+			Read,
+			Update,
+			Delete
+        }
 	}
 }
