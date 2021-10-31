@@ -10,6 +10,7 @@ namespace BancoServicios.Interfaces
 {
     public interface IClienteService
     {
-        public List<Cliente> GetClienteByFilters(List<Parametro> parametros);
+        List<Cliente> GetClienteByFilters(List<Parametro> parametros);
+        List<Cliente> GetClienteByName(List<Parametro> parametro);
     }
 }

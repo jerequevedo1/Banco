@@ -24,5 +24,10 @@ namespace BancoServicios.Implementaciones
 		{
 			return daoCuenta.GetCuentaByFilters(parametros);
 		}
+
+		public List<TipoCuenta> GetTipoCuenta()
+		{
+			return daoCuenta.GetTipoCuenta();
+		}
 	}
 }

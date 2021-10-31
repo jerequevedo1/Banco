@@ -11,5 +11,6 @@ namespace BancoServicios.Interfaces
 	public interface ICuentaService
 	{
 		public List<Cuenta> GetCuentaByFilters(List<Parametro> parametros);
+		List<TipoCuenta> GetTipoCuenta();
 	}
 }
