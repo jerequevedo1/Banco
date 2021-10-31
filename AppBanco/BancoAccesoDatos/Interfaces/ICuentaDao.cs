@@ -11,5 +11,6 @@ namespace BancoAccesoDatos.Interfaces
 	public interface ICuentaDao
 	{
 		List<Cuenta> GetCuentaByFilters(List<Parametro> parametros);
+		List<TipoCuenta> GetTipoCuenta();
 	}
 }

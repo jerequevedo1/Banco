@@ -53,7 +53,7 @@ namespace BancoAccesoDatos.Implementaciones
             return lst;
         }
 
-     
+
         public Cliente GetClienteId(int nro)
         {
             HelperDao helper = HelperDao.ObtenerInstancia();
@@ -61,4 +61,34 @@ namespace BancoAccesoDatos.Implementaciones
 
         }
     }
+
+		public List<Cliente> GetClienteByName(List<Parametro> parametro)
+		{
+            List<Cliente> lst = new List<Cliente>();
+
+            try
+            {
+                DataTable tabla = HelperDao.ObtenerInstancia().ConsultaSQLParametros("PA_CONSULTA_CLIENTE_SIMPLE", parametro);
+
+                foreach (DataRow row in tabla.Rows)
+                {
+                    Cliente oCliente = new Cliente();
+
+                    oCliente.IdCliente = Convert.ToInt32(row["ID Cliente"].ToString());
+                    oCliente.NomCliente = row["Nombre"].ToString();
+                    oCliente.ApeCliente = row["Apellido"].ToString();
+                    oCliente.Dni = Convert.ToInt32(row["DNI"].ToString());
+                    oCliente.Email = row["Email"].ToString();
+
+                    lst.Add(oCliente);
+                }
+            }
+            catch (SqlException)
+            {
+                lst = null;
+            }
+            return lst;
+        }
+	}
+
 }

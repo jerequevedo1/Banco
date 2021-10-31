@@ -35,7 +35,15 @@ namespace BancoPresentacion
 		private void btnNuevo_Click(object sender, EventArgs e)
 		{
 			//opcion con ventana emergente
-			//new FrmNuevoEditarCliente(Accion.Create).ShowDialog(); 
+
+			if (tipo.Equals(Tipo.Cliente))
+			{
+				new FrmNuevoEditarCliente().ShowDialog();
+			}
+			if (tipo.Equals(Tipo.Cuenta))
+			{
+				new FrmNuevoEditarCuenta().ShowDialog();
+			}
 
 		}
 		private void btnConsultar_Click(object sender, EventArgs e)

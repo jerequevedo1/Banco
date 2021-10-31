@@ -56,5 +56,21 @@ namespace BancoAccesoDatos.Implementaciones
             }
             return lst;
         }
+
+		public List<TipoCuenta> GetTipoCuenta()
+		{
+            List<TipoCuenta> lst = new List<TipoCuenta>();
+            DataTable table = HelperDao.ObtenerInstancia().ConsultaSQL("PA_CONSULTA_TIPO_CUENTA");
+
+			foreach (DataRow row in table.Rows)
+			{
+                TipoCuenta oTipoCuenta = new TipoCuenta();
+                oTipoCuenta.IdTipoCuenta= Convert.ToInt32(row["id_tipo_cuenta"].ToString());
+                oTipoCuenta.DescTipoCuenta = row["descripcion"].ToString();
+                lst.Add(oTipoCuenta);
+            }
+
+            return lst;
+		}
 	}
 }

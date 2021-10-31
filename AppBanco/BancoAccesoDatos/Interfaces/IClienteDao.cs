@@ -12,7 +12,10 @@ namespace BancoAccesoDatos.Interfaces
     public interface IClienteDao
     {
         List<Cliente> GetClienteByFilters(List<Parametro> parametros);
+
         Cliente GetClienteId(int nro);
-        
+
+        List<Cliente> GetClienteByName(List<Parametro> parametro);
+
     }
 }

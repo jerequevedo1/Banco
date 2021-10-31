@@ -24,8 +24,13 @@ namespace BancoAccesoDatos
 
 			//ConnectionString = @"Data Source=LAPTOP-JULI\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
 
-			ConnectionString = @"Data Source=HOME\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
+
+			//ConnectionString = @"Data Source=HOME\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
 			//ConnectionString = @"Data Source=NOTEBOOK-JERE\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
+
+			//ConnectionString = @"Data Source=HOME\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
+			ConnectionString = @"Data Source=NOTEBOOK-JERE\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
+
 
 			cnn = new SqlConnection(ConnectionString);
 
@@ -69,6 +74,7 @@ namespace BancoAccesoDatos
 
 			return tabla;
 		}
+
 
 
         public Cliente GetClienteId(int nro)
@@ -133,35 +139,33 @@ namespace BancoAccesoDatos
 
 
 
-        public DataTable CargarCombo()
-        {
-            SqlConnection cnn = new SqlConnection();
-            SqlCommand cmd = new SqlCommand();
-            DataTable tabla = new DataTable();
-            try
-            {
-                cnn.ConnectionString = ConnectionString;
-                cnn.Open();
-                cmd.Connection = cnn;
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "SP_CONSULTAR_BARRIOS";
-                tabla.Load(cmd.ExecuteReader());
-                return tabla;
-            }
-
-            catch (SqlException ex)
-            {
-                throw (ex);
-            }
-            finally
-            {
-                cnn.Close();
-            }
-
-        }
-
-
 
     }
+
+		public DataTable ConsultaSQL(string nombreSP)
+		{
+			DataTable tabla = new DataTable();
+			try
+			{
+				cmd.Parameters.Clear();
+				cnn.Open();
+				cmd.Connection = cnn;
+				cmd.CommandType = CommandType.StoredProcedure;
+				cmd.CommandText = nombreSP;
+				tabla.Load(cmd.ExecuteReader());
+			}
+			catch (Exception)
+			{
+				tabla = null;
+			}
+			finally
+			{
+				if (cnn.State == ConnectionState.Open)
+					cnn.Close();
+			}
+			return tabla;
+		}
+	}
+
 
 }
