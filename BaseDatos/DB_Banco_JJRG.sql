@@ -194,11 +194,11 @@ AS
 	    order by id_cuenta asc
 
 go
-Create PROC PA_CONSULTA_CLIENTE_SIMPLE
+alter PROC PA_CONSULTA_CLIENTE_SIMPLE
 @ClienteNombre varchar(150)
 as
 		if @ClienteNombre not like ''
-			select id_cliente 'ID Cliente', nom_cliente Nombre,ape_cliente Apellido, dni DNI, email Email
+			select id_cliente,nom_cliente,ape_cliente,dni,cuil,direccion,telefono,email,id_barrio
 			from Clientes
 			WHERE (nom_cliente like '%' + @ClienteNombre + '%')OR(ape_cliente like '%' + @ClienteNombre + '%')
 			order by id_cliente asc  
@@ -249,6 +249,3 @@ ALTER TABLE Cuentas
 ADD limite_descubierto decimal(18,0)
 go
 
-
-
-select * from Cuentas
