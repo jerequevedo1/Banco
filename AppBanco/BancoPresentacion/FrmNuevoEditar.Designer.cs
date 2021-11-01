@@ -70,9 +70,9 @@ namespace BancoPresentacion
 			this.lblCliNombre = new System.Windows.Forms.Label();
 			this.lblNroCliente = new System.Windows.Forms.Label();
 			this.panelCliente = new System.Windows.Forms.Panel();
-			this.panel1 = new System.Windows.Forms.Panel();
+			this.panelCuenta = new System.Windows.Forms.Panel();
 			this.panelCliente.SuspendLayout();
-			this.panel1.SuspendLayout();
+			this.panelCuenta.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// lblNroCuenta
@@ -449,32 +449,32 @@ namespace BancoPresentacion
 			this.panelCliente.Size = new System.Drawing.Size(691, 176);
 			this.panelCliente.TabIndex = 45;
 			// 
-			// panel1
+			// panelCuenta
 			// 
-			this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.panel1.Controls.Add(this.txtCbu);
-			this.panel1.Controls.Add(this.lblCbu);
-			this.panel1.Controls.Add(this.lblAlias);
-			this.panel1.Controls.Add(this.txtAlias);
-			this.panel1.Controls.Add(this.cboTipoMoneda);
-			this.panel1.Controls.Add(this.cboTipoCuenta);
-			this.panel1.Controls.Add(this.txtLimiteDesc);
-			this.panel1.Controls.Add(this.lblTipoMoneda);
-			this.panel1.Controls.Add(this.lblDepositoInicial);
-			this.panel1.Controls.Add(this.lblTipoCuenta);
-			this.panel1.Controls.Add(this.txtDepositoInicial);
-			this.panel1.Controls.Add(this.lblLimiteDesc);
-			this.panel1.Location = new System.Drawing.Point(42, 314);
-			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(539, 119);
-			this.panel1.TabIndex = 46;
+			this.panelCuenta.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+			this.panelCuenta.Controls.Add(this.txtCbu);
+			this.panelCuenta.Controls.Add(this.lblCbu);
+			this.panelCuenta.Controls.Add(this.lblAlias);
+			this.panelCuenta.Controls.Add(this.txtAlias);
+			this.panelCuenta.Controls.Add(this.cboTipoMoneda);
+			this.panelCuenta.Controls.Add(this.cboTipoCuenta);
+			this.panelCuenta.Controls.Add(this.txtLimiteDesc);
+			this.panelCuenta.Controls.Add(this.lblTipoMoneda);
+			this.panelCuenta.Controls.Add(this.lblDepositoInicial);
+			this.panelCuenta.Controls.Add(this.lblTipoCuenta);
+			this.panelCuenta.Controls.Add(this.txtDepositoInicial);
+			this.panelCuenta.Controls.Add(this.lblLimiteDesc);
+			this.panelCuenta.Location = new System.Drawing.Point(42, 314);
+			this.panelCuenta.Name = "panelCuenta";
+			this.panelCuenta.Size = new System.Drawing.Size(539, 119);
+			this.panelCuenta.TabIndex = 46;
 			// 
 			// FrmNuevoEditar
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(766, 483);
-			this.Controls.Add(this.panel1);
+			this.Controls.Add(this.panelCuenta);
 			this.Controls.Add(this.lblNroCliente);
 			this.Controls.Add(this.btnCancelar);
 			this.Controls.Add(this.btnAceptar);
@@ -490,8 +490,8 @@ namespace BancoPresentacion
 			this.Load += new System.EventHandler(this.FrmNuevoEditar_Load);
 			this.panelCliente.ResumeLayout(false);
 			this.panelCliente.PerformLayout();
-			this.panel1.ResumeLayout(false);
-			this.panel1.PerformLayout();
+			this.panelCuenta.ResumeLayout(false);
+			this.panelCuenta.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -540,6 +540,6 @@ namespace BancoPresentacion
 		private System.Windows.Forms.Label lblCliNombre;
 		private System.Windows.Forms.Label lblNroCliente;
 		private System.Windows.Forms.Panel panelCliente;
-		private System.Windows.Forms.Panel panel1;
+		private System.Windows.Forms.Panel panelCuenta;
 	}
 }

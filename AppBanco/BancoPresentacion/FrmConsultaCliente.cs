@@ -81,5 +81,22 @@ namespace BancoPresentacion
 			this.Close();
 		}
 
+		private void btnAceptar_Click_1(object sender, EventArgs e)
+		{
+			if (dgvClientes.Rows.Count>0)
+			{
+				nro = int.Parse(dgvClientes.CurrentRow.Cells["cId"].Value.ToString());
+			}
+			else
+			{
+				MessageBox.Show("No se encontraron resultados.", "Control", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+			}
+			this.Close();
+		}
+
+		private void btnCancelar_Click_1(object sender, EventArgs e)
+		{
+			this.Close();
+		}
 	}
 }

@@ -30,13 +30,13 @@ namespace BancoPresentacion
 		private void InitializeComponent()
 		{
 			this.dgvClientes = new System.Windows.Forms.DataGridView();
-			this.btnCancelar = new System.Windows.Forms.Button();
-			this.btnAceptar = new System.Windows.Forms.Button();
 			this.cId = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.cCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.cDni = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.cEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.cAccion = new System.Windows.Forms.DataGridViewButtonColumn();
+			this.btnCancelar = new System.Windows.Forms.Button();
+			this.btnAceptar = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -53,36 +53,14 @@ namespace BancoPresentacion
             this.cDni,
             this.cEmail,
             this.cAccion});
-			this.dgvClientes.Location = new System.Drawing.Point(11, 16);
+			this.dgvClientes.Location = new System.Drawing.Point(12, 12);
 			this.dgvClientes.Name = "dgvClientes";
 			this.dgvClientes.ReadOnly = true;
 			this.dgvClientes.RowTemplate.Height = 25;
-			this.dgvClientes.Size = new System.Drawing.Size(455, 330);
+			this.dgvClientes.Size = new System.Drawing.Size(493, 334);
 			this.dgvClientes.TabIndex = 27;
 			this.dgvClientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClientes_CellContentClick);
 			this.dgvClientes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClientes_CellDoubleClick);
-			// 
-			// btnCancelar
-			// 
-			this.btnCancelar.Anchor = System.Windows.Forms.AnchorStyles.None;
-			this.btnCancelar.Location = new System.Drawing.Point(300, 364);
-			this.btnCancelar.MaximumSize = new System.Drawing.Size(708, 464);
-			this.btnCancelar.Name = "btnCancelar";
-			this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-			this.btnCancelar.TabIndex = 26;
-			this.btnCancelar.Text = "Cancelar";
-			this.btnCancelar.UseVisualStyleBackColor = true;
-			// 
-			// btnAceptar
-			// 
-			this.btnAceptar.Anchor = System.Windows.Forms.AnchorStyles.None;
-			this.btnAceptar.Location = new System.Drawing.Point(90, 364);
-			this.btnAceptar.MaximumSize = new System.Drawing.Size(708, 464);
-			this.btnAceptar.Name = "btnAceptar";
-			this.btnAceptar.Size = new System.Drawing.Size(75, 23);
-			this.btnAceptar.TabIndex = 25;
-			this.btnAceptar.Text = "Aceptar";
-			this.btnAceptar.UseVisualStyleBackColor = true;
 			// 
 			// cId
 			// 
@@ -117,11 +95,35 @@ namespace BancoPresentacion
 			this.cAccion.Text = "Agregar";
 			this.cAccion.UseColumnTextForButtonValue = true;
 			// 
+			// btnCancelar
+			// 
+			this.btnCancelar.Anchor = System.Windows.Forms.AnchorStyles.None;
+			this.btnCancelar.Location = new System.Drawing.Point(333, 364);
+			this.btnCancelar.MaximumSize = new System.Drawing.Size(708, 464);
+			this.btnCancelar.Name = "btnCancelar";
+			this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+			this.btnCancelar.TabIndex = 26;
+			this.btnCancelar.Text = "Cancelar";
+			this.btnCancelar.UseVisualStyleBackColor = true;
+			this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click_1);
+			// 
+			// btnAceptar
+			// 
+			this.btnAceptar.Anchor = System.Windows.Forms.AnchorStyles.None;
+			this.btnAceptar.Location = new System.Drawing.Point(106, 364);
+			this.btnAceptar.MaximumSize = new System.Drawing.Size(708, 464);
+			this.btnAceptar.Name = "btnAceptar";
+			this.btnAceptar.Size = new System.Drawing.Size(75, 23);
+			this.btnAceptar.TabIndex = 25;
+			this.btnAceptar.Text = "Aceptar";
+			this.btnAceptar.UseVisualStyleBackColor = true;
+			this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click_1);
+			// 
 			// FrmConsultaCliente
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(485, 405);
+			this.ClientSize = new System.Drawing.Size(517, 405);
 			this.Controls.Add(this.dgvClientes);
 			this.Controls.Add(this.btnCancelar);
 			this.Controls.Add(this.btnAceptar);

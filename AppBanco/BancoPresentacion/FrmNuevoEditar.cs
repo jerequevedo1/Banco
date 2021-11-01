@@ -50,12 +50,17 @@ namespace BancoPresentacion
 
 				frm.ShowDialog();
 				nro = frm.GetNroCliente();
-				CargarCliente(nro);
-				txtCliente.Text = oCliente.NombreCompleto();
-				panelCliente.Enabled = false;
-				btnNuevo.Visible = true;
-				btnBuscar.Enabled = false;
-				txtCliente.Enabled = false;
+
+				if (nro!=0)
+				{
+					CargarCliente(nro);
+					txtCliente.Text = oCliente.NombreCompleto();
+					panelCliente.Enabled = false;
+					btnNuevo.Visible = true;
+					btnBuscar.Enabled = false;
+					txtCliente.Enabled = false;
+				}
+				
 			}
 			else
 			{
@@ -103,14 +108,21 @@ namespace BancoPresentacion
 					this.Text = "Nueva Cuenta";
 					txtCliente.Visible = false;
 					btnBuscar.Visible = false;
-					lblBuscarCliente.Visible = false;
-					
+					lblBuscarCliente.Visible = false;					
 					this.Size = new Size(782, 454);
 				}
 				if (modo.Equals(Accion.Update))
 				{
 					this.Text = "Editar Cliente";
 					CargarCliente(nro);
+					txtCliente.Visible = false;
+					btnBuscar.Visible = false;
+					lblBuscarCliente.Visible = false;
+					this.Size = new Size(782, 310);
+					panelCliente.Location = new Point(42, 40);
+					lblNroCliente.Location = new Point(19, 20);
+					panelCuenta.Visible = false;
+					lblNroCuenta.Visible = false;
 				}
 			}
 			if (tipo.Equals(Tipo.Cuenta))
