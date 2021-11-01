@@ -90,6 +90,75 @@ namespace BancoAccesoDatos.Implementaciones
             }
             return lst;
         }
-	}
+
+        public List<Barrio> GetBarrios()
+        {
+            List<Barrio> lst = new List<Barrio>();
+
+            DataTable table = HelperDao.ObtenerInstancia().ConsultaSQL("SP_CONSULTAR_BARRIOS");
+
+            foreach (DataRow row in table.Rows)
+            {
+                Barrio oBarrio = new Barrio();
+                oBarrio.IdBarrio = Convert.ToInt32(row["id_barrio"].ToString());
+                oBarrio.NomBarrio = row["nom_barrio"].ToString();
+                lst.Add(oBarrio);
+            }
+
+            return lst;
+
+        }
+
+        public List<Localidad> GetLocalidades()
+        {
+            List<Localidad> lst = new List<Localidad>();
+
+            DataTable table = HelperDao.ObtenerInstancia().ConsultaSQL("SP_CONSULTAR_LOCALIDADES");
+
+            foreach (DataRow row in table.Rows)
+            {
+                Localidad oLocalidad = new Localidad();
+                oLocalidad.IdLocalidad = Convert.ToInt32(row["id_localidad"].ToString());
+                oLocalidad.NomLocalidad = row["nom_localidad"].ToString();
+                lst.Add(oLocalidad);
+            }
+
+            return lst;
+        }
+
+        public List<Provincia> GetProvincias()
+        {
+            List<Provincia> lst = new List<Provincia>();
+
+            DataTable table = HelperDao.ObtenerInstancia().ConsultaSQL("SP_CONSULTAR_PROVINCIAS");
+
+            foreach (DataRow row in table.Rows)
+            {
+                Provincia oProv = new Provincia();
+                oProv.IdProvincia = Convert.ToInt32(row["id_provincia"].ToString());
+                oProv.NomProvincia = row["nom_provincia"].ToString();
+                lst.Add(oProv);
+            }
+
+            return lst;
+        }
+
+        public bool ModificarClienteSQL(List<Parametro> parametros)
+        {
+            bool estado = true;
+
+            try
+            {
+                estado = HelperDao.ObtenerInstancia().ModificarSQL("PA_EDITAR_CLIENTE", parametros);
+            }
+            catch (Exception)
+            {
+                estado = false;
+            }
+
+            return estado;
+
+        }
+    }
 
 }

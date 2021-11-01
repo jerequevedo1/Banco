@@ -18,7 +18,8 @@ namespace BancoDominio.Entidades
             this.lLocalidad = new List<Localidad>();
         }
 
-
-
+        public Provincia()
+        {
+        }
     }
 }

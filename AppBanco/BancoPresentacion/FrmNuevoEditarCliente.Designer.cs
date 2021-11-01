@@ -39,7 +39,7 @@ namespace BancoPresentacion
             this.btnCancelar = new System.Windows.Forms.Button();
             this.txtCliApellido = new System.Windows.Forms.TextBox();
             this.lblCliApellido = new System.Windows.Forms.Label();
-            this.txtCliCalle = new System.Windows.Forms.TextBox();
+            this.txtCliDire = new System.Windows.Forms.TextBox();
             this.lblCliDire = new System.Windows.Forms.Label();
             this.cboClienteBarrio = new System.Windows.Forms.ComboBox();
             this.lblCliBarrio = new System.Windows.Forms.Label();
@@ -111,6 +111,7 @@ namespace BancoPresentacion
             this.btnAceptar.TabIndex = 6;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // btnCancelar
             // 
@@ -140,12 +141,12 @@ namespace BancoPresentacion
             this.lblCliApellido.TabIndex = 8;
             this.lblCliApellido.Text = "Apellido";
             // 
-            // txtCliCalle
+            // txtCliDire
             // 
-            this.txtCliCalle.Location = new System.Drawing.Point(116, 275);
-            this.txtCliCalle.Name = "txtCliCalle";
-            this.txtCliCalle.Size = new System.Drawing.Size(171, 23);
-            this.txtCliCalle.TabIndex = 11;
+            this.txtCliDire.Location = new System.Drawing.Point(116, 275);
+            this.txtCliDire.Name = "txtCliDire";
+            this.txtCliDire.Size = new System.Drawing.Size(171, 23);
+            this.txtCliDire.TabIndex = 11;
             // 
             // lblCliDire
             // 
@@ -185,7 +186,7 @@ namespace BancoPresentacion
             this.lblClienteTel.AutoSize = true;
             this.lblClienteTel.Location = new System.Drawing.Point(48, 325);
             this.lblClienteTel.Name = "lblClienteTel";
-            this.lblClienteTel.Size = new System.Drawing.Size(54, 15);
+            this.lblClienteTel.Size = new System.Drawing.Size(52, 15);
             this.lblClienteTel.TabIndex = 16;
             this.lblClienteTel.Text = "Teléfono";
             // 
@@ -254,7 +255,7 @@ namespace BancoPresentacion
             this.Controls.Add(this.lblClienteTel);
             this.Controls.Add(this.lblCliBarrio);
             this.Controls.Add(this.cboClienteBarrio);
-            this.Controls.Add(this.txtCliCalle);
+            this.Controls.Add(this.txtCliDire);
             this.Controls.Add(this.lblCliDire);
             this.Controls.Add(this.txtCliApellido);
             this.Controls.Add(this.lblCliApellido);
@@ -288,7 +289,7 @@ namespace BancoPresentacion
 		private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.TextBox txtCliApellido;
         private System.Windows.Forms.Label lblCliApellido;
-        private System.Windows.Forms.TextBox txtCliCalle;
+        private System.Windows.Forms.TextBox txtCliDire;
         private System.Windows.Forms.Label lblCliDire;
         private System.Windows.Forms.ComboBox cboClienteBarrio;
         private System.Windows.Forms.Label lblCliBarrio;

@@ -15,7 +15,10 @@ namespace BancoAccesoDatos.Interfaces
 
         Cliente GetClienteId(int nro);
 
-        List<Cliente> GetClienteByName(List<Parametro> parametro);
-
+        List<Cliente> GetClienteByName(List<Parametro> parametros);
+        List<Barrio> GetBarrios();
+        List<Localidad> GetLocalidades();
+        List<Provincia> GetProvincias();
+        bool ModificarClienteSQL(List<Parametro> parametros);
     }
 }
