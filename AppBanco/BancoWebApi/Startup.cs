@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -31,7 +32,10 @@ namespace BancoWebApi
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BancoWebApi", Version = "v1" });
+                var filePath = Path.Combine(System.AppContext.BaseDirectory, "BancoWebApi.xml");
+                c.IncludeXmlComments(filePath);
             });
+         
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -53,15 +53,14 @@ namespace BancoPresentacion
         {
             if (txtUser.Text.ToString().Trim() != "" && txtPass.Text.ToString().Trim() != "")
             {
+                //Peticion HTTP
                 using (var client = new HttpClient())
                 {
                     client.BaseAddress = new Uri("https://localhost:44304/");
 
                     UsuarioDto usuario = new UsuarioDto { nombreUsuario = txtUser.Text.ToString(), password = txtPass.Text.ToString() };
                     var response = client.PostAsJsonAsync("api/Login", usuario);
-                    //var usuarioLogueado = response.Content.ReadAsAsync<UsuarioDto>();
-
-
+                   
                     var responseContent = response.Result.Content.ReadAsStringAsync();
                     var user = JsonConvert.DeserializeObject<Usuario>(responseContent.Result);
 
@@ -75,9 +74,10 @@ namespace BancoPresentacion
                     }
                     else
                     {
+                        //usuario Rechazado, informar al usuario
                         this.usuario.IdUsuario = -1;
                         MessageBox.Show("Error sesion");
-                        //usuario Rechazado, informar al usuario
+                        
                     }
 
                 }
