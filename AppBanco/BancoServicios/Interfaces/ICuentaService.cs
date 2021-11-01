@@ -10,7 +10,8 @@ namespace BancoServicios.Interfaces
 {
 	public interface ICuentaService
 	{
-		List<Cuenta> GetCuentaByFilters(List<Parametro> parametros);
+		List<Cliente> GetCuentaByFilters(List<Parametro> parametros);
 		List<TipoCuenta> GetTipoCuenta();
+		bool NuevaCuenta(Cliente oCliente);
 	}
 }

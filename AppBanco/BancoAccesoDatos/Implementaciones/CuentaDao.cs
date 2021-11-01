@@ -8,14 +8,26 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static BancoDominio.Enumeraciones;
 
 namespace BancoAccesoDatos.Implementaciones
 {
 	class CuentaDao : ICuentaDao
 	{
-		public List<Cuenta> GetCuentaByFilters(List<Parametro> parametros)
+		public bool CreateCuenta(Cliente oCliente)
 		{
-            List<Cuenta> lst = new List<Cuenta>();
+            bool resultado = true;
+            int filasAfectadas = 0;
+
+            filasAfectadas = HelperDao.ObtenerInstancia().EjecutarSQLMaestroDetalle("PA_INSERTAR_CLIENTE", "PA_INSERTAR_CUENTA", oCliente, Accion.Create);
+
+            if (filasAfectadas == 0) resultado = false;
+
+            return resultado;
+        }
+        public List<Cliente> GetCuentaByFilters(List<Parametro> parametros)
+        {
+            List<Cliente> lst = new List<Cliente>();
 
             try
             {
@@ -39,15 +51,17 @@ namespace BancoAccesoDatos.Implementaciones
                     TipoCuenta oTipoCta = new TipoCuenta();
                     oTipoCta.DescTipoCuenta = row["descripcion"].ToString();
 
+
+                    oCuenta.TipoCuenta = oTipoCta;
+
                     Cliente oCliente = new Cliente();
                     oCliente.ApeCliente = row["Apellido"].ToString();
                     oCliente.NomCliente = row["Nombre"].ToString();
-                    oCliente.Dni =Convert.ToInt32(row["DNI"].ToString());
+                    oCliente.Dni = Convert.ToInt32(row["DNI"].ToString());
 
-                    oCuenta.Cliente = oCliente;
-                    oCuenta.TipoCuenta = oTipoCta;                
+                    oCliente.AgregarCuenta(oCuenta);
 
-                    lst.Add(oCuenta);
+                    lst.Add(oCliente);
                 }
             }
             catch (SqlException)
@@ -56,8 +70,7 @@ namespace BancoAccesoDatos.Implementaciones
             }
             return lst;
         }
-
-		public List<TipoCuenta> GetTipoCuenta()
+        public List<TipoCuenta> GetTipoCuenta()
 		{
             List<TipoCuenta> lst = new List<TipoCuenta>();
             DataTable table = HelperDao.ObtenerInstancia().ConsultaSQL("PA_CONSULTA_TIPO_CUENTA");

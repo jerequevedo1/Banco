@@ -69,11 +69,17 @@ namespace BancoAccesoDatos.Implementaciones
                 {
                     Cliente oCliente = new Cliente();
 
-                    oCliente.IdCliente = Convert.ToInt32(row["ID Cliente"].ToString());
-                    oCliente.NomCliente = row["Nombre"].ToString();
-                    oCliente.ApeCliente = row["Apellido"].ToString();
-                    oCliente.Dni = Convert.ToInt32(row["DNI"].ToString());
-                    oCliente.Email = row["Email"].ToString();
+                    oCliente.IdCliente = Convert.ToInt32(row["id_cliente"].ToString());
+                    oCliente.NomCliente = row["nom_cliente"].ToString();
+                    oCliente.ApeCliente = row["ape_cliente"].ToString();
+                    oCliente.Dni = Convert.ToInt32(row["dni"].ToString());
+                    oCliente.Cuil = long.Parse(row["cuil"].ToString());
+                    oCliente.Direccion = row["direccion"].ToString();
+                    oCliente.Telefono = row["telefono"].ToString();
+                    oCliente.Email = row["email"].ToString();
+
+                    oCliente.Barrio = new Barrio();
+                    oCliente.Barrio.IdBarrio = Convert.ToInt32(row["id_barrio"].ToString());
 
                     lst.Add(oCliente);
                 }

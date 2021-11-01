@@ -42,7 +42,7 @@ namespace BancoPresentacion
 			}
 			if (tipo.Equals(Tipo.Cuenta))
 			{
-				new FrmNuevoEditarCuenta().ShowDialog();
+				new FrmNuevoEditarCuenta(Accion.Create).ShowDialog();
 			}
 
 		}
@@ -113,24 +113,29 @@ namespace BancoPresentacion
 			}
 			if (tipo.Equals(Tipo.Cuenta))
 			{
-				List<Cuenta> lst = new List<Cuenta>();
+				List<Cliente> lst = new List<Cliente>();
 
 				dgvConsulta.Rows.Clear();
 				lst = gestorCuenta.GetCuentaByFilters(filtros);
 
-
-				foreach (Cuenta item in lst)
+				foreach (Cliente item in lst)
 				{
-					if (item.TipoMoneda.Equals("P"))
+					int i = 0;
+					if (item.Cuentas[i].TipoMoneda.Equals("P"))
 					{
-						dgvConsulta.Rows.Add(new object[] { item.IdCuenta, item.Cliente.NombreCompleto(), item.Cliente.Dni, item.TipoCuenta.DescTipoCuenta, item.Cbu, item.Alias, "$ "+item.Saldo});
+						
+						dgvConsulta.Rows.Add(new object[] { item.Cuentas[i].IdCuenta, item.NombreCompleto(), item.Dni, item.Cuentas[i].TipoCuenta.DescTipoCuenta, item.Cuentas[i].Cbu, item.Cuentas[i].Alias, "$ " + item.Cuentas[i].Saldo });
+						
 					}
-					if (item.TipoMoneda.Equals("D"))
+					if (item.Cuentas[i].TipoMoneda.Equals("D"))
 					{
-						dgvConsulta.Rows.Add(new object[] { item.IdCuenta, item.Cliente.NombreCompleto(), item.Cliente.Dni, item.TipoCuenta.DescTipoCuenta, item.Cbu, item.Alias, "U$S " + item.Saldo });
-					}
 
+						dgvConsulta.Rows.Add(new object[] { item.Cuentas[i].IdCuenta, item.NombreCompleto(), item.Dni, item.Cuentas[i].TipoCuenta.DescTipoCuenta, item.Cuentas[i].Cbu, item.Cuentas[i].Alias, "U$S " + item.Cuentas[i].Saldo });
+
+					}
+					i++;
 				}
+				
 			}
 
 		}

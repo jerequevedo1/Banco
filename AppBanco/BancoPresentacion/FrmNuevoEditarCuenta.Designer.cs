@@ -69,7 +69,7 @@ namespace BancoPresentacion
 			// lblCbu
 			// 
 			this.lblCbu.AutoSize = true;
-			this.lblCbu.Location = new System.Drawing.Point(45, 82);
+			this.lblCbu.Location = new System.Drawing.Point(36, 283);
 			this.lblCbu.Name = "lblCbu";
 			this.lblCbu.Size = new System.Drawing.Size(29, 15);
 			this.lblCbu.TabIndex = 1;
@@ -77,14 +77,14 @@ namespace BancoPresentacion
 			// 
 			// txtCbu
 			// 
-			this.txtCbu.Location = new System.Drawing.Point(98, 74);
+			this.txtCbu.Location = new System.Drawing.Point(89, 275);
 			this.txtCbu.Name = "txtCbu";
 			this.txtCbu.Size = new System.Drawing.Size(100, 23);
 			this.txtCbu.TabIndex = 2;
 			// 
 			// txtAlias
 			// 
-			this.txtAlias.Location = new System.Drawing.Point(278, 74);
+			this.txtAlias.Location = new System.Drawing.Point(89, 325);
 			this.txtAlias.Name = "txtAlias";
 			this.txtAlias.Size = new System.Drawing.Size(100, 23);
 			this.txtAlias.TabIndex = 4;
@@ -92,7 +92,7 @@ namespace BancoPresentacion
 			// lblAlias
 			// 
 			this.lblAlias.AutoSize = true;
-			this.lblAlias.Location = new System.Drawing.Point(225, 82);
+			this.lblAlias.Location = new System.Drawing.Point(36, 333);
 			this.lblAlias.Name = "lblAlias";
 			this.lblAlias.Size = new System.Drawing.Size(32, 15);
 			this.lblAlias.TabIndex = 3;
@@ -100,7 +100,7 @@ namespace BancoPresentacion
 			// 
 			// txtDepositoInicial
 			// 
-			this.txtDepositoInicial.Location = new System.Drawing.Point(601, 119);
+			this.txtDepositoInicial.Location = new System.Drawing.Point(304, 325);
 			this.txtDepositoInicial.Name = "txtDepositoInicial";
 			this.txtDepositoInicial.Size = new System.Drawing.Size(100, 23);
 			this.txtDepositoInicial.TabIndex = 6;
@@ -108,7 +108,7 @@ namespace BancoPresentacion
 			// lblDepositoInicial
 			// 
 			this.lblDepositoInicial.AutoSize = true;
-			this.lblDepositoInicial.Location = new System.Drawing.Point(502, 127);
+			this.lblDepositoInicial.Location = new System.Drawing.Point(205, 333);
 			this.lblDepositoInicial.Name = "lblDepositoInicial";
 			this.lblDepositoInicial.Size = new System.Drawing.Size(88, 15);
 			this.lblDepositoInicial.TabIndex = 5;
@@ -116,15 +116,15 @@ namespace BancoPresentacion
 			// 
 			// txtCliente
 			// 
-			this.txtCliente.Location = new System.Drawing.Point(156, 172);
+			this.txtCliente.Location = new System.Drawing.Point(89, 54);
 			this.txtCliente.Name = "txtCliente";
-			this.txtCliente.Size = new System.Drawing.Size(307, 23);
+			this.txtCliente.Size = new System.Drawing.Size(363, 23);
 			this.txtCliente.TabIndex = 10;
 			// 
 			// lblCliente
 			// 
 			this.lblCliente.AutoSize = true;
-			this.lblCliente.Location = new System.Drawing.Point(89, 180);
+			this.lblCliente.Location = new System.Drawing.Point(36, 58);
 			this.lblCliente.Name = "lblCliente";
 			this.lblCliente.Size = new System.Drawing.Size(44, 15);
 			this.lblCliente.TabIndex = 9;
@@ -132,7 +132,7 @@ namespace BancoPresentacion
 			// 
 			// txtLimiteDesc
 			// 
-			this.txtLimiteDesc.Location = new System.Drawing.Point(524, 74);
+			this.txtLimiteDesc.Location = new System.Drawing.Point(304, 275);
 			this.txtLimiteDesc.Name = "txtLimiteDesc";
 			this.txtLimiteDesc.Size = new System.Drawing.Size(100, 23);
 			this.txtLimiteDesc.TabIndex = 12;
@@ -140,7 +140,7 @@ namespace BancoPresentacion
 			// lblLimiteDesc
 			// 
 			this.lblLimiteDesc.AutoSize = true;
-			this.lblLimiteDesc.Location = new System.Drawing.Point(412, 82);
+			this.lblLimiteDesc.Location = new System.Drawing.Point(192, 283);
 			this.lblLimiteDesc.Name = "lblLimiteDesc";
 			this.lblLimiteDesc.Size = new System.Drawing.Size(106, 15);
 			this.lblLimiteDesc.TabIndex = 11;
@@ -148,7 +148,7 @@ namespace BancoPresentacion
 			// 
 			// btnBuscar
 			// 
-			this.btnBuscar.Location = new System.Drawing.Point(496, 172);
+			this.btnBuscar.Location = new System.Drawing.Point(472, 54);
 			this.btnBuscar.Name = "btnBuscar";
 			this.btnBuscar.Size = new System.Drawing.Size(75, 23);
 			this.btnBuscar.TabIndex = 13;
@@ -158,7 +158,7 @@ namespace BancoPresentacion
 			// 
 			// btnNuevo
 			// 
-			this.btnNuevo.Location = new System.Drawing.Point(583, 172);
+			this.btnNuevo.Location = new System.Drawing.Point(559, 54);
 			this.btnNuevo.Name = "btnNuevo";
 			this.btnNuevo.Size = new System.Drawing.Size(75, 23);
 			this.btnNuevo.TabIndex = 14;
@@ -169,7 +169,7 @@ namespace BancoPresentacion
 			// lblTipoCuenta
 			// 
 			this.lblTipoCuenta.AutoSize = true;
-			this.lblTipoCuenta.Location = new System.Drawing.Point(39, 123);
+			this.lblTipoCuenta.Location = new System.Drawing.Point(423, 328);
 			this.lblTipoCuenta.Name = "lblTipoCuenta";
 			this.lblTipoCuenta.Size = new System.Drawing.Size(71, 15);
 			this.lblTipoCuenta.TabIndex = 15;
@@ -178,7 +178,7 @@ namespace BancoPresentacion
 			// lblTipoMoneda
 			// 
 			this.lblTipoMoneda.AutoSize = true;
-			this.lblTipoMoneda.Location = new System.Drawing.Point(272, 123);
+			this.lblTipoMoneda.Location = new System.Drawing.Point(429, 283);
 			this.lblTipoMoneda.Name = "lblTipoMoneda";
 			this.lblTipoMoneda.Size = new System.Drawing.Size(77, 15);
 			this.lblTipoMoneda.TabIndex = 16;
@@ -188,7 +188,7 @@ namespace BancoPresentacion
 			// 
 			this.cboTipoCuenta.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cboTipoCuenta.FormattingEnabled = true;
-			this.cboTipoCuenta.Location = new System.Drawing.Point(129, 119);
+			this.cboTipoCuenta.Location = new System.Drawing.Point(513, 324);
 			this.cboTipoCuenta.Name = "cboTipoCuenta";
 			this.cboTipoCuenta.Size = new System.Drawing.Size(121, 23);
 			this.cboTipoCuenta.TabIndex = 17;
@@ -197,14 +197,14 @@ namespace BancoPresentacion
 			// 
 			this.cboTipoMoneda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cboTipoMoneda.FormattingEnabled = true;
-			this.cboTipoMoneda.Location = new System.Drawing.Point(356, 120);
+			this.cboTipoMoneda.Location = new System.Drawing.Point(513, 280);
 			this.cboTipoMoneda.Name = "cboTipoMoneda";
 			this.cboTipoMoneda.Size = new System.Drawing.Size(121, 23);
 			this.cboTipoMoneda.TabIndex = 18;
 			// 
 			// btnAceptar
 			// 
-			this.btnAceptar.Location = new System.Drawing.Point(281, 386);
+			this.btnAceptar.Location = new System.Drawing.Point(162, 394);
 			this.btnAceptar.Name = "btnAceptar";
 			this.btnAceptar.Size = new System.Drawing.Size(75, 23);
 			this.btnAceptar.TabIndex = 19;
@@ -214,7 +214,7 @@ namespace BancoPresentacion
 			// 
 			// btnCancelar
 			// 
-			this.btnCancelar.Location = new System.Drawing.Point(402, 386);
+			this.btnCancelar.Location = new System.Drawing.Point(423, 394);
 			this.btnCancelar.Name = "btnCancelar";
 			this.btnCancelar.Size = new System.Drawing.Size(75, 23);
 			this.btnCancelar.TabIndex = 20;
@@ -226,17 +226,18 @@ namespace BancoPresentacion
 			// 
 			this.dgvClientes.AllowUserToAddRows = false;
 			this.dgvClientes.AllowUserToDeleteRows = false;
+			this.dgvClientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.dgvClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dgvClientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cId,
             this.cCliente,
             this.cDni,
             this.cEmail});
-			this.dgvClientes.Location = new System.Drawing.Point(146, 213);
+			this.dgvClientes.Location = new System.Drawing.Point(36, 95);
 			this.dgvClientes.Name = "dgvClientes";
 			this.dgvClientes.ReadOnly = true;
 			this.dgvClientes.RowTemplate.Height = 25;
-			this.dgvClientes.Size = new System.Drawing.Size(444, 150);
+			this.dgvClientes.Size = new System.Drawing.Size(598, 150);
 			this.dgvClientes.TabIndex = 21;
 			this.dgvClientes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClientes_CellDoubleClick);
 			// 
@@ -268,7 +269,7 @@ namespace BancoPresentacion
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(714, 421);
+			this.ClientSize = new System.Drawing.Size(669, 470);
 			this.Controls.Add(this.dgvClientes);
 			this.Controls.Add(this.btnCancelar);
 			this.Controls.Add(this.btnAceptar);
