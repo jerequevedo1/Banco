@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BancoServicios", "BancoServ
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BancoAccesoDatos", "BancoAccesoDatos\BancoAccesoDatos.csproj", "{7DB57E55-2217-405C-8361-9AE664164A08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BancoWebApi", "BancoWebApi\BancoWebApi.csproj", "{C43A5B15-B2BD-413A-8006-36119ABF12AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BancoWebApi", "BancoWebApi\BancoWebApi.csproj", "{C43A5B15-B2BD-413A-8006-36119ABF12AA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
