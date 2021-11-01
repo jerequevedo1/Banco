@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace BancoServicios.Implementaciones
 {
-    class ClienteService: IClienteService
+    class ClienteService : IClienteService
     {
         private IClienteDao daoCliente;
 
@@ -31,10 +31,29 @@ namespace BancoServicios.Implementaciones
         {
             return daoCliente.GetClienteId(nro);
         }
-		public List<Cliente> GetClienteByName(List<Parametro> parametro)
-		{
+        public List<Cliente> GetClienteByName(List<Parametro> parametro)
+        {
             return daoCliente.GetClienteByName(parametro);
-		}
-	}
+        }
+
+        public List<Barrio> GetBarrios()
+        {
+            return daoCliente.GetBarrios();
+        }
+
+        public List<Localidad> GetLocalidades()
+        {
+           return daoCliente.GetLocalidades();
+        }
+        public List<Provincia> GetProvincias()
+        {
+            return daoCliente.GetProvincias();
+        }
+
+        public bool ModificarClienteSQL(List<Parametro> parametros)
+        {
+            return daoCliente.ModificarClienteSQL(parametros);
+        }
+    }
 
 }

@@ -26,11 +26,11 @@ namespace BancoAccesoDatos
 			//ConnectionString = @"Data Source=LAPTOP-JULI\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
 
 
-			//ConnectionString = @"Data Source=HOME\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
+			ConnectionString = @"Data Source=DESKTOP-DUIDE87\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
 			//ConnectionString = @"Data Source=NOTEBOOK-JERE\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
 
 			//ConnectionString = @"Data Source=HOME\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
-			ConnectionString = @"Data Source=NOTEBOOK-JERE\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
+			//ConnectionString = @"Data Source=NOTEBOOK-JERE\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
 
 
 			cnn = new SqlConnection(ConnectionString);
@@ -97,8 +97,8 @@ namespace BancoAccesoDatos
                 {
                     if (esPrimerRegistro)
                     {
-
-                        oCliente.NomCliente = reader["nom_cliente"].ToString();
+						oCliente.IdCliente = Convert.ToInt32(reader["id_cliente"].ToString());
+						oCliente.NomCliente = reader["nom_cliente"].ToString();
                         oCliente.ApeCliente = reader["ape_cliente"].ToString();
                         oCliente.Dni = Convert.ToInt32(reader["dni"].ToString());
                         oCliente.Cuil = long.Parse(reader["cuil"].ToString());
@@ -225,6 +225,39 @@ namespace BancoAccesoDatos
 			}
 
 			return filasAfectadas;
+		}
+
+        public bool ModificarSQL(string nombreSP, List<Parametro> parametros)
+        {
+			int filasdevueltas = 0;
+			bool estado = true;
+            try
+            {
+                cnn.Open();
+			cmd = new SqlCommand(nombreSP, cnn);
+			cmd.Parameters.Clear();
+			cmd.CommandType = CommandType.StoredProcedure;
+
+			foreach (Parametro p in parametros)
+			{
+				cmd.Parameters.AddWithValue(p.Nombre, p.Valor);
+			}
+
+			filasdevueltas = cmd.ExecuteNonQuery();
+
+
+			}
+			catch (Exception)
+			{
+                estado = false;
+            }
+            finally
+            {
+                if (cnn.State == ConnectionState.Open) cnn.Close();
+            }
+
+            return estado;
+
 		}
 	}
 
