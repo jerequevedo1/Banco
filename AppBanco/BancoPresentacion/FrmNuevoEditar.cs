@@ -68,7 +68,6 @@ namespace BancoPresentacion
 			}
 			
 		}
-
 		
 		private void btnNuevo_Click(object sender, EventArgs e)
 		{
@@ -135,6 +134,11 @@ namespace BancoPresentacion
 				{
 					this.Text = "Editar Cuenta";
 					CargarCliente(nro);
+					txtCliente.Visible = false;
+					btnBuscar.Visible = false;
+					lblBuscarCliente.Visible = false;
+					panelCliente.Enabled = false;
+					this.Size = new Size(782, 454);
 				}
 			}
 	

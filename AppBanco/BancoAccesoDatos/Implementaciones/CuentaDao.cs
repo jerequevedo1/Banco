@@ -55,6 +55,7 @@ namespace BancoAccesoDatos.Implementaciones
                     oCuenta.TipoCuenta = oTipoCta;
 
                     Cliente oCliente = new Cliente();
+                    oCliente.IdCliente= Convert.ToInt32(row["id_cliente"].ToString());
                     oCliente.ApeCliente = row["Apellido"].ToString();
                     oCliente.NomCliente = row["Nombre"].ToString();
                     oCliente.Dni = Convert.ToInt32(row["DNI"].ToString());
