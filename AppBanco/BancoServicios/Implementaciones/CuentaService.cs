@@ -20,10 +20,6 @@ namespace BancoServicios.Implementaciones
 			daoCuenta = factory.CrearCuentaDao();
 
 		}
-		//public List<Cuenta> GetCuentaByFilters(List<Parametro> parametros)
-		//{
-		//	return daoCuenta.GetCuentaByFilters(parametros);
-		//}
 		public List<Cliente> GetCuentaByFilters(List<Parametro> parametros)
 		{
 			return daoCuenta.GetCuentaByFilters(parametros);
