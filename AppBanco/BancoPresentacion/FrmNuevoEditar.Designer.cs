@@ -77,6 +77,7 @@ namespace BancoPresentacion
 			// 
 			// lblNroCuenta
 			// 
+			this.lblNroCuenta.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
 			this.lblNroCuenta.AutoSize = true;
 			this.lblNroCuenta.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
 			this.lblNroCuenta.Location = new System.Drawing.Point(19, 290);
@@ -411,6 +412,7 @@ namespace BancoPresentacion
 			// 
 			// lblNroCliente
 			// 
+			this.lblNroCliente.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
 			this.lblNroCliente.AutoSize = true;
 			this.lblNroCliente.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
 			this.lblNroCliente.Location = new System.Drawing.Point(19, 72);
@@ -421,6 +423,7 @@ namespace BancoPresentacion
 			// 
 			// panelCliente
 			// 
+			this.panelCliente.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
 			this.panelCliente.Controls.Add(this.cboClienteBarrio);
 			this.panelCliente.Controls.Add(this.lblCliProvincia);
 			this.panelCliente.Controls.Add(this.lblCliNombre);
@@ -448,6 +451,7 @@ namespace BancoPresentacion
 			// 
 			// panel1
 			// 
+			this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
 			this.panel1.Controls.Add(this.txtCbu);
 			this.panel1.Controls.Add(this.lblCbu);
 			this.panel1.Controls.Add(this.lblAlias);

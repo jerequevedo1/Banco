@@ -36,30 +36,41 @@ namespace BancoPresentacion
 			oCuenta = new Cuenta();
 			this.modo = modo;
 			this.tipo = tipo;
-			this.nro = nro;
-
-			
+			this.nro = nro;			
 		}
 
 		private void btnBuscar_Click(object sender, EventArgs e)
 		{
-			List<Parametro> parametro = new List<Parametro>();
-			parametro.Add(new Parametro("@ClienteNombre",txtCliente.Text));
+			if (!txtCliente.Text.Equals(string.Empty))
+			{
+				List<Parametro> parametro = new List<Parametro>();
+				parametro.Add(new Parametro("@ClienteNombre", txtCliente.Text));
 
-			FrmConsultaCliente frm = new FrmConsultaCliente(parametro);
+				FrmConsultaCliente frm = new FrmConsultaCliente(parametro);
+
+				frm.ShowDialog();
+				nro = frm.GetNroCliente();
+				CargarCliente(nro);
+				txtCliente.Text = oCliente.NombreCompleto();
+				panelCliente.Enabled = false;
+				btnNuevo.Visible = true;
+				btnBuscar.Enabled = false;
+				txtCliente.Enabled = false;
+			}
+			else
+			{
+				MessageBox.Show("Debe especificar un cliente.", "Control", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+			}
 			
-			frm.ShowDialog();
-			nro = frm.GetNroCliente();
-			CargarCliente(nro);
-			txtCliente.Text = oCliente.NombreCompleto();
-			panelCliente.Enabled = false;
 		}
 
 		
 		private void btnNuevo_Click(object sender, EventArgs e)
 		{
-
+			btnBuscar.Enabled = true;
+			txtCliente.Enabled = true;
 			panelCliente.Enabled = true;
+			btnNuevo.Visible = false;
 			foreach (Control item in panelCliente.Controls)
 			{
 				if (item is TextBox)
@@ -90,6 +101,11 @@ namespace BancoPresentacion
 				if (modo.Equals(Accion.Create))
 				{
 					this.Text = "Nueva Cuenta";
+					txtCliente.Visible = false;
+					btnBuscar.Visible = false;
+					lblBuscarCliente.Visible = false;
+					
+					this.Size = new Size(782, 454);
 				}
 				if (modo.Equals(Accion.Update))
 				{
@@ -109,6 +125,9 @@ namespace BancoPresentacion
 					CargarCliente(nro);
 				}
 			}
+	
+		    btnNuevo.Visible = false;
+	
 			CargarTipoCuenta();
 			CargarTipoMoneda();
 			CargarBarrios();

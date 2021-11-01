@@ -36,7 +36,6 @@ namespace BancoPresentacion
 
 		private void btnNuevo_Click(object sender, EventArgs e)
 		{
-			//opcion con ventana emergente
 			modo = Accion.Create;
 
 			if (tipo.Equals(Tipo.Cliente))

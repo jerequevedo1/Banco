@@ -30,13 +30,13 @@ namespace BancoPresentacion
 		private void InitializeComponent()
 		{
 			this.dgvClientes = new System.Windows.Forms.DataGridView();
+			this.btnCancelar = new System.Windows.Forms.Button();
+			this.btnAceptar = new System.Windows.Forms.Button();
 			this.cId = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.cCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.cDni = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.cEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.cAccion = new System.Windows.Forms.DataGridViewButtonColumn();
-			this.btnCancelar = new System.Windows.Forms.Button();
-			this.btnAceptar = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -61,6 +61,28 @@ namespace BancoPresentacion
 			this.dgvClientes.TabIndex = 27;
 			this.dgvClientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClientes_CellContentClick);
 			this.dgvClientes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClientes_CellDoubleClick);
+			// 
+			// btnCancelar
+			// 
+			this.btnCancelar.Anchor = System.Windows.Forms.AnchorStyles.None;
+			this.btnCancelar.Location = new System.Drawing.Point(300, 364);
+			this.btnCancelar.MaximumSize = new System.Drawing.Size(708, 464);
+			this.btnCancelar.Name = "btnCancelar";
+			this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+			this.btnCancelar.TabIndex = 26;
+			this.btnCancelar.Text = "Cancelar";
+			this.btnCancelar.UseVisualStyleBackColor = true;
+			// 
+			// btnAceptar
+			// 
+			this.btnAceptar.Anchor = System.Windows.Forms.AnchorStyles.None;
+			this.btnAceptar.Location = new System.Drawing.Point(90, 364);
+			this.btnAceptar.MaximumSize = new System.Drawing.Size(708, 464);
+			this.btnAceptar.Name = "btnAceptar";
+			this.btnAceptar.Size = new System.Drawing.Size(75, 23);
+			this.btnAceptar.TabIndex = 25;
+			this.btnAceptar.Text = "Aceptar";
+			this.btnAceptar.UseVisualStyleBackColor = true;
 			// 
 			// cId
 			// 
@@ -91,28 +113,9 @@ namespace BancoPresentacion
 			this.cAccion.HeaderText = "Agregar";
 			this.cAccion.Name = "cAccion";
 			this.cAccion.ReadOnly = true;
-			// 
-			// btnCancelar
-			// 
-			this.btnCancelar.Anchor = System.Windows.Forms.AnchorStyles.None;
-			this.btnCancelar.Location = new System.Drawing.Point(300, 364);
-			this.btnCancelar.MaximumSize = new System.Drawing.Size(708, 464);
-			this.btnCancelar.Name = "btnCancelar";
-			this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-			this.btnCancelar.TabIndex = 26;
-			this.btnCancelar.Text = "Cancelar";
-			this.btnCancelar.UseVisualStyleBackColor = true;
-			// 
-			// btnAceptar
-			// 
-			this.btnAceptar.Anchor = System.Windows.Forms.AnchorStyles.None;
-			this.btnAceptar.Location = new System.Drawing.Point(90, 364);
-			this.btnAceptar.MaximumSize = new System.Drawing.Size(708, 464);
-			this.btnAceptar.Name = "btnAceptar";
-			this.btnAceptar.Size = new System.Drawing.Size(75, 23);
-			this.btnAceptar.TabIndex = 25;
-			this.btnAceptar.Text = "Aceptar";
-			this.btnAceptar.UseVisualStyleBackColor = true;
+			this.cAccion.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.cAccion.Text = "Agregar";
+			this.cAccion.UseColumnTextForButtonValue = true;
 			// 
 			// FrmConsultaCliente
 			// 
@@ -134,12 +137,12 @@ namespace BancoPresentacion
 		#endregion
 
 		private System.Windows.Forms.DataGridView dgvClientes;
+		private System.Windows.Forms.Button btnCancelar;
+		private System.Windows.Forms.Button btnAceptar;
 		private System.Windows.Forms.DataGridViewTextBoxColumn cId;
 		private System.Windows.Forms.DataGridViewTextBoxColumn cCliente;
 		private System.Windows.Forms.DataGridViewTextBoxColumn cDni;
 		private System.Windows.Forms.DataGridViewTextBoxColumn cEmail;
 		private System.Windows.Forms.DataGridViewButtonColumn cAccion;
-		private System.Windows.Forms.Button btnCancelar;
-		private System.Windows.Forms.Button btnAceptar;
 	}
 }
