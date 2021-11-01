@@ -248,4 +248,45 @@ go
 ALTER TABLE Cuentas
 ADD limite_descubierto decimal(18,0)
 go
-
+create proc PA_EDITAR_CLIENTE
+      @id_cliente int,
+      @nom_cliente varchar(50),
+      @ape_cliente varchar(40),
+      @dni int,
+      @cuil bigint,
+      @direccion varchar (50),
+      @telefono  varchar(50),
+      @email    varchar(50),
+      @id_barrio int
+	  AS
+     update Clientes set
+      nom_cliente=@nom_cliente,
+      ape_cliente=@ape_cliente,
+      dni=@dni,
+      cuil=@cuil,
+      direccion=@direccion,
+      telefono=@telefono,
+      email=@email,
+      id_barrio=@id_barrio
+	  where id_cliente=@id_cliente
+go
+create PROCEDURE SP_CONSULTAR_PROVINCIAS
+AS
+BEGIN
+	
+	SELECT * FROM Provincias order by 2 asc;
+END
+go
+create PROCEDURE SP_CONSULTAR_LOCALIDADES
+AS
+BEGIN
+	
+	SELECT * FROM Localidades order by 2 asc;
+END
+go
+create PROCEDURE SP_CONSULTAR_BARRIOS
+AS
+BEGIN
+	
+	SELECT * FROM BARRIOS order by 2 asc;
+END
