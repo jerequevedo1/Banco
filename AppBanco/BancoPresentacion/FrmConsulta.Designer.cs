@@ -119,7 +119,6 @@ namespace BancoPresentacion
 			// 
 			this.btnEditar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btnEditar.FlatAppearance.BorderSize = 0;
-			this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnEditar.Location = new System.Drawing.Point(536, 407);
 			this.btnEditar.Name = "btnEditar";
 			this.btnEditar.Size = new System.Drawing.Size(75, 23);
@@ -141,7 +140,6 @@ namespace BancoPresentacion
 			// 
 			this.btnNuevo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btnNuevo.FlatAppearance.BorderSize = 0;
-			this.btnNuevo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnNuevo.Location = new System.Drawing.Point(419, 407);
 			this.btnNuevo.Name = "btnNuevo";
 			this.btnNuevo.Size = new System.Drawing.Size(75, 23);
@@ -163,13 +161,13 @@ namespace BancoPresentacion
 			// 
 			this.btnEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btnEliminar.FlatAppearance.BorderSize = 0;
-			this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnEliminar.Location = new System.Drawing.Point(661, 407);
 			this.btnEliminar.Name = "btnEliminar";
 			this.btnEliminar.Size = new System.Drawing.Size(75, 23);
 			this.btnEliminar.TabIndex = 5;
 			this.btnEliminar.Text = "Eliminar";
 			this.btnEliminar.UseVisualStyleBackColor = true;
+			this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
 			// 
 			// txtFiltro
 			// 

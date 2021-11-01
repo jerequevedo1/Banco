@@ -38,11 +38,11 @@ namespace BancoPresentacion
 
 			if (tipo.Equals(Tipo.Cliente))
 			{
-				new FrmNuevoEditarCliente(Accion.Create,0).ShowDialog();
+				new FrmNuevoEditar(Accion.Create, Tipo.Cliente, 0).ShowDialog();
 			}
 			if (tipo.Equals(Tipo.Cuenta))
 			{
-				new FrmNuevoEditarCuenta(Accion.Create).ShowDialog();
+				new FrmNuevoEditar(Accion.Create, Tipo.Cuenta, 0).ShowDialog();
 			}
 
 		}
@@ -51,8 +51,8 @@ namespace BancoPresentacion
 			CargarGrilla(tipo);
 		}
 
-        private void FrmConsulta_Load(object sender, EventArgs e)
-        {
+		private void FrmConsulta_Load(object sender, EventArgs e)
+		{
 			if (tipo.Equals(Tipo.Cliente))
 			{
 				CargarTiposFiltros(tipo);
@@ -70,8 +70,8 @@ namespace BancoPresentacion
 
 		}
 
-        private void CargarHeaderGrid(Tipo tipo)
-        {
+		private void CargarHeaderGrid(Tipo tipo)
+		{
 			if (tipo.Equals(Tipo.Cliente))
 			{
 				this.dgvConsulta.Columns[0].HeaderText = "NRO CLIENTE";
@@ -89,12 +89,12 @@ namespace BancoPresentacion
 				this.dgvConsulta.Columns[3].HeaderText = "TIPO CUENTA";
 				this.dgvConsulta.Columns[4].HeaderText = "CBU";
 				this.dgvConsulta.Columns[5].HeaderText = "ALIAS";
-				this.dgvConsulta.Columns.Add("cExtra","SALDO");
+				this.dgvConsulta.Columns.Add("cExtra", "SALDO");
 
 			}
 		}
 
-        private void CargarGrilla(Tipo tipo)
+		private void CargarGrilla(Tipo tipo)
 		{
 			List<Parametro> filtros = CargarParametros(tipo);
 
@@ -123,9 +123,9 @@ namespace BancoPresentacion
 					int i = 0;
 					if (item.Cuentas[i].TipoMoneda.Equals("P"))
 					{
-						
+
 						dgvConsulta.Rows.Add(new object[] { item.Cuentas[i].IdCuenta, item.NombreCompleto(), item.Dni, item.Cuentas[i].TipoCuenta.DescTipoCuenta, item.Cuentas[i].Cbu, item.Cuentas[i].Alias, "$ " + item.Cuentas[i].Saldo });
-						
+
 					}
 					if (item.Cuentas[i].TipoMoneda.Equals("D"))
 					{
@@ -135,14 +135,14 @@ namespace BancoPresentacion
 					}
 					i++;
 				}
-				
+
 			}
 
 		}
 
 		private List<Parametro> CargarParametros(Tipo tipo)
 		{
-            List<Parametro> filtros = new List<Parametro>();
+			List<Parametro> filtros = new List<Parametro>();
 			object filtroTexto = DBNull.Value;
 			string conBaja = "N";
 
@@ -185,16 +185,16 @@ namespace BancoPresentacion
 					}
 				}
 			}
-				
+
 
 			if (chkBaja.Checked) conBaja = "S";
 
 			filtros.Add(new Parametro("@activo", conBaja));
 
 			filtros.Add(new Parametro("@tipo", cboFiltro.SelectedIndex));
-		
-            return filtros;
-        }
+
+			return filtros;
+		}
 
 		private void CargarFiltroFecha(Tipo tipo)
 		{
@@ -204,7 +204,7 @@ namespace BancoPresentacion
 				cboFiltroFecha.Items.Clear();
 				cboFiltroFecha.Items.AddRange(filtrosFecha);
 			}
-			
+
 			cboFiltroFecha.SelectedIndex = 4;
 		}
 		private void CargarTiposFiltros(Tipo tipo)
@@ -218,7 +218,7 @@ namespace BancoPresentacion
 			}
 			if (tipo.Equals(Tipo.Cuenta))
 			{
-				string[] tiposFiltros = new string[] { "Numero de Cuenta", "Nombre Cliente","Cbu","Alias", "Inactivos" };
+				string[] tiposFiltros = new string[] { "Numero de Cuenta", "Nombre Cliente", "Cbu", "Alias", "Inactivos" };
 
 				cboFiltro.Items.Clear();
 				cboFiltro.Items.AddRange(tiposFiltros);
@@ -226,8 +226,8 @@ namespace BancoPresentacion
 			cboFiltro.SelectedIndex = 0;
 		}
 
-        private void cboFiltroFecha_SelectedIndexChanged(object sender, EventArgs e)
-        {
+		private void cboFiltroFecha_SelectedIndexChanged(object sender, EventArgs e)
+		{
 			switch (cboFiltroFecha.SelectedIndex)
 			{
 				case 0:
@@ -248,19 +248,61 @@ namespace BancoPresentacion
 			}
 		}
 
-        private void btnEditar_Click(object sender, EventArgs e)
-        {
-			if (dgvConsulta.RowCount > 0)
-			{   
-				int nro = Convert.ToInt32(dgvConsulta.CurrentRow.Cells[0].Value.ToString());
-				new FrmNuevoEditarCliente(Accion.Update, nro).ShowDialog();
-			}
-			else
+		private void btnEditar_Click(object sender, EventArgs e)
+		{
+			if (tipo.Equals(Tipo.Cliente))
 			{
-				MessageBox.Show("No hay clientes en consulta", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				if (dgvConsulta.RowCount > 0)
+				{
+					int nro = Convert.ToInt32(dgvConsulta.CurrentRow.Cells[0].Value.ToString());
+					new FrmNuevoEditar(Accion.Update, Tipo.Cliente, nro).ShowDialog();
+				}
+				else
+				{
+					MessageBox.Show("No hay clientes en consulta", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+			}
+			if (tipo.Equals(Tipo.Cuenta))
+			{
+				if (dgvConsulta.RowCount > 0)
+				{
+					int nro = Convert.ToInt32(dgvConsulta.CurrentRow.Cells[0].Value.ToString());
+					new FrmNuevoEditar(Accion.Update, Tipo.Cuenta, nro).ShowDialog();
+				}
+				else
+				{
+					MessageBox.Show("No hay cuentas en consulta", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
 			}
 		}
-    }
+		private void btnEliminar_Click(object sender, EventArgs e)
+		{
+			if (tipo.Equals(Tipo.Cliente))
+			{
+				if (dgvConsulta.RowCount > 0)
+				{
+					int nro = Convert.ToInt32(dgvConsulta.CurrentRow.Cells[0].Value.ToString());
+					
+				}
+				else
+				{
+					MessageBox.Show("No hay clientes en consulta", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+			}
+			if (tipo.Equals(Tipo.Cuenta))
+			{
+				if (dgvConsulta.RowCount > 0)
+				{
+					int nro = Convert.ToInt32(dgvConsulta.CurrentRow.Cells[0].Value.ToString());
+					
+				}
+				else
+				{
+					MessageBox.Show("No hay cuentas en consulta", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+			}
 
+		}
 
+	}
 }

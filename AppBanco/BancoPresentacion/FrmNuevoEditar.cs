@@ -16,15 +16,17 @@ using static BancoDominio.Enumeraciones;
 
 namespace BancoPresentacion
 {
-	public partial class FrmNuevoEditarCuenta : Form
+	public partial class FrmNuevoEditar : Form
 	{
 		private IClienteService gestorCliente;
 		private ICuentaService gestorCuenta;
 		private Accion modo;
+		private Tipo tipo;
 		private List<Cliente> lst;
 		private Cliente oCliente;
 		private Cuenta oCuenta;
-		public FrmNuevoEditarCuenta(Accion modo)
+		private int nro= new int();
+		public FrmNuevoEditar(Accion modo, Tipo tipo,int nro)
 		{
 			InitializeComponent();
 			gestorCliente = new ServiceFactory().CrearClienteService(new DaoFactory());
@@ -33,6 +35,13 @@ namespace BancoPresentacion
 			oCliente = new Cliente();
 			oCuenta = new Cuenta();
 			this.modo = modo;
+			this.tipo = tipo;
+			this.nro = nro;
+			if (modo.Equals(Accion.Update))
+			{
+				this.Text = "Editar Cliente";
+				CargarCliente(nro);
+			}
 		}
 
 		private void btnBuscar_Click(object sender, EventArgs e)
@@ -40,42 +49,83 @@ namespace BancoPresentacion
 			List<Parametro> parametro = new List<Parametro>();
 			parametro.Add(new Parametro("@ClienteNombre",txtCliente.Text));
 
-			lst= gestorCliente.GetClienteByName(parametro);
+			FrmConsultaCliente frm = new FrmConsultaCliente(parametro);
+			
+			frm.ShowDialog();
+			nro = frm.GetNroCliente();
+			CargarCliente(nro);
 
-			dgvClientes.Rows.Clear();
-			foreach (Cliente item in lst)
-			{
-				dgvClientes.Rows.Add(new object[] { item.IdCliente.ToString(),item.NombreCompleto(),item.Dni,item.Email });
-			}
-		}
-
-		private void dgvClientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-		{
-			int nroCliente = int.Parse(dgvClientes.CurrentRow.Cells["cId"].Value.ToString());
-
-			foreach (Cliente item in lst)
-			{
-				if(item.IdCliente.Equals(nroCliente))
-				{
-					oCliente = item;
-					txtCliente.Text = oCliente.NombreCompleto() + ", " + oCliente.Dni.ToString();
-				}
-
-			}
 			
 		}
+
+		
 		private void btnNuevo_Click(object sender, EventArgs e)
 		{
 			//aca se abre el form nuevo cliente
-			new FrmNuevoEditarCliente(Accion.Create,0).ShowDialog();
+			//new FrmConsultaCliente(Accion.Create,0).ShowDialog();
 		}
 
 		private void FrmNuevoEditarCuenta_Load(object sender, EventArgs e)
 		{
 			CargarTipoCuenta();
 			CargarTipoMoneda();
+			CargarBarrios();
+			CargarLocalidades();
+			CargarProvincias();
 		}
 
+		private void CargarCliente(int nro)
+		{
+			this.oCliente = gestorCliente.GetClienteId(nro);
+			oCliente.Barrio = new Barrio();
+
+			txtCliNombre.Text = oCliente.NomCliente;
+			txtCliApellido.Text = oCliente.ApeCliente;
+			txtCliDNI.Text = oCliente.Dni.ToString();
+			txtCliCuil.Text = oCliente.Cuil.ToString();
+			//cboClienteBarrio.ValueMember = oCliente.Barrio.IdBarrio.ToString();
+			cboClienteBarrio.SelectedValue = oCliente.Barrio.IdBarrio.ToString();
+			txtCliDire.Text = oCliente.Direccion;
+			txtCliTel.Text = oCliente.Telefono;
+			txtCliEmail.Text = oCliente.Email;
+
+		}
+		private void CargarLocalidades()
+		{
+			List<Localidad> lst = new List<Localidad>();
+			lst = gestorCliente.GetLocalidades();
+
+			cboCliLocalidad.Items.Clear();
+			cboCliLocalidad.DataSource = lst;
+			cboCliLocalidad.ValueMember = "IdLocalidad";
+			cboCliLocalidad.DisplayMember = "NomLocalidad";
+			cboCliLocalidad.SelectedIndex = 0;
+		}
+
+		private void CargarProvincias()
+		{
+			List<Provincia> lstP = new List<Provincia>();
+			lstP = gestorCliente.GetProvincias();
+
+			cboCliProvincia.Items.Clear();
+			cboCliProvincia.DataSource = lstP;
+			cboCliProvincia.ValueMember = "IdProvincia";
+			cboCliProvincia.DisplayMember = "NomProvincia";
+			cboCliProvincia.SelectedIndex = 0;
+		}
+
+
+		private void CargarBarrios()
+		{
+			List<Barrio> lstB = new List<Barrio>();
+			lstB = gestorCliente.GetBarrios();
+
+			cboClienteBarrio.Items.Clear();
+			cboClienteBarrio.DataSource = lstB;
+			cboClienteBarrio.ValueMember = "IdBarrio";
+			cboClienteBarrio.DisplayMember = "NomBarrio";
+			cboClienteBarrio.SelectedIndex = 0;
+		}
 		private void CargarTipoMoneda()
 		{ 
 			var lstMonedas = new [] { new { id = 1, moneda = "Pesos" }, new { id = 2, moneda = "Dolares" } };
@@ -102,6 +152,32 @@ namespace BancoPresentacion
 
 		private void btnAceptar_Click(object sender, EventArgs e)
 		{
+			List<Parametro> parametro = new List<Parametro>();
+			parametro.Add(new Parametro("@id_cliente", oCliente.IdCliente));
+			parametro.Add(new Parametro("@nom_cliente", txtCliNombre.Text.ToString()));
+			parametro.Add(new Parametro("@ape_cliente", txtCliApellido.Text.ToString()));
+			parametro.Add(new Parametro("@dni", int.Parse(txtCliDNI.Text)));
+			parametro.Add(new Parametro("@cuil", long.Parse(txtCliCuil.Text)));
+			parametro.Add(new Parametro("@direccion", txtCliDire.Text.ToString()));
+			parametro.Add(new Parametro("@telefono", txtCliTel.Text.ToString()));
+			parametro.Add(new Parametro("@email", txtCliEmail.Text.ToString()));
+			parametro.Add(new Parametro("@id_barrio", Convert.ToInt32(cboClienteBarrio.SelectedValue)));
+
+
+			if (modo.Equals(Accion.Update))
+			{
+				if (gestorCliente.ModificarClienteSQL(parametro))
+				{
+					MessageBox.Show("El cliente se actualizo correctamente!!!", "Notificación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					this.Dispose();
+				}
+				else
+				{
+					MessageBox.Show("El cliente NO se pudo actualizar!!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+
+			}
+
 			//validaciones de campo antes de guardar
 			if (txtCliente.Text == "")
 			{
@@ -114,6 +190,7 @@ namespace BancoPresentacion
 		}
 		private void GuardarCuenta()
 		{
+
 			oCuenta.Cbu = txtCbu.Text;
 			oCuenta.Alias = txtAlias.Text;
 			//validar si modo es create
