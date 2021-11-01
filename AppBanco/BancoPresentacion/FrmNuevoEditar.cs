@@ -37,11 +37,8 @@ namespace BancoPresentacion
 			this.modo = modo;
 			this.tipo = tipo;
 			this.nro = nro;
-			if (modo.Equals(Accion.Update))
-			{
-				this.Text = "Editar Cliente";
-				CargarCliente(nro);
-			}
+
+			
 		}
 
 		private void btnBuscar_Click(object sender, EventArgs e)
@@ -54,19 +51,64 @@ namespace BancoPresentacion
 			frm.ShowDialog();
 			nro = frm.GetNroCliente();
 			CargarCliente(nro);
-
-			
+			txtCliente.Text = oCliente.NombreCompleto();
+			panelCliente.Enabled = false;
 		}
 
 		
 		private void btnNuevo_Click(object sender, EventArgs e)
 		{
-			//aca se abre el form nuevo cliente
-			//new FrmConsultaCliente(Accion.Create,0).ShowDialog();
+
+			panelCliente.Enabled = true;
+			foreach (Control item in panelCliente.Controls)
+			{
+				if (item is TextBox)
+				{
+					((TextBox)item).Clear();
+				}
+				if (item is ComboBox)
+				{
+					((ComboBox)item).SelectedIndex = -1;
+
+				}
+				//if (item is RadioButton)
+				//{
+				//	((RadioButton)item).Checked = false;
+				//}
+				//if (item is CheckBox)
+				//{
+				//	((CheckBox)item).Checked = false;
+				//}
+			}
+			txtCliente.Text = "";
 		}
 
-		private void FrmNuevoEditarCuenta_Load(object sender, EventArgs e)
+		private void FrmNuevoEditar_Load(object sender, EventArgs e)
 		{
+			if (tipo.Equals(Tipo.Cliente))
+			{
+				if (modo.Equals(Accion.Create))
+				{
+					this.Text = "Nueva Cuenta";
+				}
+				if (modo.Equals(Accion.Update))
+				{
+					this.Text = "Editar Cliente";
+					CargarCliente(nro);
+				}
+			}
+			if (tipo.Equals(Tipo.Cuenta))
+			{
+				if (modo.Equals(Accion.Create))
+				{
+					this.Text = "Nueva Cuenta";
+				}
+				if (modo.Equals(Accion.Update))
+				{
+					this.Text = "Editar Cuenta";
+					CargarCliente(nro);
+				}
+			}
 			CargarTipoCuenta();
 			CargarTipoMoneda();
 			CargarBarrios();
@@ -152,41 +194,51 @@ namespace BancoPresentacion
 
 		private void btnAceptar_Click(object sender, EventArgs e)
 		{
-			List<Parametro> parametro = new List<Parametro>();
-			parametro.Add(new Parametro("@id_cliente", oCliente.IdCliente));
-			parametro.Add(new Parametro("@nom_cliente", txtCliNombre.Text.ToString()));
-			parametro.Add(new Parametro("@ape_cliente", txtCliApellido.Text.ToString()));
-			parametro.Add(new Parametro("@dni", int.Parse(txtCliDNI.Text)));
-			parametro.Add(new Parametro("@cuil", long.Parse(txtCliCuil.Text)));
-			parametro.Add(new Parametro("@direccion", txtCliDire.Text.ToString()));
-			parametro.Add(new Parametro("@telefono", txtCliTel.Text.ToString()));
-			parametro.Add(new Parametro("@email", txtCliEmail.Text.ToString()));
-			parametro.Add(new Parametro("@id_barrio", Convert.ToInt32(cboClienteBarrio.SelectedValue)));
 
-
-			if (modo.Equals(Accion.Update))
+			if (tipo.Equals(Tipo.Cuenta))
 			{
-				if (gestorCliente.ModificarClienteSQL(parametro))
+				if (modo.Equals(Accion.Create))
 				{
-					MessageBox.Show("El cliente se actualizo correctamente!!!", "Notificación", MessageBoxButtons.OK, MessageBoxIcon.Information);
-					this.Dispose();
-				}
-				else
-				{
-					MessageBox.Show("El cliente NO se pudo actualizar!!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				}
+					//validaciones de campo antes de guardar
+					if (txtCliente.Text == "")
+					{
+						MessageBox.Show("Debe especificar un cliente.", "Control", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+						txtCliente.Focus();
+						return;
+					}
 
+					GuardarCuenta();
+				}
 			}
-
-			//validaciones de campo antes de guardar
-			if (txtCliente.Text == "")
+			if (tipo.Equals(Tipo.Cliente))
 			{
-				MessageBox.Show("Debe especificar un cliente.", "Control", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-				txtCliente.Focus();
-				return;
+				List<Parametro> parametro = new List<Parametro>();
+				parametro.Add(new Parametro("@id_cliente", oCliente.IdCliente));
+				parametro.Add(new Parametro("@nom_cliente", txtCliNombre.Text.ToString()));
+				parametro.Add(new Parametro("@ape_cliente", txtCliApellido.Text.ToString()));
+				parametro.Add(new Parametro("@dni", int.Parse(txtCliDNI.Text)));
+				parametro.Add(new Parametro("@cuil", long.Parse(txtCliCuil.Text)));
+				parametro.Add(new Parametro("@direccion", txtCliDire.Text.ToString()));
+				parametro.Add(new Parametro("@telefono", txtCliTel.Text.ToString()));
+				parametro.Add(new Parametro("@email", txtCliEmail.Text.ToString()));
+				parametro.Add(new Parametro("@id_barrio", Convert.ToInt32(cboClienteBarrio.SelectedValue)));
+
+
+				if (modo.Equals(Accion.Update))
+				{
+					if (gestorCliente.ModificarClienteSQL(parametro))
+					{
+						MessageBox.Show("El cliente se actualizo correctamente!!!", "Notificación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+						this.Dispose();
+					}
+					else
+					{
+						MessageBox.Show("El cliente NO se pudo actualizar!!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					}
+
+				}
 			}
 			
-			GuardarCuenta();
 		}
 		private void GuardarCuenta()
 		{
