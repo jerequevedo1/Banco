@@ -20,13 +20,19 @@ namespace BancoPresentacion
 	{
 		private IClienteService gestorCliente;
 		private ICuentaService gestorCuenta;
-		private List<Cliente> lst = new List<Cliente>();
-		private Cliente cliente = new Cliente();
-		public FrmNuevoEditarCuenta()
+		private Accion modo;
+		private List<Cliente> lst;
+		private Cliente oCliente;
+		private Cuenta oCuenta;
+		public FrmNuevoEditarCuenta(Accion modo)
 		{
 			InitializeComponent();
 			gestorCliente = new ServiceFactory().CrearClienteService(new DaoFactory());
 			gestorCuenta = new ServiceFactory().CrearCuentaService(new DaoFactory());
+			lst = new List<Cliente>();
+			oCliente = new Cliente();
+			oCuenta = new Cuenta();
+			this.modo = modo;
 		}
 
 		private void btnBuscar_Click(object sender, EventArgs e)
@@ -51,8 +57,8 @@ namespace BancoPresentacion
 			{
 				if(item.IdCliente.Equals(nroCliente))
 				{
-					cliente = item;
-					txtCliente.Text = cliente.NombreCompleto() + ", " + cliente.Dni.ToString();
+					oCliente = item;
+					txtCliente.Text = oCliente.NombreCompleto() + ", " + oCliente.Dni.ToString();
 				}
 
 			}
@@ -96,7 +102,63 @@ namespace BancoPresentacion
 
 		private void btnAceptar_Click(object sender, EventArgs e)
 		{
+			//validaciones de campo antes de guardar
+			if (txtCliente.Text == "")
+			{
+				MessageBox.Show("Debe especificar un cliente.", "Control", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				txtCliente.Focus();
+				return;
+			}
+			
+			GuardarCuenta();
+		}
+		private void GuardarCuenta()
+		{
+			oCuenta.Cbu = txtCbu.Text;
+			oCuenta.Alias = txtAlias.Text;
+			//validar si modo es create
+			oCuenta.Saldo = Convert.ToInt32(txtDepositoInicial.Text);
 
+			oCuenta.TipoCuenta = new TipoCuenta();
+			oCuenta.TipoCuenta.IdTipoCuenta =Convert.ToInt32(cboTipoCuenta.SelectedValue);
+			oCuenta.LimiteDescubierto = Convert.ToDouble(txtLimiteDesc.Text);
+			
+
+			if (cboTipoMoneda.SelectedValue.Equals(1))
+			{
+				oCuenta.TipoMoneda = "P";
+			}
+			if (cboTipoMoneda.SelectedValue.Equals(2))
+			{
+				oCuenta.TipoMoneda = "D";
+			}
+
+			oCliente.AgregarCuenta(oCuenta);
+			
+			if (modo.Equals(Accion.Create))
+			{
+				if (gestorCuenta.NuevaCuenta(oCliente))
+				{
+					MessageBox.Show("Cuenta registrada con exito.", "Informe", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					Close();
+				}
+				else
+				{
+					MessageBox.Show("ERROR. No se pudo registrar la cuenta.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+			}
+			else
+			{
+				//if (gestorCuenta.EditarCuenta(oCuenta))
+				//{
+				//	MessageBox.Show("Presupuesto editado con exito.", "Informe", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				//	Close();
+				//}
+				//else
+				//{
+				//	MessageBox.Show("ERROR. No se pudo editar el presupuesto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				//}
+			}
 		}
 
 		private void btnCancelar_Click(object sender, EventArgs e)
