@@ -22,11 +22,12 @@ namespace BancoPresentacion
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			//Application.Run(new FrmLogin(usuario));
-			
-			//if (usuario.IdUsuario !=-1)
-			//{
+			Application.Run(new FrmPrincipal(usuario));
+
+			if (usuario.IdUsuario != -1)
+			{
 				Application.Run(new FrmPrincipal(usuario));
-			//}
+			}
 			
 		}
 	}

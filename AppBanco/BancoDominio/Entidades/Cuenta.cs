@@ -15,14 +15,14 @@ namespace BancoDominio.Entidades
         public List<Transaccion> Ltransaccion { get; set; }
         public string UltiMovi { get; set; }
         public int SaldoDescubierto { get; set; }
-        public Cliente Cliente { get; set; }
         public TipoCuenta TipoCuenta { get; set; }
         public string TipoMoneda { get; set; }
 		public DateTime FechaBaja { get; set; }
 		public DateTime FechaAlta { get; set; }
+        public double LimiteDescubierto { get; set; }
 
-		public Cuenta(int idCuenta, string cbu, string alias, double saldo, string ultiMovi, int saldoDescubierto, Cliente cliente,
-                        TipoCuenta tipoCuenta, string tipoMoneda)
+		public Cuenta(int idCuenta, string cbu, string alias, double saldo, string ultiMovi, int saldoDescubierto, 
+                        TipoCuenta tipoCuenta, string tipoMoneda,double limiteDescubierto)
         {
             IdCuenta = idCuenta;
             Cbu = cbu;
@@ -31,9 +31,9 @@ namespace BancoDominio.Entidades
             UltiMovi = ultiMovi;
             Ltransaccion = new List<Transaccion>();
             SaldoDescubierto = saldoDescubierto;
-            Cliente = cliente;
             TipoCuenta = tipoCuenta;
             TipoMoneda = tipoMoneda;
+            LimiteDescubierto = limiteDescubierto;
         }
 
         public Cuenta()

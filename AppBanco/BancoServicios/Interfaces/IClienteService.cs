@@ -16,6 +16,9 @@ namespace BancoServicios.Interfaces
        
         List<Cliente> GetClienteByFilters(List<Parametro> parametros);
         List<Cliente> GetClienteByName(List<Parametro> parametro);
-
+        List<Barrio> GetBarrios();
+        List<Localidad> GetLocalidades();
+        List<Provincia> GetProvincias();
+        bool ModificarClienteSQL(List<Parametro> parametros);
     }
 }

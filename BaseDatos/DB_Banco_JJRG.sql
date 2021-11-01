@@ -194,11 +194,11 @@ AS
 	    order by id_cuenta asc
 
 go
-Create PROC PA_CONSULTA_CLIENTE_SIMPLE
+alter PROC PA_CONSULTA_CLIENTE_SIMPLE
 @ClienteNombre varchar(150)
 as
 		if @ClienteNombre not like ''
-			select id_cliente 'ID Cliente', nom_cliente Nombre,ape_cliente Apellido, dni DNI, email Email
+			select id_cliente,nom_cliente,ape_cliente,dni,cuil,direccion,telefono,email,id_barrio
 			from Clientes
 			WHERE (nom_cliente like '%' + @ClienteNombre + '%')OR(ape_cliente like '%' + @ClienteNombre + '%')
 			order by id_cliente asc  
@@ -218,4 +218,75 @@ BEGIN
 	WHERE c.id_cliente = cu.id_cliente
 	AND c.id_barrio= b.id_barrio
 	AND c.id_cliente= @nro;
+END
+go
+create proc PA_INSERTAR_CLIENTE
+@nom_cliente varchar(50),
+@ape_cliente varchar(40),
+@dni int,
+@cuil bigint,
+@direccion varchar (50),
+@telefono  varchar(50),
+@email    varchar(50),
+@id_barrio int,
+@id_cliente int output
+as
+ insert into Clientes values(@nom_cliente,@ape_cliente,@dni,@cuil,@direccion,@telefono,@email,@id_barrio,getdate(),null)
+ set @id_cliente = SCOPE_IDENTITY();
+go
+create proc PA_INSERTAR_CUENTA
+@cbu varchar(22),
+@alias varchar(20),
+@saldo_actual decimal(18,0),
+@limite_descubierto decimal(18,0),
+@id_cliente int,
+@id_tipo_cuenta int,
+@tipo_moneda char
+as
+	insert into Cuentas values(@cbu,@alias,@saldo_actual,'',0,@id_cliente,@id_tipo_cuenta,@tipo_moneda,getdate(),null,@limite_descubierto)
+go
+ALTER TABLE Cuentas
+ADD limite_descubierto decimal(18,0)
+go
+create proc PA_EDITAR_CLIENTE
+      @id_cliente int,
+      @nom_cliente varchar(50),
+      @ape_cliente varchar(40),
+      @dni int,
+      @cuil bigint,
+      @direccion varchar (50),
+      @telefono  varchar(50),
+      @email    varchar(50),
+      @id_barrio int
+	  AS
+     update Clientes set
+      nom_cliente=@nom_cliente,
+      ape_cliente=@ape_cliente,
+      dni=@dni,
+      cuil=@cuil,
+      direccion=@direccion,
+      telefono=@telefono,
+      email=@email,
+      id_barrio=@id_barrio
+	  where id_cliente=@id_cliente
+go
+create PROCEDURE SP_CONSULTAR_PROVINCIAS
+AS
+BEGIN
+	
+	SELECT * FROM Provincias order by 2 asc;
+END
+go
+create PROCEDURE SP_CONSULTAR_LOCALIDADES
+AS
+BEGIN
+	
+	SELECT * FROM Localidades order by 2 asc;
+END
+go
+create PROCEDURE SP_CONSULTAR_BARRIOS
+AS
+BEGIN
+	
+	SELECT * FROM BARRIOS order by 2 asc;
 END

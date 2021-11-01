@@ -19,10 +19,8 @@ namespace BancoDominio.Entidades
 
         }
 
-
-       
-
-
-
+        public Localidad()
+        {
+        }
     }
 }

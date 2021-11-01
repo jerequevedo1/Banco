@@ -205,7 +205,8 @@ namespace BancoPresentacion
 			this.Controls.Add(this.panelMenu);
 			this.MinimumSize = new System.Drawing.Size(1000, 600);
 			this.Name = "FrmPrincipal";
-			this.Text = "Form1";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.Text = "Gestion Banco JJRG";
 			this.Load += new System.EventHandler(this.FrmPrincipal_Load);
 			this.panelMenu.ResumeLayout(false);
 			this.panelTitleBar.ResumeLayout(false);
