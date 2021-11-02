@@ -49,12 +49,12 @@ namespace BancoPresentacion
 
 			if (tipo.Equals(Tipo.Cliente))
 			{
-				new FrmNuevoEditar(modo, Tipo.Cliente, null).ShowDialog();
+				new FrmNuevoEditar(modo, Tipo.Cliente, oCliente).ShowDialog();
 				CargarGrilla(tipo);
 			}
 			if (tipo.Equals(Tipo.Cuenta))
 			{
-				new FrmNuevoEditar(modo, Tipo.Cuenta, null).ShowDialog();
+				new FrmNuevoEditar(modo, Tipo.Cuenta, oCliente).ShowDialog();
 				CargarGrilla(tipo);
 			}
 

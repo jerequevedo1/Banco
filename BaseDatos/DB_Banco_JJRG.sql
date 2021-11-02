@@ -62,6 +62,8 @@ create table Clientes
 	telefono varchar(30),
 	email varchar(80),
 	id_barrio int,
+	fecha_alta datetime, 
+	fecha_baja datetime
 	constraint pk_id_cliente primary key (id_cliente),
 	constraint fk_id_clientes_barrio foreign key (id_barrio) references Barrios(id_barrio)
 )
@@ -71,12 +73,15 @@ create table Cuentas
 	id_cuenta int identity(1,1) not null,
 	cbu varchar(22),
 	alias varchar(20),
-	saldo_actual decimal,
+	saldo_actual decimal(18,0),
 	ultimo_movimiento varchar(100),
-	saldo_en_descubierto decimal,
+	saldo_en_descubierto decimal(18,0),
+	limite_descubierto decimal(18,0),
 	id_cliente int,
 	id_tipo_cuenta int,
 	tipo_moneda char(1),
+	fecha_alta datetime, 
+	fecha_baja datetime
 	constraint pk_id_cuenta primary key (id_cuenta),
 	constraint fk_id_cta_cliente foreign key (id_cliente) references Clientes(id_cliente),
 	constraint fk_id_cta_tipo_cta foreign key (id_tipo_cuenta) references Tipos_Cuentas(id_tipo_cuenta)
@@ -133,13 +138,7 @@ AS
 		(@ClienteNombre is null OR (nom_cliente like '%' + @ClienteNombre + '%')OR(ape_cliente like '%' + @ClienteNombre + '%'))
 	    order by id_cliente asc
 GO
-ALTER TABLE Cuentas
-ADD fecha_alta datetime, fecha_baja datetime
-go
-alter table Clientes
-ADD fecha_alta datetime, fecha_baja datetime
-GO
-alter PROC PA_CONSULTA_CUENTA_FILTRO
+CREATE PROC PA_CONSULTA_CUENTA_FILTRO
 @nroCuenta int =null,
 @cbu varchar(22)=null,
 @alias varchar(22)=null,
@@ -194,7 +193,7 @@ AS
 	    order by id_cuenta asc
 
 go
-alter PROC PA_CONSULTA_CLIENTE_SIMPLE
+CREATE PROC PA_CONSULTA_CLIENTE_SIMPLE
 @ClienteNombre varchar(150)
 as
 		if @ClienteNombre not like ''
@@ -243,10 +242,7 @@ create proc PA_INSERTAR_CUENTA
 @id_tipo_cuenta int,
 @tipo_moneda char
 as
-	insert into Cuentas values(@cbu,@alias,@saldo_actual,'',0,@id_cliente,@id_tipo_cuenta,@tipo_moneda,getdate(),null,@limite_descubierto)
-go
-ALTER TABLE Cuentas
-ADD limite_descubierto decimal(18,0)
+	insert into Cuentas values(@cbu,@alias,@saldo_actual,'',0,@limite_descubierto,@id_cliente,@id_tipo_cuenta,@tipo_moneda,getdate(),null)
 go
 create proc PA_EDITAR_CLIENTE
       @id_cliente int,
@@ -290,10 +286,30 @@ BEGIN
 	
 	SELECT * FROM BARRIOS order by 2 asc;
 END
-
-CREATE PROC [dbo].[PA_REPORTE_CUENTAS_CLIENTE]
+go
+CREATE PROC PA_REPORTE_CUENTAS_CLIENTE
 
 as
 		SELECT Clientes.id_cliente, Clientes.nom_cliente, Clientes.ape_cliente, Cuentas.id_cuenta, Cuentas.cbu, Cuentas.saldo_actual, Cuentas.id_cliente AS Expr1
                 FROM   Clientes INNER JOIN
                             	Cuentas ON Clientes.id_cliente = Cuentas.id_cliente 
+go
+create PROC PA_EDITAR_CUENTA
+@id_cuenta int,
+@cbu varchar(22),
+@alias varchar(20),
+@saldo_actual decimal(18,0),
+@limite_descubierto decimal(18,0),
+@id_cliente int,
+@id_tipo_cuenta int,
+@tipo_moneda char
+as
+	update Cuentas set
+	cbu=@cbu,
+	alias=@alias,
+	saldo_actual=@saldo_actual,
+	limite_descubierto=@limite_descubierto,
+	id_cliente=@id_cliente,
+	id_tipo_cuenta=@id_tipo_cuenta,
+	tipo_moneda=@tipo_moneda
+	where id_cuenta=@id_cuenta

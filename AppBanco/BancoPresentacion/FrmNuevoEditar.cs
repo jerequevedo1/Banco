@@ -284,6 +284,12 @@ namespace BancoPresentacion
 					}
 					
 				}
+				if (modo.Equals(Accion.Update))
+				{
+					//validaciones
+
+					GuardarCuenta();
+				}
 			}
 			if (tipo.Equals(Tipo.Cliente))
 			{
@@ -372,7 +378,6 @@ namespace BancoPresentacion
 		}
 		private void GuardarCuenta()
 		{
-			
 
 			oCuenta.Cbu = txtCbu.Text;
 			oCuenta.Alias = txtAlias.Text;
@@ -398,7 +403,7 @@ namespace BancoPresentacion
 			{
 				if (gestorCuenta.NuevaCuentaClienteExist(oCliente))
 				{
-					MessageBox.Show("Cuenta registrada al Cliente "+oCliente.ApeCliente+", "+oCliente.NomCliente +" con exito.", "Informe", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					MessageBox.Show("Cuenta registrada al Cliente "+ oCliente.NombreCompleto() + " con exito.", "Informe", MessageBoxButtons.OK, MessageBoxIcon.Information);
 					Close();
 				}
 				else
@@ -406,7 +411,19 @@ namespace BancoPresentacion
 					MessageBox.Show("ERROR. No se pudo registrar la cuenta.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
 			}
-			
+			if (modo.Equals(Accion.Update))
+			{
+				if (gestorCuenta.ModificarCuenta(oCliente))
+				{
+					MessageBox.Show("Cuenta del Cliente " + oCliente.NombreCompleto() + " actualizada con exito.", "Informe", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					Close();
+				}
+				else
+				{
+					MessageBox.Show("ERROR. No se pudo actualizar la cuenta.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+			}
+
 		}
 
 		private void btnCancelar_Click(object sender, EventArgs e)
