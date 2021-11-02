@@ -264,12 +264,12 @@ namespace BancoPresentacion
 				if (modo.Equals(Accion.Create))
 				{
 					//validaciones de campo antes de guardar por ejemplo:
-					if (txtCliente.Text == "")
-					{
-						MessageBox.Show("Debe especificar un cliente.", "Control", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-						txtCliente.Focus();
-						return;
-					}
+					//if (txtCliente.Text == "")
+					//{
+					//	MessageBox.Show("Debe especificar un cliente.", "Control", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+					//	txtCliente.Focus();
+					//	return;
+					//}
 					if (!clienteExistente)
 					{
 						GuardarCuentaConCliente();
