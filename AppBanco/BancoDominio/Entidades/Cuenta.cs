@@ -38,6 +38,8 @@ namespace BancoDominio.Entidades
 
         public Cuenta()
         {
+            TipoCuenta = new TipoCuenta();
+            Ltransaccion = new List<Transaccion>();
         }
     }
 }

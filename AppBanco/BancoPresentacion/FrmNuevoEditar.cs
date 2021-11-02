@@ -31,9 +31,9 @@ namespace BancoPresentacion
 			gestorCliente = new ServiceFactory().CrearClienteService(new DaoFactory());
 			gestorCuenta = new ServiceFactory().CrearCuentaService(new DaoFactory());
 			oCliente = new Cliente();
-			oCliente.Barrio = new Barrio();
+			//oCliente.Barrio = new Barrio();
 			oCuenta = new Cuenta();
-			oCuenta.TipoCuenta = new TipoCuenta();
+			//oCuenta.TipoCuenta = new TipoCuenta();
 			//oCliente.AgregarCuenta(oCuenta);
 			oCliente = cliente;
 			this.modo = modo;
@@ -185,7 +185,7 @@ namespace BancoPresentacion
 
 		private void CargarCliente(int nro)
 		{
-			oCliente.Barrio = new Barrio();
+			//oCliente.Barrio = new Barrio();
 			this.oCliente = gestorCliente.GetClienteId(nro);
 			
 

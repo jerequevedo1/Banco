@@ -30,12 +30,14 @@ namespace BancoDominio.Entidades
             Barrio = barrio;
             Telefono = telefono;
             Email = email;
+            Cuentas = new List<Cuenta>();
         }
 
 
         public Cliente()
         {
             Cuentas = new List<Cuenta>();
+            Barrio = new Barrio();
         }
 
      
