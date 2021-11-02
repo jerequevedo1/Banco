@@ -14,5 +14,6 @@ namespace BancoServicios.Interfaces
 		List<TipoCuenta> GetTipoCuenta();
 		bool NuevaCuenta(Cliente oCliente);
 		bool NuevaCuentaClienteExist(Cliente oCliente);
+		bool ModificarCuenta(Cliente oCliente);
 	}
 }
