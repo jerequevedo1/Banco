@@ -248,16 +248,15 @@ namespace BancoPresentacion
 			{
 				if (modo.Equals(Accion.Create))
 				{
+					//validaciones de campo antes de guardar por ejemplo:
+					if (txtCliente.Text == "")
+					{
+						MessageBox.Show("Debe especificar un cliente.", "Control", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+						txtCliente.Focus();
+						return;
+					}
 					if (!clienteExistente)
 					{
-						//validaciones de campo antes de guardar
-						if (txtCliente.Text == "")
-						{
-							MessageBox.Show("Debe especificar un cliente.", "Control", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-							txtCliente.Focus();
-							return;
-						}
-
 						GuardarCuentaConCliente();
 					}
 					else
@@ -269,6 +268,13 @@ namespace BancoPresentacion
 			}
 			if (tipo.Equals(Tipo.Cliente))
 			{
+				//VALIDAR 
+
+				if (modo.Equals(Accion.Create))
+				{
+					GuardarCuentaConCliente();
+				}
+								
 				List<Parametro> parametro = new List<Parametro>();
 				parametro.Add(new Parametro("@id_cliente", oCliente.IdCliente));
 				parametro.Add(new Parametro("@nom_cliente", txtCliNombre.Text.ToString()));
@@ -300,9 +306,19 @@ namespace BancoPresentacion
 		private void GuardarCuentaConCliente()
 		{
 
+			if (modo.Equals(Accion.Create) && tipo.Equals(Tipo.Cliente))
+			{
+				oCliente.NomCliente = txtCliNombre.Text;
+				oCliente.ApeCliente = txtCliApellido.Text;
+				oCliente.Dni = int.Parse(txtCliDNI.Text);
+				oCliente.Cuil = long.Parse(txtCliCuil.Text);
+				oCliente.Direccion = txtCliDire.Text;
+				oCliente.Telefono = txtCliTel.Text;
+				oCliente.Email = txtCliEmail.Text;
+				oCliente.Barrio.IdBarrio = Convert.ToInt32(cboClienteBarrio.SelectedValue);
+			}
 			oCuenta.Cbu = txtCbu.Text;
 			oCuenta.Alias = txtAlias.Text;
-			//validar si modo es create
 			oCuenta.Saldo = Convert.ToInt32(txtDepositoInicial.Text);
 
 			oCuenta.TipoCuenta = new TipoCuenta();
@@ -332,18 +348,6 @@ namespace BancoPresentacion
 				{
 					MessageBox.Show("ERROR. No se pudo registrar la cuenta.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
-			}
-			else
-			{
-				//if (gestorCuenta.EditarCuenta(oCuenta))
-				//{
-				//	MessageBox.Show("Presupuesto editado con exito.", "Informe", MessageBoxButtons.OK, MessageBoxIcon.Information);
-				//	Close();
-				//}
-				//else
-				//{
-				//	MessageBox.Show("ERROR. No se pudo editar el presupuesto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				//}
 			}
 		}
 		private void GuardarCuenta()
