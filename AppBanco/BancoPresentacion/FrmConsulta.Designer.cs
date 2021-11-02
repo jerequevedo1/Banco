@@ -59,7 +59,7 @@ namespace BancoPresentacion
 			this.lblFechaDesde.Location = new System.Drawing.Point(319, 35);
 			this.lblFechaDesde.Name = "lblFechaDesde";
 			this.lblFechaDesde.Size = new System.Drawing.Size(42, 15);
-			this.lblFechaDesde.TabIndex = 12;
+			this.lblFechaDesde.TabIndex = 2;
 			this.lblFechaDesde.Text = "Desde:";
 			// 
 			// cboFiltroFecha
@@ -69,7 +69,7 @@ namespace BancoPresentacion
 			this.cboFiltroFecha.Location = new System.Drawing.Point(73, 31);
 			this.cboFiltroFecha.Name = "cboFiltroFecha";
 			this.cboFiltroFecha.Size = new System.Drawing.Size(223, 23);
-			this.cboFiltroFecha.TabIndex = 11;
+			this.cboFiltroFecha.TabIndex = 1;
 			// 
 			// dtpFechaDesde
 			// 
@@ -77,7 +77,7 @@ namespace BancoPresentacion
 			this.dtpFechaDesde.Location = new System.Drawing.Point(363, 31);
 			this.dtpFechaDesde.Name = "dtpFechaDesde";
 			this.dtpFechaDesde.Size = new System.Drawing.Size(126, 23);
-			this.dtpFechaDesde.TabIndex = 13;
+			this.dtpFechaDesde.TabIndex = 3;
 			// 
 			// lblFiltroFecha
 			// 
@@ -85,7 +85,7 @@ namespace BancoPresentacion
 			this.lblFiltroFecha.Location = new System.Drawing.Point(29, 35);
 			this.lblFiltroFecha.Name = "lblFiltroFecha";
 			this.lblFiltroFecha.Size = new System.Drawing.Size(34, 15);
-			this.lblFiltroFecha.TabIndex = 10;
+			this.lblFiltroFecha.TabIndex = 0;
 			this.lblFiltroFecha.Text = "Filtro";
 			// 
 			// lblFechaHasta
@@ -94,7 +94,7 @@ namespace BancoPresentacion
 			this.lblFechaHasta.Location = new System.Drawing.Point(499, 35);
 			this.lblFechaHasta.Name = "lblFechaHasta";
 			this.lblFechaHasta.Size = new System.Drawing.Size(40, 15);
-			this.lblFechaHasta.TabIndex = 14;
+			this.lblFechaHasta.TabIndex = 4;
 			this.lblFechaHasta.Text = "Hasta:";
 			// 
 			// btnConsultar
@@ -102,7 +102,7 @@ namespace BancoPresentacion
 			this.btnConsultar.Location = new System.Drawing.Point(594, 91);
 			this.btnConsultar.Name = "btnConsultar";
 			this.btnConsultar.Size = new System.Drawing.Size(75, 23);
-			this.btnConsultar.TabIndex = 1;
+			this.btnConsultar.TabIndex = 9;
 			this.btnConsultar.Text = "Consultar";
 			this.btnConsultar.UseVisualStyleBackColor = true;
 			this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
@@ -113,7 +113,7 @@ namespace BancoPresentacion
 			this.dtpFechaHasta.Location = new System.Drawing.Point(543, 31);
 			this.dtpFechaHasta.Name = "dtpFechaHasta";
 			this.dtpFechaHasta.Size = new System.Drawing.Size(126, 23);
-			this.dtpFechaHasta.TabIndex = 15;
+			this.dtpFechaHasta.TabIndex = 5;
 			// 
 			// btnEditar
 			// 
@@ -122,7 +122,7 @@ namespace BancoPresentacion
 			this.btnEditar.Location = new System.Drawing.Point(536, 407);
 			this.btnEditar.Name = "btnEditar";
 			this.btnEditar.Size = new System.Drawing.Size(75, 23);
-			this.btnEditar.TabIndex = 4;
+			this.btnEditar.TabIndex = 13;
 			this.btnEditar.Text = "Editar";
 			this.btnEditar.UseVisualStyleBackColor = true;
 			this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
@@ -133,7 +133,7 @@ namespace BancoPresentacion
 			this.lblFiltro.Location = new System.Drawing.Point(29, 95);
 			this.lblFiltro.Name = "lblFiltro";
 			this.lblFiltro.Size = new System.Drawing.Size(34, 15);
-			this.lblFiltro.TabIndex = 16;
+			this.lblFiltro.TabIndex = 6;
 			this.lblFiltro.Text = "Filtro";
 			// 
 			// btnNuevo
@@ -143,7 +143,7 @@ namespace BancoPresentacion
 			this.btnNuevo.Location = new System.Drawing.Point(419, 407);
 			this.btnNuevo.Name = "btnNuevo";
 			this.btnNuevo.Size = new System.Drawing.Size(75, 23);
-			this.btnNuevo.TabIndex = 3;
+			this.btnNuevo.TabIndex = 12;
 			this.btnNuevo.Text = "Nuevo";
 			this.btnNuevo.UseVisualStyleBackColor = true;
 			this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
@@ -155,7 +155,7 @@ namespace BancoPresentacion
 			this.cboFiltro.Location = new System.Drawing.Point(73, 91);
 			this.cboFiltro.Name = "cboFiltro";
 			this.cboFiltro.Size = new System.Drawing.Size(223, 23);
-			this.cboFiltro.TabIndex = 17;
+			this.cboFiltro.TabIndex = 7;
 			// 
 			// btnEliminar
 			// 
@@ -164,7 +164,7 @@ namespace BancoPresentacion
 			this.btnEliminar.Location = new System.Drawing.Point(661, 407);
 			this.btnEliminar.Name = "btnEliminar";
 			this.btnEliminar.Size = new System.Drawing.Size(75, 23);
-			this.btnEliminar.TabIndex = 5;
+			this.btnEliminar.TabIndex = 14;
 			this.btnEliminar.Text = "Eliminar";
 			this.btnEliminar.UseVisualStyleBackColor = true;
 			this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
@@ -174,7 +174,7 @@ namespace BancoPresentacion
 			this.txtFiltro.Location = new System.Drawing.Point(319, 91);
 			this.txtFiltro.Name = "txtFiltro";
 			this.txtFiltro.Size = new System.Drawing.Size(261, 23);
-			this.txtFiltro.TabIndex = 18;
+			this.txtFiltro.TabIndex = 8;
 			// 
 			// dgvConsulta
 			// 
@@ -198,7 +198,7 @@ namespace BancoPresentacion
 			this.dgvConsulta.RowTemplate.Height = 25;
 			this.dgvConsulta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dgvConsulta.Size = new System.Drawing.Size(724, 225);
-			this.dgvConsulta.TabIndex = 0;
+			this.dgvConsulta.TabIndex = 11;
 			// 
 			// cId
 			// 
@@ -242,7 +242,7 @@ namespace BancoPresentacion
 			this.chkBaja.Location = new System.Drawing.Point(652, 139);
 			this.chkBaja.Name = "chkBaja";
 			this.chkBaja.Size = new System.Drawing.Size(84, 19);
-			this.chkBaja.TabIndex = 19;
+			this.chkBaja.TabIndex = 10;
 			this.chkBaja.Text = "Incluir Baja";
 			this.chkBaja.UseVisualStyleBackColor = true;
 			// 
