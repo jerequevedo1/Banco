@@ -29,189 +29,252 @@ namespace BancoPresentacion
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.panelMenu = new System.Windows.Forms.Panel();
-			this.btnSalir = new System.Windows.Forms.Button();
-			this.btnConfiguracion = new System.Windows.Forms.Button();
-			this.btnTransaccion = new System.Windows.Forms.Button();
-			this.btnCliente = new System.Windows.Forms.Button();
-			this.btnCuenta = new System.Windows.Forms.Button();
-			this.panelIcono = new System.Windows.Forms.Panel();
-			this.panelTitleBar = new System.Windows.Forms.Panel();
-			this.lblTitle = new System.Windows.Forms.Label();
-			this.lblBienvenida = new System.Windows.Forms.Label();
-			this.panelChild = new System.Windows.Forms.Panel();
-			this.panelMenu.SuspendLayout();
-			this.panelTitleBar.SuspendLayout();
-			this.SuspendLayout();
-			// 
-			// panelMenu
-			// 
-			this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-			this.panelMenu.Controls.Add(this.btnSalir);
-			this.panelMenu.Controls.Add(this.btnConfiguracion);
-			this.panelMenu.Controls.Add(this.btnTransaccion);
-			this.panelMenu.Controls.Add(this.btnCliente);
-			this.panelMenu.Controls.Add(this.btnCuenta);
-			this.panelMenu.Controls.Add(this.panelIcono);
-			this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
-			this.panelMenu.Location = new System.Drawing.Point(0, 0);
-			this.panelMenu.Name = "panelMenu";
-			this.panelMenu.Size = new System.Drawing.Size(220, 561);
-			this.panelMenu.TabIndex = 0;
-			// 
-			// btnSalir
-			// 
-			this.btnSalir.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.btnSalir.FlatAppearance.BorderSize = 0;
-			this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnSalir.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.btnSalir.ForeColor = System.Drawing.Color.Silver;
-			this.btnSalir.Image = global::BancoPresentacion.Properties.Resources.icon_cerrar_sesion;
-			this.btnSalir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnSalir.Location = new System.Drawing.Point(0, 512);
-			this.btnSalir.Name = "btnSalir";
-			this.btnSalir.Size = new System.Drawing.Size(220, 49);
-			this.btnSalir.TabIndex = 5;
-			this.btnSalir.Text = "Cerrar Sesion";
-			this.btnSalir.UseVisualStyleBackColor = true;
-			this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
-			// 
-			// btnConfiguracion
-			// 
-			this.btnConfiguracion.Dock = System.Windows.Forms.DockStyle.Top;
-			this.btnConfiguracion.FlatAppearance.BorderSize = 0;
-			this.btnConfiguracion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnConfiguracion.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-			this.btnConfiguracion.ForeColor = System.Drawing.Color.Silver;
-			this.btnConfiguracion.Image = global::BancoPresentacion.Properties.Resources.icon_config;
-			this.btnConfiguracion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnConfiguracion.Location = new System.Drawing.Point(0, 259);
-			this.btnConfiguracion.Name = "btnConfiguracion";
-			this.btnConfiguracion.Size = new System.Drawing.Size(220, 59);
-			this.btnConfiguracion.TabIndex = 4;
-			this.btnConfiguracion.Text = "Configuracion";
-			this.btnConfiguracion.UseVisualStyleBackColor = true;
-			this.btnConfiguracion.Click += new System.EventHandler(this.btnConfiguracion_Click);
-			// 
-			// btnTransaccion
-			// 
-			this.btnTransaccion.Dock = System.Windows.Forms.DockStyle.Top;
-			this.btnTransaccion.FlatAppearance.BorderSize = 0;
-			this.btnTransaccion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnTransaccion.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-			this.btnTransaccion.ForeColor = System.Drawing.Color.Silver;
-			this.btnTransaccion.Image = global::BancoPresentacion.Properties.Resources.Icono_transacciones;
-			this.btnTransaccion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnTransaccion.Location = new System.Drawing.Point(0, 200);
-			this.btnTransaccion.Name = "btnTransaccion";
-			this.btnTransaccion.Size = new System.Drawing.Size(220, 59);
-			this.btnTransaccion.TabIndex = 3;
-			this.btnTransaccion.Text = "Transacciones";
-			this.btnTransaccion.UseVisualStyleBackColor = true;
-			this.btnTransaccion.Click += new System.EventHandler(this.btnTransaccion_Click);
-			// 
-			// btnCliente
-			// 
-			this.btnCliente.Dock = System.Windows.Forms.DockStyle.Top;
-			this.btnCliente.FlatAppearance.BorderSize = 0;
-			this.btnCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnCliente.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-			this.btnCliente.ForeColor = System.Drawing.Color.Silver;
-			this.btnCliente.Image = global::BancoPresentacion.Properties.Resources.Icono_usuarios;
-			this.btnCliente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnCliente.Location = new System.Drawing.Point(0, 141);
-			this.btnCliente.Name = "btnCliente";
-			this.btnCliente.Size = new System.Drawing.Size(220, 59);
-			this.btnCliente.TabIndex = 2;
-			this.btnCliente.Text = "Clientes";
-			this.btnCliente.UseVisualStyleBackColor = true;
-			this.btnCliente.Click += new System.EventHandler(this.btnCliente_Click);
-			// 
-			// btnCuenta
-			// 
-			this.btnCuenta.Dock = System.Windows.Forms.DockStyle.Top;
-			this.btnCuenta.FlatAppearance.BorderSize = 0;
-			this.btnCuenta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnCuenta.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-			this.btnCuenta.ForeColor = System.Drawing.Color.Silver;
-			this.btnCuenta.Image = global::BancoPresentacion.Properties.Resources.icon_cuentas;
-			this.btnCuenta.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnCuenta.Location = new System.Drawing.Point(0, 80);
-			this.btnCuenta.Name = "btnCuenta";
-			this.btnCuenta.Size = new System.Drawing.Size(220, 61);
-			this.btnCuenta.TabIndex = 1;
-			this.btnCuenta.Text = "Cuentas";
-			this.btnCuenta.UseVisualStyleBackColor = true;
-			this.btnCuenta.Click += new System.EventHandler(this.btnCuenta_Click);
-			// 
-			// panelIcono
-			// 
-			this.panelIcono.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(59)))), ((int)(((byte)(104)))));
-			this.panelIcono.Dock = System.Windows.Forms.DockStyle.Top;
-			this.panelIcono.Location = new System.Drawing.Point(0, 0);
-			this.panelIcono.Name = "panelIcono";
-			this.panelIcono.Size = new System.Drawing.Size(220, 80);
-			this.panelIcono.TabIndex = 0;
-			// 
-			// panelTitleBar
-			// 
-			this.panelTitleBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(59)))), ((int)(((byte)(104)))));
-			this.panelTitleBar.Controls.Add(this.lblTitle);
-			this.panelTitleBar.Controls.Add(this.lblBienvenida);
-			this.panelTitleBar.Dock = System.Windows.Forms.DockStyle.Top;
-			this.panelTitleBar.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-			this.panelTitleBar.Location = new System.Drawing.Point(220, 0);
-			this.panelTitleBar.Name = "panelTitleBar";
-			this.panelTitleBar.Size = new System.Drawing.Size(764, 80);
-			this.panelTitleBar.TabIndex = 1;
-			// 
-			// lblTitle
-			// 
-			this.lblTitle.AutoSize = true;
-			this.lblTitle.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-			this.lblTitle.ForeColor = System.Drawing.Color.White;
-			this.lblTitle.Location = new System.Drawing.Point(241, 32);
-			this.lblTitle.Name = "lblTitle";
-			this.lblTitle.Size = new System.Drawing.Size(47, 17);
-			this.lblTitle.TabIndex = 1;
-			this.lblTitle.Text = "Home";
-			// 
-			// lblBienvenida
-			// 
-			this.lblBienvenida.AutoSize = true;
-			this.lblBienvenida.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-			this.lblBienvenida.ForeColor = System.Drawing.Color.White;
-			this.lblBienvenida.Location = new System.Drawing.Point(6, 9);
-			this.lblBienvenida.Name = "lblBienvenida";
-			this.lblBienvenida.Size = new System.Drawing.Size(81, 17);
-			this.lblBienvenida.TabIndex = 0;
-			this.lblBienvenida.Text = "Bienvenid@";
-			// 
-			// panelChild
-			// 
-			this.panelChild.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panelChild.Location = new System.Drawing.Point(220, 80);
-			this.panelChild.Name = "panelChild";
-			this.panelChild.Size = new System.Drawing.Size(764, 481);
-			this.panelChild.TabIndex = 2;
-			// 
-			// FrmPrincipal
-			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(984, 561);
-			this.Controls.Add(this.panelChild);
-			this.Controls.Add(this.panelTitleBar);
-			this.Controls.Add(this.panelMenu);
-			this.MinimumSize = new System.Drawing.Size(1000, 600);
-			this.Name = "FrmPrincipal";
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "Gestion Banco JJRG";
-			this.Load += new System.EventHandler(this.FrmPrincipal_Load);
-			this.panelMenu.ResumeLayout(false);
-			this.panelTitleBar.ResumeLayout(false);
-			this.panelTitleBar.PerformLayout();
-			this.ResumeLayout(false);
+            this.panelMenu = new System.Windows.Forms.Panel();
+            this.btnConocenos = new System.Windows.Forms.Button();
+            this.btnSalir = new System.Windows.Forms.Button();
+            this.btnReportes = new System.Windows.Forms.Button();
+            this.btnTransaccion = new System.Windows.Forms.Button();
+            this.btnCliente = new System.Windows.Forms.Button();
+            this.btnCuenta = new System.Windows.Forms.Button();
+            this.panelIcono = new System.Windows.Forms.Panel();
+            this.lblBienvenida = new System.Windows.Forms.Label();
+            this.panelTitleBar = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnMinimize = new System.Windows.Forms.PictureBox();
+            this.btnClose = new System.Windows.Forms.PictureBox();
+            this.panelChild = new System.Windows.Forms.Panel();
+            this.panelMenu.SuspendLayout();
+            this.panelIcono.SuspendLayout();
+            this.panelTitleBar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnMinimize)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnClose)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // panelMenu
+            // 
+            this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panelMenu.Controls.Add(this.btnConocenos);
+            this.panelMenu.Controls.Add(this.btnSalir);
+            this.panelMenu.Controls.Add(this.btnReportes);
+            this.panelMenu.Controls.Add(this.btnTransaccion);
+            this.panelMenu.Controls.Add(this.btnCliente);
+            this.panelMenu.Controls.Add(this.btnCuenta);
+            this.panelMenu.Controls.Add(this.panelIcono);
+            this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelMenu.Location = new System.Drawing.Point(0, 0);
+            this.panelMenu.Name = "panelMenu";
+            this.panelMenu.Size = new System.Drawing.Size(220, 600);
+            this.panelMenu.TabIndex = 0;
+            // 
+            // btnConocenos
+            // 
+            this.btnConocenos.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnConocenos.FlatAppearance.BorderSize = 0;
+            this.btnConocenos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConocenos.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnConocenos.ForeColor = System.Drawing.Color.Silver;
+            this.btnConocenos.Image = global::BancoPresentacion.Properties.Resources.united;
+            this.btnConocenos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnConocenos.Location = new System.Drawing.Point(0, 400);
+            this.btnConocenos.Name = "btnConocenos";
+            this.btnConocenos.Size = new System.Drawing.Size(220, 67);
+            this.btnConocenos.TabIndex = 6;
+            this.btnConocenos.Text = "      Conocenos";
+            this.btnConocenos.UseVisualStyleBackColor = true;
+            this.btnConocenos.Click += new System.EventHandler(this.btnConocenos_Click);
+            // 
+            // btnSalir
+            // 
+            this.btnSalir.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnSalir.FlatAppearance.BorderSize = 0;
+            this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSalir.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnSalir.ForeColor = System.Drawing.Color.Silver;
+            this.btnSalir.Image = global::BancoPresentacion.Properties.Resources.log_out__4_;
+            this.btnSalir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSalir.Location = new System.Drawing.Point(0, 530);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(220, 70);
+            this.btnSalir.TabIndex = 5;
+            this.btnSalir.Text = "        Cerrar Sesion";
+            this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            // 
+            // btnReportes
+            // 
+            this.btnReportes.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnReportes.FlatAppearance.BorderSize = 0;
+            this.btnReportes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReportes.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnReportes.ForeColor = System.Drawing.Color.Silver;
+            this.btnReportes.Image = global::BancoPresentacion.Properties.Resources.reportes;
+            this.btnReportes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReportes.Location = new System.Drawing.Point(0, 324);
+            this.btnReportes.Name = "btnReportes";
+            this.btnReportes.Size = new System.Drawing.Size(220, 76);
+            this.btnReportes.TabIndex = 4;
+            this.btnReportes.Text = "  Reportes";
+            this.btnReportes.UseVisualStyleBackColor = true;
+            this.btnReportes.Click += new System.EventHandler(this.btnReportes_Click);
+            // 
+            // btnTransaccion
+            // 
+            this.btnTransaccion.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnTransaccion.FlatAppearance.BorderSize = 0;
+            this.btnTransaccion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTransaccion.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnTransaccion.ForeColor = System.Drawing.Color.Silver;
+            this.btnTransaccion.Image = global::BancoPresentacion.Properties.Resources.money_transfer;
+            this.btnTransaccion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTransaccion.Location = new System.Drawing.Point(0, 251);
+            this.btnTransaccion.Name = "btnTransaccion";
+            this.btnTransaccion.Size = new System.Drawing.Size(220, 73);
+            this.btnTransaccion.TabIndex = 3;
+            this.btnTransaccion.Text = "          Transacciones";
+            this.btnTransaccion.UseVisualStyleBackColor = true;
+            this.btnTransaccion.Click += new System.EventHandler(this.btnTransaccion_Click);
+            // 
+            // btnCliente
+            // 
+            this.btnCliente.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnCliente.FlatAppearance.BorderSize = 0;
+            this.btnCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCliente.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnCliente.ForeColor = System.Drawing.Color.Silver;
+            this.btnCliente.Image = global::BancoPresentacion.Properties.Resources.online_banking;
+            this.btnCliente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCliente.Location = new System.Drawing.Point(0, 181);
+            this.btnCliente.Name = "btnCliente";
+            this.btnCliente.Size = new System.Drawing.Size(220, 70);
+            this.btnCliente.TabIndex = 2;
+            this.btnCliente.Text = "Clientes";
+            this.btnCliente.UseVisualStyleBackColor = true;
+            this.btnCliente.Click += new System.EventHandler(this.btnCliente_Click);
+            // 
+            // btnCuenta
+            // 
+            this.btnCuenta.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnCuenta.FlatAppearance.BorderSize = 0;
+            this.btnCuenta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCuenta.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnCuenta.ForeColor = System.Drawing.Color.Silver;
+            this.btnCuenta.Image = global::BancoPresentacion.Properties.Resources.finance;
+            this.btnCuenta.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCuenta.Location = new System.Drawing.Point(0, 99);
+            this.btnCuenta.Name = "btnCuenta";
+            this.btnCuenta.Size = new System.Drawing.Size(220, 82);
+            this.btnCuenta.TabIndex = 1;
+            this.btnCuenta.Text = "Cuentas";
+            this.btnCuenta.UseVisualStyleBackColor = true;
+            this.btnCuenta.Click += new System.EventHandler(this.btnCuenta_Click);
+            // 
+            // panelIcono
+            // 
+            this.panelIcono.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(59)))), ((int)(((byte)(104)))));
+            this.panelIcono.Controls.Add(this.lblBienvenida);
+            this.panelIcono.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelIcono.Location = new System.Drawing.Point(0, 0);
+            this.panelIcono.Name = "panelIcono";
+            this.panelIcono.Size = new System.Drawing.Size(220, 99);
+            this.panelIcono.TabIndex = 0;
+            // 
+            // lblBienvenida
+            // 
+            this.lblBienvenida.AutoSize = true;
+            this.lblBienvenida.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblBienvenida.ForeColor = System.Drawing.Color.White;
+            this.lblBienvenida.Location = new System.Drawing.Point(12, 48);
+            this.lblBienvenida.Name = "lblBienvenida";
+            this.lblBienvenida.Size = new System.Drawing.Size(81, 16);
+            this.lblBienvenida.TabIndex = 0;
+            this.lblBienvenida.Text = "Bienvenid@";
+            // 
+            // panelTitleBar
+            // 
+            this.panelTitleBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(59)))), ((int)(((byte)(104)))));
+            this.panelTitleBar.Controls.Add(this.pictureBox1);
+            this.panelTitleBar.Controls.Add(this.btnMinimize);
+            this.panelTitleBar.Controls.Add(this.btnClose);
+            this.panelTitleBar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelTitleBar.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.panelTitleBar.Location = new System.Drawing.Point(220, 0);
+            this.panelTitleBar.Name = "panelTitleBar";
+            this.panelTitleBar.Size = new System.Drawing.Size(780, 99);
+            this.panelTitleBar.TabIndex = 1;
+            this.panelTitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTitleBar_MouseDown);
+            this.panelTitleBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelTitleBar_MouseDown);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::BancoPresentacion.Properties.Resources.Nuevo_Logo;
+            this.pictureBox1.Location = new System.Drawing.Point(261, -31);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(202, 186);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // btnMinimize
+            // 
+            this.btnMinimize.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMinimize.Image = global::BancoPresentacion.Properties.Resources.ic_min;
+            this.btnMinimize.Location = new System.Drawing.Point(725, 8);
+            this.btnMinimize.Margin = new System.Windows.Forms.Padding(2);
+            this.btnMinimize.Name = "btnMinimize";
+            this.btnMinimize.Size = new System.Drawing.Size(20, 18);
+            this.btnMinimize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnMinimize.TabIndex = 3;
+            this.btnMinimize.TabStop = false;
+            this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnClose.Image = global::BancoPresentacion.Properties.Resources.ic_close;
+            this.btnClose.Location = new System.Drawing.Point(749, 8);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(2);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(20, 18);
+            this.btnClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnClose.TabIndex = 2;
+            this.btnClose.TabStop = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // panelChild
+            // 
+            this.panelChild.BackColor = System.Drawing.Color.Gray;
+            this.panelChild.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelChild.Location = new System.Drawing.Point(220, 99);
+            this.panelChild.Name = "panelChild";
+            this.panelChild.Size = new System.Drawing.Size(780, 472);
+            this.panelChild.TabIndex = 2;
+            this.panelChild.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelTitleBar_MouseDown);
+            // 
+            // FrmPrincipal
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(59)))), ((int)(((byte)(104)))));
+            this.ClientSize = new System.Drawing.Size(1000, 600);
+            this.Controls.Add(this.panelChild);
+            this.Controls.Add(this.panelTitleBar);
+            this.Controls.Add(this.panelMenu);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MinimumSize = new System.Drawing.Size(1000, 600);
+            this.Name = "FrmPrincipal";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Gestion Banco JJRG";
+            this.Load += new System.EventHandler(this.FrmPrincipal_Load);
+            this.panelMenu.ResumeLayout(false);
+            this.panelIcono.ResumeLayout(false);
+            this.panelIcono.PerformLayout();
+            this.panelTitleBar.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnMinimize)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnClose)).EndInit();
+            this.ResumeLayout(false);
 
 		}
 
@@ -219,7 +282,7 @@ namespace BancoPresentacion
 
 		private System.Windows.Forms.Panel panelMenu;
 		private System.Windows.Forms.Button btnSalir;
-		private System.Windows.Forms.Button btnConfiguracion;
+		private System.Windows.Forms.Button btnReportes;
 		private System.Windows.Forms.Button btnTransaccion;
 		private System.Windows.Forms.Button btnCliente;
 		private System.Windows.Forms.Button btnCuenta;
@@ -227,7 +290,10 @@ namespace BancoPresentacion
 		private System.Windows.Forms.Panel panelTitleBar;
 		private System.Windows.Forms.Label lblBienvenida;
 		private System.Windows.Forms.Panel panelChild;
-		private System.Windows.Forms.Label lblTitle;
-	}
+        private System.Windows.Forms.Button btnConocenos;
+        private System.Windows.Forms.PictureBox btnMinimize;
+        private System.Windows.Forms.PictureBox btnClose;
+        private System.Windows.Forms.PictureBox pictureBox1;
+    }
 }
 

@@ -14,10 +14,5 @@
             <param name="usuario">Debe incluir nombreUsuario y password</param>
             <returns></returns>
         </member>
-        <member name="P:BancoWebApi.Dto.UsuarioDto.nombreUsuario">
-            <summary>
-            estes es el user
-            </summary>
-        </member>
     </members>
 </doc>

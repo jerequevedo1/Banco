@@ -50,7 +50,7 @@ namespace BancoPresentacion
 		}
 		public void OpenChildForm(Form childForm, object btnSender)
 		{
-			if (activeForm!=null)
+			if (activeForm != null)
 			{
 				activeForm.Close();
 			}
@@ -63,7 +63,7 @@ namespace BancoPresentacion
 			this.panelChild.Tag = childForm;
 			childForm.BringToFront();
 			childForm.Show();
-			this.lblTitle.Text = childForm.Text;
+			//this.lblTitle.Text = childForm.Text;
 		}
 		private void btnCuenta_Click(object sender, EventArgs e)
 		{
@@ -83,10 +83,7 @@ namespace BancoPresentacion
 			OpenChildForm(new FrmConsulta(tipo), sender);
 		}
 
-		private void btnConfiguracion_Click(object sender, EventArgs e)
-		{
 
-		}
 
 		private void btnSalir_Click(object sender, EventArgs e)
 		{
@@ -97,5 +94,50 @@ namespace BancoPresentacion
 		{
 			lblBienvenida.Text = "Bienvenido/a " + usuario.NomUsuario;
 		}
-	}
+
+
+		private void btnReportes_Click(object sender, EventArgs e)
+		{
+			OpenChildForm(new FrmReporte(), sender);
+		}
+
+		private void btnConocenos_Click(object sender, EventArgs e)
+		{
+			OpenChildForm(new FrmConocenos(), sender);
+		}
+
+		private void btnClose_Click(object sender, EventArgs e)
+		{
+			if (MessageBox.Show("¿Está seguro de abandonar la aplicación?",
+			   "SALIR", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+			   MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+				this.Close();
+		}
+		private void btnMinimize_Click(object sender, EventArgs e)
+		{
+			this.WindowState = FormWindowState.Minimized;
+		}
+
+		int PosY = 0;
+		int PosX = 0;
+
+		private void panelTitleBar_MouseDown(object sender, MouseEventArgs e)
+        {
+			if (e.Button != MouseButtons.Left)
+			{
+				PosX = e.X;
+				PosY = e.Y;
+			}
+			else
+			{
+				this.Left = Left + (e.X - PosX);
+				this.Top = Top + (e.Y - PosY);
+			}
+		}
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
 }

@@ -66,7 +66,7 @@ namespace BancoPresentacion
 
                     if (user.NomUsuario == txtUser.Text.ToString().Trim())
                     {
-                        //logueado OK 
+                        //Usuario logueado OK 
                         this.usuario.IdUsuario= user.IdUsuario;
                         this.usuario.NomUsuario = user.NomUsuario;
                         this.usuario.Pass = user.Pass;
@@ -74,20 +74,16 @@ namespace BancoPresentacion
                     }
                     else
                     {
-                        //usuario Rechazado, informar al usuario
+                        //Usuario Rechazado, informar al usuario
                         this.usuario.IdUsuario = -1;
                         MessageBox.Show("Error sesion");
-                        
                     }
 
                 }
             }
         }
-
         private void txtPass_KeyPress(object sender, KeyPressEventArgs e)
         {
-
-            
             if (Convert.ToInt32(e.KeyChar) == 13)//enter
             {
                 btnLogin_Click(sender, e);
