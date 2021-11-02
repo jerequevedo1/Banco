@@ -174,15 +174,17 @@ namespace BancoPresentacion
 				}
 				txtDepositoInicial.Text = oCliente.Cuentas[i].Saldo.ToString();
 				cboTipoCuenta.SelectedValue = oCliente.Cuentas[i].TipoCuenta.IdTipoCuenta;
-				i++;
-
 			}
 		}
 
 		private void CargarCliente(int nro)
 		{
 			Cliente oClienteAux= gestorCliente.GetClienteId(nro);
-			
+
+			if (modo.Equals(Accion.Create) && tipo.Equals(Tipo.Cuenta))
+			{
+				oCliente = oClienteAux;
+			}
 
 			txtCliNombre.Text = oClienteAux.NomCliente;
 			txtCliApellido.Text = oClienteAux.ApeCliente;
@@ -372,17 +374,19 @@ namespace BancoPresentacion
 		}
 		private void GuardarCuenta()
 		{
-			foreach (Cuenta item in oCliente.Cuentas)
+		    
+			if (modo.Equals(Accion.Create))
 			{
 				int i = 0;
-				oCliente.Cuentas[i].Cbu = txtCbu.Text;
-				oCliente.Cuentas[i].Alias = txtAlias.Text;
-				oCliente.Cuentas[i].Saldo = Convert.ToInt32(txtDepositoInicial.Text);
+				oCuenta.Cbu = txtCbu.Text;
+				oCuenta.Alias = txtAlias.Text;
+				oCuenta.Saldo = Convert.ToInt32(txtDepositoInicial.Text);
 
-				oCliente.Cuentas[i].TipoCuenta = new TipoCuenta();
-				oCliente.Cuentas[i].TipoCuenta.IdTipoCuenta = Convert.ToInt32(cboTipoCuenta.SelectedValue);
-				oCliente.Cuentas[i].LimiteDescubierto = Convert.ToDouble(txtLimiteDesc.Text);
+				oCuenta.TipoCuenta = new TipoCuenta();
+				oCuenta.TipoCuenta.IdTipoCuenta = Convert.ToInt32(cboTipoCuenta.SelectedValue);
+				oCuenta.LimiteDescubierto = Convert.ToDouble(txtLimiteDesc.Text);
 
+				oCliente.AgregarCuenta(oCuenta);
 
 				if (cboTipoMoneda.SelectedValue.Equals(1))
 				{
@@ -393,11 +397,6 @@ namespace BancoPresentacion
 					oCliente.Cuentas[i].TipoMoneda = "D";
 				}
 
-			}
-			
-
-			if (modo.Equals(Accion.Create))
-			{
 				if (gestorCuenta.NuevaCuentaClienteExist(oCliente))
 				{
 					MessageBox.Show("Cuenta registrada al Cliente "+ oCliente.NombreCompleto() + " con exito.", "Informe", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -410,6 +409,28 @@ namespace BancoPresentacion
 			}
 			if (modo.Equals(Accion.Update))
 			{
+				foreach (Cuenta item in oCliente.Cuentas)
+				{
+					int i = 0;
+					oCliente.Cuentas[i].Cbu = txtCbu.Text;
+					oCliente.Cuentas[i].Alias = txtAlias.Text;
+					oCliente.Cuentas[i].Saldo = Convert.ToInt32(txtDepositoInicial.Text);
+
+					oCliente.Cuentas[i].TipoCuenta = new TipoCuenta();
+					oCliente.Cuentas[i].TipoCuenta.IdTipoCuenta = Convert.ToInt32(cboTipoCuenta.SelectedValue);
+					oCliente.Cuentas[i].LimiteDescubierto = Convert.ToDouble(txtLimiteDesc.Text);
+
+
+					if (cboTipoMoneda.SelectedValue.Equals(1))
+					{
+						oCliente.Cuentas[i].TipoMoneda = "P";
+					}
+					if (cboTipoMoneda.SelectedValue.Equals(2))
+					{
+						oCliente.Cuentas[i].TipoMoneda = "D";
+					}
+
+				}
 				if (gestorCuenta.ModificarCuenta(oCliente))
 				{
 					MessageBox.Show("Cuenta del Cliente " + oCliente.NombreCompleto() + " actualizada con exito.", "Informe", MessageBoxButtons.OK, MessageBoxIcon.Information);
