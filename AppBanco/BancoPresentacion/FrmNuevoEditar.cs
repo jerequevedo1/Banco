@@ -160,7 +160,7 @@ namespace BancoPresentacion
 
 		private void CargarCuenta(Cliente oCliente)
 		{
-			foreach (var item in oCliente.Cuentas)
+			foreach (Cuenta item in oCliente.Cuentas)
 			{
 				int i = 0;
 				txtCbu.Text = oCliente.Cuentas[i].Cbu;
@@ -186,7 +186,7 @@ namespace BancoPresentacion
 		private void CargarCliente(int nro)
 		{
 			//oCliente.Barrio = new Barrio();
-			this.oCliente = gestorCliente.GetClienteId(nro);
+			Cliente oClienteAux= gestorCliente.GetClienteId(nro);
 			
 
 			txtCliNombre.Text = oCliente.NomCliente;
@@ -378,26 +378,29 @@ namespace BancoPresentacion
 		}
 		private void GuardarCuenta()
 		{
-
-			oCuenta.Cbu = txtCbu.Text;
-			oCuenta.Alias = txtAlias.Text;
-			oCuenta.Saldo = Convert.ToInt32(txtDepositoInicial.Text);
-
-			oCuenta.TipoCuenta = new TipoCuenta();
-			oCuenta.TipoCuenta.IdTipoCuenta = Convert.ToInt32(cboTipoCuenta.SelectedValue);
-			oCuenta.LimiteDescubierto = Convert.ToDouble(txtLimiteDesc.Text);
-
-
-			if (cboTipoMoneda.SelectedValue.Equals(1))
+			foreach (Cuenta item in oCliente.Cuentas)
 			{
-				oCuenta.TipoMoneda = "P";
-			}
-			if (cboTipoMoneda.SelectedValue.Equals(2))
-			{
-				oCuenta.TipoMoneda = "D";
-			}
+				int i = 0;
+				oCliente.Cuentas[i].Cbu = txtCbu.Text;
+				oCliente.Cuentas[i].Alias = txtAlias.Text;
+				oCliente.Cuentas[i].Saldo = Convert.ToInt32(txtDepositoInicial.Text);
 
-			oCliente.AgregarCuenta(oCuenta);
+				oCliente.Cuentas[i].TipoCuenta = new TipoCuenta();
+				oCliente.Cuentas[i].TipoCuenta.IdTipoCuenta = Convert.ToInt32(cboTipoCuenta.SelectedValue);
+				oCliente.Cuentas[i].LimiteDescubierto = Convert.ToDouble(txtLimiteDesc.Text);
+
+
+				if (cboTipoMoneda.SelectedValue.Equals(1))
+				{
+					oCliente.Cuentas[i].TipoMoneda = "P";
+				}
+				if (cboTipoMoneda.SelectedValue.Equals(2))
+				{
+					oCliente.Cuentas[i].TipoMoneda = "D";
+				}
+
+			}
+			
 
 			if (modo.Equals(Accion.Create))
 			{
