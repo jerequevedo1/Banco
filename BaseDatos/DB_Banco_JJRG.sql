@@ -290,3 +290,10 @@ BEGIN
 	
 	SELECT * FROM BARRIOS order by 2 asc;
 END
+
+CREATE PROC [dbo].[PA_REPORTE_CUENTAS_CLIENTE]
+
+as
+		SELECT Clientes.id_cliente, Clientes.nom_cliente, Clientes.ape_cliente, Cuentas.id_cuenta, Cuentas.cbu, Cuentas.saldo_actual, Cuentas.id_cliente AS Expr1
+                FROM   Clientes INNER JOIN
+                            	Cuentas ON Clientes.id_cliente = Cuentas.id_cliente 
