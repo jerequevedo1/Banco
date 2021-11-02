@@ -23,6 +23,7 @@ namespace BancoPresentacion
 
         private void button1_Click(object sender, EventArgs e)
         {
+
             reportViewer1.ProcessingMode = ProcessingMode.Local;
             string appFolder = Path.GetDirectoryName(Application.StartupPath);
             var rutaRpt = Path.Combine(Application.StartupPath, @"~/Reportes\RptCuentasPorCliente.rdlc");
@@ -40,16 +41,18 @@ namespace BancoPresentacion
 
             DataSetCuentasCliente ds = new DataSetCuentasCliente();
 
-            var datos = HelperDao.ObtenerInstancia().ConsultaSQL("PA_REPORTE_CUENTAS_CLIENTE");
-            //DATASOURCE
-            ReportDataSource reportDataSource = new ReportDataSource("DataSet1", datos);
-           
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource);
-            reportViewer1.Refresh();
-     
-        }
+			DataSetCuentasCliente ds = new DataSetCuentasCliente();
 
-        private void FrmReporte_Load(object sender, EventArgs e)
+			var datos = HelperDao.ObtenerInstancia().ConsultaSQL("PA_REPORTE_CUENTAS_CLIENTE");
+			//DATASOURCE
+			ReportDataSource reportDataSource = new ReportDataSource("DataSet1", datos);
+
+			this.reportViewer1.LocalReport.DataSources.Add(reportDataSource);
+			reportViewer1.Refresh();
+
+		}
+
+		private void FrmReporte_Load(object sender, EventArgs e)
         {
             this.reportViewer1.RefreshReport();
         }
