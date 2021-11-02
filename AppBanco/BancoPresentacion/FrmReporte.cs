@@ -23,25 +23,25 @@ namespace BancoPresentacion
 
         private void button1_Click(object sender, EventArgs e)
         {
-            reportViewer1.ProcessingMode = ProcessingMode.Local;
-            string appFolder = Path.GetDirectoryName(Application.StartupPath);
-            reportViewer1.LocalReport.ReportPath = @"C:\Users\jpolt\OneDrive\Escritorio\Banco_JJRS\AppBanco\BancoPresentacion\Reportes\RptCuentasPorCliente.rdlc";
-            reportViewer1.Refresh();
+            //reportViewer1.ProcessingMode = ProcessingMode.Local;
+            //string appFolder = Path.GetDirectoryName(Application.StartupPath);
+            //reportViewer1.LocalReport.ReportPath = @"C:\Users\jpolt\OneDrive\Escritorio\Banco_JJRS\AppBanco\BancoPresentacion\Reportes\RptCuentasPorCliente.rdlc";
+            //reportViewer1.Refresh();
             
-            DataSetCuentasCliente ds = new DataSetCuentasCliente();
+            //DataSetCuentasCliente ds = new DataSetCuentasCliente();
 
-            var datos = HelperDao.ObtenerInstancia().ConsultaSQL("PA_REPORTE_CUENTAS_CLIENTE");
-            //DATASOURCE
-            ReportDataSource reportDataSource = new ReportDataSource("DataSet1", datos);
+            //var datos = HelperDao.ObtenerInstancia().ConsultaSQL("PA_REPORTE_CUENTAS_CLIENTE");
+            ////DATASOURCE
+            //ReportDataSource reportDataSource = new ReportDataSource("DataSet1", datos);
            
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource);
-            reportViewer1.Refresh();
+            //this.reportViewer1.LocalReport.DataSources.Add(reportDataSource);
+            //reportViewer1.Refresh();
      
         }
 
         private void FrmReporte_Load(object sender, EventArgs e)
         {
-            this.reportViewer1.RefreshReport();
+            //this.reportViewer1.RefreshReport();
         }
     }
 }
