@@ -31,10 +31,7 @@ namespace BancoPresentacion
 			gestorCliente = new ServiceFactory().CrearClienteService(new DaoFactory());
 			gestorCuenta = new ServiceFactory().CrearCuentaService(new DaoFactory());
 			oCliente = new Cliente();
-			//oCliente.Barrio = new Barrio();
 			oCuenta = new Cuenta();
-			//oCuenta.TipoCuenta = new TipoCuenta();
-			//oCliente.AgregarCuenta(oCuenta);
 			oCliente = cliente;
 			this.modo = modo;
 			this.tipo = tipo;
@@ -176,7 +173,6 @@ namespace BancoPresentacion
 					cboTipoMoneda.SelectedValue = 2;
 				}
 				txtDepositoInicial.Text = oCliente.Cuentas[i].Saldo.ToString();
-				//oCliente.Cuentas[i].TipoCuenta = new TipoCuenta();
 				cboTipoCuenta.SelectedValue = oCliente.Cuentas[i].TipoCuenta.IdTipoCuenta;
 				i++;
 
@@ -185,19 +181,17 @@ namespace BancoPresentacion
 
 		private void CargarCliente(int nro)
 		{
-			//oCliente.Barrio = new Barrio();
 			Cliente oClienteAux= gestorCliente.GetClienteId(nro);
 			
 
-			txtCliNombre.Text = oCliente.NomCliente;
-			txtCliApellido.Text = oCliente.ApeCliente;
-			txtCliDNI.Text = oCliente.Dni.ToString();
-			txtCliCuil.Text = oCliente.Cuil.ToString();
-			//cboClienteBarrio.ValueMember = oCliente.Barrio.IdBarrio.ToString();
-			cboClienteBarrio.SelectedValue = oCliente.Barrio.IdBarrio;
-			txtCliDire.Text = oCliente.Direccion;
-			txtCliTel.Text = oCliente.Telefono;
-			txtCliEmail.Text = oCliente.Email;
+			txtCliNombre.Text = oClienteAux.NomCliente;
+			txtCliApellido.Text = oClienteAux.ApeCliente;
+			txtCliDNI.Text = oClienteAux.Dni.ToString();
+			txtCliCuil.Text = oClienteAux.Cuil.ToString();
+			cboClienteBarrio.SelectedValue = oClienteAux.Barrio.IdBarrio;
+			txtCliDire.Text = oClienteAux.Direccion;
+			txtCliTel.Text = oClienteAux.Telefono;
+			txtCliEmail.Text = oClienteAux.Email;
 
 		}
 		private void CargarLocalidades()
