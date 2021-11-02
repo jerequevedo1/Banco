@@ -57,6 +57,7 @@ namespace BancoPresentacion
 			this.dgvClientes.Name = "dgvClientes";
 			this.dgvClientes.ReadOnly = true;
 			this.dgvClientes.RowTemplate.Height = 25;
+			this.dgvClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dgvClientes.Size = new System.Drawing.Size(493, 334);
 			this.dgvClientes.TabIndex = 27;
 			this.dgvClientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClientes_CellContentClick);
