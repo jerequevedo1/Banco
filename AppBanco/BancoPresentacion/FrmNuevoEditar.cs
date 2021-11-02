@@ -315,6 +315,7 @@ namespace BancoPresentacion
 				oCliente.Direccion = txtCliDire.Text;
 				oCliente.Telefono = txtCliTel.Text;
 				oCliente.Email = txtCliEmail.Text;
+				oCliente.Barrio = new Barrio();
 				oCliente.Barrio.IdBarrio = Convert.ToInt32(cboClienteBarrio.SelectedValue);
 			}
 			oCuenta.Cbu = txtCbu.Text;
