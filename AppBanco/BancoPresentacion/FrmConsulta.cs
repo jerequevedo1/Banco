@@ -24,6 +24,9 @@ namespace BancoPresentacion
 		private ICuentaService gestorCuenta;
 		//private Form activeForm;
 		private List<Cliente> lst;
+		private Cliente oCliente;
+		//private Cuenta oCuenta;
+		//private TipoCuenta oTipoCuenta;
 
 		public FrmConsulta(Tipo tipo)
 		{
@@ -32,6 +35,12 @@ namespace BancoPresentacion
 			gestorCuenta = new ServiceFactory().CrearCuentaService(new DaoFactory());
 			this.tipo = tipo;
 			lst = new List<Cliente>();
+			oCliente= new Cliente();
+			oCliente.Barrio = new Barrio();
+			//oCuenta = new Cuenta();
+			//oTipoCuenta = new TipoCuenta();
+			//oCuenta.TipoCuenta = oTipoCuenta;
+			//oCliente.AgregarCuenta(oCuenta);
 		}
 
 		private void btnNuevo_Click(object sender, EventArgs e)
@@ -40,12 +49,12 @@ namespace BancoPresentacion
 
 			if (tipo.Equals(Tipo.Cliente))
 			{
-				new FrmNuevoEditar(modo, Tipo.Cliente, 0).ShowDialog();
+				new FrmNuevoEditar(modo, Tipo.Cliente, null).ShowDialog();
 				CargarGrilla(tipo);
 			}
 			if (tipo.Equals(Tipo.Cuenta))
 			{
-				new FrmNuevoEditar(modo, Tipo.Cuenta, 0).ShowDialog();
+				new FrmNuevoEditar(modo, Tipo.Cuenta, null).ShowDialog();
 				CargarGrilla(tipo);
 			}
 
@@ -256,13 +265,23 @@ namespace BancoPresentacion
 		{
 			modo = Accion.Update;
 			int nro = Convert.ToInt32(dgvConsulta.CurrentRow.Cells[0].Value.ToString());
+			//Cliente oCliente = new Cliente();
+
+			
 
 			if (tipo.Equals(Tipo.Cliente))
 			{
 				if (dgvConsulta.RowCount > 0)
 				{
-					
-					new FrmNuevoEditar(modo, Tipo.Cliente, nro).ShowDialog();
+					foreach (Cliente item in lst)
+					{
+						if (item.IdCliente.Equals(nro))
+						{
+							oCliente = item;
+						}
+					}
+
+					new FrmNuevoEditar(modo, Tipo.Cliente, oCliente).ShowDialog();
 					CargarGrilla(tipo);
 				}
 				else
@@ -272,20 +291,19 @@ namespace BancoPresentacion
 			}
 			if (tipo.Equals(Tipo.Cuenta))
 			{
+				
 				if (dgvConsulta.RowCount > 0)
 				{
-					int nroCliente = 0;
-					int nroCuenta = nro;
 					foreach (Cliente item in lst)
 					{
 						int i = 0;
-						if (item.Cuentas[i].IdCuenta.Equals(nroCuenta))
+						if (item.Cuentas[i].IdCuenta.Equals(nro))
 						{
-							nroCliente = item.IdCliente;
+							oCliente = item;
 						}
 						i++;
 					}
-					new FrmNuevoEditar(modo, Tipo.Cuenta, nroCliente).ShowDialog();
+					new FrmNuevoEditar(modo, Tipo.Cuenta, oCliente).ShowDialog();
 					CargarGrilla(tipo);
 				}
 				else
