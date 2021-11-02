@@ -74,6 +74,7 @@ namespace BancoAccesoDatos.Implementaciones
                     oCuenta.FechaAlta = Convert.ToDateTime(row["fechaAlta"].ToString());
 
                     TipoCuenta oTipoCta = new TipoCuenta();
+                    oTipoCta.IdTipoCuenta = Convert.ToInt32(row["id_tipo_cuenta"].ToString());
                     oTipoCta.DescTipoCuenta = row["descripcion"].ToString();
 
 

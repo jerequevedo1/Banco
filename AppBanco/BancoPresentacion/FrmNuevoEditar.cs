@@ -22,22 +22,22 @@ namespace BancoPresentacion
 		private ICuentaService gestorCuenta;
 		private Accion modo;
 		private Tipo tipo;
-		private List<Cliente> lst;
 		private Cliente oCliente;
 		private Cuenta oCuenta;
-		private int nro= new int();
 		private bool clienteExistente;
-		public FrmNuevoEditar(Accion modo, Tipo tipo,int nro)
+		public FrmNuevoEditar(Accion modo, Tipo tipo,Cliente cliente)
 		{
 			InitializeComponent();
 			gestorCliente = new ServiceFactory().CrearClienteService(new DaoFactory());
 			gestorCuenta = new ServiceFactory().CrearCuentaService(new DaoFactory());
-			lst = new List<Cliente>();
 			oCliente = new Cliente();
+			oCliente.Barrio = new Barrio();
 			oCuenta = new Cuenta();
+			oCuenta.TipoCuenta = new TipoCuenta();
+			//oCliente.AgregarCuenta(oCuenta);
+			oCliente = cliente;
 			this.modo = modo;
 			this.tipo = tipo;
-			this.nro = nro;
 			this.clienteExistente = false;
 		}
 
@@ -45,18 +45,19 @@ namespace BancoPresentacion
 		{
 			if (!txtCliente.Text.Equals(string.Empty))
 			{
+				int nroCliente = 0;
 				List<Parametro> parametro = new List<Parametro>();
 				parametro.Add(new Parametro("@ClienteNombre", txtCliente.Text));
 
 				FrmConsultaCliente frm = new FrmConsultaCliente(parametro);
 
 				frm.ShowDialog();
-				nro = frm.GetNroCliente();
+				nroCliente = frm.GetNroCliente();
 				clienteExistente = frm.GetClienteExistente();
 
-				if (nro!=0)
+				if (nroCliente!=0)
 				{
-					CargarCliente(nro);
+					CargarCliente(nroCliente);
 					txtCliente.Text = oCliente.NombreCompleto();
 					panelCliente.Enabled = false;
 					btnNuevo.Visible = true;
@@ -122,7 +123,7 @@ namespace BancoPresentacion
 				if (modo.Equals(Accion.Update))
 				{
 					this.Text = "Editar Cliente";
-					CargarCliente(nro);
+					CargarCliente(oCliente.IdCliente);
 					txtCliente.Visible = false;
 					btnBuscar.Visible = false;
 					lblBuscarCliente.Visible = false;
@@ -142,7 +143,8 @@ namespace BancoPresentacion
 				if (modo.Equals(Accion.Update))
 				{
 					this.Text = "Editar Cuenta";
-					CargarCliente(nro);
+					CargarCuenta(oCliente);
+					CargarCliente(oCliente.IdCliente);
 					txtCliente.Visible = false;
 					btnBuscar.Visible = false;
 					lblBuscarCliente.Visible = false;
@@ -153,15 +155,32 @@ namespace BancoPresentacion
 	
 		    btnNuevo.Visible = false;
 			
-			
-			//SetFormDefault();
+	
 		}
 
-		private void SetFormDefault()
+		private void CargarCuenta(Cliente oCliente)
 		{
-			cboClienteBarrio.SelectedValue = 2;
-			cboTipoCuenta.SelectedValue = 2;
-			cboTipoMoneda.SelectedValue = 2;
+			foreach (var item in oCliente.Cuentas)
+			{
+				int i = 0;
+				txtCbu.Text = oCliente.Cuentas[i].Cbu;
+				txtLimiteDesc.Text = oCliente.Cuentas[i].LimiteDescubierto.ToString();
+				
+				txtAlias.Text = oCliente.Cuentas[i].Alias;
+				if (oCliente.Cuentas[i].TipoMoneda.Equals("P"))
+				{
+					cboTipoMoneda.SelectedValue =1;
+				}
+				else
+				{
+					cboTipoMoneda.SelectedValue = 2;
+				}
+				txtDepositoInicial.Text = oCliente.Cuentas[i].Saldo.ToString();
+				//oCliente.Cuentas[i].TipoCuenta = new TipoCuenta();
+				cboTipoCuenta.SelectedValue = oCliente.Cuentas[i].TipoCuenta.IdTipoCuenta;
+				i++;
+
+			}
 		}
 
 		private void CargarCliente(int nro)
@@ -357,7 +376,6 @@ namespace BancoPresentacion
 
 			oCuenta.Cbu = txtCbu.Text;
 			oCuenta.Alias = txtAlias.Text;
-			//validar si modo es create
 			oCuenta.Saldo = Convert.ToInt32(txtDepositoInicial.Text);
 
 			oCuenta.TipoCuenta = new TipoCuenta();
@@ -388,18 +406,7 @@ namespace BancoPresentacion
 					MessageBox.Show("ERROR. No se pudo registrar la cuenta.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
 			}
-			else
-			{
-				//if (gestorCuenta.EditarCuenta(oCuenta))
-				//{
-				//	MessageBox.Show("Presupuesto editado con exito.", "Informe", MessageBoxButtons.OK, MessageBoxIcon.Information);
-				//	Close();
-				//}
-				//else
-				//{
-				//	MessageBox.Show("ERROR. No se pudo editar el presupuesto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				//}
-			}
+			
 		}
 
 		private void btnCancelar_Click(object sender, EventArgs e)
