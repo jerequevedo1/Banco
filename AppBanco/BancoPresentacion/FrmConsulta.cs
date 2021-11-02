@@ -25,8 +25,6 @@ namespace BancoPresentacion
 		//private Form activeForm;
 		private List<Cliente> lst;
 		private Cliente oCliente;
-		//private Cuenta oCuenta;
-		//private TipoCuenta oTipoCuenta;
 
 		public FrmConsulta(Tipo tipo)
 		{
@@ -37,10 +35,6 @@ namespace BancoPresentacion
 			lst = new List<Cliente>();
 			oCliente= new Cliente();
 			oCliente.Barrio = new Barrio();
-			//oCuenta = new Cuenta();
-			//oTipoCuenta = new TipoCuenta();
-			//oCuenta.TipoCuenta = oTipoCuenta;
-			//oCliente.AgregarCuenta(oCuenta);
 		}
 
 		private void btnNuevo_Click(object sender, EventArgs e)
@@ -265,9 +259,6 @@ namespace BancoPresentacion
 		{
 			modo = Accion.Update;
 			int nro = Convert.ToInt32(dgvConsulta.CurrentRow.Cells[0].Value.ToString());
-			//Cliente oCliente = new Cliente();
-
-			
 
 			if (tipo.Equals(Tipo.Cliente))
 			{
