@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BancoWebApi</name>
+    </assembly>
+    <members>
+        <member name="M:BancoWebApi.Controllers.LoginController.Post(BancoWebApi.Dto.UsuarioDto)">
+            <summary>
+            Login para empleados del banco 
+            </summary>
+            <remarks>Endpoint para determinar si un usuario tiene permiso al banco APP</remarks>
+            <response code="200">Usuario Logueado correctamente</response>
+            <response code="401">Usuario no autorizado</response>
+            <param name="usuario">Debe incluir nombreUsuario y password</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

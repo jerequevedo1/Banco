@@ -20,7 +20,14 @@ namespace BancoWebApi.Controllers
         {
             service = new ServiceFactory().CrearLoginService();
         }
-
+        /// <summary>
+        /// Login para empleados del banco 
+        /// </summary>
+        /// <remarks>Endpoint para determinar si un usuario tiene permiso al banco APP</remarks>
+        /// <response code="200">Usuario Logueado correctamente</response>
+        /// <response code="401">Usuario no autorizado</response>
+        /// <param name="usuario">Debe incluir nombreUsuario y password</param>
+        /// <returns></returns>
         // POST api/<LoginController>
         [HttpPost]
         public IActionResult Post([FromBody] UsuarioDto usuario)

@@ -11,7 +11,7 @@ using static BancoDominio.Enumeraciones;
 
 namespace BancoAccesoDatos
 {
-    class HelperDao
+    public class HelperDao
     {
 		public static HelperDao instancia;
 		public string ConnectionString { get; set; }
@@ -23,11 +23,11 @@ namespace BancoAccesoDatos
 		private HelperDao()
 		{
 
-			//ConnectionString = @"Data Source=LAPTOP-JULI\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
+			ConnectionString = @"Data Source=LAPTOP-JULI\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
 
 
 			//ConnectionString = @"Data Source=DESKTOP-DUIDE87\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
-			ConnectionString = @"Data Source=NOTEBOOK-JERE\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
+			//ConnectionString = @"Data Source=NOTEBOOK-JERE\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
 
 			//ConnectionString = @"Data Source=HOME\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
 			//ConnectionString = @"Data Source=NOTEBOOK-JERE\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
@@ -141,6 +141,7 @@ namespace BancoAccesoDatos
 			DataTable tabla = new DataTable();
 			try
 			{
+				cmd = new SqlCommand(nombreSP, cnn);
 				cmd.Parameters.Clear();
 				cnn.Open();
 				cmd.Connection = cnn;
