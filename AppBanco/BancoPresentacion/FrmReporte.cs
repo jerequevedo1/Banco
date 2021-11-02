@@ -23,10 +23,23 @@ namespace BancoPresentacion
 
         private void button1_Click(object sender, EventArgs e)
         {
-			reportViewer1.ProcessingMode = ProcessingMode.Local;
-			string appFolder = Path.GetDirectoryName(Application.StartupPath);
-			reportViewer1.LocalReport.ReportPath = @"C:\Users\jpolt\OneDrive\Escritorio\Banco_JJRS\AppBanco\BancoPresentacion\Reportes\RptCuentasPorCliente.rdlc";
-			reportViewer1.Refresh();
+
+            reportViewer1.ProcessingMode = ProcessingMode.Local;
+            string appFolder = Path.GetDirectoryName(Application.StartupPath);
+            var rutaRpt = Path.Combine(Application.StartupPath, @"~/Reportes\RptCuentasPorCliente.rdlc");
+            
+
+            string pathAbosluto = Application.StartupPath;
+            string fullPath = Path.Combine(pathAbosluto, @"..\..\..\Reportes\RptCuentasPorCliente.rdlc");
+            fullPath = Path.GetFullPath(fullPath);
+
+            reportViewer1.LocalReport.ReportPath = fullPath;
+
+             //reportViewer1.LocalReport.ReportPath = @"C:\Users\jpolt\OneDrive\Escritorio\Banco_JJRS\AppBanco\BancoPresentacion\Reportes\RptCuentasPorCliente.rdlc";
+            reportViewer1.Refresh();
+
+
+            DataSetCuentasCliente ds = new DataSetCuentasCliente();
 
 			DataSetCuentasCliente ds = new DataSetCuentasCliente();
 
