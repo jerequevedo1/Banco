@@ -76,65 +76,65 @@ namespace BancoAccesoDatos
 			return tabla;
 		}
 
-        public Cliente GetClienteId(int nro)
-        {
-            Cliente oCliente = new Cliente();
-            SqlConnection cnn = new SqlConnection();
-            SqlCommand cmd = new SqlCommand();
+      //  public Cliente GetClienteId(int nro)
+      //  {
+      //      Cliente oCliente = new Cliente();
+      //      SqlConnection cnn = new SqlConnection();
+      //      SqlCommand cmd = new SqlCommand();
 
-            try
-            {
-                cnn.ConnectionString = ConnectionString;
-                cnn.Open();
-                cmd.Connection = cnn;
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "SP_CONSULTAR_CLIENTE_POR_ID";
-                cmd.Parameters.AddWithValue("@nro", nro);
-                SqlDataReader reader = cmd.ExecuteReader();
-                bool esPrimerRegistro = true;
+      //      try
+      //      {
+      //          cnn.ConnectionString = ConnectionString;
+      //          cnn.Open();
+      //          cmd.Connection = cnn;
+      //          cmd.CommandType = CommandType.StoredProcedure;
+      //          cmd.CommandText = "SP_CONSULTAR_CLIENTE_POR_ID";
+      //          cmd.Parameters.AddWithValue("@nro", nro);
+      //          SqlDataReader reader = cmd.ExecuteReader();
+      //          bool esPrimerRegistro = true;
 
-                while (reader.Read())
-                {
-                    if (esPrimerRegistro)
-                    {
-						oCliente.IdCliente = Convert.ToInt32(reader["id_cliente"].ToString());
-						oCliente.NomCliente = reader["nom_cliente"].ToString();
-                        oCliente.ApeCliente = reader["ape_cliente"].ToString();
-                        oCliente.Dni = Convert.ToInt32(reader["dni"].ToString());
-                        oCliente.Cuil = long.Parse(reader["cuil"].ToString());
-                        oCliente.Direccion = reader["direccion"].ToString();
-                        oCliente.Telefono = reader["telefono"].ToString();
-                        oCliente.Email = reader["email"].ToString();
+      //          while (reader.Read())
+      //          {
+      //              if (esPrimerRegistro)
+      //              {
+						//oCliente.IdCliente = Convert.ToInt32(reader["id_cliente"].ToString());
+						//oCliente.NomCliente = reader["nom_cliente"].ToString();
+      //                  oCliente.ApeCliente = reader["ape_cliente"].ToString();
+      //                  oCliente.Dni = Convert.ToInt32(reader["dni"].ToString());
+      //                  oCliente.Cuil = long.Parse(reader["cuil"].ToString());
+      //                  oCliente.Direccion = reader["direccion"].ToString();
+      //                  oCliente.Telefono = reader["telefono"].ToString();
+      //                  oCliente.Email = reader["email"].ToString();
 
-                        Barrio obarrio = new Barrio();
-                        obarrio.IdBarrio = Convert.ToInt32(reader["id_barrio"].ToString());
-                        obarrio.NomBarrio = reader["nom_barrio"].ToString();
+      //                  Barrio obarrio = new Barrio();
+      //                  obarrio.IdBarrio = Convert.ToInt32(reader["id_barrio"].ToString());
+      //                  obarrio.NomBarrio = reader["nom_barrio"].ToString();
 
-                        oCliente.Barrio = obarrio;
+      //                  oCliente.Barrio = obarrio;
 
-                        esPrimerRegistro = false;
-                    }
+      //                  esPrimerRegistro = false;
+      //              }
 
                    
 
-                    esPrimerRegistro = false;
+      //              esPrimerRegistro = false;
                    
-                }
+      //          }
 
-            }
-            catch (Exception)
-            {
+      //      }
+      //      catch (Exception)
+      //      {
 
-            }
+      //      }
 
-            finally
-            {
-                if (cnn.State == ConnectionState.Open) cnn.Close();
-            }
+      //      finally
+      //      {
+      //          if (cnn.State == ConnectionState.Open) cnn.Close();
+      //      }
 
-            return oCliente;
+      //      return oCliente;
 
-        }
+      //  }
 
 		public DataTable ConsultaSQL(string nombreSP)
 		{
@@ -193,7 +193,7 @@ namespace BancoAccesoDatos
 
 					SqlCommand cmdDet = new SqlCommand(spDetalle, cnn, trans);
 
-					cmdDet.CommandText = spDetalle;
+					//cmdDet.CommandText = spDetalle;
 					cmdDet.CommandType = CommandType.StoredProcedure;
 
 					foreach (Cuenta item in oCliente.Cuentas)
@@ -234,7 +234,7 @@ namespace BancoAccesoDatos
 			bool estado = true;
             try
             {
-                cnn.Open();
+               cnn.Open();
 			cmd = new SqlCommand(nombreSP, cnn);
 			cmd.Parameters.Clear();
 			cmd.CommandType = CommandType.StoredProcedure;
@@ -250,6 +250,7 @@ namespace BancoAccesoDatos
 			}
 			catch (Exception)
 			{
+				throw;
                 estado = false;
             }
             finally

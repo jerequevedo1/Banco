@@ -11,8 +11,9 @@ using System.Threading.Tasks;
 
 namespace BancoAccesoDatos.Implementaciones
 {
-    class ClienteDao : IClienteDao
-    {    
+	class ClienteDao:IClienteDao
+	{
+
         public List<Cliente> GetClienteByFilters(List<Parametro> parametros)
         {
 
@@ -26,12 +27,12 @@ namespace BancoAccesoDatos.Implementaciones
                 {
                     Cliente oCliente = new Cliente();
 
-                    oCliente.IdCliente= Convert.ToInt32(row["ID Cliente"].ToString());
+                    oCliente.IdCliente = Convert.ToInt32(row["ID Cliente"].ToString());
                     oCliente.NomCliente = row["Nombre"].ToString();
                     oCliente.ApeCliente = row["Apellido"].ToString();
                     oCliente.Direccion = row["Direccion"].ToString();
                     oCliente.Dni = Convert.ToInt32(row["DNI"].ToString());
-                    oCliente.Telefono = row["Telefono"].ToString(); 
+                    oCliente.Telefono = row["Telefono"].ToString();
                     oCliente.Email = row["Email"].ToString();
 
                     if (!row["fechaBaja"].Equals(DBNull.Value))
@@ -57,6 +58,7 @@ namespace BancoAccesoDatos.Implementaciones
             List<Parametro> parametros = new List<Parametro>();
             parametros.Add(new Parametro("@nro", nro));
             Cliente oCliente = new Cliente();
+            Barrio oBarrio = new Barrio();
 
             try
             {
@@ -64,7 +66,7 @@ namespace BancoAccesoDatos.Implementaciones
 
                 foreach (DataRow row in tabla.Rows)
                 {
-                   
+
 
                     oCliente.IdCliente = Convert.ToInt32(row["id_cliente"].ToString());
                     oCliente.NomCliente = row["nom_cliente"].ToString();
@@ -75,7 +77,7 @@ namespace BancoAccesoDatos.Implementaciones
                     oCliente.Telefono = row["telefono"].ToString();
                     oCliente.Email = row["email"].ToString();
 
-                    Barrio oBarrio= new Barrio();
+
                     oBarrio.IdBarrio = Convert.ToInt32(row["id_barrio"].ToString());
                     oBarrio.NomBarrio = row["nom_barrio"].ToString();
                     oCliente.Barrio = oBarrio;
@@ -89,8 +91,8 @@ namespace BancoAccesoDatos.Implementaciones
             return oCliente;
         }
 
-		public List<Cliente> GetClienteByName(List<Parametro> parametro)
-		{
+        public List<Cliente> GetClienteByName(List<Parametro> parametro)
+        {
             List<Cliente> lst = new List<Cliente>();
 
             try
@@ -192,5 +194,4 @@ namespace BancoAccesoDatos.Implementaciones
 
         }
     }
-
 }

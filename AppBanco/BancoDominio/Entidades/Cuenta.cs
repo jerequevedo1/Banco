@@ -14,7 +14,7 @@ namespace BancoDominio.Entidades
         public double Saldo { get; set; }
         public List<Transaccion> Ltransaccion { get; set; }
         public string UltiMovi { get; set; }
-        public int SaldoDescubierto { get; set; }
+        public double SaldoDescubierto { get; set; }
         public TipoCuenta TipoCuenta { get; set; }
         public string TipoMoneda { get; set; }
 		public DateTime FechaBaja { get; set; }
@@ -38,6 +38,8 @@ namespace BancoDominio.Entidades
 
         public Cuenta()
         {
+            TipoCuenta = new TipoCuenta();
+            Ltransaccion = new List<Transaccion>();
         }
     }
 }
