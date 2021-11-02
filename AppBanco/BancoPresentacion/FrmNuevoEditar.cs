@@ -327,18 +327,17 @@ namespace BancoPresentacion
 		private void GuardarCuentaConCliente()
 		{
 
-			if (modo.Equals(Accion.Create) && tipo.Equals(Tipo.Cliente))
-			{
-				oCliente.NomCliente = txtCliNombre.Text;
-				oCliente.ApeCliente = txtCliApellido.Text;
-				oCliente.Dni = int.Parse(txtCliDNI.Text);
-				oCliente.Cuil = long.Parse(txtCliCuil.Text);
-				oCliente.Direccion = txtCliDire.Text;
-				oCliente.Telefono = txtCliTel.Text;
-				oCliente.Email = txtCliEmail.Text;
-				oCliente.Barrio = new Barrio();
-				oCliente.Barrio.IdBarrio = Convert.ToInt32(cboClienteBarrio.SelectedValue);
-			}
+			
+			oCliente.NomCliente = txtCliNombre.Text;
+			oCliente.ApeCliente = txtCliApellido.Text;
+			oCliente.Dni = int.Parse(txtCliDNI.Text);
+			oCliente.Cuil = long.Parse(txtCliCuil.Text);
+			oCliente.Direccion = txtCliDire.Text;
+			oCliente.Telefono = txtCliTel.Text;
+			oCliente.Email = txtCliEmail.Text;
+			oCliente.Barrio = new Barrio();
+			oCliente.Barrio.IdBarrio = Convert.ToInt32(cboClienteBarrio.SelectedValue);
+			
 			oCuenta.Cbu = txtCbu.Text;
 			oCuenta.Alias = txtAlias.Text;
 			oCuenta.Saldo = Convert.ToInt32(txtDepositoInicial.Text);
