@@ -13,5 +13,6 @@ namespace BancoAccesoDatos.Interfaces
 		List<Cliente> GetCuentaByFilters(List<Parametro> parametros);
 		List<TipoCuenta> GetTipoCuenta();
 		bool CreateCuenta(Cliente oCliente);
+		bool CreateCuentaClienteExist(Cliente oCliente);
 	}
 }

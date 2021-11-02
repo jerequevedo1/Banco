@@ -70,9 +70,9 @@ namespace BancoPresentacion
 			this.lblCliNombre = new System.Windows.Forms.Label();
 			this.lblNroCliente = new System.Windows.Forms.Label();
 			this.panelCliente = new System.Windows.Forms.Panel();
-			this.panel1 = new System.Windows.Forms.Panel();
+			this.panelCuenta = new System.Windows.Forms.Panel();
 			this.panelCliente.SuspendLayout();
-			this.panel1.SuspendLayout();
+			this.panelCuenta.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// lblNroCuenta
@@ -92,7 +92,7 @@ namespace BancoPresentacion
 			this.lblCbu.Location = new System.Drawing.Point(9, 8);
 			this.lblCbu.Name = "lblCbu";
 			this.lblCbu.Size = new System.Drawing.Size(29, 15);
-			this.lblCbu.TabIndex = 1;
+			this.lblCbu.TabIndex = 25;
 			this.lblCbu.Text = "Cbu";
 			// 
 			// txtCbu
@@ -100,14 +100,14 @@ namespace BancoPresentacion
 			this.txtCbu.Location = new System.Drawing.Point(9, 26);
 			this.txtCbu.Name = "txtCbu";
 			this.txtCbu.Size = new System.Drawing.Size(144, 23);
-			this.txtCbu.TabIndex = 2;
+			this.txtCbu.TabIndex = 26;
 			// 
 			// txtAlias
 			// 
 			this.txtAlias.Location = new System.Drawing.Point(9, 81);
 			this.txtAlias.Name = "txtAlias";
 			this.txtAlias.Size = new System.Drawing.Size(144, 23);
-			this.txtAlias.TabIndex = 4;
+			this.txtAlias.TabIndex = 32;
 			// 
 			// lblAlias
 			// 
@@ -115,7 +115,7 @@ namespace BancoPresentacion
 			this.lblAlias.Location = new System.Drawing.Point(9, 63);
 			this.lblAlias.Name = "lblAlias";
 			this.lblAlias.Size = new System.Drawing.Size(32, 15);
-			this.lblAlias.TabIndex = 3;
+			this.lblAlias.TabIndex = 31;
 			this.lblAlias.Text = "Alias";
 			// 
 			// txtDepositoInicial
@@ -123,7 +123,7 @@ namespace BancoPresentacion
 			this.txtDepositoInicial.Location = new System.Drawing.Point(185, 81);
 			this.txtDepositoInicial.Name = "txtDepositoInicial";
 			this.txtDepositoInicial.Size = new System.Drawing.Size(144, 23);
-			this.txtDepositoInicial.TabIndex = 6;
+			this.txtDepositoInicial.TabIndex = 34;
 			// 
 			// lblDepositoInicial
 			// 
@@ -131,7 +131,7 @@ namespace BancoPresentacion
 			this.lblDepositoInicial.Location = new System.Drawing.Point(185, 63);
 			this.lblDepositoInicial.Name = "lblDepositoInicial";
 			this.lblDepositoInicial.Size = new System.Drawing.Size(88, 15);
-			this.lblDepositoInicial.TabIndex = 5;
+			this.lblDepositoInicial.TabIndex = 33;
 			this.lblDepositoInicial.Text = "Deposito Inicial";
 			// 
 			// txtCliente
@@ -139,7 +139,7 @@ namespace BancoPresentacion
 			this.txtCliente.Location = new System.Drawing.Point(111, 25);
 			this.txtCliente.Name = "txtCliente";
 			this.txtCliente.Size = new System.Drawing.Size(384, 23);
-			this.txtCliente.TabIndex = 10;
+			this.txtCliente.TabIndex = 1;
 			// 
 			// lblBuscarCliente
 			// 
@@ -147,7 +147,7 @@ namespace BancoPresentacion
 			this.lblBuscarCliente.Location = new System.Drawing.Point(51, 28);
 			this.lblBuscarCliente.Name = "lblBuscarCliente";
 			this.lblBuscarCliente.Size = new System.Drawing.Size(44, 15);
-			this.lblBuscarCliente.TabIndex = 9;
+			this.lblBuscarCliente.TabIndex = 0;
 			this.lblBuscarCliente.Text = "Cliente";
 			// 
 			// txtLimiteDesc
@@ -155,7 +155,7 @@ namespace BancoPresentacion
 			this.txtLimiteDesc.Location = new System.Drawing.Point(185, 26);
 			this.txtLimiteDesc.Name = "txtLimiteDesc";
 			this.txtLimiteDesc.Size = new System.Drawing.Size(144, 23);
-			this.txtLimiteDesc.TabIndex = 12;
+			this.txtLimiteDesc.TabIndex = 28;
 			// 
 			// lblLimiteDesc
 			// 
@@ -163,7 +163,7 @@ namespace BancoPresentacion
 			this.lblLimiteDesc.Location = new System.Drawing.Point(185, 8);
 			this.lblLimiteDesc.Name = "lblLimiteDesc";
 			this.lblLimiteDesc.Size = new System.Drawing.Size(106, 15);
-			this.lblLimiteDesc.TabIndex = 11;
+			this.lblLimiteDesc.TabIndex = 27;
 			this.lblLimiteDesc.Text = "Limite Descubierto";
 			// 
 			// btnBuscar
@@ -171,7 +171,7 @@ namespace BancoPresentacion
 			this.btnBuscar.Location = new System.Drawing.Point(506, 24);
 			this.btnBuscar.Name = "btnBuscar";
 			this.btnBuscar.Size = new System.Drawing.Size(75, 23);
-			this.btnBuscar.TabIndex = 13;
+			this.btnBuscar.TabIndex = 2;
 			this.btnBuscar.Text = "Buscar";
 			this.btnBuscar.UseVisualStyleBackColor = true;
 			this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
@@ -181,7 +181,7 @@ namespace BancoPresentacion
 			this.btnNuevo.Location = new System.Drawing.Point(593, 24);
 			this.btnNuevo.Name = "btnNuevo";
 			this.btnNuevo.Size = new System.Drawing.Size(75, 23);
-			this.btnNuevo.TabIndex = 14;
+			this.btnNuevo.TabIndex = 3;
 			this.btnNuevo.Text = "Nuevo";
 			this.btnNuevo.UseVisualStyleBackColor = true;
 			this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
@@ -192,7 +192,7 @@ namespace BancoPresentacion
 			this.lblTipoCuenta.Location = new System.Drawing.Point(366, 63);
 			this.lblTipoCuenta.Name = "lblTipoCuenta";
 			this.lblTipoCuenta.Size = new System.Drawing.Size(71, 15);
-			this.lblTipoCuenta.TabIndex = 15;
+			this.lblTipoCuenta.TabIndex = 35;
 			this.lblTipoCuenta.Text = "Tipo Cuenta";
 			// 
 			// lblTipoMoneda
@@ -201,7 +201,7 @@ namespace BancoPresentacion
 			this.lblTipoMoneda.Location = new System.Drawing.Point(366, 8);
 			this.lblTipoMoneda.Name = "lblTipoMoneda";
 			this.lblTipoMoneda.Size = new System.Drawing.Size(77, 15);
-			this.lblTipoMoneda.TabIndex = 16;
+			this.lblTipoMoneda.TabIndex = 29;
 			this.lblTipoMoneda.Text = "Tipo Moneda";
 			// 
 			// cboTipoCuenta
@@ -211,7 +211,7 @@ namespace BancoPresentacion
 			this.cboTipoCuenta.Location = new System.Drawing.Point(366, 81);
 			this.cboTipoCuenta.Name = "cboTipoCuenta";
 			this.cboTipoCuenta.Size = new System.Drawing.Size(144, 23);
-			this.cboTipoCuenta.TabIndex = 17;
+			this.cboTipoCuenta.TabIndex = 36;
 			// 
 			// cboTipoMoneda
 			// 
@@ -220,7 +220,7 @@ namespace BancoPresentacion
 			this.cboTipoMoneda.Location = new System.Drawing.Point(366, 26);
 			this.cboTipoMoneda.Name = "cboTipoMoneda";
 			this.cboTipoMoneda.Size = new System.Drawing.Size(144, 23);
-			this.cboTipoMoneda.TabIndex = 18;
+			this.cboTipoMoneda.TabIndex = 30;
 			// 
 			// btnAceptar
 			// 
@@ -228,7 +228,7 @@ namespace BancoPresentacion
 			this.btnAceptar.Location = new System.Drawing.Point(210, 448);
 			this.btnAceptar.Name = "btnAceptar";
 			this.btnAceptar.Size = new System.Drawing.Size(75, 23);
-			this.btnAceptar.TabIndex = 19;
+			this.btnAceptar.TabIndex = 37;
 			this.btnAceptar.Text = "Aceptar";
 			this.btnAceptar.UseVisualStyleBackColor = true;
 			this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
@@ -239,7 +239,7 @@ namespace BancoPresentacion
 			this.btnCancelar.Location = new System.Drawing.Point(471, 448);
 			this.btnCancelar.Name = "btnCancelar";
 			this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-			this.btnCancelar.TabIndex = 20;
+			this.btnCancelar.TabIndex = 38;
 			this.btnCancelar.Text = "Cancelar";
 			this.btnCancelar.UseVisualStyleBackColor = true;
 			this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -250,7 +250,7 @@ namespace BancoPresentacion
 			this.lblCliProvincia.Location = new System.Drawing.Point(9, 64);
 			this.lblCliProvincia.Name = "lblCliProvincia";
 			this.lblCliProvincia.Size = new System.Drawing.Size(56, 15);
-			this.lblCliProvincia.TabIndex = 43;
+			this.lblCliProvincia.TabIndex = 13;
 			this.lblCliProvincia.Text = "Provincia";
 			// 
 			// cboCliProvincia
@@ -260,7 +260,7 @@ namespace BancoPresentacion
 			this.cboCliProvincia.Location = new System.Drawing.Point(8, 82);
 			this.cboCliProvincia.Name = "cboCliProvincia";
 			this.cboCliProvincia.Size = new System.Drawing.Size(144, 23);
-			this.cboCliProvincia.TabIndex = 42;
+			this.cboCliProvincia.TabIndex = 14;
 			// 
 			// lblLocalidad
 			// 
@@ -268,7 +268,7 @@ namespace BancoPresentacion
 			this.lblLocalidad.Location = new System.Drawing.Point(185, 64);
 			this.lblLocalidad.Name = "lblLocalidad";
 			this.lblLocalidad.Size = new System.Drawing.Size(58, 15);
-			this.lblLocalidad.TabIndex = 41;
+			this.lblLocalidad.TabIndex = 15;
 			this.lblLocalidad.Text = "Localidad";
 			// 
 			// cboCliLocalidad
@@ -278,14 +278,14 @@ namespace BancoPresentacion
 			this.cboCliLocalidad.Location = new System.Drawing.Point(185, 82);
 			this.cboCliLocalidad.Name = "cboCliLocalidad";
 			this.cboCliLocalidad.Size = new System.Drawing.Size(144, 23);
-			this.cboCliLocalidad.TabIndex = 40;
+			this.cboCliLocalidad.TabIndex = 16;
 			// 
 			// txtCliEmail
 			// 
 			this.txtCliEmail.Location = new System.Drawing.Point(366, 140);
 			this.txtCliEmail.Name = "txtCliEmail";
 			this.txtCliEmail.Size = new System.Drawing.Size(144, 23);
-			this.txtCliEmail.TabIndex = 39;
+			this.txtCliEmail.TabIndex = 24;
 			// 
 			// lblCliEmail
 			// 
@@ -293,7 +293,7 @@ namespace BancoPresentacion
 			this.lblCliEmail.Location = new System.Drawing.Point(366, 122);
 			this.lblCliEmail.Name = "lblCliEmail";
 			this.lblCliEmail.Size = new System.Drawing.Size(36, 15);
-			this.lblCliEmail.TabIndex = 38;
+			this.lblCliEmail.TabIndex = 23;
 			this.lblCliEmail.Text = "Email";
 			// 
 			// txtCliTel
@@ -301,7 +301,7 @@ namespace BancoPresentacion
 			this.txtCliTel.Location = new System.Drawing.Point(186, 140);
 			this.txtCliTel.Name = "txtCliTel";
 			this.txtCliTel.Size = new System.Drawing.Size(144, 23);
-			this.txtCliTel.TabIndex = 37;
+			this.txtCliTel.TabIndex = 22;
 			// 
 			// lblClienteTel
 			// 
@@ -309,7 +309,7 @@ namespace BancoPresentacion
 			this.lblClienteTel.Location = new System.Drawing.Point(185, 122);
 			this.lblClienteTel.Name = "lblClienteTel";
 			this.lblClienteTel.Size = new System.Drawing.Size(52, 15);
-			this.lblClienteTel.TabIndex = 36;
+			this.lblClienteTel.TabIndex = 21;
 			this.lblClienteTel.Text = "Teléfono";
 			// 
 			// lblCliBarrio
@@ -318,7 +318,7 @@ namespace BancoPresentacion
 			this.lblCliBarrio.Location = new System.Drawing.Point(366, 64);
 			this.lblCliBarrio.Name = "lblCliBarrio";
 			this.lblCliBarrio.Size = new System.Drawing.Size(38, 15);
-			this.lblCliBarrio.TabIndex = 35;
+			this.lblCliBarrio.TabIndex = 17;
 			this.lblCliBarrio.Text = "Barrio";
 			// 
 			// cboClienteBarrio
@@ -328,14 +328,14 @@ namespace BancoPresentacion
 			this.cboClienteBarrio.Location = new System.Drawing.Point(366, 82);
 			this.cboClienteBarrio.Name = "cboClienteBarrio";
 			this.cboClienteBarrio.Size = new System.Drawing.Size(144, 23);
-			this.cboClienteBarrio.TabIndex = 34;
+			this.cboClienteBarrio.TabIndex = 18;
 			// 
 			// txtCliDire
 			// 
 			this.txtCliDire.Location = new System.Drawing.Point(9, 140);
 			this.txtCliDire.Name = "txtCliDire";
 			this.txtCliDire.Size = new System.Drawing.Size(144, 23);
-			this.txtCliDire.TabIndex = 33;
+			this.txtCliDire.TabIndex = 20;
 			// 
 			// lblCliDire
 			// 
@@ -343,7 +343,7 @@ namespace BancoPresentacion
 			this.lblCliDire.Location = new System.Drawing.Point(9, 122);
 			this.lblCliDire.Name = "lblCliDire";
 			this.lblCliDire.Size = new System.Drawing.Size(57, 15);
-			this.lblCliDire.TabIndex = 32;
+			this.lblCliDire.TabIndex = 19;
 			this.lblCliDire.Text = "Direccion";
 			// 
 			// txtCliApellido
@@ -351,7 +351,7 @@ namespace BancoPresentacion
 			this.txtCliApellido.Location = new System.Drawing.Point(186, 31);
 			this.txtCliApellido.Name = "txtCliApellido";
 			this.txtCliApellido.Size = new System.Drawing.Size(144, 23);
-			this.txtCliApellido.TabIndex = 31;
+			this.txtCliApellido.TabIndex = 8;
 			// 
 			// lblCliApellido
 			// 
@@ -359,7 +359,7 @@ namespace BancoPresentacion
 			this.lblCliApellido.Location = new System.Drawing.Point(185, 13);
 			this.lblCliApellido.Name = "lblCliApellido";
 			this.lblCliApellido.Size = new System.Drawing.Size(51, 15);
-			this.lblCliApellido.TabIndex = 30;
+			this.lblCliApellido.TabIndex = 7;
 			this.lblCliApellido.Text = "Apellido";
 			// 
 			// txtCliCuil
@@ -367,7 +367,7 @@ namespace BancoPresentacion
 			this.txtCliCuil.Location = new System.Drawing.Point(526, 31);
 			this.txtCliCuil.Name = "txtCliCuil";
 			this.txtCliCuil.Size = new System.Drawing.Size(144, 23);
-			this.txtCliCuil.TabIndex = 29;
+			this.txtCliCuil.TabIndex = 12;
 			// 
 			// lblClienteCuil
 			// 
@@ -375,7 +375,7 @@ namespace BancoPresentacion
 			this.lblClienteCuil.Location = new System.Drawing.Point(526, 13);
 			this.lblClienteCuil.Name = "lblClienteCuil";
 			this.lblClienteCuil.Size = new System.Drawing.Size(28, 15);
-			this.lblClienteCuil.TabIndex = 28;
+			this.lblClienteCuil.TabIndex = 11;
 			this.lblClienteCuil.Text = "Cuil";
 			// 
 			// txtCliDNI
@@ -383,7 +383,7 @@ namespace BancoPresentacion
 			this.txtCliDNI.Location = new System.Drawing.Point(366, 31);
 			this.txtCliDNI.Name = "txtCliDNI";
 			this.txtCliDNI.Size = new System.Drawing.Size(144, 23);
-			this.txtCliDNI.TabIndex = 27;
+			this.txtCliDNI.TabIndex = 10;
 			// 
 			// lblCliDNI
 			// 
@@ -391,7 +391,7 @@ namespace BancoPresentacion
 			this.lblCliDNI.Location = new System.Drawing.Point(366, 13);
 			this.lblCliDNI.Name = "lblCliDNI";
 			this.lblCliDNI.Size = new System.Drawing.Size(30, 15);
-			this.lblCliDNI.TabIndex = 26;
+			this.lblCliDNI.TabIndex = 9;
 			this.lblCliDNI.Text = "DNI ";
 			// 
 			// txtCliNombre
@@ -399,7 +399,7 @@ namespace BancoPresentacion
 			this.txtCliNombre.Location = new System.Drawing.Point(9, 31);
 			this.txtCliNombre.Name = "txtCliNombre";
 			this.txtCliNombre.Size = new System.Drawing.Size(144, 23);
-			this.txtCliNombre.TabIndex = 25;
+			this.txtCliNombre.TabIndex = 6;
 			// 
 			// lblCliNombre
 			// 
@@ -407,7 +407,7 @@ namespace BancoPresentacion
 			this.lblCliNombre.Location = new System.Drawing.Point(9, 13);
 			this.lblCliNombre.Name = "lblCliNombre";
 			this.lblCliNombre.Size = new System.Drawing.Size(51, 15);
-			this.lblCliNombre.TabIndex = 24;
+			this.lblCliNombre.TabIndex = 5;
 			this.lblCliNombre.Text = "Nombre";
 			// 
 			// lblNroCliente
@@ -418,7 +418,7 @@ namespace BancoPresentacion
 			this.lblNroCliente.Location = new System.Drawing.Point(19, 72);
 			this.lblNroCliente.Name = "lblNroCliente";
 			this.lblNroCliente.Size = new System.Drawing.Size(92, 21);
-			this.lblNroCliente.TabIndex = 44;
+			this.lblNroCliente.TabIndex = 4;
 			this.lblNroCliente.Text = "Nro Cliente:";
 			// 
 			// panelCliente
@@ -447,34 +447,34 @@ namespace BancoPresentacion
 			this.panelCliente.Location = new System.Drawing.Point(42, 100);
 			this.panelCliente.Name = "panelCliente";
 			this.panelCliente.Size = new System.Drawing.Size(691, 176);
-			this.panelCliente.TabIndex = 45;
+			this.panelCliente.TabIndex = 3;
 			// 
-			// panel1
+			// panelCuenta
 			// 
-			this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.panel1.Controls.Add(this.txtCbu);
-			this.panel1.Controls.Add(this.lblCbu);
-			this.panel1.Controls.Add(this.lblAlias);
-			this.panel1.Controls.Add(this.txtAlias);
-			this.panel1.Controls.Add(this.cboTipoMoneda);
-			this.panel1.Controls.Add(this.cboTipoCuenta);
-			this.panel1.Controls.Add(this.txtLimiteDesc);
-			this.panel1.Controls.Add(this.lblTipoMoneda);
-			this.panel1.Controls.Add(this.lblDepositoInicial);
-			this.panel1.Controls.Add(this.lblTipoCuenta);
-			this.panel1.Controls.Add(this.txtDepositoInicial);
-			this.panel1.Controls.Add(this.lblLimiteDesc);
-			this.panel1.Location = new System.Drawing.Point(42, 314);
-			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(539, 119);
-			this.panel1.TabIndex = 46;
+			this.panelCuenta.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+			this.panelCuenta.Controls.Add(this.txtCbu);
+			this.panelCuenta.Controls.Add(this.lblCbu);
+			this.panelCuenta.Controls.Add(this.lblAlias);
+			this.panelCuenta.Controls.Add(this.txtAlias);
+			this.panelCuenta.Controls.Add(this.cboTipoMoneda);
+			this.panelCuenta.Controls.Add(this.cboTipoCuenta);
+			this.panelCuenta.Controls.Add(this.txtLimiteDesc);
+			this.panelCuenta.Controls.Add(this.lblTipoMoneda);
+			this.panelCuenta.Controls.Add(this.lblDepositoInicial);
+			this.panelCuenta.Controls.Add(this.lblTipoCuenta);
+			this.panelCuenta.Controls.Add(this.txtDepositoInicial);
+			this.panelCuenta.Controls.Add(this.lblLimiteDesc);
+			this.panelCuenta.Location = new System.Drawing.Point(42, 314);
+			this.panelCuenta.Name = "panelCuenta";
+			this.panelCuenta.Size = new System.Drawing.Size(539, 119);
+			this.panelCuenta.TabIndex = 24;
 			// 
 			// FrmNuevoEditar
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(766, 483);
-			this.Controls.Add(this.panel1);
+			this.Controls.Add(this.panelCuenta);
 			this.Controls.Add(this.lblNroCliente);
 			this.Controls.Add(this.btnCancelar);
 			this.Controls.Add(this.btnAceptar);
@@ -490,8 +490,8 @@ namespace BancoPresentacion
 			this.Load += new System.EventHandler(this.FrmNuevoEditar_Load);
 			this.panelCliente.ResumeLayout(false);
 			this.panelCliente.PerformLayout();
-			this.panel1.ResumeLayout(false);
-			this.panel1.PerformLayout();
+			this.panelCuenta.ResumeLayout(false);
+			this.panelCuenta.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -540,6 +540,6 @@ namespace BancoPresentacion
 		private System.Windows.Forms.Label lblCliNombre;
 		private System.Windows.Forms.Label lblNroCliente;
 		private System.Windows.Forms.Panel panelCliente;
-		private System.Windows.Forms.Panel panel1;
+		private System.Windows.Forms.Panel panelCuenta;
 	}
 }

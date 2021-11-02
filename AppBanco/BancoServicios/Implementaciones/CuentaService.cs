@@ -34,5 +34,10 @@ namespace BancoServicios.Implementaciones
 		{
 			return daoCuenta.CreateCuenta(oCliente);
 		}
+
+		public bool NuevaCuentaClienteExist(Cliente oCliente)
+		{
+			return daoCuenta.CreateCuentaClienteExist(oCliente);
+		}
 	}
 }

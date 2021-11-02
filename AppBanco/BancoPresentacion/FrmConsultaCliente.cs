@@ -24,13 +24,14 @@ namespace BancoPresentacion
 		private List<Parametro> parametro;
 		private List<Cliente> lst;
 		private int nro;
+		private bool clienteExistente;
 		public FrmConsultaCliente(List<Parametro> parametro)
 		{   
 			InitializeComponent();
 			this.parametro = parametro;
 			lst = new List<Cliente>();
 			gestorCliente = new ServiceFactory().CrearClienteService(new DaoFactory());
-			
+			this.clienteExistente = false;
 		}
 
 
@@ -51,13 +52,6 @@ namespace BancoPresentacion
 				dgvClientes.Rows.Add(new object[] { item.IdCliente.ToString(), item.NombreCompleto(), item.Dni, item.Email });
 			}
 		}
-
-		private void btnAceptar_Click(object sender, EventArgs e)
-		{
-			
-
-		}
-
 		private void btnCancelar_Click(object sender, EventArgs e)
 		{
 			Close();
@@ -68,6 +62,7 @@ namespace BancoPresentacion
 			if (dgvClientes.CurrentCell.ColumnIndex == 4)
 			{
 				nro = int.Parse(dgvClientes.CurrentRow.Cells["cId"].Value.ToString());
+				clienteExistente = true;
 				Close();
 			}
 		}
@@ -75,11 +70,34 @@ namespace BancoPresentacion
 		{
 			return nro;
 		}
+		public bool GetClienteExistente()
+		{
+			return clienteExistente;
+		}
 		private void dgvClientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
 		{
 			nro = int.Parse(dgvClientes.CurrentRow.Cells["cId"].Value.ToString());
+			clienteExistente = true;
 			this.Close();
 		}
 
+		private void btnAceptar_Click_1(object sender, EventArgs e)
+		{
+			if (dgvClientes.Rows.Count>0)
+			{
+				nro = int.Parse(dgvClientes.CurrentRow.Cells["cId"].Value.ToString());
+				clienteExistente = true;
+			}
+			else
+			{
+				MessageBox.Show("No se encontraron resultados.", "Control", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+			}
+			this.Close();
+		}
+
+		private void btnCancelar_Click_1(object sender, EventArgs e)
+		{
+			this.Close();
+		}
 	}
 }

@@ -150,7 +150,7 @@ AS
 	  if @tipo=0 --filtro por numero cuenta 
 		select id_cuenta 'ID Cuenta',nom_cliente Nombre,ape_cliente Apellido, dni DNI,
 		tc.descripcion,cbu Cbu,alias Alias,tipo_moneda 'Tipo Moneda',saldo_actual saldo,
-		c.fecha_baja fechaBaja,c.fecha_alta fechaAlta 
+		c.fecha_baja fechaBaja,c.fecha_alta fechaAlta,c.id_cliente,tc.id_tipo_cuenta
 		from Cuentas c join Clientes cl on c.id_cliente=cl.id_cliente 
 		join Tipos_Cuentas tc on tc.id_tipo_cuenta=c.id_tipo_cuenta
 		WHERE (@nroCuenta is null OR id_cuenta=@nroCuenta)
@@ -159,7 +159,7 @@ AS
 	 if @tipo=1 --filtro por cliente
 		select id_cuenta 'ID Cuenta',nom_cliente Nombre,ape_cliente Apellido, dni DNI,
 		tc.descripcion,cbu Cbu,alias Alias,tipo_moneda 'Tipo Moneda',saldo_actual saldo,
-		c.fecha_baja fechaBaja,c.fecha_alta fechaAlta 
+		c.fecha_baja fechaBaja,c.fecha_alta fechaAlta,c.id_cliente,tc.id_tipo_cuenta
 		from Cuentas c join Clientes cl on c.id_cliente=cl.id_cliente 
 		join Tipos_Cuentas tc on tc.id_tipo_cuenta=c.id_tipo_cuenta
 		WHERE (@ClienteNombre is null OR (nom_cliente like '%' + @ClienteNombre + '%')OR(ape_cliente like '%' + @ClienteNombre + '%'))
@@ -168,7 +168,7 @@ AS
     if @tipo=2 --filtro por cbu
 		select id_cuenta 'ID Cuenta',nom_cliente Nombre,ape_cliente Apellido, dni DNI,
 		tc.descripcion,cbu Cbu,alias Alias,tipo_moneda 'Tipo Moneda',saldo_actual saldo,
-		c.fecha_baja fechaBaja,c.fecha_alta fechaAlta 
+		c.fecha_baja fechaBaja,c.fecha_alta fechaAlta,c.id_cliente,tc.id_tipo_cuenta
 		from Cuentas c join Clientes cl on c.id_cliente=cl.id_cliente 
 		join Tipos_Cuentas tc on tc.id_tipo_cuenta=c.id_tipo_cuenta
 		WHERE (@cbu is null OR cbu=@cbu)
@@ -177,7 +177,7 @@ AS
 	if @tipo=3 --filtro por alias
 		select id_cuenta 'ID Cuenta',nom_cliente Nombre,ape_cliente Apellido, dni DNI,
 		tc.descripcion,cbu Cbu,alias Alias,tipo_moneda 'Tipo Moneda',saldo_actual saldo,
-		c.fecha_baja fechaBaja,c.fecha_alta fechaAlta 
+		c.fecha_baja fechaBaja,c.fecha_alta fechaAlta,c.id_cliente,tc.id_tipo_cuenta
 		from Cuentas c join Clientes cl on c.id_cliente=cl.id_cliente 
 		join Tipos_Cuentas tc on tc.id_tipo_cuenta=c.id_tipo_cuenta
 		WHERE (@alias is null OR alias=@alias)
@@ -186,7 +186,7 @@ AS
 	if @tipo=4 --filtro por bajas
 		select id_cuenta 'ID Cuenta',nom_cliente Nombre,ape_cliente Apellido, dni DNI,
 		tc.descripcion,cbu Cbu,alias Alias,tipo_moneda 'Tipo Moneda',saldo_actual saldo,
-		c.fecha_baja fechaBaja,c.fecha_alta fechaAlta 
+		c.fecha_baja fechaBaja,c.fecha_alta fechaAlta,c.id_cliente,tc.id_tipo_cuenta
 		from Cuentas c join Clientes cl on c.id_cliente=cl.id_cliente 
 		join Tipos_Cuentas tc on tc.id_tipo_cuenta=c.id_tipo_cuenta
 		WHERE (@activo = 'n' and c.fecha_baja IS  NULL) and 
