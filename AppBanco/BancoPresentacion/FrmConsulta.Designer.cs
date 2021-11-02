@@ -196,6 +196,7 @@ namespace BancoPresentacion
 			this.dgvConsulta.Name = "dgvConsulta";
 			this.dgvConsulta.ReadOnly = true;
 			this.dgvConsulta.RowTemplate.Height = 25;
+			this.dgvConsulta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dgvConsulta.Size = new System.Drawing.Size(724, 225);
 			this.dgvConsulta.TabIndex = 0;
 			// 

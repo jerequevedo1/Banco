@@ -26,6 +26,7 @@ namespace BancoPresentacion
 		private Cliente oCliente;
 		private Cuenta oCuenta;
 		private int nro= new int();
+		private bool clienteExistente;
 		public FrmNuevoEditar(Accion modo, Tipo tipo,int nro)
 		{
 			InitializeComponent();
@@ -36,7 +37,8 @@ namespace BancoPresentacion
 			oCuenta = new Cuenta();
 			this.modo = modo;
 			this.tipo = tipo;
-			this.nro = nro;			
+			this.nro = nro;
+			this.clienteExistente = false;
 		}
 
 		private void btnBuscar_Click(object sender, EventArgs e)
@@ -50,12 +52,18 @@ namespace BancoPresentacion
 
 				frm.ShowDialog();
 				nro = frm.GetNroCliente();
-				CargarCliente(nro);
-				txtCliente.Text = oCliente.NombreCompleto();
-				panelCliente.Enabled = false;
-				btnNuevo.Visible = true;
-				btnBuscar.Enabled = false;
-				txtCliente.Enabled = false;
+				clienteExistente = frm.GetClienteExistente();
+
+				if (nro!=0)
+				{
+					CargarCliente(nro);
+					txtCliente.Text = oCliente.NombreCompleto();
+					panelCliente.Enabled = false;
+					btnNuevo.Visible = true;
+					btnBuscar.Enabled = false;
+					txtCliente.Enabled = false;
+				}
+				
 			}
 			else
 			{
@@ -63,7 +71,6 @@ namespace BancoPresentacion
 			}
 			
 		}
-
 		
 		private void btnNuevo_Click(object sender, EventArgs e)
 		{
@@ -96,6 +103,12 @@ namespace BancoPresentacion
 
 		private void FrmNuevoEditar_Load(object sender, EventArgs e)
 		{
+			CargarTipoCuenta();
+			CargarTipoMoneda();
+			CargarBarrios();
+			CargarLocalidades();
+			CargarProvincias();
+
 			if (tipo.Equals(Tipo.Cliente))
 			{
 				if (modo.Equals(Accion.Create))
@@ -103,14 +116,21 @@ namespace BancoPresentacion
 					this.Text = "Nueva Cuenta";
 					txtCliente.Visible = false;
 					btnBuscar.Visible = false;
-					lblBuscarCliente.Visible = false;
-					
+					lblBuscarCliente.Visible = false;					
 					this.Size = new Size(782, 454);
 				}
 				if (modo.Equals(Accion.Update))
 				{
 					this.Text = "Editar Cliente";
 					CargarCliente(nro);
+					txtCliente.Visible = false;
+					btnBuscar.Visible = false;
+					lblBuscarCliente.Visible = false;
+					this.Size = new Size(782, 310);
+					panelCliente.Location = new Point(42, 40);
+					lblNroCliente.Location = new Point(19, 20);
+					panelCuenta.Visible = false;
+					lblNroCuenta.Visible = false;
 				}
 			}
 			if (tipo.Equals(Tipo.Cuenta))
@@ -123,29 +143,39 @@ namespace BancoPresentacion
 				{
 					this.Text = "Editar Cuenta";
 					CargarCliente(nro);
+					txtCliente.Visible = false;
+					btnBuscar.Visible = false;
+					lblBuscarCliente.Visible = false;
+					panelCliente.Enabled = false;
+					this.Size = new Size(782, 454);
 				}
 			}
 	
 		    btnNuevo.Visible = false;
-	
-			CargarTipoCuenta();
-			CargarTipoMoneda();
-			CargarBarrios();
-			CargarLocalidades();
-			CargarProvincias();
+			
+			
+			//SetFormDefault();
+		}
+
+		private void SetFormDefault()
+		{
+			cboClienteBarrio.SelectedValue = 2;
+			cboTipoCuenta.SelectedValue = 2;
+			cboTipoMoneda.SelectedValue = 2;
 		}
 
 		private void CargarCliente(int nro)
 		{
-			this.oCliente = gestorCliente.GetClienteId(nro);
 			oCliente.Barrio = new Barrio();
+			this.oCliente = gestorCliente.GetClienteId(nro);
+			
 
 			txtCliNombre.Text = oCliente.NomCliente;
 			txtCliApellido.Text = oCliente.ApeCliente;
 			txtCliDNI.Text = oCliente.Dni.ToString();
 			txtCliCuil.Text = oCliente.Cuil.ToString();
 			//cboClienteBarrio.ValueMember = oCliente.Barrio.IdBarrio.ToString();
-			cboClienteBarrio.SelectedValue = oCliente.Barrio.IdBarrio.ToString();
+			cboClienteBarrio.SelectedValue = oCliente.Barrio.IdBarrio;
 			txtCliDire.Text = oCliente.Direccion;
 			txtCliTel.Text = oCliente.Telefono;
 			txtCliEmail.Text = oCliente.Email;
@@ -218,15 +248,23 @@ namespace BancoPresentacion
 			{
 				if (modo.Equals(Accion.Create))
 				{
-					//validaciones de campo antes de guardar
-					if (txtCliente.Text == "")
+					if (!clienteExistente)
 					{
-						MessageBox.Show("Debe especificar un cliente.", "Control", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-						txtCliente.Focus();
-						return;
-					}
+						//validaciones de campo antes de guardar
+						if (txtCliente.Text == "")
+						{
+							MessageBox.Show("Debe especificar un cliente.", "Control", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+							txtCliente.Focus();
+							return;
+						}
 
-					GuardarCuenta();
+						GuardarCuentaConCliente();
+					}
+					else
+					{
+						GuardarCuenta();
+					}
+					
 				}
 			}
 			if (tipo.Equals(Tipo.Cliente))
@@ -259,7 +297,7 @@ namespace BancoPresentacion
 			}
 			
 		}
-		private void GuardarCuenta()
+		private void GuardarCuentaConCliente()
 		{
 
 			oCuenta.Cbu = txtCbu.Text;
@@ -288,6 +326,56 @@ namespace BancoPresentacion
 				if (gestorCuenta.NuevaCuenta(oCliente))
 				{
 					MessageBox.Show("Cuenta registrada con exito.", "Informe", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					Close();
+				}
+				else
+				{
+					MessageBox.Show("ERROR. No se pudo registrar la cuenta.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+			}
+			else
+			{
+				//if (gestorCuenta.EditarCuenta(oCuenta))
+				//{
+				//	MessageBox.Show("Presupuesto editado con exito.", "Informe", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				//	Close();
+				//}
+				//else
+				//{
+				//	MessageBox.Show("ERROR. No se pudo editar el presupuesto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				//}
+			}
+		}
+		private void GuardarCuenta()
+		{
+			
+
+			oCuenta.Cbu = txtCbu.Text;
+			oCuenta.Alias = txtAlias.Text;
+			//validar si modo es create
+			oCuenta.Saldo = Convert.ToInt32(txtDepositoInicial.Text);
+
+			oCuenta.TipoCuenta = new TipoCuenta();
+			oCuenta.TipoCuenta.IdTipoCuenta = Convert.ToInt32(cboTipoCuenta.SelectedValue);
+			oCuenta.LimiteDescubierto = Convert.ToDouble(txtLimiteDesc.Text);
+
+
+			if (cboTipoMoneda.SelectedValue.Equals(1))
+			{
+				oCuenta.TipoMoneda = "P";
+			}
+			if (cboTipoMoneda.SelectedValue.Equals(2))
+			{
+				oCuenta.TipoMoneda = "D";
+			}
+
+			oCliente.AgregarCuenta(oCuenta);
+
+			if (modo.Equals(Accion.Create))
+			{
+				if (gestorCuenta.NuevaCuentaClienteExist(oCliente))
+				{
+					MessageBox.Show("Cuenta registrada al Cliente "+oCliente.ApeCliente+", "+oCliente.NomCliente +" con exito.", "Informe", MessageBoxButtons.OK, MessageBoxIcon.Information);
 					Close();
 				}
 				else

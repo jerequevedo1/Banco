@@ -13,5 +13,6 @@ namespace BancoServicios.Interfaces
 		List<Cliente> GetCuentaByFilters(List<Parametro> parametros);
 		List<TipoCuenta> GetTipoCuenta();
 		bool NuevaCuenta(Cliente oCliente);
+		bool NuevaCuentaClienteExist(Cliente oCliente);
 	}
 }

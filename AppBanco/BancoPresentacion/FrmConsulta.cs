@@ -41,10 +41,12 @@ namespace BancoPresentacion
 			if (tipo.Equals(Tipo.Cliente))
 			{
 				new FrmNuevoEditar(modo, Tipo.Cliente, 0).ShowDialog();
+				CargarGrilla(tipo);
 			}
 			if (tipo.Equals(Tipo.Cuenta))
 			{
 				new FrmNuevoEditar(modo, Tipo.Cuenta, 0).ShowDialog();
+				CargarGrilla(tipo);
 			}
 
 		}
@@ -253,12 +255,14 @@ namespace BancoPresentacion
 		private void btnEditar_Click(object sender, EventArgs e)
 		{
 			modo = Accion.Update;
+			int nro = Convert.ToInt32(dgvConsulta.CurrentRow.Cells[0].Value.ToString());
+
 			if (tipo.Equals(Tipo.Cliente))
 			{
 				if (dgvConsulta.RowCount > 0)
 				{
-					int nroCliente = Convert.ToInt32(dgvConsulta.CurrentRow.Cells[0].Value.ToString());
-					new FrmNuevoEditar(modo, Tipo.Cliente, nroCliente).ShowDialog();
+					
+					new FrmNuevoEditar(modo, Tipo.Cliente, nro).ShowDialog();
 					CargarGrilla(tipo);
 				}
 				else
@@ -271,7 +275,7 @@ namespace BancoPresentacion
 				if (dgvConsulta.RowCount > 0)
 				{
 					int nroCliente = 0;
-					int nroCuenta = Convert.ToInt32(dgvConsulta.CurrentRow.Cells[0].Value.ToString());
+					int nroCuenta = nro;
 					foreach (Cliente item in lst)
 					{
 						int i = 0;
@@ -298,7 +302,9 @@ namespace BancoPresentacion
 				if (dgvConsulta.RowCount > 0)
 				{
 					int nro = Convert.ToInt32(dgvConsulta.CurrentRow.Cells[0].Value.ToString());
-					
+					//funcionalidad eliminar
+
+					CargarGrilla(tipo);
 				}
 				else
 				{
@@ -310,7 +316,9 @@ namespace BancoPresentacion
 				if (dgvConsulta.RowCount > 0)
 				{
 					int nro = Convert.ToInt32(dgvConsulta.CurrentRow.Cells[0].Value.ToString());
-					
+					//funcionalidad eliminar
+
+					CargarGrilla(tipo);
 				}
 				else
 				{
