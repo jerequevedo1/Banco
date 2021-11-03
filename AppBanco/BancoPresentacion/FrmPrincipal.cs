@@ -84,10 +84,12 @@ namespace BancoPresentacion
 		}
 
 
-
 		private void btnSalir_Click(object sender, EventArgs e)
 		{
-
+			if (MessageBox.Show("¿Desea cerrar sesión?",
+			   "SALIR", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+			   MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+				this.Close();
 		}
 
 		private void FrmPrincipal_Load(object sender, EventArgs e)
