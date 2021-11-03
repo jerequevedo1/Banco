@@ -40,7 +40,6 @@ namespace BancoAccesoDatos.Implementaciones
                 lst.Add(new Parametro("@id_cliente", oCliente.IdCliente));
                 lst.Add(new Parametro("@id_tipo_cuenta", oCliente.Cuentas[i].TipoCuenta.IdTipoCuenta));
                 lst.Add(new Parametro("@tipo_moneda", oCliente.Cuentas[i].TipoMoneda));
-                
             }
            
             bool resultado = true;
