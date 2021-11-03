@@ -350,11 +350,5 @@ namespace BancoPresentacion
         {
 
         }
-
-        private void txtFiltro_TextChanged(object sender, EventArgs e)
-        {
-			//this.txtFiltro.AutoSize = false;
-			//this.txtFiltro.Size = new Size(280, 35);
-		}
     }
 }
