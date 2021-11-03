@@ -1,4 +1,4 @@
-﻿using BancoDominio.Entidades;
+﻿using BancoPresentacion.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
