@@ -25,6 +25,7 @@ namespace BancoPresentacion
 		private Cliente oCliente;
 		private Cuenta oCuenta;
 		private bool clienteExistente;
+		private int nro;
 		public FrmNuevoEditar(Accion modo, Tipo tipo,Cliente cliente)
 		{
 			InitializeComponent();
@@ -44,19 +45,20 @@ namespace BancoPresentacion
 		{
 			if (!txtCliente.Text.Equals(string.Empty))
 			{
-				int nroCliente = 0;
+				
 				List<Parametro> parametro = new List<Parametro>();
 				parametro.Add(new Parametro("@ClienteNombre", txtCliente.Text));
 
 				FrmConsultaCliente frm = new FrmConsultaCliente(parametro);
 
 				frm.ShowDialog();
-				nroCliente = frm.GetNroCliente();
+				nro = frm.GetNroCliente();
 				clienteExistente = frm.GetClienteExistente();
 
-				if (nroCliente!=0)
+				if (nro!=0)
 				{
-					CargarCliente(nroCliente);
+					CargarCliente(nro);
+					
 					txtCliente.Text = oCliente.NombreCompleto();
 					panelCliente.Enabled = false;
 					btnNuevo.Visible = true;
@@ -358,7 +360,7 @@ namespace BancoPresentacion
 					//	txtCliente.Focus();
 					//	return;
 					//}
-					if (!clienteExistente)
+					if (clienteExistente)
 					{
 						GuardarCuentaConCliente();
 					}
@@ -420,7 +422,9 @@ namespace BancoPresentacion
 			provincia.AgregarLocalidad(localidad);
 			Barrio barrio = new Barrio();
 			localidad.AgregarBarrio(barrio);
-			
+
+			oCliente = gestorCuenta.GetCuentaById(nro);
+
 			oCliente.NomCliente = txtCliNombre.Text;
 			oCliente.ApeCliente = txtCliApellido.Text;
 			oCliente.Dni = int.Parse(txtCliDNI.Text);
@@ -451,7 +455,7 @@ namespace BancoPresentacion
 				oCuenta.TipoMoneda = "D";
 			}
 
-			oCliente.AgregarCuenta(oCuenta);
+			//oCliente.AgregarCuenta(oCuenta);
 			
 			if (modo.Equals(Accion.Create))
 			{

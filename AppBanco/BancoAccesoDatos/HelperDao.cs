@@ -109,7 +109,6 @@ namespace BancoAccesoDatos
 
 			try
 			{
-				cmd.Parameters.Clear();
 				cnn.Open();
 				trans = cnn.BeginTransaction();
 
@@ -117,6 +116,7 @@ namespace BancoAccesoDatos
 				if (modo == Accion.Create)
 				{
 					cmd = new SqlCommand(spMaestro, cnn, trans);
+					cmd.Parameters.Clear();
 					cmd.CommandType = CommandType.StoredProcedure;
 					cmd.Parameters.AddWithValue("@nom_cliente", oCliente.NomCliente);
 					cmd.Parameters.AddWithValue("@ape_cliente", oCliente.ApeCliente);
