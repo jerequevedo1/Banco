@@ -377,5 +377,36 @@ namespace BancoPresentacion
         {
 
         }
-    }
+
+		private void dgvConsulta_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+		{
+			modo = Accion.Read;
+			int nro = int.Parse(dgvConsulta.CurrentRow.Cells["cId"].Value.ToString());
+
+			if (tipo.Equals(Tipo.Cliente))
+			{
+				oCliente = gestorCliente.GetClienteId(nro);
+				new FrmNuevoEditar(modo, Tipo.Cliente, oCliente).ShowDialog();
+			}
+
+			if (tipo.Equals(Tipo.Cuenta))
+			{
+				foreach (Cliente item in lst)
+				{
+					int i = 0;
+					if (item.Cuentas[i].IdCuenta.Equals(nro))
+					{
+						oCliente = item;
+					}
+					i++;
+				}
+				new FrmNuevoEditar(modo, Tipo.Cuenta, oCliente).ShowDialog();
+			}
+			if (tipo.Equals(Tipo.Transaccion))
+			{
+				//aca puede haber una futura ventana con detalles de la transaccion
+			}
+
+		}
+	}
 }
