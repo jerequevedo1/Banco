@@ -22,6 +22,7 @@ namespace BancoPresentacion
 		private Tipo tipo;
 		private Accion modo;
 		private ICuentaService gestorCuenta;
+		private ITransaccionService gestorTrans;
 		//private Form activeForm;
 		private List<Cliente> lst;
 		private Cliente oCliente;
@@ -31,6 +32,7 @@ namespace BancoPresentacion
 			InitializeComponent();
 			gestorCliente = new ServiceFactory().CrearClienteService(new DaoFactory());
 			gestorCuenta = new ServiceFactory().CrearCuentaService(new DaoFactory());
+			gestorTrans = new ServiceFactory().CrearTransaccionService(new DaoFactory());
 			this.tipo = tipo;
 			lst = new List<Cliente>();
 			oCliente= new Cliente();
@@ -74,6 +76,16 @@ namespace BancoPresentacion
 				CargarHeaderGrid(tipo);
 				CargarGrilla(tipo);
 			}
+			if (tipo.Equals(Tipo.Transaccion))
+			{
+				//CargarTiposFiltros(tipo);
+				//CargarFiltroFecha(tipo);
+				CargarHeaderGrid(tipo);
+				CargarGrilla(tipo);
+				btnNuevo.Visible = false;
+				btnEditar.Visible = false;
+				btnEliminar.Visible = false;
+			}
 
 		}
 
@@ -97,7 +109,15 @@ namespace BancoPresentacion
 				this.dgvConsulta.Columns[4].HeaderText = "CBU";
 				this.dgvConsulta.Columns[5].HeaderText = "ALIAS";
 				this.dgvConsulta.Columns.Add("cExtra", "SALDO");
-
+			}
+			if (tipo.Equals(Tipo.Transaccion))
+			{
+				this.dgvConsulta.Columns[0].HeaderText = "NRO TRANSACCION";
+				this.dgvConsulta.Columns[1].HeaderText = "FECHA";
+				this.dgvConsulta.Columns[2].HeaderText = "NRO CUENTA";
+				this.dgvConsulta.Columns[3].HeaderText = "CLIENTE";
+				this.dgvConsulta.Columns[4].HeaderText = "MONTO";
+				this.dgvConsulta.Columns[5].HeaderText = "DESCRIPCION";
 			}
 		}
 
@@ -125,6 +145,7 @@ namespace BancoPresentacion
 				dgvConsulta.Rows.Clear();
 				lst = gestorCuenta.GetCuentaByFilters(filtros);
 
+
 				foreach (Cliente item in lst)
 				{
 					int i = 0;
@@ -140,6 +161,21 @@ namespace BancoPresentacion
 						dgvConsulta.Rows.Add(new object[] { item.Cuentas[i].IdCuenta, item.NombreCompleto(), item.Dni, item.Cuentas[i].TipoCuenta.DescTipoCuenta, item.Cuentas[i].Cbu, item.Cuentas[i].Alias, "U$S " + item.Cuentas[i].Saldo });
 
 					}
+					i++;
+				}
+
+			}
+			if (tipo.Equals(Tipo.Transaccion))
+			{
+				dgvConsulta.Rows.Clear();
+				lst = gestorTrans.GetTransacciones(filtros);
+
+				foreach (Cliente item in lst)
+				{
+					int i = 0;
+
+					dgvConsulta.Rows.Add(new object[] { item.Cuentas[i].Ltransaccion[i].IdTransac, item.Cuentas[i].Ltransaccion[i].Fecha.ToShortDateString(), item.Cuentas[i].IdCuenta, item.NombreCompleto(), item.Cuentas[i].Ltransaccion[i].Monto, item.Cuentas[i].Ltransaccion[i].TipoTransac.Descripcion});
+
 					i++;
 				}
 

@@ -79,7 +79,7 @@ namespace BancoPresentacion
 
 		private void btnTransaccion_Click(object sender, EventArgs e)
 		{
-			tipo = Tipo.Cuenta;
+			tipo = Tipo.Transaccion;
 			OpenChildForm(new FrmConsulta(tipo), sender);
 		}
 

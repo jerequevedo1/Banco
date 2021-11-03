@@ -22,6 +22,10 @@ namespace BancoDominio.Entidades
             TipoTransac = tipoTransac;
 
         }
+        public Transaccion()
+		{
+            this.TipoTransac = new TipoTransaccion();
+		}
 
     }
 }

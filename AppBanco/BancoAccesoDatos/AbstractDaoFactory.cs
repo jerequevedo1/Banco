@@ -11,6 +11,7 @@ namespace BancoAccesoDatos
     {
         public abstract IClienteDao CrearClienteDao();
         public abstract ICuentaDao CrearCuentaDao();
+        public abstract ITransaccionDao CrearTransaccionDao();
 
     }
 }
