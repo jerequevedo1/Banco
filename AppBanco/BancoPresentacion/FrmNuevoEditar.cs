@@ -114,9 +114,9 @@ namespace BancoPresentacion
 					btnBuscar.Visible = false;
 					lblBuscarCliente.Visible = false;					
 					this.Size = new Size(782, 454);
-					lblNroCliente.Text = "Nro Cliente: " + 0;
-					lblNroCuenta.Text = "Nro Cuenta: " + 0;
-					
+					lblNroCliente.Text = "Nro Cliente: " + gestorCliente.ProximoID("PA_PROXIMO_CLIENTE");
+					lblNroCuenta.Text = "Nro Cuenta: " + gestorCuenta.ProximoID("PA_PROXIMA_CUENTA");
+
 
 				}
 
@@ -166,8 +166,8 @@ namespace BancoPresentacion
 				if (modo.Equals(Accion.Create))
 				{
 					this.Text = "Nueva Cuenta";
-					lblNroCliente.Text = "Nro Cliente: " + 0;
-					lblNroCuenta.Text = "Nro Cuenta: " + 0;
+					lblNroCliente.Text = "Nro Cliente: " + gestorCliente.ProximoID("PA_PROXIMO_CLIENTE");
+					lblNroCuenta.Text = "Nro Cuenta: " + gestorCuenta.ProximoID("PA_PROXIMA_CUENTA");
 				}
 				if (modo.Equals(Accion.Update))
 				{
@@ -430,7 +430,6 @@ namespace BancoPresentacion
 			oCliente.Provincia.lLocalidad[0].IdLocalidad= Convert.ToInt32(cboCliLocalidad.SelectedValue);
 			oCliente.Provincia.lLocalidad[0].lBarrio[0].IdBarrio= Convert.ToInt32(cboClienteBarrio.SelectedValue);
 
-			
 			oCuenta.Cbu = txtCbu.Text;
 			oCuenta.Alias = txtAlias.Text;
 			oCuenta.Saldo = Convert.ToInt32(txtDepositoInicial.Text);
