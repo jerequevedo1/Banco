@@ -1,4 +1,4 @@
-﻿using BancoDominio.Entidades;
+﻿using BancoPresentacion.Entidades;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static BancoDominio.Enumeraciones;
+using static BancoPresentacion.Enumeraciones;
 
 namespace BancoPresentacion
 {

@@ -1,5 +1,5 @@
-﻿using BancoDominio;
-using BancoDominio.Entidades;
+﻿using BancoPresentacion;
+using BancoPresentacion.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static BancoDominio.Enumeraciones;
+using static BancoPresentacion.Enumeraciones;
 
 namespace BancoAccesoDatos
 {
@@ -27,11 +27,11 @@ namespace BancoAccesoDatos
 
 
 			//ConnectionString = @"Data Source=DESKTOP-DUIDE87\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
-			ConnectionString = @"Data Source=NOTEBOOK-JERE\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
+			//ConnectionString = @"Data Source=NOTEBOOK-JERE\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
 
 			//ConnectionString = @"Data Source=HOME\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
 			//ConnectionString = @"Data Source=NOTEBOOK-JERE\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
-
+			ConnectionString = @"Data Source=DESKTOP-CBSH5U3\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
 
 			cnn = new SqlConnection(ConnectionString);
 

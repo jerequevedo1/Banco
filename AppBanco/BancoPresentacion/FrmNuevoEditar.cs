@@ -1,6 +1,6 @@
 ﻿using BancoAccesoDatos;
-using BancoDominio;
-using BancoDominio.Entidades;
+using BancoPresentacion;
+using BancoPresentacion.Entidades;
 using BancoServicios;
 using BancoServicios.Interfaces;
 using System;
@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static BancoDominio.Enumeraciones;
+using static BancoPresentacion.Enumeraciones;
 
 namespace BancoPresentacion
 {
@@ -447,5 +447,45 @@ namespace BancoPresentacion
 		{
 			this.Close();
 		}
-	}
+
+        private void txtCliNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+			Validar.SoloLetra(e);
+		}
+
+        private void txtCliApellido_KeyPress(object sender, KeyPressEventArgs e)
+        {
+			Validar.SoloLetra(e);
+		}
+
+        private void txtCliDNI_KeyPress(object sender, KeyPressEventArgs e)
+        {
+			Validar.SoloNumeros(e);
+		}
+
+        private void txtCliCuil_KeyPress(object sender, KeyPressEventArgs e)
+        {
+			Validar.SoloNumeros(e);
+		}
+
+        private void txtCliTel_KeyPress(object sender, KeyPressEventArgs e)
+        {
+			Validar.SoloNumeros(e);
+		}
+
+        private void txtCbu_KeyPress(object sender, KeyPressEventArgs e)
+        {
+			Validar.SoloNumeros(e);
+		}
+
+        private void txtLimiteDesc_KeyPress(object sender, KeyPressEventArgs e)
+        {
+			Validar.SoloTipoPlata(e);
+		}
+
+        private void txtDepositoInicial_KeyPress(object sender, KeyPressEventArgs e)
+        {
+			Validar.SoloTipoPlata(e);
+		}
+    }
 }

@@ -1,5 +1,5 @@
 ﻿using BancoAccesoDatos;
-using BancoDominio;
+using BancoPresentacion;
 using BancoPresentacion.Reportes;
 using Microsoft.Reporting.WinForms;
 using System;
