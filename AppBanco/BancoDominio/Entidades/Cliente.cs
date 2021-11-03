@@ -14,12 +14,12 @@ namespace BancoPresentacion.Entidades
         public int Dni { get; set; }
         public long Cuil { get; set; }
         public string Direccion { get; set; }
-        public Barrio Barrio { get; set; }
+        public Provincia Provincia { get; set; }
         public string Telefono { get; set; }
         public string Email { get; set; }
         public List<Cuenta> Cuentas { get; set; }
 
-        public Cliente(int idCliente, string nomCliente, string apeCliente, int dni, long cuil, string direccion, Barrio barrio, string telefono, string email)
+        public Cliente(int idCliente, string nomCliente, string apeCliente, int dni, long cuil, string direccion, Provincia provincia, string telefono, string email)
         {
             IdCliente = idCliente;
             NomCliente = nomCliente;
@@ -27,7 +27,7 @@ namespace BancoPresentacion.Entidades
             Dni = dni;
             Cuil = cuil;
             Direccion = direccion;
-            Barrio = barrio;
+            Provincia = provincia;
             Telefono = telefono;
             Email = email;
             Cuentas = new List<Cuenta>();
@@ -37,7 +37,7 @@ namespace BancoPresentacion.Entidades
         public Cliente()
         {
             Cuentas = new List<Cuenta>();
-            Barrio = new Barrio();
+            Provincia = new Provincia();
         }
 
      

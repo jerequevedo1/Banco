@@ -116,7 +116,10 @@ namespace BancoPresentacion
 					this.Size = new Size(782, 454);
 					lblNroCliente.Text = "Nro Cliente: " + 0;
 					lblNroCuenta.Text = "Nro Cuenta: " + 0;
+					
+
 				}
+
 				if (modo.Equals(Accion.Update))
 				{
 					this.Text = "Editar Cliente";
@@ -130,6 +133,10 @@ namespace BancoPresentacion
 					panelCuenta.Visible = false;
 					lblNroCuenta.Visible = false;
 					lblNroCliente.Text= "Nro Cliente: "+oCliente.IdCliente.ToString();
+
+					cboCliProvincia.SelectedValue = oCliente.Provincia.IdProvincia;
+					cboCliLocalidad.SelectedValue = oCliente.Provincia.lLocalidad[0].IdLocalidad;
+					cboClienteBarrio.SelectedValue = oCliente.Provincia.lLocalidad[0].lBarrio[0].IdBarrio;
 				}
 				if (modo.Equals(Accion.Read))
 				{
@@ -146,6 +153,10 @@ namespace BancoPresentacion
 					panelCliente.Enabled = false;
 					btnAceptar.Visible = false;
 					lblNroCliente.Text = "Nro Cliente: " + oCliente.IdCliente.ToString();
+					cboCliProvincia.SelectedValue = oCliente.Provincia.IdProvincia;
+					cboCliLocalidad.SelectedValue = oCliente.Provincia.lLocalidad[0].IdLocalidad;
+					cboClienteBarrio.SelectedValue = oCliente.Provincia.lLocalidad[0].lBarrio[0].IdBarrio;
+
 				}
 
 			}
@@ -228,7 +239,11 @@ namespace BancoPresentacion
 			txtCliApellido.Text = oClienteAux.ApeCliente;
 			txtCliDNI.Text = oClienteAux.Dni.ToString();
 			txtCliCuil.Text = oClienteAux.Cuil.ToString();
-			cboClienteBarrio.SelectedValue = oClienteAux.Barrio.IdBarrio;
+			//cboClienteBarrio.SelectedValue = oClienteAux.Barrio.IdBarrio;
+			cboCliProvincia.SelectedValue = oCliente.Provincia.IdProvincia;
+			cboCliLocalidad.SelectedValue = oCliente.Provincia.lLocalidad[0].IdLocalidad;
+			cboClienteBarrio.SelectedValue = oCliente.Provincia.lLocalidad[0].lBarrio[0].IdBarrio;
+
 			txtCliDire.Text = oClienteAux.Direccion;
 			txtCliTel.Text = oClienteAux.Telefono;
 			txtCliEmail.Text = oClienteAux.Email;
@@ -384,8 +399,13 @@ namespace BancoPresentacion
 			oCliente.Direccion = txtCliDire.Text;
 			oCliente.Telefono = txtCliTel.Text;
 			oCliente.Email = txtCliEmail.Text;
-			oCliente.Barrio = new Barrio();
-			oCliente.Barrio.IdBarrio = Convert.ToInt32(cboClienteBarrio.SelectedValue);
+			//oCliente.Barrio = new Barrio();
+			oCliente.Provincia.IdProvincia=Convert.ToInt32(cboCliProvincia.SelectedValue);
+			oCliente.Provincia.lLocalidad[0].IdLocalidad= Convert.ToInt32(cboCliLocalidad.SelectedValue);
+			oCliente.Provincia.lLocalidad[0].lBarrio[0].IdBarrio= Convert.ToInt32(cboClienteBarrio.SelectedValue);
+
+			//oCliente.Barrio.IdBarrio = Convert.ToInt32(cboClienteBarrio.SelectedValue);
+
 			
 			oCuenta.Cbu = txtCbu.Text;
 			oCuenta.Alias = txtAlias.Text;

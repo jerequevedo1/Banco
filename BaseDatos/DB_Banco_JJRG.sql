@@ -208,16 +208,22 @@ as
 			from Tipos_Cuentas
 			order by 2 asc 
 go
-create PROC SP_CONSULTAR_CLIENTE_POR_ID
-	@nro int	
+--SP
+CREATE PROC SP_CONSULTAR_CLIENTE_POR_ID
+@nro int
 AS
 BEGIN
-	SELECT *
-	FROM Clientes c, Cuentas cu, Barrios b
+
+	SELECT c.id_cliente, c.nom_cliente, c.ape_cliente, c.dni,  c.cuil,c.direccion,c.telefono,c.email,
+	c.id_barrio, c.fecha_baja, c.fecha_alta, l.id_localidad, p.id_provincia
+	FROM Clientes c, Cuentas cu, Barrios b, Localidades l, Provincias p
 	WHERE c.id_cliente = cu.id_cliente
 	AND c.id_barrio= b.id_barrio
+    AND b.id_localidad=	l.id_localidad
+	AND l.id_provincia=p.id_provincia
 	AND c.id_cliente= @nro;
 END
+
 go
 create proc PA_INSERTAR_CLIENTE
 @nom_cliente varchar(50),

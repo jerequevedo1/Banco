@@ -29,8 +29,8 @@ namespace BancoAccesoDatos
 			//ConnectionString = @"Data Source=DESKTOP-DUIDE87\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
 			//ConnectionString = @"Data Source=NOTEBOOK-JERE\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
 
-			//ConnectionString = @"Data Source=HOME\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
-			ConnectionString = @"Data Source=NOTEBOOK-JERE\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
+			ConnectionString = @"Data Source=HOME\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
+			//ConnectionString = @"Data Source=NOTEBOOK-JERE\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
 			//ConnectionString = @"Data Source=DESKTOP-CBSH5U3\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
 
 			cnn = new SqlConnection(ConnectionString);
@@ -183,7 +183,7 @@ namespace BancoAccesoDatos
 					cmd.Parameters.AddWithValue("@direccion", oCliente.Direccion);
 					cmd.Parameters.AddWithValue("@telefono", oCliente.Telefono);
 					cmd.Parameters.AddWithValue("@email", oCliente.Email);
-					cmd.Parameters.AddWithValue("@id_barrio", oCliente.Barrio.IdBarrio);
+					cmd.Parameters.AddWithValue("@id_barrio", oCliente.Provincia.lLocalidad[0].lBarrio[0].IdBarrio);
 					SqlParameter parameter = new SqlParameter("@id_cliente", SqlDbType.Int);
 					parameter.Direction = ParameterDirection.Output;
 					cmd.Parameters.Add(parameter);

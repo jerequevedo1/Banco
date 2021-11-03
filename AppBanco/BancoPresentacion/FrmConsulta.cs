@@ -36,7 +36,7 @@ namespace BancoPresentacion
 			this.tipo = tipo;
 			lst = new List<Cliente>();
 			oCliente= new Cliente();
-			oCliente.Barrio = new Barrio();
+			//oCliente.Barrio = new Barrio();
 		}
 
 		private void btnNuevo_Click(object sender, EventArgs e)
