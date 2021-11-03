@@ -311,9 +311,22 @@ namespace BancoPresentacion
 				if (dgvConsulta.RowCount > 0)
 				{
 					int nro = Convert.ToInt32(dgvConsulta.CurrentRow.Cells[0].Value.ToString());
-					//funcionalidad eliminar
 
-					CargarGrilla(tipo);
+					if (MessageBox.Show("Seguro que desea dar de baja este cliente?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+					{
+
+						Parametro p = new Parametro("@nro_cli", nro);
+						bool respuesta = gestorCliente.ActualizarSQL("PA_DELETE_CLIENTE", p);
+
+						if (respuesta)
+						{
+							MessageBox.Show("Cliente en baja!", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+							dgvConsulta.Rows.Clear();
+						
+						}
+
+						CargarGrilla(tipo);
+					}
 				}
 				else
 				{
@@ -325,9 +338,21 @@ namespace BancoPresentacion
 				if (dgvConsulta.RowCount > 0)
 				{
 					int nro = Convert.ToInt32(dgvConsulta.CurrentRow.Cells[0].Value.ToString());
-					//funcionalidad eliminar
+					if (MessageBox.Show("Seguro que desea dar de baja esta cuenta?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+					{
 
-					CargarGrilla(tipo);
+						Parametro p = new Parametro("@nro_cuenta", nro);
+						bool respuesta = gestorCliente.ActualizarSQL("PA_DELETE_CUENTA", p);
+
+						if (respuesta)
+						{
+							MessageBox.Show("Cuenta en baja!", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+							dgvConsulta.Rows.Clear();
+
+						}
+
+						CargarGrilla(tipo);
+					}
 				}
 				else
 				{

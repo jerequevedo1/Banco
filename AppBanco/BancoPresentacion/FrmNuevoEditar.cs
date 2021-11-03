@@ -103,8 +103,6 @@ namespace BancoPresentacion
 		{
 			CargarTipoCuenta();
 			CargarTipoMoneda();
-			CargarBarrios();
-			CargarLocalidades();
 			CargarProvincias();
 
 			if (tipo.Equals(Tipo.Cliente))
@@ -196,16 +194,21 @@ namespace BancoPresentacion
 			txtCliEmail.Text = oClienteAux.Email;
 
 		}
-		private void CargarLocalidades()
+		private void CargarLocalidades(int id_prov)
 		{
 			List<Localidad> lst = new List<Localidad>();
-			lst = gestorCliente.GetLocalidades();
+			List<Parametro> parametro = new List<Parametro>();
 
-			cboCliLocalidad.Items.Clear();
+			parametro.Add(new Parametro("@id_prov", id_prov));
+
+			lst = gestorCliente.GetLocalidades(parametro);
+
+			//cboCliLocalidad.Items.Clear();
 			cboCliLocalidad.DataSource = lst;
 			cboCliLocalidad.ValueMember = "IdLocalidad";
 			cboCliLocalidad.DisplayMember = "NomLocalidad";
-			cboCliLocalidad.SelectedIndex = 0;
+			//cboCliLocalidad.SelectedIndex = 0;
+
 		}
 
 		private void CargarProvincias()
@@ -218,19 +221,25 @@ namespace BancoPresentacion
 			cboCliProvincia.ValueMember = "IdProvincia";
 			cboCliProvincia.DisplayMember = "NomProvincia";
 			cboCliProvincia.SelectedIndex = 0;
+
 		}
 
 
-		private void CargarBarrios()
+		private void CargarBarrios(int id_loc)
 		{
 			List<Barrio> lstB = new List<Barrio>();
-			lstB = gestorCliente.GetBarrios();
+			List<Parametro> parametro = new List<Parametro>();
 
-			cboClienteBarrio.Items.Clear();
+			parametro.Add(new Parametro("@id_loc", id_loc));
+
+			lstB = gestorCliente.GetBarrios(parametro);
+
+			//cboClienteBarrio.Items.Clear();
 			cboClienteBarrio.DataSource = lstB;
 			cboClienteBarrio.ValueMember = "IdBarrio";
 			cboClienteBarrio.DisplayMember = "NomBarrio";
-			cboClienteBarrio.SelectedIndex = 0;
+			//cboClienteBarrio.SelectedIndex = 0;
+
 		}
 		private void CargarTipoMoneda()
 		{ 
@@ -446,6 +455,30 @@ namespace BancoPresentacion
 		private void btnCancelar_Click(object sender, EventArgs e)
 		{
 			this.Close();
+		}
+
+        private void cboCliProvincia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+			if (cboCliProvincia.SelectedValue.ToString() != null)
+			{
+				int id_prov = Convert.ToInt32(cboCliProvincia.SelectedValue.GetHashCode());
+
+				CargarLocalidades(id_prov);
+
+			}
+
+		}
+
+        private void cboCliLocalidad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+			if (cboCliLocalidad.SelectedValue.ToString() != null)
+			{
+				int id_loc = Convert.ToInt32(cboCliLocalidad.SelectedValue.GetHashCode());
+
+				CargarBarrios(id_loc);
+
+			}
+
 		}
 	}
 }
