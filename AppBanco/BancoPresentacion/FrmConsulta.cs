@@ -24,7 +24,7 @@ namespace BancoPresentacion
 		private ICuentaService gestorCuenta;
 		private ITransaccionService gestorTrans;
 		//private Form activeForm;
-		private List<Cliente> lst;
+		//private List<Cliente> lst;
 		private Cliente oCliente;
 
 		public FrmConsulta(Tipo tipo)
@@ -34,7 +34,7 @@ namespace BancoPresentacion
 			gestorCuenta = new ServiceFactory().CrearCuentaService(new DaoFactory());
 			gestorTrans = new ServiceFactory().CrearTransaccionService(new DaoFactory());
 			this.tipo = tipo;
-			lst = new List<Cliente>();
+			//lst = new List<Cliente>();
 			oCliente= new Cliente();
 			//oCliente.Barrio = new Barrio();
 		}
@@ -46,15 +46,17 @@ namespace BancoPresentacion
 			if (tipo.Equals(Tipo.Cliente))
 			{
 				new FrmNuevoEditar(modo, Tipo.Cliente, oCliente).ShowDialog();
-				
-				
+				//CargarGrilla(tipo);
+				btnConsultar_Click(null,null);
+
 			}
 			if (tipo.Equals(Tipo.Cuenta))
 			{
 				new FrmNuevoEditar(modo, Tipo.Cuenta, oCliente).ShowDialog();
-				
+				//CargarGrilla(tipo);
+				btnConsultar_Click(null, null);
 			}
-			CargarGrilla(tipo);
+			
 		}
 		private void btnConsultar_Click(object sender, EventArgs e)
 		{
@@ -130,7 +132,7 @@ namespace BancoPresentacion
 
 			if (tipo.Equals(Tipo.Cliente))
 			{
-				//List<Cliente> lst = new List<Cliente>();
+				List<Cliente> lst = new List<Cliente>();
 
 				dgvConsulta.Rows.Clear();
 				lst = gestorCliente.GetClienteByFilters(filtros);
@@ -143,7 +145,7 @@ namespace BancoPresentacion
 			}
 			if (tipo.Equals(Tipo.Cuenta))
 			{
-				//List<Cliente> lst = new List<Cliente>();
+				List<Cliente> lst = new List<Cliente>();
 
 				dgvConsulta.Rows.Clear();
 				lst = gestorCuenta.GetCuentaByFilters(filtros);
@@ -169,6 +171,8 @@ namespace BancoPresentacion
 			}
 			if (tipo.Equals(Tipo.Transaccion))
 			{
+				List<Cliente> lst = new List<Cliente>();
+
 				dgvConsulta.Rows.Clear();
 				lst = gestorTrans.GetTransacciones(filtros);
 

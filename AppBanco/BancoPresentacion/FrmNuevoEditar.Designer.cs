@@ -103,6 +103,7 @@ namespace BancoPresentacion
 			this.txtCbu.Name = "txtCbu";
 			this.txtCbu.Size = new System.Drawing.Size(144, 23);
 			this.txtCbu.TabIndex = 26;
+			this.txtCbu.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCbu_KeyPress);
 			// 
 			// txtAlias
 			// 
@@ -129,6 +130,7 @@ namespace BancoPresentacion
 			this.txtDepositoInicial.Name = "txtDepositoInicial";
 			this.txtDepositoInicial.Size = new System.Drawing.Size(144, 23);
 			this.txtDepositoInicial.TabIndex = 34;
+			this.txtDepositoInicial.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDepositoInicial_KeyPress);
 			// 
 			// lblDepositoInicial
 			// 
@@ -165,6 +167,7 @@ namespace BancoPresentacion
 			this.txtLimiteDesc.Name = "txtLimiteDesc";
 			this.txtLimiteDesc.Size = new System.Drawing.Size(144, 23);
 			this.txtLimiteDesc.TabIndex = 28;
+			this.txtLimiteDesc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtLimiteDesc_KeyPress);
 			// 
 			// lblLimiteDesc
 			// 
@@ -345,6 +348,7 @@ namespace BancoPresentacion
 			this.txtCliTel.Name = "txtCliTel";
 			this.txtCliTel.Size = new System.Drawing.Size(144, 23);
 			this.txtCliTel.TabIndex = 22;
+			this.txtCliTel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCliTel_KeyPress);
 			// 
 			// lblClienteTel
 			// 
@@ -402,6 +406,7 @@ namespace BancoPresentacion
 			this.txtCliApellido.Name = "txtCliApellido";
 			this.txtCliApellido.Size = new System.Drawing.Size(144, 23);
 			this.txtCliApellido.TabIndex = 8;
+			this.txtCliApellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCliApellido_KeyPress);
 			// 
 			// lblCliApellido
 			// 
@@ -420,6 +425,7 @@ namespace BancoPresentacion
 			this.txtCliCuil.Name = "txtCliCuil";
 			this.txtCliCuil.Size = new System.Drawing.Size(144, 23);
 			this.txtCliCuil.TabIndex = 12;
+			this.txtCliCuil.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCliCuil_KeyPress);
 			// 
 			// lblClienteCuil
 			// 
@@ -438,6 +444,7 @@ namespace BancoPresentacion
 			this.txtCliDNI.Name = "txtCliDNI";
 			this.txtCliDNI.Size = new System.Drawing.Size(144, 23);
 			this.txtCliDNI.TabIndex = 10;
+			this.txtCliDNI.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCliDNI_KeyPress);
 			// 
 			// lblCliDNI
 			// 
@@ -456,6 +463,7 @@ namespace BancoPresentacion
 			this.txtCliNombre.Name = "txtCliNombre";
 			this.txtCliNombre.Size = new System.Drawing.Size(144, 23);
 			this.txtCliNombre.TabIndex = 6;
+			this.txtCliNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCliNombre_KeyPress);
 			// 
 			// lblCliNombre
 			// 

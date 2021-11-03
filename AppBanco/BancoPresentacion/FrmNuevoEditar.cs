@@ -195,6 +195,9 @@ namespace BancoPresentacion
 					lblNroCliente.Text = "Nro Cliente: " + oCliente.IdCliente.ToString();
 					lblNroCuenta.Text = "Nro Cuenta: " + oCliente.Cuentas[0].IdCuenta.ToString();
 					cboCliProvincia.SelectedValue = oCliente.Provincia.IdProvincia;
+					cboTipoCuenta.Enabled = false;
+					cboTipoMoneda.Enabled = false;
+					txtCbu.Enabled = false;
 				}
 				if (modo.Equals(Accion.Read))
 				{
