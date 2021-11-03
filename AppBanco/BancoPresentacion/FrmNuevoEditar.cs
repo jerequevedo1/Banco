@@ -116,6 +116,8 @@ namespace BancoPresentacion
 					btnBuscar.Visible = false;
 					lblBuscarCliente.Visible = false;					
 					this.Size = new Size(782, 454);
+					lblNroCliente.Text = "Nro Cliente: " + 0;
+					lblNroCuenta.Text = "Nro Cuenta: " + 0;
 				}
 				if (modo.Equals(Accion.Update))
 				{
@@ -129,6 +131,7 @@ namespace BancoPresentacion
 					lblNroCliente.Location = new Point(19, 20);
 					panelCuenta.Visible = false;
 					lblNroCuenta.Visible = false;
+					lblNroCliente.Text= "Nro Cliente: "+oCliente.IdCliente.ToString();
 				}
 				if (modo.Equals(Accion.Read))
 				{
@@ -144,6 +147,7 @@ namespace BancoPresentacion
 					lblNroCuenta.Visible = false;
 					panelCliente.Enabled = false;
 					btnAceptar.Visible = false;
+					lblNroCliente.Text = "Nro Cliente: " + oCliente.IdCliente.ToString();
 				}
 
 			}
@@ -152,6 +156,8 @@ namespace BancoPresentacion
 				if (modo.Equals(Accion.Create))
 				{
 					this.Text = "Nueva Cuenta";
+					lblNroCliente.Text = "Nro Cliente: " + 0;
+					lblNroCuenta.Text = "Nro Cuenta: " + 0;
 				}
 				if (modo.Equals(Accion.Update))
 				{
@@ -163,6 +169,8 @@ namespace BancoPresentacion
 					lblBuscarCliente.Visible = false;
 					panelCliente.Enabled = false;
 					this.Size = new Size(782, 454);
+					lblNroCliente.Text = "Nro Cliente: " + oCliente.IdCliente.ToString();
+					lblNroCuenta.Text = "Nro Cuenta: " + oCliente.Cuentas[0].IdCuenta.ToString();
 				}
 				if (modo.Equals(Accion.Read))
 				{
@@ -176,6 +184,8 @@ namespace BancoPresentacion
 					panelCuenta.Enabled = false;
 					this.Size = new Size(782, 454);
 					btnAceptar.Visible = false;
+					lblNroCliente.Text = "Nro Cliente: " + oCliente.IdCliente.ToString();
+					lblNroCuenta.Text = "Nro Cuenta: " + oCliente.Cuentas[0].IdCuenta.ToString();
 				}
 
 			}
