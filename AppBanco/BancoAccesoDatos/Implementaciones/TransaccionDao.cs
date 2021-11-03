@@ -20,8 +20,8 @@ namespace BancoAccesoDatos.Implementaciones
             try
             {
                 //cuando tenga parametros usamos ese metodo
-                // DataTable tabla = HelperDao.ObtenerInstancia().ConsultaSQLParametros("PA_CONSULTA_TRANSACCIONES", parametros);
-                DataTable tabla = HelperDao.ObtenerInstancia().ConsultaSQL("PA_CONSULTA_TRANSACCIONES");
+                DataTable tabla = HelperDao.ObtenerInstancia().ConsultaSQLParametros("PA_CONSULTA_TRANSACCIONES", parametros);
+                //DataTable tabla = HelperDao.ObtenerInstancia().ConsultaSQL("PA_CONSULTA_TRANSACCIONES");
 
                 foreach (DataRow row in tabla.Rows)
                 {

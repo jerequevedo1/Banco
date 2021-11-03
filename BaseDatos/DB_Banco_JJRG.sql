@@ -373,12 +373,29 @@ AS
 		join Provincias p on p.id_provincia=l.id_provincia
 	where c.id_cuenta=@nro
 GO
-CREATE proc PA_CONSULTA_TRANSACCIONES
+create proc PA_CONSULTA_TRANSACCIONES
+@nroTransaccion int=null,
+@nom_cliente varchar(25)=null,
+@fechaDesde datetime=null,
+@fechaHasta datetime=null,
+@tipo int
 AS
+set dateformat dmy
+if @tipo=0
 SELECT id_transaccion,fecha,c.id_cuenta,ape_cliente,nom_cliente, monto,tt.descripcion
 FROM Transacciones t join Tipos_Transacciones tt on t.id_tipo_transac=tt.id_tipo_transac
 	join Cuentas c on c.id_cuenta=t.id_cuenta
 	join Clientes cl on  cl.id_cliente=c.id_cliente
+WHERE (@nroTransaccion is null OR id_transaccion=@nroTransaccion)
+		AND((@fechaDesde is null and @fechaHasta is  null) OR (c.fecha_alta between @fechaDesde and @fechaHasta))
+if @tipo=1
+SELECT id_transaccion,fecha,c.id_cuenta,ape_cliente,nom_cliente, monto,tt.descripcion
+FROM Transacciones t join Tipos_Transacciones tt on t.id_tipo_transac=tt.id_tipo_transac
+	join Cuentas c on c.id_cuenta=t.id_cuenta
+	join Clientes cl on  cl.id_cliente=c.id_cliente
+WHERE (@nom_cliente is null OR (nom_cliente like '%' + @nom_cliente + '%')
+		OR(ape_cliente like '%' + @nom_cliente + '%'))
+		AND((@fechaDesde is null and @fechaHasta is  null) OR (c.fecha_alta between @fechaDesde and @fechaHasta))
 GO
 CREATE PROC PA_PROXIMA_CUENTA
 @next int OUTPUT

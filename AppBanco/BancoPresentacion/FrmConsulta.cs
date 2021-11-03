@@ -78,13 +78,14 @@ namespace BancoPresentacion
 			}
 			if (tipo.Equals(Tipo.Transaccion))
 			{
-				//CargarTiposFiltros(tipo);
-				//CargarFiltroFecha(tipo);
+				CargarTiposFiltros(tipo);
+				CargarFiltroFecha(tipo);
 				CargarHeaderGrid(tipo);
 				CargarGrilla(tipo);
 				btnNuevo.Visible = false;
 				btnEditar.Visible = false;
 				btnEliminar.Visible = false;
+				chkBaja.Visible = false;
 			}
 
 		}
@@ -226,12 +227,25 @@ namespace BancoPresentacion
 							break;
 					}
 				}
+				if (tipo.Equals(Tipo.Transaccion))
+				{
+					if (cboFiltro.SelectedIndex == 0)
+					{
+						filtros.Add(new Parametro("@nroTransaccion", filtroTexto));
+					}
+					else
+					{
+						filtros.Add(new Parametro("@nom_cliente", filtroTexto));
+					}
+				}
+
 			}
 
 
 			if (chkBaja.Checked) conBaja = "S";
 
-			filtros.Add(new Parametro("@activo", conBaja));
+			if(!tipo.Equals(Tipo.Transaccion)) filtros.Add(new Parametro("@activo", conBaja));
+
 
 			filtros.Add(new Parametro("@tipo", cboFiltro.SelectedIndex));
 
@@ -261,6 +275,13 @@ namespace BancoPresentacion
 			if (tipo.Equals(Tipo.Cuenta))
 			{
 				string[] tiposFiltros = new string[] { "Numero de Cuenta", "Nombre Cliente", "Cbu", "Alias", "Inactivos" };
+
+				cboFiltro.Items.Clear();
+				cboFiltro.Items.AddRange(tiposFiltros);
+			}
+			if (tipo.Equals(Tipo.Transaccion))
+			{
+				string[] tiposFiltros = new string[] { "Numero de Transaccion","Nombre Cliente"};
 
 				cboFiltro.Items.Clear();
 				cboFiltro.Items.AddRange(tiposFiltros);
