@@ -242,7 +242,7 @@ create proc PA_INSERTAR_CUENTA
 @id_tipo_cuenta int,
 @tipo_moneda char
 as
-	insert into Cuentas values(@cbu,@alias,@saldo_actual,'',@limite_descubierto,@id_cliente,@id_tipo_cuenta,@tipo_moneda,getdate(),null)
+	insert into Cuentas values(@cbu,@alias,@saldo_actual,'',0,@limite_descubierto,@id_cliente,@id_tipo_cuenta,@tipo_moneda,getdate(),null)
 go
 create proc PA_EDITAR_CLIENTE
       @id_cliente int,
