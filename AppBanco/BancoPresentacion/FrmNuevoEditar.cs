@@ -520,8 +520,6 @@ namespace BancoPresentacion
 			}
 
 		}
-	}
-
         private void txtCliNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
 			Validar.SoloLetra(e);
