@@ -1,5 +1,5 @@
-﻿using BancoDominio.Dto;
-using BancoDominio.Entidades;
+﻿using BancoPresentacion.Dto;
+using BancoPresentacion.Entidades;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

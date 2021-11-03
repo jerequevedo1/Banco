@@ -1,6 +1,6 @@
 ﻿using BancoAccesoDatos;
-using BancoDominio;
-using BancoDominio.Entidades;
+using BancoPresentacion;
+using BancoPresentacion.Entidades;
 using BancoServicios;
 using BancoServicios.Interfaces;
 using System;
@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static BancoDominio.Enumeraciones;
+using static BancoPresentacion.Enumeraciones;
 
 namespace BancoPresentacion
 {
@@ -347,9 +347,22 @@ namespace BancoPresentacion
 				if (dgvConsulta.RowCount > 0)
 				{
 					int nro = Convert.ToInt32(dgvConsulta.CurrentRow.Cells[0].Value.ToString());
-					//funcionalidad eliminar
 
-					CargarGrilla(tipo);
+					if (MessageBox.Show("Seguro que desea dar de baja este cliente?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+					{
+
+						Parametro p = new Parametro("@nro_cli", nro);
+						bool respuesta = gestorCliente.ActualizarSQL("PA_DELETE_CLIENTE", p);
+
+						if (respuesta)
+						{
+							MessageBox.Show("Cliente en baja!", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+							dgvConsulta.Rows.Clear();
+						
+						}
+
+						CargarGrilla(tipo);
+					}
 				}
 				else
 				{
@@ -361,9 +374,21 @@ namespace BancoPresentacion
 				if (dgvConsulta.RowCount > 0)
 				{
 					int nro = Convert.ToInt32(dgvConsulta.CurrentRow.Cells[0].Value.ToString());
-					//funcionalidad eliminar
+					if (MessageBox.Show("Seguro que desea dar de baja esta cuenta?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+					{
 
-					CargarGrilla(tipo);
+						Parametro p = new Parametro("@nro_cuenta", nro);
+						bool respuesta = gestorCliente.ActualizarSQL("PA_DELETE_CUENTA", p);
+
+						if (respuesta)
+						{
+							MessageBox.Show("Cuenta en baja!", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+							dgvConsulta.Rows.Clear();
+
+						}
+
+						CargarGrilla(tipo);
+					}
 				}
 				else
 				{
@@ -377,5 +402,36 @@ namespace BancoPresentacion
         {
 
         }
-    }
+
+		private void dgvConsulta_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+		{
+			modo = Accion.Read;
+			int nro = int.Parse(dgvConsulta.CurrentRow.Cells["cId"].Value.ToString());
+
+			if (tipo.Equals(Tipo.Cliente))
+			{
+				oCliente = gestorCliente.GetClienteId(nro);
+				new FrmNuevoEditar(modo, Tipo.Cliente, oCliente).ShowDialog();
+			}
+
+			if (tipo.Equals(Tipo.Cuenta))
+			{
+				foreach (Cliente item in lst)
+				{
+					int i = 0;
+					if (item.Cuentas[i].IdCuenta.Equals(nro))
+					{
+						oCliente = item;
+					}
+					i++;
+				}
+				new FrmNuevoEditar(modo, Tipo.Cuenta, oCliente).ShowDialog();
+			}
+			if (tipo.Equals(Tipo.Transaccion))
+			{
+				//aca puede haber una futura ventana con detalles de la transaccion
+			}
+
+		}
+	}
 }

@@ -273,28 +273,13 @@ BEGIN
 	SELECT * FROM Provincias order by 2 asc;
 END
 go
-create PROCEDURE SP_CONSULTAR_LOCALIDADES
-AS
-BEGIN
-	
-	SELECT * FROM Localidades order by 2 asc;
-END
-go
-create PROCEDURE SP_CONSULTAR_BARRIOS
-AS
-BEGIN
-	
-	SELECT * FROM BARRIOS order by 2 asc;
-END
-go
-ALTER PROC [dbo].[PA_REPORTE_CUENTAS_CLIENTE]  
- @saldoMinimo decimal(18)
-as  
-  SELECT 
-  Clientes.id_cliente, Clientes.nom_cliente, Clientes.ape_cliente, Cuentas.id_cuenta, Cuentas.cbu, Cuentas.saldo_actual  
-    FROM   Clientes 
-	INNER JOIN  Cuentas ON Clientes.id_cliente = Cuentas.id_cliente   
-	where saldo_actual >= @saldoMinimo
+
+CREATE PROC PA_REPORTE_CUENTAS_CLIENTE
+
+as
+		SELECT Clientes.id_cliente, Clientes.nom_cliente, Clientes.ape_cliente, Cuentas.id_cuenta, Cuentas.cbu, Cuentas.saldo_actual, Cuentas.id_cliente AS Expr1
+                FROM   Clientes INNER JOIN
+                            	Cuentas ON Clientes.id_cliente = Cuentas.id_cliente 
 go
 create PROC PA_EDITAR_CUENTA
 @id_cuenta int,
@@ -315,10 +300,41 @@ as
 	id_tipo_cuenta=@id_tipo_cuenta,
 	tipo_moneda=@tipo_moneda
 	where id_cuenta=@id_cuenta
+
+
 go
-create proc PA_CONSULTA_TRANSACCIONES
+     --sp
+Create PROC PA_DELETE_CUENTA
+@nro_cuenta int
 AS
-SELECT id_transaccion,fecha,c.id_cuenta,ape_cliente,nom_cliente, monto,tt.descripcion
-FROM Transacciones t join Tipos_Transacciones tt on t.id_tipo_transac=tt.id_tipo_transac
-	join Cuentas c on c.id_cuenta=t.id_cuenta
-	join Clientes cl on  cl.id_cliente=c.id_cliente
+BEGIN
+	UPDATE CUENTAS SET fecha_baja = GETDATE()
+	WHERE id_cuenta = @nro_cuenta;	
+END
+
+go
+create PROC PA_DELETE_CLIENTE
+@nro_cli int
+AS
+BEGIN
+	UPDATE Clientes SET fecha_baja = GETDATE()
+	WHERE id_cliente = @nro_cli;
+END
+
+GO
+
+CREATE PROCEDURE SP_CONSULTAR_LOCALIDADES
+@id_prov int
+AS
+BEGIN
+	SELECT * FROM Localidades  where id_provincia=@id_prov order by 2 asc;
+END
+
+GO
+CREATE  PROCEDURE SP_CONSULTAR_BARRIOS
+@id_loc int
+AS
+BEGIN
+	
+	SELECT * FROM BARRIOS where id_localidad=@id_loc order by 2 asc;
+END

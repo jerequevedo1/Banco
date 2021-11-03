@@ -1,6 +1,6 @@
 ﻿using BancoAccesoDatos.Interfaces;
-using BancoDominio;
-using BancoDominio.Entidades;
+using BancoPresentacion;
+using BancoPresentacion.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -125,11 +125,11 @@ namespace BancoAccesoDatos.Implementaciones
             return lst;
         }
 
-        public List<Barrio> GetBarrios()
+        public List<Barrio> GetBarrios(List<Parametro> parametro)
         {
             List<Barrio> lst = new List<Barrio>();
 
-            DataTable table = HelperDao.ObtenerInstancia().ConsultaSQL("SP_CONSULTAR_BARRIOS");
+            DataTable table = HelperDao.ObtenerInstancia().ConsultaSQLParametros("SP_CONSULTAR_BARRIOS", parametro);
 
             foreach (DataRow row in table.Rows)
             {
@@ -141,13 +141,16 @@ namespace BancoAccesoDatos.Implementaciones
 
             return lst;
 
+
         }
 
-        public List<Localidad> GetLocalidades()
+        public List<Localidad> GetLocalidades(List<Parametro> parametro)
         {
             List<Localidad> lst = new List<Localidad>();
 
-            DataTable table = HelperDao.ObtenerInstancia().ConsultaSQL("SP_CONSULTAR_LOCALIDADES");
+            DataTable table = HelperDao.ObtenerInstancia().ConsultaSQLParametros("SP_CONSULTAR_LOCALIDADES", parametro);
+
+
 
             foreach (DataRow row in table.Rows)
             {
@@ -158,13 +161,18 @@ namespace BancoAccesoDatos.Implementaciones
             }
 
             return lst;
-        }
 
+        }
+        
         public List<Provincia> GetProvincias()
         {
             List<Provincia> lst = new List<Provincia>();
 
             DataTable table = HelperDao.ObtenerInstancia().ConsultaSQL("SP_CONSULTAR_PROVINCIAS");
+            
+            DataRow fila = table.NewRow();
+            fila["nom_provincia"] = "Selecciona provincia";
+            table.Rows.InsertAt(fila, 0);
 
             foreach (DataRow row in table.Rows)
             {
@@ -191,6 +199,24 @@ namespace BancoAccesoDatos.Implementaciones
             }
 
             return estado;
+
+        }
+
+        public bool ActualizarSQL(string nombreSP, Parametro p)
+        {
+            bool estado = true;
+
+            try
+            {
+                estado = HelperDao.ObtenerInstancia().ActualizarSQL(nombreSP, p);
+            }
+            catch (Exception)
+            {
+                estado = false;
+            }
+
+            return estado;
+
 
         }
     }

@@ -222,97 +222,98 @@ namespace BancoPresentacion
             this.dgvConsulta.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvConsulta.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvConsulta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvConsulta.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+			this.dgvConsulta.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+			this.dgvConsulta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dgvConsulta.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cId,
             this.cCliente,
             this.cCbu,
             this.cTipoCuenta,
             this.cSaldo,
             this.cUltimoMov});
-            this.dgvConsulta.Location = new System.Drawing.Point(12, 164);
-            this.dgvConsulta.Name = "dgvConsulta";
-            this.dgvConsulta.ReadOnly = true;
-            this.dgvConsulta.RowTemplate.Height = 25;
-            this.dgvConsulta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvConsulta.Size = new System.Drawing.Size(724, 225);
-            this.dgvConsulta.TabIndex = 11;
-            this.dgvConsulta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConsulta_CellContentClick);
-            // 
-            // cId
-            // 
-            this.cId.HeaderText = "Id";
-            this.cId.Name = "cId";
-            this.cId.ReadOnly = true;
-            // 
-            // cCliente
-            // 
-            this.cCliente.HeaderText = "Cliente";
-            this.cCliente.Name = "cCliente";
-            this.cCliente.ReadOnly = true;
-            // 
-            // cCbu
-            // 
-            this.cCbu.HeaderText = "CBU";
-            this.cCbu.Name = "cCbu";
-            this.cCbu.ReadOnly = true;
-            // 
-            // cTipoCuenta
-            // 
-            this.cTipoCuenta.HeaderText = "Tipo de Cuenta";
-            this.cTipoCuenta.Name = "cTipoCuenta";
-            this.cTipoCuenta.ReadOnly = true;
-            // 
-            // cSaldo
-            // 
-            this.cSaldo.HeaderText = "Saldo";
-            this.cSaldo.Name = "cSaldo";
-            this.cSaldo.ReadOnly = true;
-            // 
-            // cUltimoMov
-            // 
-            this.cUltimoMov.HeaderText = "Ultimo Mov";
-            this.cUltimoMov.Name = "cUltimoMov";
-            this.cUltimoMov.ReadOnly = true;
-            // 
-            // chkBaja
-            // 
-            this.chkBaja.AutoSize = true;
-            this.chkBaja.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.chkBaja.Location = new System.Drawing.Point(648, 139);
-            this.chkBaja.Name = "chkBaja";
-            this.chkBaja.Size = new System.Drawing.Size(91, 21);
-            this.chkBaja.TabIndex = 10;
-            this.chkBaja.Text = "Incluir Baja";
-            this.chkBaja.UseVisualStyleBackColor = true;
-            // 
-            // FrmConsulta
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(748, 442);
-            this.Controls.Add(this.chkBaja);
-            this.Controls.Add(this.btnEliminar);
-            this.Controls.Add(this.btnNuevo);
-            this.Controls.Add(this.dgvConsulta);
-            this.Controls.Add(this.btnEditar);
-            this.Controls.Add(this.txtFiltro);
-            this.Controls.Add(this.lblFechaDesde);
-            this.Controls.Add(this.cboFiltro);
-            this.Controls.Add(this.cboFiltroFecha);
-            this.Controls.Add(this.dtpFechaDesde);
-            this.Controls.Add(this.lblFiltro);
-            this.Controls.Add(this.lblFiltroFecha);
-            this.Controls.Add(this.lblFechaHasta);
-            this.Controls.Add(this.dtpFechaHasta);
-            this.Controls.Add(this.btnConsultar);
-            this.Name = "FrmConsulta";
-            this.Text = "FrmConsulta";
-            this.Load += new System.EventHandler(this.FrmConsulta_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvConsulta)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+			this.dgvConsulta.Location = new System.Drawing.Point(12, 164);
+			this.dgvConsulta.Name = "dgvConsulta";
+			this.dgvConsulta.ReadOnly = true;
+			this.dgvConsulta.RowTemplate.Height = 25;
+			this.dgvConsulta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+			this.dgvConsulta.Size = new System.Drawing.Size(724, 225);
+			this.dgvConsulta.TabIndex = 11;
+			this.dgvConsulta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConsulta_CellContentClick);
+			this.dgvConsulta.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConsulta_CellDoubleClick);
+			// 
+			// cId
+			// 
+			this.cId.HeaderText = "Id";
+			this.cId.Name = "cId";
+			this.cId.ReadOnly = true;
+			// 
+			// cCliente
+			// 
+			this.cCliente.HeaderText = "Cliente";
+			this.cCliente.Name = "cCliente";
+			this.cCliente.ReadOnly = true;
+			// 
+			// cCbu
+			// 
+			this.cCbu.HeaderText = "CBU";
+			this.cCbu.Name = "cCbu";
+			this.cCbu.ReadOnly = true;
+			// 
+			// cTipoCuenta
+			// 
+			this.cTipoCuenta.HeaderText = "Tipo de Cuenta";
+			this.cTipoCuenta.Name = "cTipoCuenta";
+			this.cTipoCuenta.ReadOnly = true;
+			// 
+			// cSaldo
+			// 
+			this.cSaldo.HeaderText = "Saldo";
+			this.cSaldo.Name = "cSaldo";
+			this.cSaldo.ReadOnly = true;
+			// 
+			// cUltimoMov
+			// 
+			this.cUltimoMov.HeaderText = "Ultimo Mov";
+			this.cUltimoMov.Name = "cUltimoMov";
+			this.cUltimoMov.ReadOnly = true;
+			// 
+			// chkBaja
+			// 
+			this.chkBaja.AutoSize = true;
+			this.chkBaja.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			this.chkBaja.Location = new System.Drawing.Point(648, 139);
+			this.chkBaja.Name = "chkBaja";
+			this.chkBaja.Size = new System.Drawing.Size(91, 21);
+			this.chkBaja.TabIndex = 10;
+			this.chkBaja.Text = "Incluir Baja";
+			this.chkBaja.UseVisualStyleBackColor = true;
+			// 
+			// FrmConsulta
+			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.ClientSize = new System.Drawing.Size(748, 442);
+			this.Controls.Add(this.chkBaja);
+			this.Controls.Add(this.btnEliminar);
+			this.Controls.Add(this.btnNuevo);
+			this.Controls.Add(this.dgvConsulta);
+			this.Controls.Add(this.btnEditar);
+			this.Controls.Add(this.txtFiltro);
+			this.Controls.Add(this.lblFechaDesde);
+			this.Controls.Add(this.cboFiltro);
+			this.Controls.Add(this.cboFiltroFecha);
+			this.Controls.Add(this.dtpFechaDesde);
+			this.Controls.Add(this.lblFiltro);
+			this.Controls.Add(this.lblFiltroFecha);
+			this.Controls.Add(this.lblFechaHasta);
+			this.Controls.Add(this.dtpFechaHasta);
+			this.Controls.Add(this.btnConsultar);
+			this.Name = "FrmConsulta";
+			this.Text = "FrmConsulta";
+			this.Load += new System.EventHandler(this.FrmConsulta_Load);
+			((System.ComponentModel.ISupportInitialize)(this.dgvConsulta)).EndInit();
+			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
