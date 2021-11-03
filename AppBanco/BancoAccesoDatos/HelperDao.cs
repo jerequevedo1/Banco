@@ -11,8 +11,8 @@ using static BancoPresentacion.Enumeraciones;
 
 namespace BancoAccesoDatos
 {
-    public class HelperDao
-    {
+	public class HelperDao
+	{
 		public static HelperDao instancia;
 		public string ConnectionString { get; set; }
 
@@ -26,11 +26,11 @@ namespace BancoAccesoDatos
 			//ConnectionString = @"Data Source=LAPTOP-JULI\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
 
 
-			//ConnectionString = @"Data Source=DESKTOP-DUIDE87\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
+			ConnectionString = @"Data Source=DESKTOP-DUIDE87\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
 			//ConnectionString = @"Data Source=NOTEBOOK-JERE\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
 
 			//ConnectionString = @"Data Source=HOME\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
-			ConnectionString = @"Data Source=NOTEBOOK-JERE\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
+			//ConnectionString = @"Data Source=NOTEBOOK-JERE\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
 			//ConnectionString = @"Data Source=DESKTOP-CBSH5U3\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
 
 			cnn = new SqlConnection(ConnectionString);
@@ -64,77 +64,77 @@ namespace BancoAccesoDatos
 
 
 			}
-            catch (Exception)
-            {
-                tabla = null;
-            }
-            finally
-            {
-                if (cnn.State == ConnectionState.Open) cnn.Close();
+			catch (Exception)
+			{
+				tabla = null;
+			}
+			finally
+			{
+				if (cnn.State == ConnectionState.Open) cnn.Close();
 			}
 
 			return tabla;
 		}
 
-      //  public Cliente GetClienteId(int nro)
-      //  {
-      //      Cliente oCliente = new Cliente();
-      //      SqlConnection cnn = new SqlConnection();
-      //      SqlCommand cmd = new SqlCommand();
+		//  public Cliente GetClienteId(int nro)
+		//  {
+		//      Cliente oCliente = new Cliente();
+		//      SqlConnection cnn = new SqlConnection();
+		//      SqlCommand cmd = new SqlCommand();
 
-      //      try
-      //      {
-      //          cnn.ConnectionString = ConnectionString;
-      //          cnn.Open();
-      //          cmd.Connection = cnn;
-      //          cmd.CommandType = CommandType.StoredProcedure;
-      //          cmd.CommandText = "SP_CONSULTAR_CLIENTE_POR_ID";
-      //          cmd.Parameters.AddWithValue("@nro", nro);
-      //          SqlDataReader reader = cmd.ExecuteReader();
-      //          bool esPrimerRegistro = true;
+		//      try
+		//      {
+		//          cnn.ConnectionString = ConnectionString;
+		//          cnn.Open();
+		//          cmd.Connection = cnn;
+		//          cmd.CommandType = CommandType.StoredProcedure;
+		//          cmd.CommandText = "SP_CONSULTAR_CLIENTE_POR_ID";
+		//          cmd.Parameters.AddWithValue("@nro", nro);
+		//          SqlDataReader reader = cmd.ExecuteReader();
+		//          bool esPrimerRegistro = true;
 
-      //          while (reader.Read())
-      //          {
-      //              if (esPrimerRegistro)
-      //              {
-						//oCliente.IdCliente = Convert.ToInt32(reader["id_cliente"].ToString());
-						//oCliente.NomCliente = reader["nom_cliente"].ToString();
-      //                  oCliente.ApeCliente = reader["ape_cliente"].ToString();
-      //                  oCliente.Dni = Convert.ToInt32(reader["dni"].ToString());
-      //                  oCliente.Cuil = long.Parse(reader["cuil"].ToString());
-      //                  oCliente.Direccion = reader["direccion"].ToString();
-      //                  oCliente.Telefono = reader["telefono"].ToString();
-      //                  oCliente.Email = reader["email"].ToString();
+		//          while (reader.Read())
+		//          {
+		//              if (esPrimerRegistro)
+		//              {
+		//oCliente.IdCliente = Convert.ToInt32(reader["id_cliente"].ToString());
+		//oCliente.NomCliente = reader["nom_cliente"].ToString();
+		//                  oCliente.ApeCliente = reader["ape_cliente"].ToString();
+		//                  oCliente.Dni = Convert.ToInt32(reader["dni"].ToString());
+		//                  oCliente.Cuil = long.Parse(reader["cuil"].ToString());
+		//                  oCliente.Direccion = reader["direccion"].ToString();
+		//                  oCliente.Telefono = reader["telefono"].ToString();
+		//                  oCliente.Email = reader["email"].ToString();
 
-      //                  Barrio obarrio = new Barrio();
-      //                  obarrio.IdBarrio = Convert.ToInt32(reader["id_barrio"].ToString());
-      //                  obarrio.NomBarrio = reader["nom_barrio"].ToString();
+		//                  Barrio obarrio = new Barrio();
+		//                  obarrio.IdBarrio = Convert.ToInt32(reader["id_barrio"].ToString());
+		//                  obarrio.NomBarrio = reader["nom_barrio"].ToString();
 
-      //                  oCliente.Barrio = obarrio;
+		//                  oCliente.Barrio = obarrio;
 
-      //                  esPrimerRegistro = false;
-      //              }
+		//                  esPrimerRegistro = false;
+		//              }
 
-                   
 
-      //              esPrimerRegistro = false;
-                   
-      //          }
 
-      //      }
-      //      catch (Exception)
-      //      {
+		//              esPrimerRegistro = false;
 
-      //      }
+		//          }
 
-      //      finally
-      //      {
-      //          if (cnn.State == ConnectionState.Open) cnn.Close();
-      //      }
+		//      }
+		//      catch (Exception)
+		//      {
 
-      //      return oCliente;
+		//      }
 
-      //  }
+		//      finally
+		//      {
+		//          if (cnn.State == ConnectionState.Open) cnn.Close();
+		//      }
+
+		//      return oCliente;
+
+		//  }
 
 		public DataTable ConsultaSQL(string nombreSP)
 		{
@@ -162,7 +162,7 @@ namespace BancoAccesoDatos
 		}
 		public int EjecutarSQLMaestroDetalle(string spMaestro, string spDetalle, Cliente oCliente, Accion modo)
 		{
-			int filasAfectadas=0;
+			int filasAfectadas = 0;
 			SqlTransaction trans = null;
 
 			try
@@ -170,7 +170,7 @@ namespace BancoAccesoDatos
 				cmd.Parameters.Clear();
 				cnn.Open();
 				trans = cnn.BeginTransaction();
-				
+
 
 				if (modo == Accion.Create)
 				{
@@ -228,42 +228,8 @@ namespace BancoAccesoDatos
 			return filasAfectadas;
 		}
 
-        public bool ModificarSQL(string nombreSP, List<Parametro> parametros)
-        {
-			int filasdevueltas = 0;
-			bool estado = true;
-            try
-            {
-               cnn.Open();
-			cmd = new SqlCommand(nombreSP, cnn);
-			cmd.Parameters.Clear();
-			cmd.CommandType = CommandType.StoredProcedure;
-
-			foreach (Parametro p in parametros)
-			{
-				cmd.Parameters.AddWithValue(p.Nombre, p.Valor);
-			}
-
-			filasdevueltas = cmd.ExecuteNonQuery();
-
-
-			}
-			catch (Exception)
-			{
-				throw;
-				estado = false;
-            }
-            finally
-            {
-                if (cnn.State == ConnectionState.Open) cnn.Close();
-            }
-
-            return estado;
-
-		}
-
-        public bool ActualizarSQL(string nombreSP, Parametro p)
-        {
+		public bool ModificarSQL(string nombreSP, List<Parametro> parametros)
+		{
 			int filasdevueltas = 0;
 			bool estado = true;
 			try
@@ -272,7 +238,41 @@ namespace BancoAccesoDatos
 				cmd = new SqlCommand(nombreSP, cnn);
 				cmd.Parameters.Clear();
 				cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue(p.Nombre, p.Valor);
+
+				foreach (Parametro p in parametros)
+				{
+					cmd.Parameters.AddWithValue(p.Nombre, p.Valor);
+				}
+
+				filasdevueltas = cmd.ExecuteNonQuery();
+
+
+			}
+			catch (Exception)
+			{
+				throw;
+				estado = false;
+			}
+			finally
+			{
+				if (cnn.State == ConnectionState.Open) cnn.Close();
+			}
+
+			return estado;
+
+		}
+
+		public bool ActualizarSQL(string nombreSP, Parametro p)
+		{
+			int filasdevueltas = 0;
+			bool estado = true;
+			try
+			{
+				cnn.Open();
+				cmd = new SqlCommand(nombreSP, cnn);
+				cmd.Parameters.Clear();
+				cmd.CommandType = CommandType.StoredProcedure;
+				cmd.Parameters.AddWithValue(p.Nombre, p.Valor);
 				filasdevueltas = cmd.ExecuteNonQuery();
 			}
 			catch (Exception)
@@ -288,8 +288,38 @@ namespace BancoAccesoDatos
 			return estado;
 		}
 
+		public int ProximoID(string nombreSp) 
+		{
+			
+			SqlCommand cmd = new SqlCommand();	
+			try
+			{
+				
+				cnn.Open();
+				cmd.Connection = cnn;
+				cmd.CommandType = CommandType.StoredProcedure;
+				cmd.CommandText = nombreSp;
+				SqlParameter param = new SqlParameter("@next", SqlDbType.Int);
+				param.Direction = ParameterDirection.Output;
+				cmd.Parameters.Add(param);
+				cmd.ExecuteNonQuery();
+				return (int)param.Value;
 
-    }
+
+			}
+			catch (SqlException ex)
+			{
+				throw (ex);
+			}
+			finally
+			{
+				if (cnn != null && cnn.State == ConnectionState.Open) cnn.Close();
+			}
+
+		}
+
+
+	}
 
 
 }

@@ -21,5 +21,6 @@ namespace BancoServicios.Interfaces
         List<Provincia> GetProvincias();
         bool ModificarClienteSQL(List<Parametro> parametros);
         bool ActualizarSQL(string nombreSP, Parametro p);
+        int ProximoID(string nombreSp);
     }
 }
