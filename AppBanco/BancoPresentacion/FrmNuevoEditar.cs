@@ -130,6 +130,22 @@ namespace BancoPresentacion
 					panelCuenta.Visible = false;
 					lblNroCuenta.Visible = false;
 				}
+				if (modo.Equals(Accion.Read))
+				{
+					this.Text = "Consulta Cliente";
+					CargarCliente(oCliente.IdCliente);
+					txtCliente.Visible = false;
+					btnBuscar.Visible = false;
+					lblBuscarCliente.Visible = false;
+					this.Size = new Size(782, 310);
+					panelCliente.Location = new Point(42, 40);
+					lblNroCliente.Location = new Point(19, 20);
+					panelCuenta.Visible = false;
+					lblNroCuenta.Visible = false;
+					panelCliente.Enabled = false;
+					btnAceptar.Visible = false;
+				}
+
 			}
 			if (tipo.Equals(Tipo.Cuenta))
 			{
@@ -148,9 +164,23 @@ namespace BancoPresentacion
 					panelCliente.Enabled = false;
 					this.Size = new Size(782, 454);
 				}
+				if (modo.Equals(Accion.Read))
+				{
+					this.Text = "Consulta Cuenta";
+					CargarCuenta(oCliente);
+					CargarCliente(oCliente.IdCliente);
+					txtCliente.Visible = false;
+					btnBuscar.Visible = false;
+					lblBuscarCliente.Visible = false;
+					panelCliente.Enabled = false;
+					panelCuenta.Enabled = false;
+					this.Size = new Size(782, 454);
+					btnAceptar.Visible = false;
+				}
+
 			}
-	
-		    btnNuevo.Visible = false;
+
+			btnNuevo.Visible = false;
 			
 	
 		}
