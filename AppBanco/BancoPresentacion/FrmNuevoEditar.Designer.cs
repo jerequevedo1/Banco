@@ -126,6 +126,7 @@ namespace BancoPresentacion
             this.txtDepositoInicial.Size = new System.Drawing.Size(144, 23);
             this.txtDepositoInicial.TabIndex = 34;
             this.txtDepositoInicial.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDepositoInicial_KeyPress);
+
             // 
             // lblDepositoInicial
             // 
@@ -159,6 +160,7 @@ namespace BancoPresentacion
             this.txtLimiteDesc.Size = new System.Drawing.Size(144, 23);
             this.txtLimiteDesc.TabIndex = 28;
             this.txtLimiteDesc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtLimiteDesc_KeyPress);
+
             // 
             // lblLimiteDesc
             // 
@@ -264,6 +266,7 @@ namespace BancoPresentacion
             this.cboCliProvincia.Name = "cboCliProvincia";
             this.cboCliProvincia.Size = new System.Drawing.Size(144, 23);
             this.cboCliProvincia.TabIndex = 14;
+            this.cboCliProvincia.SelectedIndexChanged += new System.EventHandler(this.cboCliProvincia_SelectedIndexChanged);
             // 
             // lblLocalidad
             // 
@@ -282,6 +285,7 @@ namespace BancoPresentacion
             this.cboCliLocalidad.Name = "cboCliLocalidad";
             this.cboCliLocalidad.Size = new System.Drawing.Size(144, 23);
             this.cboCliLocalidad.TabIndex = 16;
+            this.cboCliLocalidad.SelectedIndexChanged += new System.EventHandler(this.cboCliLocalidad_SelectedIndexChanged);
             // 
             // txtCliEmail
             // 
@@ -311,7 +315,7 @@ namespace BancoPresentacion
             // 
             this.lblClienteTel.AutoSize = true;
             this.lblClienteTel.Location = new System.Drawing.Point(185, 122);
-            this.lblClienteTel.Name = "lblClienteTel";
+            this.lblClienteTel.Name = "lblClienteTel";          
             this.lblClienteTel.Size = new System.Drawing.Size(52, 15);
             this.lblClienteTel.TabIndex = 21;
             this.lblClienteTel.Text = "Teléfono";
@@ -357,6 +361,7 @@ namespace BancoPresentacion
             this.txtCliApellido.Size = new System.Drawing.Size(144, 23);
             this.txtCliApellido.TabIndex = 8;
             this.txtCliApellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCliApellido_KeyPress);
+
             // 
             // lblCliApellido
             // 
@@ -374,6 +379,7 @@ namespace BancoPresentacion
             this.txtCliCuil.Size = new System.Drawing.Size(144, 23);
             this.txtCliCuil.TabIndex = 12;
             this.txtCliCuil.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCliCuil_KeyPress);
+
             // 
             // lblClienteCuil
             // 
@@ -391,6 +397,7 @@ namespace BancoPresentacion
             this.txtCliDNI.Size = new System.Drawing.Size(144, 23);
             this.txtCliDNI.TabIndex = 10;
             this.txtCliDNI.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCliDNI_KeyPress);
+
             // 
             // lblCliDNI
             // 

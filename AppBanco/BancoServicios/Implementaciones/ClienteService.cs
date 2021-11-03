@@ -36,14 +36,14 @@ namespace BancoServicios.Implementaciones
             return daoCliente.GetClienteByName(parametro);
         }
 
-        public List<Barrio> GetBarrios()
+        public List<Barrio> GetBarrios(List<Parametro> parametro)
         {
-            return daoCliente.GetBarrios();
+            return daoCliente.GetBarrios(parametro);
         }
 
-        public List<Localidad> GetLocalidades()
+        public List<Localidad> GetLocalidades(List<Parametro> parametro)
         {
-           return daoCliente.GetLocalidades();
+           return daoCliente.GetLocalidades(parametro);
         }
         public List<Provincia> GetProvincias()
         {
@@ -53,6 +53,11 @@ namespace BancoServicios.Implementaciones
         public bool ModificarClienteSQL(List<Parametro> parametros)
         {
             return daoCliente.ModificarClienteSQL(parametros);
+        }
+
+        public bool ActualizarSQL(string nombreSP, Parametro p)
+        {
+            return daoCliente.ActualizarSQL(nombreSP, p);
         }
     }
 
