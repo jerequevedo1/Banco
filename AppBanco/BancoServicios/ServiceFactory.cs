@@ -25,5 +25,11 @@ namespace BancoServicios
         {
             return new CuentaService(factory);
         }
-    }
+
+		public override ITransaccionService CrearTransaccionService(AbstractDaoFactory factory)
+		{
+            return new TransaccionService(factory);
+
+        }
+	}
 }

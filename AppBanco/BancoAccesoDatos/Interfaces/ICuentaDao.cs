@@ -14,5 +14,7 @@ namespace BancoAccesoDatos.Interfaces
 		List<TipoCuenta> GetTipoCuenta();
 		bool CreateCuenta(Cliente oCliente);
 		bool CreateCuentaClienteExist(Cliente oCliente);
+
+		bool ModifyCuenta(Cliente oCliente);
 	}
 }

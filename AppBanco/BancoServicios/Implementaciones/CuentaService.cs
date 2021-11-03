@@ -39,5 +39,9 @@ namespace BancoServicios.Implementaciones
 		{
 			return daoCuenta.CreateCuentaClienteExist(oCliente);
 		}
+		public bool ModificarCuenta(Cliente oCliente)
+		{
+			return daoCuenta.ModifyCuenta(oCliente);
+		}
 	}
 }

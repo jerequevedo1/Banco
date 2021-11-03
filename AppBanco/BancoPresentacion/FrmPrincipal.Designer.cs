@@ -264,7 +264,7 @@ namespace BancoPresentacion
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MinimumSize = new System.Drawing.Size(1000, 600);
             this.Name = "FrmPrincipal";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestion Banco JJRG";
             this.Load += new System.EventHandler(this.FrmPrincipal_Load);
             this.panelMenu.ResumeLayout(false);

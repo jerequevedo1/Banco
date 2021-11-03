@@ -13,6 +13,7 @@ namespace BancoServicios
       public abstract IClienteService CrearClienteService(AbstractDaoFactory factory);
       public abstract ILoginService CrearLoginService();
       public abstract ICuentaService CrearCuentaService(AbstractDaoFactory factory);
+      public abstract ITransaccionService CrearTransaccionService(AbstractDaoFactory factory);
 
     }
 }

@@ -61,7 +61,7 @@ namespace BancoPresentacion
 
         }
 
-        private void FrmReporte_Load(object sender, EventArgs e)
+	private void FrmReporte_Load(object sender, EventArgs e)
         {
             this.reportViewer1.RefreshReport();
         }
