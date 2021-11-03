@@ -359,3 +359,20 @@ AS
 		join Localidades l on l.id_localidad=b.id_localidad
 		join Provincias p on p.id_provincia=l.id_provincia
 	where c.id_cuenta=@nro
+GO
+CREATE proc PA_CONSULTA_TRANSACCIONES
+AS
+SELECT id_transaccion,fecha,c.id_cuenta,ape_cliente,nom_cliente, monto,tt.descripcion
+FROM Transacciones t join Tipos_Transacciones tt on t.id_tipo_transac=tt.id_tipo_transac
+	join Cuentas c on c.id_cuenta=t.id_cuenta
+	join Clientes cl on  cl.id_cliente=c.id_cliente
+GO
+CREATE PROC PA_PROXIMA_CUENTA
+@next int OUTPUT
+AS
+	SET @next = (SELECT MAX(id_cuenta)+1  FROM Cuentas)
+GO
+CREATE proc PA_PROXIMO_CLIENTE
+@next int OUTPUT
+AS
+	SET @next = (SELECT MAX(id_cliente)+1  FROM Clientes)
