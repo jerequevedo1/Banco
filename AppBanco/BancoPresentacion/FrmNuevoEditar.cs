@@ -411,7 +411,12 @@ namespace BancoPresentacion
 		}
 		private void GuardarCuentaConCliente()
 		{
-
+			Provincia provincia = new Provincia();
+			oCliente.Provincia = provincia;
+			Localidad localidad = new Localidad();
+			provincia.AgregarLocalidad(localidad);
+			Barrio barrio = new Barrio();
+			localidad.AgregarBarrio(barrio);
 			
 			oCliente.NomCliente = txtCliNombre.Text;
 			oCliente.ApeCliente = txtCliApellido.Text;
@@ -420,12 +425,10 @@ namespace BancoPresentacion
 			oCliente.Direccion = txtCliDire.Text;
 			oCliente.Telefono = txtCliTel.Text;
 			oCliente.Email = txtCliEmail.Text;
-			//oCliente.Barrio = new Barrio();
+
 			oCliente.Provincia.IdProvincia=Convert.ToInt32(cboCliProvincia.SelectedValue);
 			oCliente.Provincia.lLocalidad[0].IdLocalidad= Convert.ToInt32(cboCliLocalidad.SelectedValue);
 			oCliente.Provincia.lLocalidad[0].lBarrio[0].IdBarrio= Convert.ToInt32(cboClienteBarrio.SelectedValue);
-
-			//oCliente.Barrio.IdBarrio = Convert.ToInt32(cboClienteBarrio.SelectedValue);
 
 			
 			oCuenta.Cbu = txtCbu.Text;
