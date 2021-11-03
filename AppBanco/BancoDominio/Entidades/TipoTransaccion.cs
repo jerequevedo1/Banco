@@ -15,5 +15,9 @@ namespace BancoDominio.Entidades
             IdTipoTransac = idTipoTransac;
             Descripcion = descripcion;
         }
+        public TipoTransaccion()
+		{
+
+		}
     }
 }

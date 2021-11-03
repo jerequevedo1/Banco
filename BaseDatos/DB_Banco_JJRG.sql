@@ -313,3 +313,10 @@ as
 	id_tipo_cuenta=@id_tipo_cuenta,
 	tipo_moneda=@tipo_moneda
 	where id_cuenta=@id_cuenta
+go
+create proc PA_CONSULTA_TRANSACCIONES
+AS
+SELECT id_transaccion,fecha,c.id_cuenta,ape_cliente,nom_cliente, monto,tt.descripcion
+FROM Transacciones t join Tipos_Transacciones tt on t.id_tipo_transac=tt.id_tipo_transac
+	join Cuentas c on c.id_cuenta=t.id_cuenta
+	join Clientes cl on  cl.id_cliente=c.id_cliente
