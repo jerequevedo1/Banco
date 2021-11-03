@@ -287,7 +287,7 @@ BEGIN
 	SELECT * FROM BARRIOS order by 2 asc;
 END
 go
-ALTER PROC [dbo].[PA_REPORTE_CUENTAS_CLIENTE]  
+CREATE PROC [dbo].[PA_REPORTE_CUENTAS_CLIENTE]  
  @saldoMinimo decimal(18)
 as  
   SELECT 
