@@ -79,10 +79,14 @@ namespace BancoPresentacion
                     {
                         //Usuario Rechazado, informar al usuario
                         this.usuario.IdUsuario = -1;
-                        MessageBox.Show("Error sesion");
+                        MessageBox.Show("Usuario o Contraseña incorrecta.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
                 }
+            }
+			else
+			{
+                MessageBox.Show("Ingrese Usuario y Contraseña por favor.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void txtPass_KeyPress(object sender, KeyPressEventArgs e)
