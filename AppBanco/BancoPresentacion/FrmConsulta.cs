@@ -66,12 +66,13 @@ namespace BancoPresentacion
 				CargarTiposFiltros(tipo);
 				CargarFiltroFecha(tipo);
 				CargarHeaderGrid(tipo);
+				cboFiltroFecha.SelectedIndex = 4;
 				CargarGrilla(tipo);
 			}
 			if (tipo.Equals(Tipo.Cuenta))
 			{
 				CargarTiposFiltros(tipo);
-				//CargarFiltroFecha(tipo);
+				CargarFiltroFecha(tipo);
 				CargarHeaderGrid(tipo);
 				CargarGrilla(tipo);
 			}
@@ -187,8 +188,8 @@ namespace BancoPresentacion
 			object filtroTexto = DBNull.Value;
 			string conBaja = "N";
 
-			// filtros.Add(new Parametro("@fechaDesde", dtpFechaDesde.Value)); //Esta comentado para definir si agregamos enum
-			// filtros.Add(new Parametro("@fechaHasta", dtpFechaHasta.Value));
+			filtros.Add(new Parametro("@fechaDesde", dtpFechaDesde.Value));
+			filtros.Add(new Parametro("@fechaHasta", dtpFechaHasta.Value));
 
 			if (!String.IsNullOrEmpty(txtFiltro.Text))
 			{
@@ -239,12 +240,12 @@ namespace BancoPresentacion
 
 		private void CargarFiltroFecha(Tipo tipo)
 		{
-			if (tipo.Equals(Tipo.Cliente))
-			{
-				string[] filtrosFecha = new string[] { "Hoy", "Ayer", "Ultimos 7 dias", "Ultimos 14 dias", "Ultimos 28 dias" };
-				cboFiltroFecha.Items.Clear();
-				cboFiltroFecha.Items.AddRange(filtrosFecha);
-			}
+			
+
+			string[] filtrosFecha = new string[] { "Hoy", "Ayer", "Ultimos 7 dias", "Ultimos 14 dias", "Ultimos 28 dias" };
+			cboFiltroFecha.Items.Clear();
+			cboFiltroFecha.Items.AddRange(filtrosFecha);
+			
 
 			cboFiltroFecha.SelectedIndex = 4;
 		}
@@ -420,6 +421,28 @@ namespace BancoPresentacion
 			if (cboFiltro.Text.Equals("Nombre Cliente") || (cboFiltro.Text.Equals("Alias")))
 			{
 				Validar.SoloLetra(e);
+			}
+		}
+
+		private void cboFiltroFecha_SelectedIndexChanged_1(object sender, EventArgs e)
+		{
+			switch (cboFiltroFecha.SelectedIndex)
+			{
+				case 0:
+					dtpFechaDesde.Value = DateTime.Today;
+					break;
+				case 1:
+					dtpFechaDesde.Value = DateTime.Today.AddDays(-1);
+					break;
+				case 2:
+					dtpFechaDesde.Value = DateTime.Today.AddDays(-7);
+					break;
+				case 3:
+					dtpFechaDesde.Value = DateTime.Today.AddDays(-14);
+					break;
+				case 4:
+					dtpFechaDesde.Value = DateTime.Today.AddDays(-28);
+					break;
 			}
 		}
 	}

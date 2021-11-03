@@ -18,8 +18,9 @@ namespace BancoPresentacion.Entidades
         public string Telefono { get; set; }
         public string Email { get; set; }
         public List<Cuenta> Cuentas { get; set; }
+		public DateTime FechaAlta { get; set; }
 
-        public Cliente(int idCliente, string nomCliente, string apeCliente, int dni, long cuil, string direccion, Provincia provincia, string telefono, string email)
+		public Cliente(int idCliente, string nomCliente, string apeCliente, int dni, long cuil, string direccion, Provincia provincia, string telefono, string email)
         {
             IdCliente = idCliente;
             NomCliente = nomCliente;
