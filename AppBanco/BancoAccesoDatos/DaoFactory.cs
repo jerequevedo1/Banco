@@ -19,5 +19,10 @@ namespace BancoAccesoDatos
 		{
             return new CuentaDao();
 		}
-    }
+
+		public override ITransaccionDao CrearTransaccionDao()
+		{
+			return new TransaccionDao();
+		}
+	}
 }

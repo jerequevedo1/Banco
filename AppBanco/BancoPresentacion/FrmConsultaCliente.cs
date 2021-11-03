@@ -1,6 +1,6 @@
 ﻿using BancoAccesoDatos;
-using BancoDominio;
-using BancoDominio.Entidades;
+using BancoPresentacion;
+using BancoPresentacion.Entidades;
 using BancoServicios;
 using BancoServicios.Interfaces;
 using System;
@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static BancoDominio.Enumeraciones;
+using static BancoPresentacion.Enumeraciones;
 
 namespace BancoPresentacion
 {   

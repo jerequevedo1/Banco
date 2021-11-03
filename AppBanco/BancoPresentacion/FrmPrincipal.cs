@@ -1,4 +1,4 @@
-﻿using BancoDominio.Entidades;
+﻿using BancoPresentacion.Entidades;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static BancoDominio.Enumeraciones;
+using static BancoPresentacion.Enumeraciones;
 
 namespace BancoPresentacion
 {
@@ -79,7 +79,7 @@ namespace BancoPresentacion
 
 		private void btnTransaccion_Click(object sender, EventArgs e)
 		{
-			tipo = Tipo.Cuenta;
+			tipo = Tipo.Transaccion;
 			OpenChildForm(new FrmConsulta(tipo), sender);
 		}
 
@@ -135,9 +135,6 @@ namespace BancoPresentacion
 			}
 		}
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }

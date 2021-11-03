@@ -101,6 +101,7 @@ namespace BancoPresentacion
             this.txtCbu.Name = "txtCbu";
             this.txtCbu.Size = new System.Drawing.Size(144, 23);
             this.txtCbu.TabIndex = 26;
+            this.txtCbu.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCbu_KeyPress);
             // 
             // txtAlias
             // 
@@ -124,6 +125,8 @@ namespace BancoPresentacion
             this.txtDepositoInicial.Name = "txtDepositoInicial";
             this.txtDepositoInicial.Size = new System.Drawing.Size(144, 23);
             this.txtDepositoInicial.TabIndex = 34;
+            this.txtDepositoInicial.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDepositoInicial_KeyPress);
+
             // 
             // lblDepositoInicial
             // 
@@ -156,6 +159,8 @@ namespace BancoPresentacion
             this.txtLimiteDesc.Name = "txtLimiteDesc";
             this.txtLimiteDesc.Size = new System.Drawing.Size(144, 23);
             this.txtLimiteDesc.TabIndex = 28;
+            this.txtLimiteDesc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtLimiteDesc_KeyPress);
+
             // 
             // lblLimiteDesc
             // 
@@ -191,7 +196,7 @@ namespace BancoPresentacion
             this.lblTipoCuenta.AutoSize = true;
             this.lblTipoCuenta.Location = new System.Drawing.Point(366, 63);
             this.lblTipoCuenta.Name = "lblTipoCuenta";
-            this.lblTipoCuenta.Size = new System.Drawing.Size(72, 15);
+            this.lblTipoCuenta.Size = new System.Drawing.Size(71, 15);
             this.lblTipoCuenta.TabIndex = 35;
             this.lblTipoCuenta.Text = "Tipo Cuenta";
             // 
@@ -200,7 +205,7 @@ namespace BancoPresentacion
             this.lblTipoMoneda.AutoSize = true;
             this.lblTipoMoneda.Location = new System.Drawing.Point(366, 8);
             this.lblTipoMoneda.Name = "lblTipoMoneda";
-            this.lblTipoMoneda.Size = new System.Drawing.Size(78, 15);
+            this.lblTipoMoneda.Size = new System.Drawing.Size(77, 15);
             this.lblTipoMoneda.TabIndex = 29;
             this.lblTipoMoneda.Text = "Tipo Moneda";
             // 
@@ -304,13 +309,14 @@ namespace BancoPresentacion
             this.txtCliTel.Name = "txtCliTel";
             this.txtCliTel.Size = new System.Drawing.Size(144, 23);
             this.txtCliTel.TabIndex = 22;
+            this.txtCliTel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCliTel_KeyPress);
             // 
             // lblClienteTel
             // 
             this.lblClienteTel.AutoSize = true;
             this.lblClienteTel.Location = new System.Drawing.Point(185, 122);
-            this.lblClienteTel.Name = "lblClienteTel";
-            this.lblClienteTel.Size = new System.Drawing.Size(54, 15);
+            this.lblClienteTel.Name = "lblClienteTel";          
+            this.lblClienteTel.Size = new System.Drawing.Size(52, 15);
             this.lblClienteTel.TabIndex = 21;
             this.lblClienteTel.Text = "Teléfono";
             // 
@@ -354,6 +360,8 @@ namespace BancoPresentacion
             this.txtCliApellido.Name = "txtCliApellido";
             this.txtCliApellido.Size = new System.Drawing.Size(144, 23);
             this.txtCliApellido.TabIndex = 8;
+            this.txtCliApellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCliApellido_KeyPress);
+
             // 
             // lblCliApellido
             // 
@@ -370,6 +378,8 @@ namespace BancoPresentacion
             this.txtCliCuil.Name = "txtCliCuil";
             this.txtCliCuil.Size = new System.Drawing.Size(144, 23);
             this.txtCliCuil.TabIndex = 12;
+            this.txtCliCuil.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCliCuil_KeyPress);
+
             // 
             // lblClienteCuil
             // 
@@ -386,6 +396,8 @@ namespace BancoPresentacion
             this.txtCliDNI.Name = "txtCliDNI";
             this.txtCliDNI.Size = new System.Drawing.Size(144, 23);
             this.txtCliDNI.TabIndex = 10;
+            this.txtCliDNI.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCliDNI_KeyPress);
+
             // 
             // lblCliDNI
             // 
@@ -402,6 +414,7 @@ namespace BancoPresentacion
             this.txtCliNombre.Name = "txtCliNombre";
             this.txtCliNombre.Size = new System.Drawing.Size(144, 23);
             this.txtCliNombre.TabIndex = 6;
+            this.txtCliNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCliNombre_KeyPress);
             // 
             // lblCliNombre
             // 

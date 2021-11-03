@@ -287,12 +287,14 @@ BEGIN
 	SELECT * FROM BARRIOS order by 2 asc;
 END
 go
-CREATE PROC PA_REPORTE_CUENTAS_CLIENTE
-
-as
-		SELECT Clientes.id_cliente, Clientes.nom_cliente, Clientes.ape_cliente, Cuentas.id_cuenta, Cuentas.cbu, Cuentas.saldo_actual, Cuentas.id_cliente AS Expr1
-                FROM   Clientes INNER JOIN
-                            	Cuentas ON Clientes.id_cliente = Cuentas.id_cliente 
+CREATE PROC [dbo].[PA_REPORTE_CUENTAS_CLIENTE]  
+ @saldoMinimo decimal(18)
+as  
+  SELECT 
+  Clientes.id_cliente, Clientes.nom_cliente, Clientes.ape_cliente, Cuentas.id_cuenta, Cuentas.cbu, Cuentas.saldo_actual  
+    FROM   Clientes 
+	INNER JOIN  Cuentas ON Clientes.id_cliente = Cuentas.id_cliente   
+	where saldo_actual >= @saldoMinimo
 go
 create PROC PA_EDITAR_CUENTA
 @id_cuenta int,
@@ -313,3 +315,20 @@ as
 	id_tipo_cuenta=@id_tipo_cuenta,
 	tipo_moneda=@tipo_moneda
 	where id_cuenta=@id_cuenta
+go
+create proc PA_CONSULTA_TRANSACCIONES
+AS
+SELECT id_transaccion,fecha,c.id_cuenta,ape_cliente,nom_cliente, monto,tt.descripcion
+FROM Transacciones t join Tipos_Transacciones tt on t.id_tipo_transac=tt.id_tipo_transac
+	join Cuentas c on c.id_cuenta=t.id_cuenta
+	join Clientes cl on  cl.id_cliente=c.id_cliente
+go
+create proc PA_PROXIMO_CLIENTE
+@next int OUTPUT
+AS
+	SET @next = (SELECT MAX(id_cliente)+1  FROM Clientes);
+GO
+CREATE PROC PA_PROXIMA_CUENTA
+@next int OUTPUT
+AS
+	SET @next = (SELECT MAX(id_cuenta)+1  FROM Cuentas);

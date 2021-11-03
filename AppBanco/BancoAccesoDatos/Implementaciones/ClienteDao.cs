@@ -1,6 +1,6 @@
 ﻿using BancoAccesoDatos.Interfaces;
-using BancoDominio;
-using BancoDominio.Entidades;
+using BancoPresentacion;
+using BancoPresentacion.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Data;

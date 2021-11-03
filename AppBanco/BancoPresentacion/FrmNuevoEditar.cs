@@ -1,6 +1,6 @@
-﻿using BancoAccesoDatos;
-using BancoDominio;
-using BancoDominio.Entidades;
+using BancoAccesoDatos;
+using BancoPresentacion;
+using BancoPresentacion.Entidades;
 using BancoServicios;
 using BancoServicios.Interfaces;
 using System;
@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static BancoDominio.Enumeraciones;
+using static BancoPresentacion.Enumeraciones;
 
 namespace BancoPresentacion
 {
@@ -114,6 +114,8 @@ namespace BancoPresentacion
 					btnBuscar.Visible = false;
 					lblBuscarCliente.Visible = false;					
 					this.Size = new Size(782, 454);
+					lblNroCliente.Text = "Nro Cliente: " + 0;
+					lblNroCuenta.Text = "Nro Cuenta: " + 0;
 				}
 				if (modo.Equals(Accion.Update))
 				{
@@ -127,13 +129,33 @@ namespace BancoPresentacion
 					lblNroCliente.Location = new Point(19, 20);
 					panelCuenta.Visible = false;
 					lblNroCuenta.Visible = false;
+					lblNroCliente.Text= "Nro Cliente: "+oCliente.IdCliente.ToString();
 				}
+				if (modo.Equals(Accion.Read))
+				{
+					this.Text = "Consulta Cliente";
+					CargarCliente(oCliente.IdCliente);
+					txtCliente.Visible = false;
+					btnBuscar.Visible = false;
+					lblBuscarCliente.Visible = false;
+					this.Size = new Size(782, 310);
+					panelCliente.Location = new Point(42, 40);
+					lblNroCliente.Location = new Point(19, 20);
+					panelCuenta.Visible = false;
+					lblNroCuenta.Visible = false;
+					panelCliente.Enabled = false;
+					btnAceptar.Visible = false;
+					lblNroCliente.Text = "Nro Cliente: " + oCliente.IdCliente.ToString();
+				}
+
 			}
 			if (tipo.Equals(Tipo.Cuenta))
 			{
 				if (modo.Equals(Accion.Create))
 				{
 					this.Text = "Nueva Cuenta";
+					lblNroCliente.Text = "Nro Cliente: " + 0;
+					lblNroCuenta.Text = "Nro Cuenta: " + 0;
 				}
 				if (modo.Equals(Accion.Update))
 				{
@@ -145,10 +167,28 @@ namespace BancoPresentacion
 					lblBuscarCliente.Visible = false;
 					panelCliente.Enabled = false;
 					this.Size = new Size(782, 454);
+					lblNroCliente.Text = "Nro Cliente: " + oCliente.IdCliente.ToString();
+					lblNroCuenta.Text = "Nro Cuenta: " + oCliente.Cuentas[0].IdCuenta.ToString();
 				}
+				if (modo.Equals(Accion.Read))
+				{
+					this.Text = "Consulta Cuenta";
+					CargarCuenta(oCliente);
+					CargarCliente(oCliente.IdCliente);
+					txtCliente.Visible = false;
+					btnBuscar.Visible = false;
+					lblBuscarCliente.Visible = false;
+					panelCliente.Enabled = false;
+					panelCuenta.Enabled = false;
+					this.Size = new Size(782, 454);
+					btnAceptar.Visible = false;
+					lblNroCliente.Text = "Nro Cliente: " + oCliente.IdCliente.ToString();
+					lblNroCuenta.Text = "Nro Cuenta: " + oCliente.Cuentas[0].IdCuenta.ToString();
+				}
+
 			}
-	
-		    btnNuevo.Visible = false;
+
+			btnNuevo.Visible = false;
 			
 	
 		}
@@ -481,4 +521,46 @@ namespace BancoPresentacion
 
 		}
 	}
+
+        private void txtCliNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+			Validar.SoloLetra(e);
+		}
+
+        private void txtCliApellido_KeyPress(object sender, KeyPressEventArgs e)
+        {
+			Validar.SoloLetra(e);
+		}
+
+        private void txtCliDNI_KeyPress(object sender, KeyPressEventArgs e)
+        {
+			Validar.SoloNumeros(e);
+		}
+
+        private void txtCliCuil_KeyPress(object sender, KeyPressEventArgs e)
+        {
+			Validar.SoloNumeros(e);
+		}
+
+        private void txtCliTel_KeyPress(object sender, KeyPressEventArgs e)
+        {
+			Validar.SoloNumeros(e);
+		}
+
+        private void txtCbu_KeyPress(object sender, KeyPressEventArgs e)
+        {
+			Validar.SoloNumeros(e);
+		}
+
+        private void txtLimiteDesc_KeyPress(object sender, KeyPressEventArgs e)
+        {
+			Validar.SoloTipoPlata(e);
+		}
+
+        private void txtDepositoInicial_KeyPress(object sender, KeyPressEventArgs e)
+        {
+			Validar.SoloTipoPlata(e);
+		}
+    }
+
 }

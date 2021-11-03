@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BancoDominio.Entidades
+namespace BancoPresentacion.Entidades
 {
     public class Cuenta
     {
@@ -41,5 +41,9 @@ namespace BancoDominio.Entidades
             TipoCuenta = new TipoCuenta();
             Ltransaccion = new List<Transaccion>();
         }
+        public void CrearTransaccion(Transaccion transaccion)
+		{
+            Ltransaccion.Add(transaccion);
+		}
     }
 }
