@@ -1,6 +1,6 @@
-﻿using BancoAccesoDatos;
-using BancoDominio;
-using BancoDominio.Entidades;
+using BancoAccesoDatos;
+using BancoPresentacion;
+using BancoPresentacion.Entidades;
 using BancoServicios;
 using BancoServicios.Interfaces;
 using System;
@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static BancoDominio.Enumeraciones;
+using static BancoPresentacion.Enumeraciones;
 
 namespace BancoPresentacion
 {
@@ -103,8 +103,6 @@ namespace BancoPresentacion
 		{
 			CargarTipoCuenta();
 			CargarTipoMoneda();
-			CargarBarrios();
-			CargarLocalidades();
 			CargarProvincias();
 
 			if (tipo.Equals(Tipo.Cliente))
@@ -116,6 +114,8 @@ namespace BancoPresentacion
 					btnBuscar.Visible = false;
 					lblBuscarCliente.Visible = false;					
 					this.Size = new Size(782, 454);
+					lblNroCliente.Text = "Nro Cliente: " + 0;
+					lblNroCuenta.Text = "Nro Cuenta: " + 0;
 				}
 				if (modo.Equals(Accion.Update))
 				{
@@ -129,13 +129,33 @@ namespace BancoPresentacion
 					lblNroCliente.Location = new Point(19, 20);
 					panelCuenta.Visible = false;
 					lblNroCuenta.Visible = false;
+					lblNroCliente.Text= "Nro Cliente: "+oCliente.IdCliente.ToString();
 				}
+				if (modo.Equals(Accion.Read))
+				{
+					this.Text = "Consulta Cliente";
+					CargarCliente(oCliente.IdCliente);
+					txtCliente.Visible = false;
+					btnBuscar.Visible = false;
+					lblBuscarCliente.Visible = false;
+					this.Size = new Size(782, 310);
+					panelCliente.Location = new Point(42, 40);
+					lblNroCliente.Location = new Point(19, 20);
+					panelCuenta.Visible = false;
+					lblNroCuenta.Visible = false;
+					panelCliente.Enabled = false;
+					btnAceptar.Visible = false;
+					lblNroCliente.Text = "Nro Cliente: " + oCliente.IdCliente.ToString();
+				}
+
 			}
 			if (tipo.Equals(Tipo.Cuenta))
 			{
 				if (modo.Equals(Accion.Create))
 				{
 					this.Text = "Nueva Cuenta";
+					lblNroCliente.Text = "Nro Cliente: " + 0;
+					lblNroCuenta.Text = "Nro Cuenta: " + 0;
 				}
 				if (modo.Equals(Accion.Update))
 				{
@@ -147,10 +167,28 @@ namespace BancoPresentacion
 					lblBuscarCliente.Visible = false;
 					panelCliente.Enabled = false;
 					this.Size = new Size(782, 454);
+					lblNroCliente.Text = "Nro Cliente: " + oCliente.IdCliente.ToString();
+					lblNroCuenta.Text = "Nro Cuenta: " + oCliente.Cuentas[0].IdCuenta.ToString();
 				}
+				if (modo.Equals(Accion.Read))
+				{
+					this.Text = "Consulta Cuenta";
+					CargarCuenta(oCliente);
+					CargarCliente(oCliente.IdCliente);
+					txtCliente.Visible = false;
+					btnBuscar.Visible = false;
+					lblBuscarCliente.Visible = false;
+					panelCliente.Enabled = false;
+					panelCuenta.Enabled = false;
+					this.Size = new Size(782, 454);
+					btnAceptar.Visible = false;
+					lblNroCliente.Text = "Nro Cliente: " + oCliente.IdCliente.ToString();
+					lblNroCuenta.Text = "Nro Cuenta: " + oCliente.Cuentas[0].IdCuenta.ToString();
+				}
+
 			}
-	
-		    btnNuevo.Visible = false;
+
+			btnNuevo.Visible = false;
 			
 	
 		}
@@ -196,16 +234,21 @@ namespace BancoPresentacion
 			txtCliEmail.Text = oClienteAux.Email;
 
 		}
-		private void CargarLocalidades()
+		private void CargarLocalidades(int id_prov)
 		{
 			List<Localidad> lst = new List<Localidad>();
-			lst = gestorCliente.GetLocalidades();
+			List<Parametro> parametro = new List<Parametro>();
 
-			cboCliLocalidad.Items.Clear();
+			parametro.Add(new Parametro("@id_prov", id_prov));
+
+			lst = gestorCliente.GetLocalidades(parametro);
+
+			//cboCliLocalidad.Items.Clear();
 			cboCliLocalidad.DataSource = lst;
 			cboCliLocalidad.ValueMember = "IdLocalidad";
 			cboCliLocalidad.DisplayMember = "NomLocalidad";
-			cboCliLocalidad.SelectedIndex = 0;
+			//cboCliLocalidad.SelectedIndex = 0;
+
 		}
 
 		private void CargarProvincias()
@@ -218,19 +261,25 @@ namespace BancoPresentacion
 			cboCliProvincia.ValueMember = "IdProvincia";
 			cboCliProvincia.DisplayMember = "NomProvincia";
 			cboCliProvincia.SelectedIndex = 0;
+
 		}
 
 
-		private void CargarBarrios()
+		private void CargarBarrios(int id_loc)
 		{
 			List<Barrio> lstB = new List<Barrio>();
-			lstB = gestorCliente.GetBarrios();
+			List<Parametro> parametro = new List<Parametro>();
 
-			cboClienteBarrio.Items.Clear();
+			parametro.Add(new Parametro("@id_loc", id_loc));
+
+			lstB = gestorCliente.GetBarrios(parametro);
+
+			//cboClienteBarrio.Items.Clear();
 			cboClienteBarrio.DataSource = lstB;
 			cboClienteBarrio.ValueMember = "IdBarrio";
 			cboClienteBarrio.DisplayMember = "NomBarrio";
-			cboClienteBarrio.SelectedIndex = 0;
+			//cboClienteBarrio.SelectedIndex = 0;
+
 		}
 		private void CargarTipoMoneda()
 		{ 
@@ -447,5 +496,71 @@ namespace BancoPresentacion
 		{
 			this.Close();
 		}
+
+        private void cboCliProvincia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+			if (cboCliProvincia.SelectedValue.ToString() != null)
+			{
+				int id_prov = Convert.ToInt32(cboCliProvincia.SelectedValue.GetHashCode());
+
+				CargarLocalidades(id_prov);
+
+			}
+
+		}
+
+        private void cboCliLocalidad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+			if (cboCliLocalidad.SelectedValue.ToString() != null)
+			{
+				int id_loc = Convert.ToInt32(cboCliLocalidad.SelectedValue.GetHashCode());
+
+				CargarBarrios(id_loc);
+
+			}
+
+		}
 	}
+
+        private void txtCliNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+			Validar.SoloLetra(e);
+		}
+
+        private void txtCliApellido_KeyPress(object sender, KeyPressEventArgs e)
+        {
+			Validar.SoloLetra(e);
+		}
+
+        private void txtCliDNI_KeyPress(object sender, KeyPressEventArgs e)
+        {
+			Validar.SoloNumeros(e);
+		}
+
+        private void txtCliCuil_KeyPress(object sender, KeyPressEventArgs e)
+        {
+			Validar.SoloNumeros(e);
+		}
+
+        private void txtCliTel_KeyPress(object sender, KeyPressEventArgs e)
+        {
+			Validar.SoloNumeros(e);
+		}
+
+        private void txtCbu_KeyPress(object sender, KeyPressEventArgs e)
+        {
+			Validar.SoloNumeros(e);
+		}
+
+        private void txtLimiteDesc_KeyPress(object sender, KeyPressEventArgs e)
+        {
+			Validar.SoloTipoPlata(e);
+		}
+
+        private void txtDepositoInicial_KeyPress(object sender, KeyPressEventArgs e)
+        {
+			Validar.SoloTipoPlata(e);
+		}
+    }
+
 }

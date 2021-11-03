@@ -1,7 +1,7 @@
 ﻿using BancoAccesoDatos;
 using BancoAccesoDatos.Implementaciones;
 using BancoAccesoDatos.Interfaces;
-using BancoDominio.Entidades;
+using BancoPresentacion.Entidades;
 using BancoServicios.Interfaces;
 using System;
 using System.Collections.Generic;

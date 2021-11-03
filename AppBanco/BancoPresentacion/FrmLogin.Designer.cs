@@ -40,11 +40,11 @@ namespace BancoPresentacion
             this.chkbRecordarme = new System.Windows.Forms.CheckBox();
             this.btnLogin = new System.Windows.Forms.Button();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pbLogo = new System.Windows.Forms.PictureBox();
             this.TitleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnClose)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // TitleBar
@@ -100,24 +100,24 @@ namespace BancoPresentacion
             // 
             this.txtUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(94)))), ((int)(((byte)(125)))));
             this.txtUser.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtUser.Font = new System.Drawing.Font("Century", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtUser.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtUser.ForeColor = System.Drawing.Color.White;
-            this.txtUser.Location = new System.Drawing.Point(87, 306);
+            this.txtUser.Location = new System.Drawing.Point(87, 320);
             this.txtUser.Margin = new System.Windows.Forms.Padding(2);
             this.txtUser.Name = "txtUser";
-            this.txtUser.Size = new System.Drawing.Size(337, 16);
+            this.txtUser.Size = new System.Drawing.Size(337, 15);
             this.txtUser.TabIndex = 3;
             // 
             // txtPass
             // 
             this.txtPass.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(94)))), ((int)(((byte)(125)))));
             this.txtPass.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtPass.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtPass.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtPass.ForeColor = System.Drawing.Color.White;
-            this.txtPass.Location = new System.Drawing.Point(87, 354);
+            this.txtPass.Location = new System.Drawing.Point(87, 368);
             this.txtPass.Margin = new System.Windows.Forms.Padding(2);
             this.txtPass.Name = "txtPass";
-            this.txtPass.Size = new System.Drawing.Size(337, 16);
+            this.txtPass.Size = new System.Drawing.Size(337, 15);
             this.txtPass.TabIndex = 4;
             this.txtPass.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPass_KeyPress);
             // 
@@ -126,7 +126,7 @@ namespace BancoPresentacion
             this.lblUser.AutoSize = true;
             this.lblUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblUser.ForeColor = System.Drawing.Color.Silver;
-            this.lblUser.Location = new System.Drawing.Point(84, 283);
+            this.lblUser.Location = new System.Drawing.Point(84, 297);
             this.lblUser.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblUser.Name = "lblUser";
             this.lblUser.Size = new System.Drawing.Size(60, 18);
@@ -138,7 +138,7 @@ namespace BancoPresentacion
             this.lblPass.AutoSize = true;
             this.lblPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblPass.ForeColor = System.Drawing.Color.Silver;
-            this.lblPass.Location = new System.Drawing.Point(84, 332);
+            this.lblPass.Location = new System.Drawing.Point(84, 346);
             this.lblPass.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPass.Name = "lblPass";
             this.lblPass.Size = new System.Drawing.Size(85, 18);
@@ -150,7 +150,7 @@ namespace BancoPresentacion
             this.chkbRecordarme.AutoSize = true;
             this.chkbRecordarme.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.chkbRecordarme.ForeColor = System.Drawing.Color.Silver;
-            this.chkbRecordarme.Location = new System.Drawing.Point(87, 381);
+            this.chkbRecordarme.Location = new System.Drawing.Point(87, 395);
             this.chkbRecordarme.Margin = new System.Windows.Forms.Padding(2);
             this.chkbRecordarme.Name = "chkbRecordarme";
             this.chkbRecordarme.Size = new System.Drawing.Size(82, 17);
@@ -186,18 +186,19 @@ namespace BancoPresentacion
             this.linkLabel1.Size = new System.Drawing.Size(148, 15);
             this.linkLabel1.TabIndex = 10;
             this.linkLabel1.TabStop = true;
+            this.linkLabel1.Tag = "";
             this.linkLabel1.Text = "¿Olvidaste tu contraseña?";
             // 
-            // pictureBox1
+            // pbLogo
             // 
-            this.pictureBox1.Image = global::BancoPresentacion.Properties.Resources.Nuevo_Logo;
-            this.pictureBox1.Location = new System.Drawing.Point(128, 40);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(259, 241);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 11;
-            this.pictureBox1.TabStop = false;
+            this.pbLogo.Image = global::BancoPresentacion.Properties.Resources.Nuevo_Logo;
+            this.pbLogo.Location = new System.Drawing.Point(118, 35);
+            this.pbLogo.Margin = new System.Windows.Forms.Padding(2);
+            this.pbLogo.Name = "pbLogo";
+            this.pbLogo.Size = new System.Drawing.Size(276, 260);
+            this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbLogo.TabIndex = 11;
+            this.pbLogo.TabStop = false;
             // 
             // FrmLogin
             // 
@@ -205,7 +206,7 @@ namespace BancoPresentacion
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(59)))), ((int)(((byte)(104)))));
             this.ClientSize = new System.Drawing.Size(531, 655);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pbLogo);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.chkbRecordarme);
@@ -225,7 +226,7 @@ namespace BancoPresentacion
             this.TitleBar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnMinimize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnClose)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -245,5 +246,6 @@ namespace BancoPresentacion
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pbLogo;
     }
 }

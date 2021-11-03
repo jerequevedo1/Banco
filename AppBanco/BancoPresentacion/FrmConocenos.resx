@@ -58,11 +58,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="label1.Text" xml:space="preserve">
-    <value>Somos un banco en constante evolución,
-que ofrece variedad de productos y servicios
+    <value>Somos un banco en constante evolución que
+ofrece variedad de productos y servicios
 financieros a nuestros clientes.
+
 Nuestro equipo de IT desarrolla las mejores soluciones
-para brindar experiencias únicas para el manejo de su
-dinero y todas las operaciones necesarias.</value>
+para brindar experiencias únicas para el manejo de
+su dinero y todas las operaciones necesarias.</value>
   </data>
 </root>

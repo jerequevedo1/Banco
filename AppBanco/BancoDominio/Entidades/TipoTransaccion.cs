@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BancoDominio.Entidades
+namespace BancoPresentacion.Entidades
 {
     public class TipoTransaccion
     {
@@ -15,5 +15,9 @@ namespace BancoDominio.Entidades
             IdTipoTransac = idTipoTransac;
             Descripcion = descripcion;
         }
+        public TipoTransaccion()
+		{
+
+		}
     }
 }
