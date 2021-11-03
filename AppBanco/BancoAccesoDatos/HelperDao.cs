@@ -131,7 +131,7 @@ namespace BancoAccesoDatos
 					cmd.Parameters.Add(parameter);
 
 					cmd.ExecuteNonQuery();
-					oCliente.IdCliente = Convert.ToInt32(parameter.Value);
+					int nroCliente = Convert.ToInt32(parameter.Value);
 
 					SqlCommand cmdDet = new SqlCommand(spDetalle, cnn, trans);
 
@@ -143,7 +143,7 @@ namespace BancoAccesoDatos
 						cmdDet.Parameters.AddWithValue("@cbu", item.Cbu);
 						cmdDet.Parameters.AddWithValue("@alias", item.Alias);
 						cmdDet.Parameters.AddWithValue("@saldo_actual", item.Saldo);
-						cmdDet.Parameters.AddWithValue("@id_cliente", oCliente.IdCliente);
+						cmdDet.Parameters.AddWithValue("@id_cliente", nroCliente);
 						cmdDet.Parameters.AddWithValue("@id_tipo_cuenta", item.TipoCuenta.IdTipoCuenta);
 						cmdDet.Parameters.AddWithValue("@tipo_moneda", item.TipoMoneda);
 						cmdDet.Parameters.AddWithValue("@limite_descubierto", item.LimiteDescubierto);

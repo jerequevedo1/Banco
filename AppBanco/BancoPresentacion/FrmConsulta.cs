@@ -46,13 +46,15 @@ namespace BancoPresentacion
 			if (tipo.Equals(Tipo.Cliente))
 			{
 				new FrmNuevoEditar(modo, Tipo.Cliente, oCliente).ShowDialog();
-				CargarGrilla(tipo);
+				
+				
 			}
 			if (tipo.Equals(Tipo.Cuenta))
 			{
 				new FrmNuevoEditar(modo, Tipo.Cuenta, oCliente).ShowDialog();
-				CargarGrilla(tipo);
+				
 			}
+			CargarGrilla(tipo);
 		}
 		private void btnConsultar_Click(object sender, EventArgs e)
 		{

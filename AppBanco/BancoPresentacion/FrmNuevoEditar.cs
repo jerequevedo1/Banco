@@ -34,8 +34,12 @@ namespace BancoPresentacion
 			oCliente = new Cliente();
 			oCuenta = new Cuenta();
 			//oCliente.Provincia = new Provincia();
+			if (!modo.Equals(Accion.Create))
+			{
+				oCliente = cliente;
+			}
 			
-			oCliente = cliente;
+			
 			this.modo = modo;
 			this.tipo = tipo;
 			this.clienteExistente = false;
@@ -43,6 +47,7 @@ namespace BancoPresentacion
 
 		private void btnBuscar_Click(object sender, EventArgs e)
 		{
+
 			if (!txtCliente.Text.Equals(string.Empty))
 			{
 				
@@ -55,9 +60,11 @@ namespace BancoPresentacion
 				nro = frm.GetNroCliente();
 				clienteExistente = frm.GetClienteExistente();
 
+				oCliente = gestorCliente.GetClienteId(nro);
+
 				if (nro!=0)
 				{
-					CargarCliente(nro);
+					CargarCliente(oCliente);
 					
 					txtCliente.Text = oCliente.NombreCompleto();
 					panelCliente.Enabled = false;
@@ -76,6 +83,8 @@ namespace BancoPresentacion
 		
 		private void btnNuevo_Click(object sender, EventArgs e)
 		{
+			oCliente = null;
+			clienteExistente = false;
 			btnBuscar.Enabled = true;
 			txtCliente.Enabled = true;
 			panelCliente.Enabled = true;
@@ -127,7 +136,7 @@ namespace BancoPresentacion
 				if (modo.Equals(Accion.Update))
 				{
 					this.Text = "Editar Cliente";
-					CargarCliente(oCliente.IdCliente);
+					CargarCliente(oCliente);
 					txtCliente.Visible = false;
 					btnBuscar.Visible = false;
 					lblBuscarCliente.Visible = false;
@@ -145,7 +154,7 @@ namespace BancoPresentacion
 				if (modo.Equals(Accion.Read))
 				{
 					this.Text = "Consulta Cliente";
-					CargarCliente(oCliente.IdCliente);
+					CargarCliente(oCliente);
 					txtCliente.Visible = false;
 					btnBuscar.Visible = false;
 					lblBuscarCliente.Visible = false;
@@ -176,7 +185,7 @@ namespace BancoPresentacion
 				if (modo.Equals(Accion.Update))
 				{
 					this.Text = "Editar Cuenta";
-					CargarCliente(oCliente.IdCliente);
+					CargarCliente(oCliente);
 					CargarCuenta(oCliente);
 					txtCliente.Visible = false;
 					btnBuscar.Visible = false;
@@ -190,7 +199,7 @@ namespace BancoPresentacion
 				if (modo.Equals(Accion.Read))
 				{
 					this.Text = "Consulta Cuenta";
-					CargarCliente(oCliente.IdCliente);
+					CargarCliente(oCliente);
 					CargarCuenta(oCliente);
 					txtCliente.Visible = false;
 					btnBuscar.Visible = false;
@@ -258,9 +267,9 @@ namespace BancoPresentacion
 		//	txtCliEmail.Text = oClienteAux.Email;
 
 		//}
-		private void CargarCliente(int nro)
+		private void CargarCliente(Cliente oCliente)
 		{
-			oCliente = gestorCuenta.GetCuentaById(nro);
+				
 			txtCliNombre.Text = oCliente.NomCliente;
 			txtCliApellido.Text = oCliente.ApeCliente;
 			txtCliDNI.Text = oCliente.Dni.ToString();
@@ -362,11 +371,11 @@ namespace BancoPresentacion
 					//}
 					if (clienteExistente)
 					{
-						GuardarCuentaConCliente();
+						GuardarCuenta();
 					}
 					else
 					{
-						GuardarCuenta();
+						GuardarCuentaConCliente();
 					}
 					
 				}
@@ -385,45 +394,23 @@ namespace BancoPresentacion
 				{
 					GuardarCuentaConCliente();
 				}
-								
-				List<Parametro> parametro = new List<Parametro>();
-				parametro.Add(new Parametro("@id_cliente", oCliente.IdCliente));
-				parametro.Add(new Parametro("@nom_cliente", txtCliNombre.Text.ToString()));
-				parametro.Add(new Parametro("@ape_cliente", txtCliApellido.Text.ToString()));
-				parametro.Add(new Parametro("@dni", int.Parse(txtCliDNI.Text)));
-				parametro.Add(new Parametro("@cuil", long.Parse(txtCliCuil.Text)));
-				parametro.Add(new Parametro("@direccion", txtCliDire.Text.ToString()));
-				parametro.Add(new Parametro("@telefono", txtCliTel.Text.ToString()));
-				parametro.Add(new Parametro("@email", txtCliEmail.Text.ToString()));
-				parametro.Add(new Parametro("@id_barrio", Convert.ToInt32(cboClienteBarrio.SelectedValue)));
-
-
 				if (modo.Equals(Accion.Update))
 				{
-					if (gestorCliente.ModificarClienteSQL(parametro))
-					{
-						MessageBox.Show("El cliente se actualizo correctamente!!!", "Notificación", MessageBoxButtons.OK, MessageBoxIcon.Information);
-						this.Dispose();
-					}
-					else
-					{
-						MessageBox.Show("El cliente NO se pudo actualizar!!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-					}
-
+					GuardarCuenta();
 				}
+
 			}
 			
 		}
 		private void GuardarCuentaConCliente()
 		{
 			Provincia provincia = new Provincia();
-			oCliente.Provincia = provincia;
+			Barrio barrio = new Barrio();
 			Localidad localidad = new Localidad();
 			provincia.AgregarLocalidad(localidad);
-			Barrio barrio = new Barrio();
 			localidad.AgregarBarrio(barrio);
+			oCliente.Provincia = provincia;
 
-			oCliente = gestorCuenta.GetCuentaById(nro);
 
 			oCliente.NomCliente = txtCliNombre.Text;
 			oCliente.ApeCliente = txtCliApellido.Text;
@@ -433,18 +420,19 @@ namespace BancoPresentacion
 			oCliente.Telefono = txtCliTel.Text;
 			oCliente.Email = txtCliEmail.Text;
 
-			oCliente.Provincia.IdProvincia=Convert.ToInt32(cboCliProvincia.SelectedValue);
-			oCliente.Provincia.lLocalidad[0].IdLocalidad= Convert.ToInt32(cboCliLocalidad.SelectedValue);
-			oCliente.Provincia.lLocalidad[0].lBarrio[0].IdBarrio= Convert.ToInt32(cboClienteBarrio.SelectedValue);
+			oCliente.Provincia.IdProvincia = Convert.ToInt32(cboCliProvincia.SelectedValue);
+			oCliente.Provincia.lLocalidad[0].IdLocalidad = Convert.ToInt32(cboCliLocalidad.SelectedValue);
+
+			oCliente.Provincia.lLocalidad[0].lBarrio[0].IdBarrio = Convert.ToInt32(cboClienteBarrio.SelectedValue);
+			
 
 			oCuenta.Cbu = txtCbu.Text;
 			oCuenta.Alias = txtAlias.Text;
 			oCuenta.Saldo = Convert.ToInt32(txtDepositoInicial.Text);
 
 			oCuenta.TipoCuenta = new TipoCuenta();
-			oCuenta.TipoCuenta.IdTipoCuenta =Convert.ToInt32(cboTipoCuenta.SelectedValue);
+			oCuenta.TipoCuenta.IdTipoCuenta = Convert.ToInt32(cboTipoCuenta.SelectedValue);
 			oCuenta.LimiteDescubierto = Convert.ToDouble(txtLimiteDesc.Text);
-			
 
 			if (cboTipoMoneda.SelectedValue.Equals(1))
 			{
@@ -455,7 +443,8 @@ namespace BancoPresentacion
 				oCuenta.TipoMoneda = "D";
 			}
 
-			//oCliente.AgregarCuenta(oCuenta);
+			oCliente.AgregarCuenta(oCuenta);
+			
 			
 			if (modo.Equals(Accion.Create))
 			{
@@ -472,53 +461,57 @@ namespace BancoPresentacion
 		}
 		private void GuardarCuenta()
 		{
-		    
-			if (modo.Equals(Accion.Create))
+			if (tipo.Equals(Tipo.Cuenta))
 			{
-				int i = 0;
-				oCuenta.Cbu = txtCbu.Text;
-				oCuenta.Alias = txtAlias.Text;
-				oCuenta.Saldo = Convert.ToInt32(txtDepositoInicial.Text);
+				if (modo.Equals(Accion.Update))
+				{
+					//actualizando cuenta
+					foreach (Cuenta item in oCliente.Cuentas)
+					{
+						int i = 0;
+						oCliente.Cuentas[i].Cbu = txtCbu.Text;
+						oCliente.Cuentas[i].Alias = txtAlias.Text;
+						oCliente.Cuentas[i].Saldo = Convert.ToInt32(txtDepositoInicial.Text);
 
-				oCuenta.TipoCuenta = new TipoCuenta();
-				oCuenta.TipoCuenta.IdTipoCuenta = Convert.ToInt32(cboTipoCuenta.SelectedValue);
-				oCuenta.LimiteDescubierto = Convert.ToDouble(txtLimiteDesc.Text);
+						oCliente.Cuentas[i].TipoCuenta = new TipoCuenta();
+						oCliente.Cuentas[i].TipoCuenta.IdTipoCuenta = Convert.ToInt32(cboTipoCuenta.SelectedValue);
+						oCliente.Cuentas[i].LimiteDescubierto = Convert.ToDouble(txtLimiteDesc.Text);
 
-				oCliente.AgregarCuenta(oCuenta);
 
-				if (cboTipoMoneda.SelectedValue.Equals(1))
-				{
-					oCliente.Cuentas[i].TipoMoneda = "P";
-				}
-				if (cboTipoMoneda.SelectedValue.Equals(2))
-				{
-					oCliente.Cuentas[i].TipoMoneda = "D";
-				}
+						if (cboTipoMoneda.SelectedValue.Equals(1))
+						{
+							oCliente.Cuentas[i].TipoMoneda = "P";
+						}
+						if (cboTipoMoneda.SelectedValue.Equals(2))
+						{
+							oCliente.Cuentas[i].TipoMoneda = "D";
+						}
 
-				if (gestorCuenta.NuevaCuentaClienteExist(oCliente))
-				{
-					MessageBox.Show("Cuenta registrada al Cliente "+ oCliente.NombreCompleto() + " con exito.", "Informe", MessageBoxButtons.OK, MessageBoxIcon.Information);
-					Close();
+					}
+					if (gestorCuenta.ModificarCuenta(oCliente))
+					{
+						MessageBox.Show("Cuenta del Cliente " + oCliente.NombreCompleto() + " actualizada con exito.", "Informe", MessageBoxButtons.OK, MessageBoxIcon.Information);
+						Close();
+					}
+					else
+					{
+						MessageBox.Show("ERROR. No se pudo actualizar la cuenta.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					}
 				}
-				else
+				
+				// insertar una cuenta cliente existente
+				if (modo.Equals(Accion.Create))
 				{
-					MessageBox.Show("ERROR. No se pudo registrar la cuenta.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				}
-			}
-			if (modo.Equals(Accion.Update))
-			{
-				foreach (Cuenta item in oCliente.Cuentas)
-				{
+					oCliente.AgregarCuenta(oCuenta);
 					int i = 0;
-					oCliente.Cuentas[i].Cbu = txtCbu.Text;
-					oCliente.Cuentas[i].Alias = txtAlias.Text;
-					oCliente.Cuentas[i].Saldo = Convert.ToInt32(txtDepositoInicial.Text);
+					oCuenta.Cbu = txtCbu.Text;
+					oCuenta.Alias = txtAlias.Text;
+					oCuenta.Saldo = Convert.ToInt32(txtDepositoInicial.Text);
 
-					oCliente.Cuentas[i].TipoCuenta = new TipoCuenta();
-					oCliente.Cuentas[i].TipoCuenta.IdTipoCuenta = Convert.ToInt32(cboTipoCuenta.SelectedValue);
-					oCliente.Cuentas[i].LimiteDescubierto = Convert.ToDouble(txtLimiteDesc.Text);
-
-
+					oCuenta.TipoCuenta = new TipoCuenta();
+					oCuenta.TipoCuenta.IdTipoCuenta = Convert.ToInt32(cboTipoCuenta.SelectedValue);
+					oCuenta.LimiteDescubierto = Convert.ToDouble(txtLimiteDesc.Text);
+					
 					if (cboTipoMoneda.SelectedValue.Equals(1))
 					{
 						oCliente.Cuentas[i].TipoMoneda = "P";
@@ -528,16 +521,49 @@ namespace BancoPresentacion
 						oCliente.Cuentas[i].TipoMoneda = "D";
 					}
 
+					if (gestorCuenta.NuevaCuentaClienteExist(oCliente))
+					{
+						MessageBox.Show("Cuenta registrada al Cliente " + oCliente.NombreCompleto() + " con exito.", "Informe", MessageBoxButtons.OK, MessageBoxIcon.Information);
+						Close();
+					}
+					else
+					{
+						MessageBox.Show("ERROR. No se pudo registrar la cuenta.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					}
 				}
-				if (gestorCuenta.ModificarCuenta(oCliente))
+			}
+
+			// actualizar un cliente
+			
+			if (tipo.Equals(Tipo.Cliente) && modo.Equals(Accion.Update))
+			{
+				
+				if (tipo.Equals(Tipo.Cliente))
 				{
-					MessageBox.Show("Cuenta del Cliente " + oCliente.NombreCompleto() + " actualizada con exito.", "Informe", MessageBoxButtons.OK, MessageBoxIcon.Information);
-					Close();
+					List<Parametro> parametro = new List<Parametro>();
+					parametro.Add(new Parametro("@id_cliente", oCliente.IdCliente));
+					parametro.Add(new Parametro("@nom_cliente", txtCliNombre.Text.ToString()));
+					parametro.Add(new Parametro("@ape_cliente", txtCliApellido.Text.ToString()));
+					parametro.Add(new Parametro("@dni", int.Parse(txtCliDNI.Text)));
+					parametro.Add(new Parametro("@cuil", long.Parse(txtCliCuil.Text)));
+					parametro.Add(new Parametro("@direccion", txtCliDire.Text.ToString()));
+					parametro.Add(new Parametro("@telefono", txtCliTel.Text.ToString()));
+					parametro.Add(new Parametro("@email", txtCliEmail.Text.ToString()));
+					parametro.Add(new Parametro("@id_barrio", Convert.ToInt32(cboClienteBarrio.SelectedValue)));
+
+					
+					if (gestorCliente.ModificarClienteSQL(parametro))
+					{
+						MessageBox.Show("El cliente se actualizo correctamente!!!", "Notificación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+						this.Dispose();
+					}
+					else
+					{
+						MessageBox.Show("El cliente NO se pudo actualizar!!!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					}
+
 				}
-				else
-				{
-					MessageBox.Show("ERROR. No se pudo actualizar la cuenta.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				}
+				
 			}
 
 		}
@@ -553,10 +579,18 @@ namespace BancoPresentacion
 			//if (cboCliProvincia.SelectedValue.ToString() != null)
 			//{	
 			//
-			
+			if (modo.Equals(Accion.Update) && tipo.Equals(Tipo.Cliente))
+			{
+				CargarLocalidades(oCliente.Provincia.IdProvincia);
+			}
+			else
+			{
 				int id_prov = Convert.ToInt32(cboCliProvincia.SelectedValue.GetHashCode());
 
 				CargarLocalidades(id_prov);
+			}
+
+				
 			//}
 
 		}
