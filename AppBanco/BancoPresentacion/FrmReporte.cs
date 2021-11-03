@@ -1,4 +1,5 @@
 ﻿using BancoAccesoDatos;
+using BancoDominio;
 using BancoPresentacion.Reportes;
 using Microsoft.Reporting.WinForms;
 using System;
@@ -23,30 +24,41 @@ namespace BancoPresentacion
 
         private void button1_Click(object sender, EventArgs e)
         {
-            reportViewer1.ProcessingMode = ProcessingMode.Local;
-            string appFolder = Path.GetDirectoryName(Application.StartupPath);
-            var rutaRpt = Path.Combine(Application.StartupPath, @"~/Reportes\RptCuentasPorCliente.rdlc");
-            
+            try
+            {
+                var saldoMin = Decimal.Parse(txtSaldoMinimo.Text);
 
-            string pathAbosluto = Application.StartupPath;
-            string fullPath = Path.Combine(pathAbosluto, @"..\..\..\Reportes\RptCuentasPorCliente.rdlc");
-            fullPath = Path.GetFullPath(fullPath);
+                reportViewer1.ProcessingMode = ProcessingMode.Local;
+                string appFolder = Path.GetDirectoryName(Application.StartupPath);
+                var rutaRpt = Path.Combine(Application.StartupPath, @"~/Reportes\RptCuentasPorCliente.rdlc");
+                //ubicacion del reporte
+                string pathAbosluto = Application.StartupPath;
+                string fullPath = Path.Combine(pathAbosluto, @"..\..\..\Reportes\RptCuentasPorCliente.rdlc");
+                fullPath = Path.GetFullPath(fullPath);
+                //asignamos la ruta
+                reportViewer1.LocalReport.ReportPath = fullPath;
 
-            reportViewer1.LocalReport.ReportPath = fullPath;
+                //parametros de filtro del SP
+                DataSetCuentasCliente ds = new DataSetCuentasCliente();
+                List<Parametro> parametros = new List<Parametro>();
+                parametros.Add(new Parametro("@saldoMinimo", saldoMin));
 
-             //reportViewer1.LocalReport.ReportPath = @"C:\Users\jpolt\OneDrive\Escritorio\Banco_JJRS\AppBanco\BancoPresentacion\Reportes\RptCuentasPorCliente.rdlc";
-            reportViewer1.Refresh();
+                reportViewer1.LocalReport.DataSources.Clear();
 
+                //invocamos al SP con param
+                var datos = HelperDao.ObtenerInstancia().ConsultaSQLParametros("PA_REPORTE_CUENTAS_CLIENTE", parametros);
+                //seteamos el DATASOURCE al reporte
+                ReportDataSource reportDataSource = new ReportDataSource("DataSet1", datos);
+                this.reportViewer1.LocalReport.DataSources.Add(reportDataSource);
+                //refrescamos cambios
+                reportViewer1.Refresh();
+                this.reportViewer1.RefreshReport();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se pudo generar el informe, reintente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }    
 
-            DataSetCuentasCliente ds = new DataSetCuentasCliente();
-
-            var datos = HelperDao.ObtenerInstancia().ConsultaSQL("PA_REPORTE_CUENTAS_CLIENTE");
-            //DATASOURCE
-            ReportDataSource reportDataSource = new ReportDataSource("DataSet1", datos);
-           
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource);
-            reportViewer1.Refresh();
-     
         }
 
         private void FrmReporte_Load(object sender, EventArgs e)
