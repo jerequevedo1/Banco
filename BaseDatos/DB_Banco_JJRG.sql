@@ -273,20 +273,7 @@ BEGIN
 	SELECT * FROM Provincias order by 2 asc;
 END
 go
-create PROCEDURE SP_CONSULTAR_LOCALIDADES
-AS
-BEGIN
-	
-	SELECT * FROM Localidades order by 2 asc;
-END
-go
-create PROCEDURE SP_CONSULTAR_BARRIOS
-AS
-BEGIN
-	
-	SELECT * FROM BARRIOS order by 2 asc;
-END
-go
+
 CREATE PROC PA_REPORTE_CUENTAS_CLIENTE
 
 as
@@ -313,3 +300,41 @@ as
 	id_tipo_cuenta=@id_tipo_cuenta,
 	tipo_moneda=@tipo_moneda
 	where id_cuenta=@id_cuenta
+
+
+go
+     --sp
+Create PROC PA_DELETE_CUENTA
+@nro_cuenta int
+AS
+BEGIN
+	UPDATE CUENTAS SET fecha_baja = GETDATE()
+	WHERE id_cuenta = @nro_cuenta;	
+END
+
+go
+create PROC PA_DELETE_CLIENTE
+@nro_cli int
+AS
+BEGIN
+	UPDATE Clientes SET fecha_baja = GETDATE()
+	WHERE id_cliente = @nro_cli;
+END
+
+GO
+
+CREATE PROCEDURE SP_CONSULTAR_LOCALIDADES
+@id_prov int
+AS
+BEGIN
+	SELECT * FROM Localidades  where id_provincia=@id_prov order by 2 asc;
+END
+
+GO
+CREATE  PROCEDURE SP_CONSULTAR_BARRIOS
+@id_loc int
+AS
+BEGIN
+	
+	SELECT * FROM BARRIOS where id_localidad=@id_loc order by 2 asc;
+END
