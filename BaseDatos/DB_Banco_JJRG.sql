@@ -193,14 +193,16 @@ AS
 	    order by id_cuenta asc
 
 go
-CREATE PROC PA_CONSULTA_CLIENTE_SIMPLE
+ALTER PROC [dbo].[PA_CONSULTA_CLIENTE_SIMPLE]
 @ClienteNombre varchar(150)
 as
 		if @ClienteNombre not like ''
-			select id_cliente,nom_cliente,ape_cliente,dni,cuil,direccion,telefono,email,id_barrio
-			from Clientes
+			select id_cliente,nom_cliente,ape_cliente,dni,cuil,direccion,telefono,email,b.id_barrio,l.id_localidad,p.id_provincia
+			from Clientes c join Barrios b on b.id_barrio=c.id_barrio
+				join Localidades l on l.id_localidad=b.id_localidad
+				join Provincias p on p.id_provincia=l.id_localidad
 			WHERE (nom_cliente like '%' + @ClienteNombre + '%')OR(ape_cliente like '%' + @ClienteNombre + '%')
-			order by id_cliente asc  
+			order by id_cliente asc 
 go
 Create PROC PA_CONSULTA_TIPO_CUENTA
 as
