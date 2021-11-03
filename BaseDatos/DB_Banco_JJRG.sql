@@ -346,3 +346,16 @@ BEGIN
 	
 	SELECT * FROM BARRIOS where id_localidad=@id_loc order by 2 asc;
 END
+GO
+CREATE PROCEDURE PA_CONSULTAR_CUENTA_POR_ID
+@nro int
+AS
+	select c.id_cliente,nom_cliente,ape_cliente, dni,cuil,direccion,l.id_localidad,p.id_provincia,b.id_barrio,email,
+		id_cuenta,cbu,alias,saldo_actual,limite_descubierto,tc.id_tipo_cuenta,tc.id_tipo_cuenta,tipo_moneda,
+		c.fecha_baja,c.fecha_alta
+	from Cuentas c join Clientes cl on c.id_cliente=cl.id_cliente 
+		join Tipos_Cuentas tc on tc.id_tipo_cuenta=c.id_tipo_cuenta
+		join Barrios b on b.id_barrio=cl.id_barrio
+		join Localidades l on l.id_localidad=b.id_localidad
+		join Provincias p on p.id_provincia=l.id_provincia
+	where c.id_cuenta=@nro
