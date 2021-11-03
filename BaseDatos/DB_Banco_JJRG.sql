@@ -322,3 +322,13 @@ SELECT id_transaccion,fecha,c.id_cuenta,ape_cliente,nom_cliente, monto,tt.descri
 FROM Transacciones t join Tipos_Transacciones tt on t.id_tipo_transac=tt.id_tipo_transac
 	join Cuentas c on c.id_cuenta=t.id_cuenta
 	join Clientes cl on  cl.id_cliente=c.id_cliente
+go
+create proc PA_PROXIMO_CLIENTE
+@next int OUTPUT
+AS
+	SET @next = (SELECT MAX(id_cliente)+1  FROM Clientes);
+GO
+CREATE PROC PA_PROXIMA_CUENTA
+@next int OUTPUT
+AS
+	SET @next = (SELECT MAX(id_cuenta)+1  FROM Cuentas);
