@@ -291,8 +291,6 @@ namespace BancoPresentacion.Reportes {
             
             private global::System.Data.DataColumn columnsaldo_actual;
             
-            private global::System.Data.DataColumn columnExpr1;
-            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public DataTable1DataTable() {
@@ -376,14 +374,6 @@ namespace BancoPresentacion.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn Expr1Column {
-                get {
-                    return this.columnExpr1;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -419,7 +409,7 @@ namespace BancoPresentacion.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public DataTable1Row AddDataTable1Row(string nom_cliente, string ape_cliente, string cbu, decimal saldo_actual, int Expr1) {
+            public DataTable1Row AddDataTable1Row(string nom_cliente, string ape_cliente, string cbu, decimal saldo_actual) {
                 DataTable1Row rowDataTable1Row = ((DataTable1Row)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -427,8 +417,7 @@ namespace BancoPresentacion.Reportes {
                         ape_cliente,
                         null,
                         cbu,
-                        saldo_actual,
-                        Expr1};
+                        saldo_actual};
                 rowDataTable1Row.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDataTable1Row);
                 return rowDataTable1Row;
@@ -465,7 +454,6 @@ namespace BancoPresentacion.Reportes {
                 this.columnid_cuenta = base.Columns["id_cuenta"];
                 this.columncbu = base.Columns["cbu"];
                 this.columnsaldo_actual = base.Columns["saldo_actual"];
-                this.columnExpr1 = base.Columns["Expr1"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -483,8 +471,6 @@ namespace BancoPresentacion.Reportes {
                 base.Columns.Add(this.columncbu);
                 this.columnsaldo_actual = new global::System.Data.DataColumn("saldo_actual", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnsaldo_actual);
-                this.columnExpr1 = new global::System.Data.DataColumn("Expr1", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnExpr1);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnid_cliente,
                                 this.columnid_cuenta}, true));
@@ -729,22 +715,6 @@ namespace BancoPresentacion.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public int Expr1 {
-                get {
-                    try {
-                        return ((int)(this[this.tableDataTable1.Expr1Column]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Expr1\' de la tabla \'DataTable1\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableDataTable1.Expr1Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool Isnom_clienteNull() {
                 return this.IsNull(this.tableDataTable1.nom_clienteColumn);
             }
@@ -789,18 +759,6 @@ namespace BancoPresentacion.Reportes {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void Setsaldo_actualNull() {
                 this[this.tableDataTable1.saldo_actualColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsExpr1Null() {
-                return this.IsNull(this.tableDataTable1.Expr1Column);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetExpr1Null() {
-                this[this.tableDataTable1.Expr1Column] = global::System.Convert.DBNull;
             }
         }
         
@@ -969,7 +927,6 @@ namespace BancoPresentacion.Reportes.DataSetCuentasClienteTableAdapters {
             tableMapping.ColumnMappings.Add("id_cuenta", "id_cuenta");
             tableMapping.ColumnMappings.Add("cbu", "cbu");
             tableMapping.ColumnMappings.Add("saldo_actual", "saldo_actual");
-            tableMapping.ColumnMappings.Add("Expr1", "Expr1");
             this._adapter.TableMappings.Add(tableMapping);
         }
         

@@ -373,5 +373,9 @@ namespace BancoPresentacion
 
 		}
 
-	}
+        private void dgvConsulta_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+    }
 }
