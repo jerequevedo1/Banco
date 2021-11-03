@@ -138,5 +138,69 @@ namespace BancoAccesoDatos.Implementaciones
             
             return resultado;
         }
-	}
+        public Cliente GetCuentaById(int nro)
+		{
+            List<Parametro> parametros = new List<Parametro>();
+            parametros.Add(new Parametro("@nro", nro));
+            Cliente oCliente = new Cliente();
+            Cuenta oCuenta = new Cuenta();
+            Provincia p = new Provincia();
+            Localidad l = new Localidad();
+            Barrio b = new Barrio();
+
+            try
+            {
+                DataTable tabla = HelperDao.ObtenerInstancia().ConsultaSQLParametros("PA_CONSULTAR_CUENTA_POR_ID", parametros);
+
+                foreach (DataRow row in tabla.Rows)
+                {
+                    oCliente.IdCliente = Convert.ToInt32(row["id_cliente"].ToString());
+                    oCliente.NomCliente = row["nom_cliente"].ToString();
+                    oCliente.ApeCliente = row["ape_cliente"].ToString();
+                    oCliente.Direccion = row["direccion"].ToString();
+                    oCliente.Cuil = long.Parse(row["cuil"].ToString());
+                    oCliente.Dni = Convert.ToInt32(row["dni"].ToString());
+                    oCliente.Telefono = row["telefono"].ToString();
+                    oCliente.Email = row["email"].ToString();
+
+                    oCuenta.IdCuenta= Convert.ToInt32(row["id_cuenta"].ToString());
+                    oCuenta.Cbu = row["cbu"].ToString();
+                    oCuenta.Alias= row["alias"].ToString();
+                    oCuenta.Saldo = Convert.ToDouble(row["saldo_actual"].ToString());
+                    oCuenta.LimiteDescubierto= Convert.ToDouble(row["limite_descubierto"].ToString());
+                    oCuenta.TipoCuenta.IdTipoCuenta= Convert.ToInt32(row["id_tipo_cuenta"].ToString());
+                    oCuenta.TipoMoneda= row["tipo_moneda"].ToString();
+                   
+                    if (!row["fecha_baja"].Equals(DBNull.Value))
+                    {
+                        oCuenta.FechaBaja = Convert.ToDateTime(row["fechaBaja"]);
+                    }
+                    oCuenta.FechaAlta = Convert.ToDateTime(row["fecha_alta"].ToString());
+
+
+                    b.IdBarrio = Convert.ToInt32(row["id_barrio"].ToString());
+                    l.AgregarBarrio(b);
+
+                    l.IdLocalidad = Convert.ToInt32(row["id_localidad"].ToString());
+                    p.AgregarLocalidad(l);
+
+                    p.IdProvincia = Convert.ToInt32(row["id_provincia"].ToString());
+                    oCliente.Provincia = p;
+                    oCliente.AgregarCuenta(oCuenta);
+                }
+
+            }
+            catch (SqlException)
+            {
+                oCliente = null;
+            }
+            return oCliente;
+        }
+
+        public int ProximoID(string nombreSP)
+        {
+            HelperDao helper = HelperDao.ObtenerInstancia();
+            return helper.ProximoID(nombreSP);
+        }
+    }
 }

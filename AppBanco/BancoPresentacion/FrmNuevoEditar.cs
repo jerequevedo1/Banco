@@ -114,9 +114,12 @@ namespace BancoPresentacion
 					btnBuscar.Visible = false;
 					lblBuscarCliente.Visible = false;					
 					this.Size = new Size(782, 454);
-					lblNroCliente.Text = "Nro Cliente: " + 0;
-					lblNroCuenta.Text = "Nro Cuenta: " + 0;
+					lblNroCliente.Text = "Nro Cliente: " + gestorCliente.ProximoID("PA_PROXIMO_CLIENTE");
+					lblNroCuenta.Text = "Nro Cuenta: " + gestorCuenta.ProximoID("PA_PROXIMA_CUENTA");
+
+
 				}
+
 				if (modo.Equals(Accion.Update))
 				{
 					this.Text = "Editar Cliente";
@@ -130,6 +133,10 @@ namespace BancoPresentacion
 					panelCuenta.Visible = false;
 					lblNroCuenta.Visible = false;
 					lblNroCliente.Text= "Nro Cliente: "+oCliente.IdCliente.ToString();
+
+					cboCliProvincia.SelectedValue = oCliente.Provincia.IdProvincia;
+					cboCliLocalidad.SelectedValue = oCliente.Provincia.lLocalidad[0].IdLocalidad;
+					cboClienteBarrio.SelectedValue = oCliente.Provincia.lLocalidad[0].lBarrio[0].IdBarrio;
 				}
 				if (modo.Equals(Accion.Read))
 				{
@@ -146,6 +153,11 @@ namespace BancoPresentacion
 					panelCliente.Enabled = false;
 					btnAceptar.Visible = false;
 					lblNroCliente.Text = "Nro Cliente: " + oCliente.IdCliente.ToString();
+					cboCliProvincia.SelectedValue = oCliente.Provincia.IdProvincia;
+					//CargarLocalidades(oCliente.Provincia.IdProvincia);
+					cboCliLocalidad.SelectedValue = oCliente.Provincia.lLocalidad[0].IdLocalidad;
+					cboClienteBarrio.SelectedValue = oCliente.Provincia.lLocalidad[0].lBarrio[0].IdBarrio;
+
 				}
 
 			}
@@ -154,14 +166,14 @@ namespace BancoPresentacion
 				if (modo.Equals(Accion.Create))
 				{
 					this.Text = "Nueva Cuenta";
-					lblNroCliente.Text = "Nro Cliente: " + 0;
-					lblNroCuenta.Text = "Nro Cuenta: " + 0;
+					lblNroCliente.Text = "Nro Cliente: " + gestorCliente.ProximoID("PA_PROXIMO_CLIENTE");
+					lblNroCuenta.Text = "Nro Cuenta: " + gestorCuenta.ProximoID("PA_PROXIMA_CUENTA");
 				}
 				if (modo.Equals(Accion.Update))
 				{
 					this.Text = "Editar Cuenta";
-					CargarCuenta(oCliente);
 					CargarCliente(oCliente.IdCliente);
+					CargarCuenta(oCliente);
 					txtCliente.Visible = false;
 					btnBuscar.Visible = false;
 					lblBuscarCliente.Visible = false;
@@ -169,12 +181,13 @@ namespace BancoPresentacion
 					this.Size = new Size(782, 454);
 					lblNroCliente.Text = "Nro Cliente: " + oCliente.IdCliente.ToString();
 					lblNroCuenta.Text = "Nro Cuenta: " + oCliente.Cuentas[0].IdCuenta.ToString();
+					cboCliProvincia.SelectedValue = oCliente.Provincia.IdProvincia;
 				}
 				if (modo.Equals(Accion.Read))
 				{
 					this.Text = "Consulta Cuenta";
-					CargarCuenta(oCliente);
 					CargarCliente(oCliente.IdCliente);
+					CargarCuenta(oCliente);
 					txtCliente.Visible = false;
 					btnBuscar.Visible = false;
 					lblBuscarCliente.Visible = false;
@@ -184,6 +197,7 @@ namespace BancoPresentacion
 					btnAceptar.Visible = false;
 					lblNroCliente.Text = "Nro Cliente: " + oCliente.IdCliente.ToString();
 					lblNroCuenta.Text = "Nro Cuenta: " + oCliente.Cuentas[0].IdCuenta.ToString();
+					cboCliProvincia.SelectedValue = oCliente.Provincia.IdProvincia;
 				}
 
 			}
@@ -195,6 +209,7 @@ namespace BancoPresentacion
 
 		private void CargarCuenta(Cliente oCliente)
 		{
+
 			foreach (Cuenta item in oCliente.Cuentas)
 			{
 				int i = 0;
@@ -215,23 +230,45 @@ namespace BancoPresentacion
 			}
 		}
 
+		//private void CargarCliente(int nro)
+		//{
+		//	Cliente oClienteAux= gestorCliente.GetClienteId(nro);
+
+		//	if (modo.Equals(Accion.Create) && tipo.Equals(Tipo.Cuenta))
+		//	{
+		//		oCliente = oClienteAux;
+		//	}
+
+		//	txtCliNombre.Text = oClienteAux.NomCliente;
+		//	txtCliApellido.Text = oClienteAux.ApeCliente;
+		//	txtCliDNI.Text = oClienteAux.Dni.ToString();
+		//	txtCliCuil.Text = oClienteAux.Cuil.ToString();
+		//	//cboClienteBarrio.SelectedValue = oClienteAux.Barrio.IdBarrio;
+		//	cboCliProvincia.SelectedValue = oClienteAux.Provincia.IdProvincia;
+
+		//	cboCliLocalidad.SelectedValue = oClienteAux.Provincia.lLocalidad[0].IdLocalidad;
+		//	cboClienteBarrio.SelectedValue = oClienteAux.Provincia.lLocalidad[0].lBarrio[0].IdBarrio;
+
+		//	txtCliDire.Text = oClienteAux.Direccion;
+		//	txtCliTel.Text = oClienteAux.Telefono;
+		//	txtCliEmail.Text = oClienteAux.Email;
+
+		//}
 		private void CargarCliente(int nro)
 		{
-			Cliente oClienteAux= gestorCliente.GetClienteId(nro);
+			txtCliNombre.Text = oCliente.NomCliente;
+			txtCliApellido.Text = oCliente.ApeCliente;
+			txtCliDNI.Text = oCliente.Dni.ToString();
+			txtCliCuil.Text = oCliente.Cuil.ToString();
+			//cboClienteBarrio.SelectedValue = oClienteAux.Barrio.IdBarrio;
+			cboCliProvincia.SelectedValue = oCliente.Provincia.IdProvincia;
 
-			if (modo.Equals(Accion.Create) && tipo.Equals(Tipo.Cuenta))
-			{
-				oCliente = oClienteAux;
-			}
+			cboCliLocalidad.SelectedValue = oCliente.Provincia.lLocalidad[0].IdLocalidad;
+			cboClienteBarrio.SelectedValue = oCliente.Provincia.lLocalidad[0].lBarrio[0].IdBarrio;
 
-			txtCliNombre.Text = oClienteAux.NomCliente;
-			txtCliApellido.Text = oClienteAux.ApeCliente;
-			txtCliDNI.Text = oClienteAux.Dni.ToString();
-			txtCliCuil.Text = oClienteAux.Cuil.ToString();
-			cboClienteBarrio.SelectedValue = oClienteAux.Barrio.IdBarrio;
-			txtCliDire.Text = oClienteAux.Direccion;
-			txtCliTel.Text = oClienteAux.Telefono;
-			txtCliEmail.Text = oClienteAux.Email;
+			txtCliDire.Text = oCliente.Direccion;
+			txtCliTel.Text = oCliente.Telefono;
+			txtCliEmail.Text = oCliente.Email;
 
 		}
 		private void CargarLocalidades(int id_prov)
@@ -256,14 +293,13 @@ namespace BancoPresentacion
 			List<Provincia> lstP = new List<Provincia>();
 			lstP = gestorCliente.GetProvincias();
 
-			cboCliProvincia.Items.Clear();
+			//cboCliProvincia.Items.Clear();
 			cboCliProvincia.DataSource = lstP;
 			cboCliProvincia.ValueMember = "IdProvincia";
 			cboCliProvincia.DisplayMember = "NomProvincia";
-			cboCliProvincia.SelectedIndex = 0;
+			//cboCliProvincia.SelectedIndex = 0;
 
 		}
-
 
 		private void CargarBarrios(int id_loc)
 		{
@@ -278,8 +314,8 @@ namespace BancoPresentacion
 			cboClienteBarrio.DataSource = lstB;
 			cboClienteBarrio.ValueMember = "IdBarrio";
 			cboClienteBarrio.DisplayMember = "NomBarrio";
-			//cboClienteBarrio.SelectedIndex = 0;
 
+			
 		}
 		private void CargarTipoMoneda()
 		{ 
@@ -375,7 +411,12 @@ namespace BancoPresentacion
 		}
 		private void GuardarCuentaConCliente()
 		{
-
+			Provincia provincia = new Provincia();
+			oCliente.Provincia = provincia;
+			Localidad localidad = new Localidad();
+			provincia.AgregarLocalidad(localidad);
+			Barrio barrio = new Barrio();
+			localidad.AgregarBarrio(barrio);
 			
 			oCliente.NomCliente = txtCliNombre.Text;
 			oCliente.ApeCliente = txtCliApellido.Text;
@@ -384,9 +425,11 @@ namespace BancoPresentacion
 			oCliente.Direccion = txtCliDire.Text;
 			oCliente.Telefono = txtCliTel.Text;
 			oCliente.Email = txtCliEmail.Text;
-			oCliente.Barrio = new Barrio();
-			oCliente.Barrio.IdBarrio = Convert.ToInt32(cboClienteBarrio.SelectedValue);
-			
+
+			oCliente.Provincia.IdProvincia=Convert.ToInt32(cboCliProvincia.SelectedValue);
+			oCliente.Provincia.lLocalidad[0].IdLocalidad= Convert.ToInt32(cboCliLocalidad.SelectedValue);
+			oCliente.Provincia.lLocalidad[0].lBarrio[0].IdBarrio= Convert.ToInt32(cboClienteBarrio.SelectedValue);
+
 			oCuenta.Cbu = txtCbu.Text;
 			oCuenta.Alias = txtAlias.Text;
 			oCuenta.Saldo = Convert.ToInt32(txtDepositoInicial.Text);
@@ -499,25 +542,27 @@ namespace BancoPresentacion
 
         private void cboCliProvincia_SelectedIndexChanged(object sender, EventArgs e)
         {
-			if (cboCliProvincia.SelectedValue.ToString() != null)
-			{
+
+			//if (cboCliProvincia.SelectedValue.ToString() != null)
+			//{	
+			//
+			
 				int id_prov = Convert.ToInt32(cboCliProvincia.SelectedValue.GetHashCode());
 
 				CargarLocalidades(id_prov);
-
-			}
+			//}
 
 		}
 
-        private void cboCliLocalidad_SelectedIndexChanged(object sender, EventArgs e)
+		private void cboCliLocalidad_SelectedIndexChanged(object sender, EventArgs e)
         {
-			if (cboCliLocalidad.SelectedValue.ToString() != null)
-			{
+			//if (cboCliLocalidad.SelectedValue.ToString() != null)
+			//{
 				int id_loc = Convert.ToInt32(cboCliLocalidad.SelectedValue.GetHashCode());
 
 				CargarBarrios(id_loc);
 
-			}
+			//}
 
 		}
         private void txtCliNombre_KeyPress(object sender, KeyPressEventArgs e)

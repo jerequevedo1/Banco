@@ -43,5 +43,14 @@ namespace BancoServicios.Implementaciones
 		{
 			return daoCuenta.ModifyCuenta(oCliente);
 		}
-	}
+		public Cliente GetCuentaById(int nro)
+		{
+			return daoCuenta.GetCuentaById(nro);
+		}
+
+        public int ProximoID(string nombreSP)
+        {
+			return daoCuenta.ProximoID(nombreSP);
+		}
+    }
 }

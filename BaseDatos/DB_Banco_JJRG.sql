@@ -193,14 +193,16 @@ AS
 	    order by id_cuenta asc
 
 go
-CREATE PROC PA_CONSULTA_CLIENTE_SIMPLE
+ALTER PROC [dbo].[PA_CONSULTA_CLIENTE_SIMPLE]
 @ClienteNombre varchar(150)
 as
 		if @ClienteNombre not like ''
-			select id_cliente,nom_cliente,ape_cliente,dni,cuil,direccion,telefono,email,id_barrio
-			from Clientes
+			select id_cliente,nom_cliente,ape_cliente,dni,cuil,direccion,telefono,email,b.id_barrio,l.id_localidad,p.id_provincia
+			from Clientes c join Barrios b on b.id_barrio=c.id_barrio
+				join Localidades l on l.id_localidad=b.id_localidad
+				join Provincias p on p.id_provincia=l.id_localidad
 			WHERE (nom_cliente like '%' + @ClienteNombre + '%')OR(ape_cliente like '%' + @ClienteNombre + '%')
-			order by id_cliente asc  
+			order by id_cliente asc 
 go
 Create PROC PA_CONSULTA_TIPO_CUENTA
 as
@@ -208,16 +210,22 @@ as
 			from Tipos_Cuentas
 			order by 2 asc 
 go
-create PROC SP_CONSULTAR_CLIENTE_POR_ID
-	@nro int	
+--SP
+CREATE PROC SP_CONSULTAR_CLIENTE_POR_ID
+@nro int
 AS
 BEGIN
-	SELECT *
-	FROM Clientes c, Cuentas cu, Barrios b
+
+	SELECT c.id_cliente, c.nom_cliente, c.ape_cliente, c.dni,  c.cuil,c.direccion,c.telefono,c.email,
+	c.id_barrio, c.fecha_baja, c.fecha_alta, l.id_localidad, p.id_provincia
+	FROM Clientes c, Cuentas cu, Barrios b, Localidades l, Provincias p
 	WHERE c.id_cliente = cu.id_cliente
 	AND c.id_barrio= b.id_barrio
+    AND b.id_localidad=	l.id_localidad
+	AND l.id_provincia=p.id_provincia
 	AND c.id_cliente= @nro;
 END
+
 go
 create proc PA_INSERTAR_CLIENTE
 @nom_cliente varchar(50),
@@ -338,3 +346,33 @@ BEGIN
 	
 	SELECT * FROM BARRIOS where id_localidad=@id_loc order by 2 asc;
 END
+GO
+create PROCEDURE PA_CONSULTAR_CUENTA_POR_ID
+@nro int
+AS
+	select c.id_cliente,nom_cliente,ape_cliente, dni,cuil,direccion,telefono,l.id_localidad,p.id_provincia,b.id_barrio,email,
+		id_cuenta,cbu,alias,saldo_actual,limite_descubierto,tc.id_tipo_cuenta,tipo_moneda,
+		c.fecha_baja,c.fecha_alta
+	from Cuentas c join Clientes cl on c.id_cliente=cl.id_cliente 
+		join Tipos_Cuentas tc on tc.id_tipo_cuenta=c.id_tipo_cuenta
+		join Barrios b on b.id_barrio=cl.id_barrio
+		join Localidades l on l.id_localidad=b.id_localidad
+		join Provincias p on p.id_provincia=l.id_provincia
+	where c.id_cuenta=@nro
+GO
+CREATE proc PA_CONSULTA_TRANSACCIONES
+AS
+SELECT id_transaccion,fecha,c.id_cuenta,ape_cliente,nom_cliente, monto,tt.descripcion
+FROM Transacciones t join Tipos_Transacciones tt on t.id_tipo_transac=tt.id_tipo_transac
+	join Cuentas c on c.id_cuenta=t.id_cuenta
+	join Clientes cl on  cl.id_cliente=c.id_cliente
+GO
+CREATE PROC PA_PROXIMA_CUENTA
+@next int OUTPUT
+AS
+	SET @next = (SELECT MAX(id_cuenta)+1  FROM Cuentas)
+GO
+CREATE proc PA_PROXIMO_CLIENTE
+@next int OUTPUT
+AS
+	SET @next = (SELECT MAX(id_cliente)+1  FROM Clientes)

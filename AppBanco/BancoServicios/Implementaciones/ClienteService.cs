@@ -59,6 +59,11 @@ namespace BancoServicios.Implementaciones
         {
             return daoCliente.ActualizarSQL(nombreSP, p);
         }
+
+        public int ProximoID(string nombreSp)
+        {
+            return daoCliente.ProximoID(nombreSp);
+        }
     }
 
 }

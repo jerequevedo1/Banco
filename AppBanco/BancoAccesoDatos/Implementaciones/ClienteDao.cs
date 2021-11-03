@@ -58,7 +58,9 @@ namespace BancoAccesoDatos.Implementaciones
             List<Parametro> parametros = new List<Parametro>();
             parametros.Add(new Parametro("@nro", nro));
             Cliente oCliente = new Cliente();
-            Barrio oBarrio = new Barrio();
+            Provincia p = new Provincia();
+            Localidad l = new Localidad();
+            Barrio b = new Barrio();
 
             try
             {
@@ -77,12 +79,17 @@ namespace BancoAccesoDatos.Implementaciones
                     oCliente.Telefono = row["telefono"].ToString();
                     oCliente.Email = row["email"].ToString();
 
+                    
+                    b.IdBarrio = Convert.ToInt32(row["id_barrio"].ToString());
+                    l.AgregarBarrio(b);
+                    
+                    l.IdLocalidad= Convert.ToInt32(row["id_localidad"].ToString());
+                    p.AgregarLocalidad(l);
 
-                    oBarrio.IdBarrio = Convert.ToInt32(row["id_barrio"].ToString());
-                    oBarrio.NomBarrio = row["nom_barrio"].ToString();
-                    oCliente.Barrio = oBarrio;
-
+                    p.IdProvincia = Convert.ToInt32(row["id_provincia"].ToString());
+                    oCliente.Provincia = p;
                 }
+
             }
             catch (SqlException)
             {
@@ -94,6 +101,9 @@ namespace BancoAccesoDatos.Implementaciones
         public List<Cliente> GetClienteByName(List<Parametro> parametro)
         {
             List<Cliente> lst = new List<Cliente>();
+            Provincia p = new Provincia();
+            Localidad l = new Localidad();
+            Barrio b = new Barrio();
 
             try
             {
@@ -112,8 +122,15 @@ namespace BancoAccesoDatos.Implementaciones
                     oCliente.Telefono = row["telefono"].ToString();
                     oCliente.Email = row["email"].ToString();
 
-                    oCliente.Barrio = new Barrio();
-                    oCliente.Barrio.IdBarrio = Convert.ToInt32(row["id_barrio"].ToString());
+                    b.IdBarrio = Convert.ToInt32(row["id_barrio"].ToString());
+                    l.AgregarBarrio(b);
+
+                    l.IdLocalidad = Convert.ToInt32(row["id_localidad"].ToString());
+                    p.AgregarLocalidad(l);
+
+                    p.IdProvincia = Convert.ToInt32(row["id_provincia"].ToString());
+
+                    oCliente.Provincia = p;
 
                     lst.Add(oCliente);
                 }
@@ -151,7 +168,6 @@ namespace BancoAccesoDatos.Implementaciones
             DataTable table = HelperDao.ObtenerInstancia().ConsultaSQLParametros("SP_CONSULTAR_LOCALIDADES", parametro);
 
 
-
             foreach (DataRow row in table.Rows)
             {
                 Localidad oLocalidad = new Localidad();
@@ -170,9 +186,9 @@ namespace BancoAccesoDatos.Implementaciones
 
             DataTable table = HelperDao.ObtenerInstancia().ConsultaSQL("SP_CONSULTAR_PROVINCIAS");
             
-            DataRow fila = table.NewRow();
-            fila["nom_provincia"] = "Selecciona provincia";
-            table.Rows.InsertAt(fila, 0);
+            //DataRow fila = table.NewRow();
+            //fila["nom_provincia"] = "Selecciona provincia";
+            //table.Rows.InsertAt(fila, 0);
 
             foreach (DataRow row in table.Rows)
             {
@@ -218,6 +234,13 @@ namespace BancoAccesoDatos.Implementaciones
             return estado;
 
 
+        }
+
+        public int ProximoID(string nombreSp)
+        {
+
+            HelperDao helper = HelperDao.ObtenerInstancia();
+            return helper.ProximoID(nombreSp);
         }
     }
 }

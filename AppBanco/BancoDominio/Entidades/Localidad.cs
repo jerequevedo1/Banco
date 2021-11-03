@@ -19,8 +19,14 @@ namespace BancoPresentacion.Entidades
 
         }
 
+        public void AgregarBarrio(Barrio barrio)
+        {
+           lBarrio.Add(barrio);
+        }
+
         public Localidad()
         {
+            lBarrio = new List<Barrio>();
         }
     }
 }

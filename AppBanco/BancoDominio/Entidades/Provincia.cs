@@ -18,8 +18,13 @@ namespace BancoPresentacion.Entidades
             this.lLocalidad = new List<Localidad>();
         }
 
+        public void AgregarLocalidad(Localidad localidad)
+        {
+            lLocalidad.Add(localidad);
+        }
         public Provincia()
         {
+            lLocalidad = new List<Localidad>();
         }
     }
 }
