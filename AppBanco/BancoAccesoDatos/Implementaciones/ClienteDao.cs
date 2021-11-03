@@ -186,9 +186,9 @@ namespace BancoAccesoDatos.Implementaciones
 
             DataTable table = HelperDao.ObtenerInstancia().ConsultaSQL("SP_CONSULTAR_PROVINCIAS");
             
-            DataRow fila = table.NewRow();
-            fila["nom_provincia"] = "Selecciona provincia";
-            table.Rows.InsertAt(fila, 0);
+            //DataRow fila = table.NewRow();
+            //fila["nom_provincia"] = "Selecciona provincia";
+            //table.Rows.InsertAt(fila, 0);
 
             foreach (DataRow row in table.Rows)
             {
