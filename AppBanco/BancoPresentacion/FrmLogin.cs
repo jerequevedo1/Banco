@@ -22,12 +22,15 @@ namespace BancoPresentacion
         public FrmLogin(Usuario id)
         {
             InitializeComponent();
+            //Se cambia tamaño de txt por defecto
             this.txtUser.AutoSize = false;
             this.txtUser.Size = new Size(338, 20);
             this.txtPass.AutoSize = false;
             this.txtPass.Size = new Size(338, 20);
+            //Se muestra encriptada contraseña de login al colocarla en el txt
             this.txtPass.UseSystemPasswordChar = true;
             this.usuario = id;
+
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -84,11 +87,13 @@ namespace BancoPresentacion
         }
         private void txtPass_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (Convert.ToInt32(e.KeyChar) == 13)//enter
+            //Se habilita enter para confirmar inicio de sesión
+            if (Convert.ToInt32(e.KeyChar) == 13)
             {
                 btnLogin_Click(sender, e);
             }
         }
+
         int PosY = 0;
         int PosX = 0;
         private void TitleBar_MouseMove(object sender, MouseEventArgs e)
@@ -105,5 +110,6 @@ namespace BancoPresentacion
             }
 
         }
+       
     }
 }

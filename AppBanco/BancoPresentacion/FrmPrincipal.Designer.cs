@@ -72,9 +72,9 @@ namespace BancoPresentacion
             this.btnConocenos.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnConocenos.FlatAppearance.BorderSize = 0;
             this.btnConocenos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConocenos.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnConocenos.Font = new System.Drawing.Font("Century Gothic", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnConocenos.ForeColor = System.Drawing.Color.Silver;
-            this.btnConocenos.Image = global::BancoPresentacion.Properties.Resources.united;
+            this.btnConocenos.Image = global::BancoPresentacion.Properties.Resources._05;
             this.btnConocenos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnConocenos.Location = new System.Drawing.Point(0, 400);
             this.btnConocenos.Name = "btnConocenos";
@@ -91,7 +91,7 @@ namespace BancoPresentacion
             this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalir.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnSalir.ForeColor = System.Drawing.Color.Silver;
-            this.btnSalir.Image = global::BancoPresentacion.Properties.Resources.log_out__4_;
+            this.btnSalir.Image = global::BancoPresentacion.Properties.Resources._06;
             this.btnSalir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSalir.Location = new System.Drawing.Point(0, 530);
             this.btnSalir.Name = "btnSalir";
@@ -106,9 +106,9 @@ namespace BancoPresentacion
             this.btnReportes.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnReportes.FlatAppearance.BorderSize = 0;
             this.btnReportes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReportes.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnReportes.Font = new System.Drawing.Font("Century Gothic", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnReportes.ForeColor = System.Drawing.Color.Silver;
-            this.btnReportes.Image = global::BancoPresentacion.Properties.Resources.reportes;
+            this.btnReportes.Image = global::BancoPresentacion.Properties.Resources._04;
             this.btnReportes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnReportes.Location = new System.Drawing.Point(0, 324);
             this.btnReportes.Name = "btnReportes";
@@ -123,9 +123,9 @@ namespace BancoPresentacion
             this.btnTransaccion.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnTransaccion.FlatAppearance.BorderSize = 0;
             this.btnTransaccion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTransaccion.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnTransaccion.Font = new System.Drawing.Font("Century Gothic", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnTransaccion.ForeColor = System.Drawing.Color.Silver;
-            this.btnTransaccion.Image = global::BancoPresentacion.Properties.Resources.money_transfer;
+            this.btnTransaccion.Image = global::BancoPresentacion.Properties.Resources._03;
             this.btnTransaccion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnTransaccion.Location = new System.Drawing.Point(0, 251);
             this.btnTransaccion.Name = "btnTransaccion";
@@ -140,9 +140,9 @@ namespace BancoPresentacion
             this.btnCliente.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnCliente.FlatAppearance.BorderSize = 0;
             this.btnCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCliente.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnCliente.Font = new System.Drawing.Font("Century Gothic", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnCliente.ForeColor = System.Drawing.Color.Silver;
-            this.btnCliente.Image = global::BancoPresentacion.Properties.Resources.online_banking;
+            this.btnCliente.Image = global::BancoPresentacion.Properties.Resources._02;
             this.btnCliente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCliente.Location = new System.Drawing.Point(0, 181);
             this.btnCliente.Name = "btnCliente";
@@ -157,9 +157,9 @@ namespace BancoPresentacion
             this.btnCuenta.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnCuenta.FlatAppearance.BorderSize = 0;
             this.btnCuenta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCuenta.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnCuenta.Font = new System.Drawing.Font("Century Gothic", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnCuenta.ForeColor = System.Drawing.Color.Silver;
-            this.btnCuenta.Image = global::BancoPresentacion.Properties.Resources.finance;
+            this.btnCuenta.Image = global::BancoPresentacion.Properties.Resources._01;
             this.btnCuenta.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCuenta.Location = new System.Drawing.Point(0, 99);
             this.btnCuenta.Name = "btnCuenta";
@@ -182,11 +182,11 @@ namespace BancoPresentacion
             // lblBienvenida
             // 
             this.lblBienvenida.AutoSize = true;
-            this.lblBienvenida.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblBienvenida.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblBienvenida.ForeColor = System.Drawing.Color.White;
-            this.lblBienvenida.Location = new System.Drawing.Point(12, 48);
+            this.lblBienvenida.Location = new System.Drawing.Point(7, 41);
             this.lblBienvenida.Name = "lblBienvenida";
-            this.lblBienvenida.Size = new System.Drawing.Size(81, 16);
+            this.lblBienvenida.Size = new System.Drawing.Size(92, 18);
             this.lblBienvenida.TabIndex = 0;
             this.lblBienvenida.Text = "Bienvenid@";
             // 
@@ -208,9 +208,9 @@ namespace BancoPresentacion
             // pictureBox1
             // 
             this.pictureBox1.Image = global::BancoPresentacion.Properties.Resources.Nuevo_Logo;
-            this.pictureBox1.Location = new System.Drawing.Point(261, -31);
+            this.pictureBox1.Location = new System.Drawing.Point(247, -37);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(202, 186);
+            this.pictureBox1.Size = new System.Drawing.Size(216, 194);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;

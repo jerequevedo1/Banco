@@ -50,18 +50,18 @@ namespace BancoPresentacion
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(133, 106);
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(115, 66);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(507, 132);
+            this.label1.Size = new System.Drawing.Size(556, 168);
             this.label1.TabIndex = 1;
             this.label1.Text = resources.GetString("label1.Text");
-            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::BancoPresentacion.Properties.Resources.Juli_Avatar;
-            this.pictureBox1.Location = new System.Drawing.Point(430, 25);
+            this.pictureBox1.Location = new System.Drawing.Point(430, 13);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(108, 75);
             this.pictureBox1.TabIndex = 2;
@@ -70,7 +70,7 @@ namespace BancoPresentacion
             // pictureBox2
             // 
             this.pictureBox2.Image = global::BancoPresentacion.Properties.Resources.Jere_Avatar;
-            this.pictureBox2.Location = new System.Drawing.Point(612, 25);
+            this.pictureBox2.Location = new System.Drawing.Point(612, 13);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(108, 75);
             this.pictureBox2.TabIndex = 3;
@@ -79,7 +79,7 @@ namespace BancoPresentacion
             // pictureBox3
             // 
             this.pictureBox3.Image = global::BancoPresentacion.Properties.Resources.Ger_Avatar;
-            this.pictureBox3.Location = new System.Drawing.Point(86, 25);
+            this.pictureBox3.Location = new System.Drawing.Point(86, 13);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(108, 75);
             this.pictureBox3.TabIndex = 4;
@@ -88,7 +88,7 @@ namespace BancoPresentacion
             // pictureBox4
             // 
             this.pictureBox4.Image = global::BancoPresentacion.Properties.Resources.Ric_Avatar;
-            this.pictureBox4.Location = new System.Drawing.Point(254, 26);
+            this.pictureBox4.Location = new System.Drawing.Point(254, 14);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(108, 75);
             this.pictureBox4.TabIndex = 5;
@@ -99,7 +99,7 @@ namespace BancoPresentacion
             this.lblAvatarGer.AutoSize = true;
             this.lblAvatarGer.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblAvatarGer.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblAvatarGer.Location = new System.Drawing.Point(49, 104);
+            this.lblAvatarGer.Location = new System.Drawing.Point(49, 92);
             this.lblAvatarGer.Name = "lblAvatarGer";
             this.lblAvatarGer.Size = new System.Drawing.Size(139, 16);
             this.lblAvatarGer.TabIndex = 6;
@@ -110,7 +110,7 @@ namespace BancoPresentacion
             this.lblAvatarJuli.AutoSize = true;
             this.lblAvatarJuli.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblAvatarJuli.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblAvatarJuli.Location = new System.Drawing.Point(386, 106);
+            this.lblAvatarJuli.Location = new System.Drawing.Point(386, 94);
             this.lblAvatarJuli.Name = "lblAvatarJuli";
             this.lblAvatarJuli.Size = new System.Drawing.Size(157, 16);
             this.lblAvatarJuli.TabIndex = 7;
@@ -121,7 +121,7 @@ namespace BancoPresentacion
             this.lblAvatarJere.AutoSize = true;
             this.lblAvatarJere.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblAvatarJere.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblAvatarJere.Location = new System.Drawing.Point(574, 106);
+            this.lblAvatarJere.Location = new System.Drawing.Point(574, 94);
             this.lblAvatarJere.Name = "lblAvatarJere";
             this.lblAvatarJere.Size = new System.Drawing.Size(143, 16);
             this.lblAvatarJere.TabIndex = 8;
@@ -132,7 +132,7 @@ namespace BancoPresentacion
             this.lblAvatarRic.AutoSize = true;
             this.lblAvatarRic.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblAvatarRic.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblAvatarRic.Location = new System.Drawing.Point(221, 105);
+            this.lblAvatarRic.Location = new System.Drawing.Point(221, 93);
             this.lblAvatarRic.Name = "lblAvatarRic";
             this.lblAvatarRic.Size = new System.Drawing.Size(128, 16);
             this.lblAvatarRic.TabIndex = 9;

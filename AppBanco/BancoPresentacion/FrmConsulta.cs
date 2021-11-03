@@ -346,5 +346,15 @@ namespace BancoPresentacion
 
 		}
 
-	}
+        private void dgvConsulta_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void txtFiltro_TextChanged(object sender, EventArgs e)
+        {
+			//this.txtFiltro.AutoSize = false;
+			//this.txtFiltro.Size = new Size(280, 35);
+		}
+    }
 }
