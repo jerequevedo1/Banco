@@ -293,19 +293,12 @@ namespace BancoPresentacion
 		{
 			modo = Accion.Update;
 			int nro = Convert.ToInt32(dgvConsulta.CurrentRow.Cells[0].Value.ToString());
-
+			
 			if (tipo.Equals(Tipo.Cliente))
 			{
 				if (dgvConsulta.RowCount > 0)
 				{
-					foreach (Cliente item in lst)
-					{
-						if (item.IdCliente.Equals(nro))
-						{
-							oCliente = item;
-						}
-					}
-
+					oCliente = gestorCliente.GetClienteId(nro);
 					new FrmNuevoEditar(modo, Tipo.Cliente, oCliente).ShowDialog();
 					CargarGrilla(tipo);
 				}
@@ -319,15 +312,8 @@ namespace BancoPresentacion
 				
 				if (dgvConsulta.RowCount > 0)
 				{
-					foreach (Cliente item in lst)
-					{
-						int i = 0;
-						if (item.Cuentas[i].IdCuenta.Equals(nro))
-						{
-							oCliente = item;
-						}
-						i++;
-					}
+								
+					oCliente = gestorCuenta.GetCuentaById(nro);
 					new FrmNuevoEditar(modo, Tipo.Cuenta, oCliente).ShowDialog();
 					CargarGrilla(tipo);
 				}
