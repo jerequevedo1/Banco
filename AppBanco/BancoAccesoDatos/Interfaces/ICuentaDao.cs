@@ -16,5 +16,6 @@ namespace BancoAccesoDatos.Interfaces
 		bool CreateCuentaClienteExist(Cliente oCliente);
 
 		bool ModifyCuenta(Cliente oCliente);
+		public Cliente GetCuentaById(int nro);
 	}
 }

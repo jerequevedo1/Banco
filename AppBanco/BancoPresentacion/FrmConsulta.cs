@@ -53,7 +53,6 @@ namespace BancoPresentacion
 				new FrmNuevoEditar(modo, Tipo.Cuenta, oCliente).ShowDialog();
 				CargarGrilla(tipo);
 			}
-
 		}
 		private void btnConsultar_Click(object sender, EventArgs e)
 		{
@@ -159,7 +158,6 @@ namespace BancoPresentacion
 					{
 
 						dgvConsulta.Rows.Add(new object[] { item.Cuentas[i].IdCuenta, item.NombreCompleto(), item.Dni, item.Cuentas[i].TipoCuenta.DescTipoCuenta, item.Cuentas[i].Cbu, item.Cuentas[i].Alias, "U$S " + item.Cuentas[i].Saldo });
-
 					}
 					i++;
 				}
@@ -416,15 +414,8 @@ namespace BancoPresentacion
 
 			if (tipo.Equals(Tipo.Cuenta))
 			{
-				foreach (Cliente item in lst)
-				{
-					int i = 0;
-					if (item.Cuentas[i].IdCuenta.Equals(nro))
-					{
-						oCliente = item;
-					}
-					i++;
-				}
+				
+				oCliente = gestorCuenta.GetCuentaById(nro);
 				new FrmNuevoEditar(modo, Tipo.Cuenta, oCliente).ShowDialog();
 			}
 			if (tipo.Equals(Tipo.Transaccion))
@@ -432,6 +423,18 @@ namespace BancoPresentacion
 				//aca puede haber una futura ventana con detalles de la transaccion
 			}
 
+		}
+
+		private void txtFiltro_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			if (cboFiltro.Text.Equals("Numero de Cliente") || cboFiltro.Text.Equals("Numero de Cuenta") || cboFiltro.Text.Equals("Cbu"))
+			{
+				Validar.SoloNumeros(e);
+			}
+			if (cboFiltro.Text.Equals("Nombre Cliente") || (cboFiltro.Text.Equals("Alias")))
+			{
+				Validar.SoloLetra(e);
+			}
 		}
 	}
 }
