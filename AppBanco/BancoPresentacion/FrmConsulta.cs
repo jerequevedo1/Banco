@@ -404,12 +404,7 @@ namespace BancoPresentacion
 
 		}
 
-        private void dgvConsulta_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-		private void dgvConsulta_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+       	private void dgvConsulta_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
 		{
 			modo = Accion.Read;
 			int nro = int.Parse(dgvConsulta.CurrentRow.Cells["cId"].Value.ToString());

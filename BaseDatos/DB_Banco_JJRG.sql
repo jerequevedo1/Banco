@@ -206,7 +206,7 @@ AS
 		order by id_cuenta asc
 
 go
-ALTER PROC [dbo].[PA_CONSULTA_CLIENTE_SIMPLE]
+create PROC [dbo].[PA_CONSULTA_CLIENTE_SIMPLE]
 @ClienteNombre varchar(150)
 as
 		if @ClienteNombre not like ''

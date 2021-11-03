@@ -32,6 +32,8 @@ namespace BancoPresentacion
 			gestorCuenta = new ServiceFactory().CrearCuentaService(new DaoFactory());
 			oCliente = new Cliente();
 			oCuenta = new Cuenta();
+			//oCliente.Provincia = new Provincia();
+			
 			oCliente = cliente;
 			this.modo = modo;
 			this.tipo = tipo;
@@ -84,7 +86,7 @@ namespace BancoPresentacion
 				}
 				if (item is ComboBox)
 				{
-					((ComboBox)item).SelectedIndex = -1;
+					((ComboBox)item).SelectedIndex = 0;
 
 				}
 				//if (item is RadioButton)
@@ -116,7 +118,7 @@ namespace BancoPresentacion
 					this.Size = new Size(782, 454);
 					lblNroCliente.Text = "Nro Cliente: " + gestorCliente.ProximoID("PA_PROXIMO_CLIENTE");
 					lblNroCuenta.Text = "Nro Cuenta: " + gestorCuenta.ProximoID("PA_PROXIMA_CUENTA");
-
+					
 
 				}
 
@@ -256,6 +258,7 @@ namespace BancoPresentacion
 		//}
 		private void CargarCliente(int nro)
 		{
+			oCliente = gestorCuenta.GetCuentaById(nro);
 			txtCliNombre.Text = oCliente.NomCliente;
 			txtCliApellido.Text = oCliente.ApeCliente;
 			txtCliDNI.Text = oCliente.Dni.ToString();

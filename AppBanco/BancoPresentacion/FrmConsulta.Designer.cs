@@ -239,7 +239,6 @@ namespace BancoPresentacion
 			this.dgvConsulta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dgvConsulta.Size = new System.Drawing.Size(724, 225);
 			this.dgvConsulta.TabIndex = 11;
-			this.dgvConsulta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConsulta_CellContentClick);
 			this.dgvConsulta.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConsulta_CellDoubleClick);
 			// 
 			// cId
