@@ -69,6 +69,7 @@ namespace BancoPresentacion
             // 
             // btnConocenos
             // 
+            this.btnConocenos.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConocenos.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnConocenos.FlatAppearance.BorderSize = 0;
             this.btnConocenos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -86,6 +87,7 @@ namespace BancoPresentacion
             // 
             // btnSalir
             // 
+            this.btnSalir.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSalir.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btnSalir.FlatAppearance.BorderSize = 0;
             this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -103,6 +105,7 @@ namespace BancoPresentacion
             // 
             // btnReportes
             // 
+            this.btnReportes.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnReportes.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnReportes.FlatAppearance.BorderSize = 0;
             this.btnReportes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -120,6 +123,7 @@ namespace BancoPresentacion
             // 
             // btnTransaccion
             // 
+            this.btnTransaccion.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTransaccion.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnTransaccion.FlatAppearance.BorderSize = 0;
             this.btnTransaccion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -137,6 +141,7 @@ namespace BancoPresentacion
             // 
             // btnCliente
             // 
+            this.btnCliente.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCliente.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnCliente.FlatAppearance.BorderSize = 0;
             this.btnCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -154,6 +159,7 @@ namespace BancoPresentacion
             // 
             // btnCuenta
             // 
+            this.btnCuenta.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCuenta.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnCuenta.FlatAppearance.BorderSize = 0;
             this.btnCuenta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -214,7 +220,6 @@ namespace BancoPresentacion
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            //this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // btnMinimize
             // 

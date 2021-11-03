@@ -65,8 +65,11 @@ namespace BancoPresentacion
             // 
             // cboFiltroFecha
             // 
+            this.cboFiltroFecha.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.cboFiltroFecha.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboFiltroFecha.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboFiltroFecha.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cboFiltroFecha.ForeColor = System.Drawing.Color.Black;
             this.cboFiltroFecha.FormattingEnabled = true;
             this.cboFiltroFecha.Location = new System.Drawing.Point(73, 31);
             this.cboFiltroFecha.Name = "cboFiltroFecha";
@@ -104,7 +107,8 @@ namespace BancoPresentacion
             // 
             // btnConsultar
             // 
-            this.btnConsultar.BackColor = System.Drawing.Color.Gray;
+            this.btnConsultar.BackColor = System.Drawing.Color.DimGray;
+            this.btnConsultar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConsultar.FlatAppearance.BorderSize = 0;
             this.btnConsultar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConsultar.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -129,7 +133,8 @@ namespace BancoPresentacion
             // btnEditar
             // 
             this.btnEditar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEditar.BackColor = System.Drawing.Color.Gray;
+            this.btnEditar.BackColor = System.Drawing.Color.DimGray;
+            this.btnEditar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEditar.FlatAppearance.BorderSize = 0;
             this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditar.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -155,7 +160,8 @@ namespace BancoPresentacion
             // btnNuevo
             // 
             this.btnNuevo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNuevo.BackColor = System.Drawing.Color.Gray;
+            this.btnNuevo.BackColor = System.Drawing.Color.DimGray;
+            this.btnNuevo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnNuevo.FlatAppearance.BorderSize = 0;
             this.btnNuevo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNuevo.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -170,8 +176,11 @@ namespace BancoPresentacion
             // 
             // cboFiltro
             // 
+            this.cboFiltro.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.cboFiltro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboFiltro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboFiltro.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cboFiltro.ForeColor = System.Drawing.Color.Black;
             this.cboFiltro.FormattingEnabled = true;
             this.cboFiltro.Location = new System.Drawing.Point(73, 91);
             this.cboFiltro.Name = "cboFiltro";
@@ -181,7 +190,8 @@ namespace BancoPresentacion
             // btnEliminar
             // 
             this.btnEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEliminar.BackColor = System.Drawing.Color.Gray;
+            this.btnEliminar.BackColor = System.Drawing.Color.DimGray;
+            this.btnEliminar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEliminar.FlatAppearance.BorderSize = 0;
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEliminar.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -196,14 +206,14 @@ namespace BancoPresentacion
             // 
             // txtFiltro
             // 
-            this.txtFiltro.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(94)))), ((int)(((byte)(125)))));
+            this.txtFiltro.BackColor = System.Drawing.Color.White;
+            this.txtFiltro.Cursor = System.Windows.Forms.Cursors.Default;
             this.txtFiltro.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtFiltro.ForeColor = System.Drawing.Color.White;
+            this.txtFiltro.ForeColor = System.Drawing.Color.Black;
             this.txtFiltro.Location = new System.Drawing.Point(319, 91);
             this.txtFiltro.Name = "txtFiltro";
             this.txtFiltro.Size = new System.Drawing.Size(261, 23);
             this.txtFiltro.TabIndex = 8;
-            //this.txtFiltro.TextChanged += new System.EventHandler(this.txtFiltro_TextChanged);
             // 
             // dgvConsulta
             // 
