@@ -16,9 +16,14 @@ namespace BancoServicios.Implementaciones
     {
         private IClienteDao daoCliente;
 
-        public ClienteService(AbstractDaoFactory factory)
+        //public ClienteService(AbstractDaoFactory factory)
+        //{
+        //    daoCliente = factory.CrearClienteDao();
+
+        //}
+        public ClienteService()
         {
-            daoCliente = factory.CrearClienteDao();
+            daoCliente = new DaoFactory().CrearClienteDao();
 
         }
 

@@ -15,9 +15,13 @@ namespace BancoServicios.Implementaciones
 	{
 		private ITransaccionDao daoTrans;
 
-		public TransaccionService(AbstractDaoFactory factory)
+		//public TransaccionService(AbstractDaoFactory factory)
+		//{
+		//	daoTrans = factory.CrearTransaccionDao();
+		//}
+		public TransaccionService()
 		{
-			daoTrans = factory.CrearTransaccionDao();
+			daoTrans = new DaoFactory().CrearTransaccionDao();
 		}
 		public List<Cliente> GetTransacciones(List<Parametro> filtros)
 		{
