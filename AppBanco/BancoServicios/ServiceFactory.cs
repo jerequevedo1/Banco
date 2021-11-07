@@ -17,19 +17,33 @@ namespace BancoServicios
             return new LoginService();
         }
 
-        public override IClienteService CrearClienteService(AbstractDaoFactory factory)
+  //      public override IClienteService CrearClienteService(AbstractDaoFactory factory)
+  //      {
+  //          return new ClienteService(factory);
+  //      }
+  //      public override ICuentaService CrearCuentaService(AbstractDaoFactory factory)
+  //      {
+  //          return new CuentaService(factory);
+  //      }
+
+		//public override ITransaccionService CrearTransaccionService(AbstractDaoFactory factory)
+		//{
+  //          return new TransaccionService(factory);
+
+  //      }
+        public override IClienteService CrearClienteService()
         {
-            return new ClienteService(factory);
+            return new ClienteService();
         }
-        public override ICuentaService CrearCuentaService(AbstractDaoFactory factory)
+        public override ICuentaService CrearCuentaService()
         {
-            return new CuentaService(factory);
+            return new CuentaService();
         }
 
-		public override ITransaccionService CrearTransaccionService(AbstractDaoFactory factory)
-		{
-            return new TransaccionService(factory);
+        public override ITransaccionService CrearTransaccionService()
+        {
+            return new TransaccionService();
 
         }
-	}
+    }
 }
