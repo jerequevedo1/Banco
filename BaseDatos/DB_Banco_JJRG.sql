@@ -340,6 +340,10 @@ AS
 BEGIN
 	UPDATE Clientes SET fecha_baja = GETDATE()
 	WHERE id_cliente = @nro_cli;
+	UPDATE Cuentas SET fecha_baja = GETDATE()
+	WHERE id_cliente = @nro_cli;
+
+
 END
 
 GO

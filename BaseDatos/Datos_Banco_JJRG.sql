@@ -113,7 +113,7 @@ Insert into Clientes (nom_cliente, ape_cliente, dni, cuil, direccion, telefono, 
 
 Insert into Cuentas (cbu, alias, saldo_actual, ultimo_movimiento, saldo_en_descubierto,limite_descubierto, id_cliente, id_tipo_cuenta, tipo_moneda,fecha_alta,fecha_baja) values ('0200557341000007712948', 'rosalia.suarez', 34785, 'Extracción por Cajero Automático Banco Macro Suc 1189', 0,1000, 1, 3, 'P',getdate(),null)
 Insert into Cuentas (cbu, alias, saldo_actual, ultimo_movimiento, saldo_en_descubierto,limite_descubierto, id_cliente, id_tipo_cuenta, tipo_moneda,fecha_alta,fecha_baja) values ('0200746241000006183303', 'fran.flores', 12790, 'Depósito por ventanilla Banco Galicia Suc 04689', 0,3000, 2, 1, 'P',getdate(),null)
-Insert into Cuentas (cbu, alias, saldo_actual, ultimo_movimiento, saldo_en_descubierto,limite_descubierto, id_cliente, id_tipo_cuenta, tipo_moneda,fecha_alta,fecha_baja) values ('0200746241011106183303', 'Ismael.Rodriguez', 15000, 'Acreditacion de haberes', 0,5000, 3, 1, 'P',getdate(),null)
+Insert into Cuentas (cbu, alias, saldo_actual, ultimo_movimiento, saldo_en_descubierto,limite_descubierto, id_cliente, id_tipo_cuenta, tipo_moneda,fecha_alta,fecha_baja) values ('0200746241000436456803', 'Ismael.Rodriguez', 15000, 'Acreditacion de haberes', 0,5000, 3, 1, 'P',getdate(),null)
 
 
 --Select *
