@@ -72,9 +72,10 @@ namespace BancoWebApi.Controllers
 			return Ok(service.EliminarCliente(id));
 		}
 
-		//public int ProximoID()
-		//{
-		//    return daoCliente.ProximoID();
-		//}
+		[HttpGet("proximoId")]
+		public IActionResult ProximoID()
+		{
+			return Ok(service.ProximoID());
+		}
 	}
 }

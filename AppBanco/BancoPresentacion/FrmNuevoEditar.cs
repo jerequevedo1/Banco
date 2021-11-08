@@ -20,7 +20,7 @@ namespace BancoPresentacion
 {
 	public partial class FrmNuevoEditar : Form
 	{
-		private IClienteService gestorCliente;
+		//private IClienteService gestorCliente;
 		//private ICuentaService gestorCuenta;
 		private Accion modo;
 		private Tipo tipo;
@@ -33,7 +33,7 @@ namespace BancoPresentacion
 			InitializeComponent();
 			//gestorCliente = new ServiceFactory().CrearClienteService(new DaoFactory());
 			//gestorCuenta = new ServiceFactory().CrearCuentaService(new DaoFactory());
-			gestorCliente = new ServiceFactory().CrearClienteService();
+			//gestorCliente = new ServiceFactory().CrearClienteService();
 			//gestorCuenta = new ServiceFactory().CrearCuentaService();
 			oCliente = new Cliente();
 			oCuenta = new Cuenta();
@@ -49,7 +49,7 @@ namespace BancoPresentacion
 			this.clienteExistente = false;
 		}
 
-		private void btnBuscar_Click(object sender, EventArgs e)
+		private async void btnBuscar_Click(object sender, EventArgs e)
 		{
 
 			if (!txtCliente.Text.Equals(string.Empty))
@@ -64,12 +64,17 @@ namespace BancoPresentacion
 				nro = frm.GetNroCliente();
 				clienteExistente = frm.GetClienteExistente();
 
-				oCliente = gestorCliente.GetClienteId(nro);
+				//oCliente = gestorCliente.GetClienteId(nro);
+
+				string url = "https://localhost:44304/api/Cliente/" + nro;
+				var data = await ClientSingleton.ObtenerInstancia().GetAsync(url);
+
+				oCliente = JsonConvert.DeserializeObject<Cliente>(data);
 
 				if (nro!=0)
 				{
 					CargarCliente(oCliente);
-					
+					lblNroCliente.Text = "Nro Cliente: " + nro;
 					txtCliente.Text = oCliente.NombreCompleto();
 					panelCliente.Enabled = false;
 					btnNuevo.Visible = true;
@@ -129,7 +134,7 @@ namespace BancoPresentacion
 					this.Text = "Nueva Cuenta";
 					SetFormDefault();					
 					this.Size = new Size(782, 454);
-					lblNroCliente.Text = "Nro Cliente: " + ObtenerProximoCliente();
+					lblNroCliente.Text = "Nro Cliente: " + await ObtenerProximoCliente();
 					lblNroCuenta.Text = "Nro Cuenta: " + await ObtenerProximaCuenta();
 				}
 
@@ -160,7 +165,7 @@ namespace BancoPresentacion
 				if (modo.Equals(Accion.Create))
 				{
 					this.Text = "Nueva Cuenta";
-					lblNroCliente.Text = "Nro Cliente: " + ObtenerProximoCliente();
+					lblNroCliente.Text = "Nro Cliente: " + await ObtenerProximoCliente();
 					lblNroCuenta.Text = "Nro Cuenta: " + await ObtenerProximaCuenta();
 				}
 				if (modo.Equals(Accion.Update))
@@ -216,10 +221,12 @@ namespace BancoPresentacion
 			btnBuscar.Visible = false;
 			lblBuscarCliente.Visible = false;
 		}
-		private int ObtenerProximoCliente()
+		private async Task<int> ObtenerProximoCliente()
 		{
-			
-			return gestorCliente.ProximoID();
+			string url = "https://localhost:44304/api/Cliente/proximoId";
+			var data = await ClientSingleton.ObtenerInstancia().GetAsync(url);
+			int nro = JsonConvert.DeserializeObject<int>(data);
+			return nro;
 		}
 		private async Task<int> ObtenerProximaCuenta()
 		{
