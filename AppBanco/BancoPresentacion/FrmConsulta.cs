@@ -418,7 +418,7 @@ namespace BancoPresentacion
 						//Parametro p = new Parametro("@nro_cuenta", nro);
 						//bool respuesta = gestorCliente.EliminarCliente("PA_DELETE_CUENTA", p);
 
-						string url = "https://localhost:44304/api/Cliente/deleteCuenta/"+nro;
+						string url = "https://localhost:44304/api/Cuenta/deleteCuenta/"+nro;
 						var data = await ClientSingleton.ObtenerInstancia().DeleteAsync(url);
 
 						bool respuesta = JsonConvert.DeserializeObject<bool>(data);
