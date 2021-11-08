@@ -293,13 +293,16 @@ BEGIN
 END
 go
 
-CREATE PROC PA_REPORTE_CUENTAS_CLIENTE
-
-as
-		SELECT Clientes.id_cliente, Clientes.nom_cliente, Clientes.ape_cliente, Cuentas.id_cuenta, Cuentas.cbu, Cuentas.saldo_actual, Cuentas.id_cliente AS Expr1
-                FROM   Clientes INNER JOIN
-                            	Cuentas ON Clientes.id_cliente = Cuentas.id_cliente 
+ALTER PROC PA_REPORTE_CUENTAS_CLIENTE 
+ @saldoMinimo decimal(18)
+as  
+  SELECT 
+  Clientes.id_cliente, Clientes.nom_cliente, Clientes.ape_cliente, Cuentas.id_cuenta, Cuentas.cbu, Cuentas.saldo_actual  
+    FROM   Clientes 
+	INNER JOIN  Cuentas ON Clientes.id_cliente = Cuentas.id_cliente   
+	where saldo_actual >= @saldoMinimo 
 go
+
 create PROC PA_EDITAR_CUENTA
 @id_cuenta int,
 @cbu varchar(22),
