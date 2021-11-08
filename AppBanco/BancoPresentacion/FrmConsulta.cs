@@ -35,8 +35,8 @@ namespace BancoPresentacion
 			//gestorCliente = new ServiceFactory().CrearClienteService(new DaoFactory());
 			//gestorCuenta = new ServiceFactory().CrearCuentaService(new DaoFactory());
 			//gestorTrans = new ServiceFactory().CrearTransaccionService(new DaoFactory());
-			gestorCliente = new ServiceFactory().CrearClienteService();
-			gestorCuenta = new ServiceFactory().CrearCuentaService();
+			//gestorCliente = new ServiceFactory().CrearClienteService();
+			//gestorCuenta = new ServiceFactory().CrearCuentaService();
 			gestorTrans = new ServiceFactory().CrearTransaccionService();
 			this.tipo = tipo;
 			//lst = new List<Cliente>();
@@ -141,7 +141,10 @@ namespace BancoPresentacion
 
 				dgvConsulta.Rows.Clear();
 				//lst = gestorCliente.GetClienteByFilters(filtros);
+				string url = "https://localhost:44304/api/Cliente/consultaFiltros";
+				var result = await ClientSingleton.ObtenerInstancia().PostAsync(url, filtrosJson);
 
+				lst = JsonConvert.DeserializeObject<List<Cliente>>(result);
 
 				foreach (Cliente item in lst)
 				{
@@ -333,7 +336,12 @@ namespace BancoPresentacion
 			{
 				if (dgvConsulta.RowCount > 0)
 				{
-					oCliente = gestorCliente.GetClienteId(nro);
+					//oCliente = gestorCliente.GetClienteId(nro);
+					string url = "https://localhost:44304/api/Cliente/" + nro;
+					var data = await ClientSingleton.ObtenerInstancia().GetAsync(url);
+
+					oCliente = JsonConvert.DeserializeObject<Cliente>(data);
+
 					new FrmNuevoEditar(modo, Tipo.Cliente, oCliente).ShowDialog();
 					await CargarGrilla(tipo);
 				}
@@ -347,8 +355,13 @@ namespace BancoPresentacion
 				
 				if (dgvConsulta.RowCount > 0)
 				{
-								
-					oCliente = gestorCuenta.GetCuentaById(nro);
+
+					//oCliente = gestorCuenta.GetCuentaById(nro);
+					string url = "https://localhost:44304/api/Cuenta/" + nro;
+					var data = await ClientSingleton.ObtenerInstancia().GetAsync(url);
+
+					oCliente = JsonConvert.DeserializeObject<Cliente>(data);
+
 					new FrmNuevoEditar(modo, Tipo.Cuenta, oCliente).ShowDialog();
 					await CargarGrilla (tipo);
 				}
@@ -424,7 +437,7 @@ namespace BancoPresentacion
 
 			if (tipo.Equals(Tipo.Cliente))
 			{
-				string url = "https://localhost:44304/api/Cuenta/"+nro;
+				string url = "https://localhost:44304/api/Cliente/"+nro;
 				var data = await ClientSingleton.ObtenerInstancia().GetAsync(url);
 
 				oCliente = JsonConvert.DeserializeObject<Cliente>(data);
@@ -435,8 +448,13 @@ namespace BancoPresentacion
 
 			if (tipo.Equals(Tipo.Cuenta))
 			{
-				
-				oCliente = gestorCuenta.GetCuentaById(nro);
+
+				//oCliente = gestorCuenta.GetCuentaById(nro);
+				string url = "https://localhost:44304/api/Cuenta/" + nro;
+				var data = await ClientSingleton.ObtenerInstancia().GetAsync(url);
+
+				oCliente = JsonConvert.DeserializeObject<Cliente>(data);
+
 				new FrmNuevoEditar(modo, Tipo.Cuenta, oCliente).ShowDialog();
 			}
 			if (tipo.Equals(Tipo.Transaccion))
