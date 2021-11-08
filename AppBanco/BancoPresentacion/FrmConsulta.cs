@@ -35,7 +35,7 @@ namespace BancoPresentacion
 			//gestorCliente = new ServiceFactory().CrearClienteService(new DaoFactory());
 			//gestorCuenta = new ServiceFactory().CrearCuentaService(new DaoFactory());
 			//gestorTrans = new ServiceFactory().CrearTransaccionService(new DaoFactory());
-			gestorCliente = new ServiceFactory().CrearClienteService();
+			//gestorCliente = new ServiceFactory().CrearClienteService();
 			//gestorCuenta = new ServiceFactory().CrearCuentaService();
 			gestorTrans = new ServiceFactory().CrearTransaccionService();
 			this.tipo = tipo;
