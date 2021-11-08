@@ -1,8 +1,10 @@
 ﻿using BancoAccesoDatos;
 using BancoPresentacion;
+using BancoPresentacion.Client;
 using BancoPresentacion.Entidades;
 using BancoServicios;
 using BancoServicios.Interfaces;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,9 +32,12 @@ namespace BancoPresentacion
 		public FrmConsulta(Tipo tipo)
 		{
 			InitializeComponent();
-			gestorCliente = new ServiceFactory().CrearClienteService(new DaoFactory());
-			gestorCuenta = new ServiceFactory().CrearCuentaService(new DaoFactory());
-			gestorTrans = new ServiceFactory().CrearTransaccionService(new DaoFactory());
+			//gestorCliente = new ServiceFactory().CrearClienteService(new DaoFactory());
+			//gestorCuenta = new ServiceFactory().CrearCuentaService(new DaoFactory());
+			//gestorTrans = new ServiceFactory().CrearTransaccionService(new DaoFactory());
+			gestorCliente = new ServiceFactory().CrearClienteService();
+			gestorCuenta = new ServiceFactory().CrearCuentaService();
+			gestorTrans = new ServiceFactory().CrearTransaccionService();
 			this.tipo = tipo;
 			//lst = new List<Cliente>();
 			oCliente= new Cliente();
@@ -63,7 +68,7 @@ namespace BancoPresentacion
 			CargarGrilla(tipo);
 		}
 
-		private void FrmConsulta_Load(object sender, EventArgs e)
+		private async void FrmConsulta_Load(object sender, EventArgs e)
 		{
 			if (tipo.Equals(Tipo.Cliente))
 			{
@@ -71,21 +76,21 @@ namespace BancoPresentacion
 				CargarFiltroFecha(tipo);
 				CargarHeaderGrid(tipo);
 				cboFiltroFecha.SelectedIndex = 4;
-				CargarGrilla(tipo);
+				await CargarGrilla(tipo);
 			}
 			if (tipo.Equals(Tipo.Cuenta))
 			{
 				CargarTiposFiltros(tipo);
 				CargarFiltroFecha(tipo);
 				CargarHeaderGrid(tipo);
-				CargarGrilla(tipo);
+				await CargarGrilla(tipo);
 			}
 			if (tipo.Equals(Tipo.Transaccion))
 			{
 				CargarTiposFiltros(tipo);
 				CargarFiltroFecha(tipo);
 				CargarHeaderGrid(tipo);
-				CargarGrilla(tipo);
+				await CargarGrilla (tipo);
 				btnNuevo.Visible = false;
 				btnEditar.Visible = false;
 				btnEliminar.Visible = false;
@@ -126,16 +131,18 @@ namespace BancoPresentacion
 			}
 		}
 
-		private void CargarGrilla(Tipo tipo)
+		private async Task CargarGrilla(Tipo tipo)
 		{
 			List<Parametro> filtros = CargarParametros(tipo);
+			List<Cliente> lst = new List<Cliente>();
+			string filtrosJson=JsonConvert.SerializeObject(filtros);
 
 			if (tipo.Equals(Tipo.Cliente))
 			{
-				List<Cliente> lst = new List<Cliente>();
+				
 
 				dgvConsulta.Rows.Clear();
-				lst = gestorCliente.GetClienteByFilters(filtros);
+				//lst = gestorCliente.GetClienteByFilters(filtros);
 
 
 				foreach (Cliente item in lst)
@@ -145,11 +152,14 @@ namespace BancoPresentacion
 			}
 			if (tipo.Equals(Tipo.Cuenta))
 			{
-				List<Cliente> lst = new List<Cliente>();
 
 				dgvConsulta.Rows.Clear();
-				lst = gestorCuenta.GetCuentaByFilters(filtros);
+				//lst = gestorCuenta.GetCuentaByFilters(filtros);
 
+				string url = "https://localhost:44304/api/Cuenta/consultaFiltros";
+				var result = await ClientSingleton.ObtenerInstancia().PostAsync(url, filtrosJson);
+
+				lst = JsonConvert.DeserializeObject<List<Cliente>>(result);
 
 				foreach (Cliente item in lst)
 				{
@@ -171,10 +181,9 @@ namespace BancoPresentacion
 			}
 			if (tipo.Equals(Tipo.Transaccion))
 			{
-				List<Cliente> lst = new List<Cliente>();
 
 				dgvConsulta.Rows.Clear();
-				lst = gestorTrans.GetTransacciones(filtros);
+				//lst = gestorTrans.GetTransacciones(filtros);
 
 				foreach (Cliente item in lst)
 				{
@@ -195,8 +204,8 @@ namespace BancoPresentacion
 			object filtroTexto = DBNull.Value;
 			string conBaja = "N";
 
-			filtros.Add(new Parametro("@fechaDesde", dtpFechaDesde.Value));
-			filtros.Add(new Parametro("@fechaHasta", dtpFechaHasta.Value));
+			filtros.Add(new Parametro("@fechaDesde", dtpFechaDesde.Value.ToString("yyyy/MM/dd")));
+			filtros.Add(new Parametro("@fechaHasta", dtpFechaHasta.Value.ToString("yyyy/MM/dd")));
 
 			if (!String.IsNullOrEmpty(txtFiltro.Text))
 			{

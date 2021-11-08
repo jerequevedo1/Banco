@@ -1,8 +1,10 @@
 using BancoAccesoDatos;
 using BancoPresentacion;
+using BancoPresentacion.Client;
 using BancoPresentacion.Entidades;
 using BancoServicios;
 using BancoServicios.Interfaces;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,8 +31,10 @@ namespace BancoPresentacion
 		public FrmNuevoEditar(Accion modo, Tipo tipo,Cliente cliente)
 		{
 			InitializeComponent();
-			gestorCliente = new ServiceFactory().CrearClienteService(new DaoFactory());
-			gestorCuenta = new ServiceFactory().CrearCuentaService(new DaoFactory());
+			//gestorCliente = new ServiceFactory().CrearClienteService(new DaoFactory());
+			//gestorCuenta = new ServiceFactory().CrearCuentaService(new DaoFactory());
+			gestorCliente = new ServiceFactory().CrearClienteService();
+			gestorCuenta = new ServiceFactory().CrearCuentaService();
 			oCliente = new Cliente();
 			oCuenta = new Cuenta();
 			//oCliente.Provincia = new Provincia();
@@ -112,9 +116,9 @@ namespace BancoPresentacion
 			txtCliente.Text = "";
 		}
 
-		private void FrmNuevoEditar_Load(object sender, EventArgs e)
+		private async void FrmNuevoEditar_Load(object sender, EventArgs e)
 		{
-			CargarTipoCuenta();
+			await CargarTipoCuenta();
 			CargarTipoMoneda();
 			CargarProvincias();
 
@@ -127,9 +131,8 @@ namespace BancoPresentacion
 					btnBuscar.Visible = false;
 					lblBuscarCliente.Visible = false;					
 					this.Size = new Size(782, 454);
-					lblNroCliente.Text = "Nro Cliente: " + gestorCliente.ProximoID("PA_PROXIMO_CLIENTE");
-					lblNroCuenta.Text = "Nro Cuenta: " + gestorCuenta.ProximoID("PA_PROXIMA_CUENTA");
-					
+					lblNroCliente.Text = "Nro Cliente: " + ObtenerProximoCliente();
+					lblNroCuenta.Text = "Nro Cuenta: " + ObtenerProximaCuenta();
 
 				}
 
@@ -179,8 +182,8 @@ namespace BancoPresentacion
 				if (modo.Equals(Accion.Create))
 				{
 					this.Text = "Nueva Cuenta";
-					lblNroCliente.Text = "Nro Cliente: " + gestorCliente.ProximoID("PA_PROXIMO_CLIENTE");
-					lblNroCuenta.Text = "Nro Cuenta: " + gestorCuenta.ProximoID("PA_PROXIMA_CUENTA");
+					lblNroCliente.Text = "Nro Cliente: " + ObtenerProximoCliente();
+					lblNroCuenta.Text = "Nro Cuenta: " + ObtenerProximaCuenta();
 				}
 				if (modo.Equals(Accion.Update))
 				{
@@ -223,6 +226,14 @@ namespace BancoPresentacion
 	
 		}
 
+		private int ObtenerProximoCliente()
+		{
+			return gestorCliente.ProximoID();
+		}
+		private int ObtenerProximaCuenta()
+		{
+			return gestorCuenta.ProximoID();
+		}
 		private void CargarCuenta(Cliente oCliente)
 		{
 
@@ -345,11 +356,16 @@ namespace BancoPresentacion
 			cboTipoMoneda.SelectedIndex=0;
 		}
 
-		private void CargarTipoCuenta()
+		private async Task CargarTipoCuenta()
 		{
 			List<TipoCuenta> lstTC = new List<TipoCuenta>();
 
-			lstTC = gestorCuenta.GetTipoCuenta();
+			string url = "https://localhost:44304/api/Cuenta/tipoCuenta";
+			var data = await ClientSingleton.ObtenerInstancia().GetAsync(url);
+
+			lstTC = JsonConvert.DeserializeObject<List<TipoCuenta>>(data);
+
+			//lstTC = gestorCuenta.GetTipoCuenta();
 
 			cboTipoCuenta.Items.Clear();
 			cboTipoCuenta.DataSource = lstTC;
@@ -462,7 +478,7 @@ namespace BancoPresentacion
 				}
 			}
 		}
-		private void GuardarCuenta()
+		private async Task GuardarCuenta()
 		{
 			if (tipo.Equals(Tipo.Cuenta))
 			{
@@ -505,7 +521,11 @@ namespace BancoPresentacion
 				// insertar una cuenta cliente existente
 				if (modo.Equals(Accion.Create))
 				{
-					oCliente.AgregarCuenta(oCuenta);
+					if (oCliente.Cuentas.Count==0)
+					{
+						oCliente.AgregarCuenta(oCuenta);
+					}
+					
 					int i = 0;
 					oCuenta.Cbu = txtCbu.Text;
 					oCuenta.Alias = txtAlias.Text;
@@ -524,7 +544,10 @@ namespace BancoPresentacion
 						oCliente.Cuentas[i].TipoMoneda = "D";
 					}
 
-					if (gestorCuenta.NuevaCuentaClienteExist(oCliente))
+					var guardarOk=await GuardarCuentaAsync(oCliente);
+
+
+					if (guardarOk)
 					{
 						MessageBox.Show("Cuenta registrada al Cliente " + oCliente.NombreCompleto() + " con exito.", "Informe", MessageBoxButtons.OK, MessageBoxIcon.Information);
 						Close();
@@ -569,6 +592,18 @@ namespace BancoPresentacion
 				
 			}
 
+		}
+
+		private async Task<bool> GuardarCuentaAsync(Cliente oCliente)
+		{
+
+			string oClienteJson = JsonConvert.SerializeObject(oCliente);
+
+			string url = "https://localhost:44304/api/Cuenta/newCuentaOnly";
+
+			var result = await ClientSingleton.ObtenerInstancia().PostAsync(url, oClienteJson);
+
+			return result.Equals("true");
 		}
 
 		private void btnCancelar_Click(object sender, EventArgs e)

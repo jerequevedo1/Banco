@@ -58,14 +58,22 @@ namespace BancoAccesoDatos
 
 				foreach (Parametro p in parametros)
 				{
-					cmd.Parameters.AddWithValue(p.Nombre, p.Valor);
+					if (p.Valor!=null)
+					{
+						cmd.Parameters.AddWithValue(p.Nombre, p.Valor.ToString());
+					}
+					else
+					{
+						cmd.Parameters.AddWithValue(p.Nombre, DBNull.Value);
+					}
+					
 				}
 
 				tabla.Load(cmd.ExecuteReader());
 
 
 			}
-			catch (Exception)
+			catch (Exception ex)
 			{
 				tabla = null;
 			}
