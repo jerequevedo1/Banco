@@ -30,7 +30,8 @@ namespace BancoPresentacion
 			InitializeComponent();
 			this.parametro = parametro;
 			lst = new List<Cliente>();
-			gestorCliente = new ServiceFactory().CrearClienteService(new DaoFactory());
+			//gestorCliente = new ServiceFactory().CrearClienteService(new DaoFactory());
+			gestorCliente = new ServiceFactory().CrearClienteService();
 			this.clienteExistente = false;
 		}
 

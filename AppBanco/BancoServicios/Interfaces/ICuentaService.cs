@@ -16,6 +16,6 @@ namespace BancoServicios.Interfaces
 		bool NuevaCuentaClienteExist(Cliente oCliente);
 		bool ModificarCuenta(Cliente oCliente);
 		public Cliente GetCuentaById(int nro);
-        int ProximoID(string nombreSP);
+        int ProximoID();
     }
 }

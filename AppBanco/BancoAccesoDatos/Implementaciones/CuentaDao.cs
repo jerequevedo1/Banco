@@ -196,10 +196,13 @@ namespace BancoAccesoDatos.Implementaciones
             return oCliente;
         }
 
-        public int ProximoID(string nombreSP)
+        public int ProximoID()
         {
-            HelperDao helper = HelperDao.ObtenerInstancia();
-            return helper.ProximoID(nombreSP);
+            int nro = 0;
+
+            nro = HelperDao.ObtenerInstancia().ProximoID("PA_PROXIMA_CUENTA");
+
+            return nro;
         }
     }
 }
