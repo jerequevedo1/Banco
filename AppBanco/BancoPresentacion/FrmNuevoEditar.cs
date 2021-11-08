@@ -132,7 +132,7 @@ namespace BancoPresentacion
 					lblBuscarCliente.Visible = false;					
 					this.Size = new Size(782, 454);
 					lblNroCliente.Text = "Nro Cliente: " + ObtenerProximoCliente();
-					lblNroCuenta.Text = "Nro Cuenta: " + ObtenerProximaCuenta();
+					lblNroCuenta.Text = "Nro Cuenta: " + await ObtenerProximaCuenta();
 
 				}
 
@@ -183,7 +183,7 @@ namespace BancoPresentacion
 				{
 					this.Text = "Nueva Cuenta";
 					lblNroCliente.Text = "Nro Cliente: " + ObtenerProximoCliente();
-					lblNroCuenta.Text = "Nro Cuenta: " + ObtenerProximaCuenta();
+					lblNroCuenta.Text = "Nro Cuenta: " + await ObtenerProximaCuenta();
 				}
 				if (modo.Equals(Accion.Update))
 				{
@@ -228,11 +228,15 @@ namespace BancoPresentacion
 
 		private int ObtenerProximoCliente()
 		{
+			
 			return gestorCliente.ProximoID();
 		}
-		private int ObtenerProximaCuenta()
+		private async Task<int> ObtenerProximaCuenta()
 		{
-			return gestorCuenta.ProximoID();
+			string url = "https://localhost:44304/api/Cuenta/proximoId";
+			var data = await ClientSingleton.ObtenerInstancia().GetAsync(url);
+			int nro = JsonConvert.DeserializeObject<int>(data);
+			return nro;
 		}
 		private void CargarCuenta(Cliente oCliente)
 		{
@@ -374,7 +378,7 @@ namespace BancoPresentacion
 			cboTipoCuenta.SelectedIndex = 0;
 		}
 
-		private void btnAceptar_Click(object sender, EventArgs e)
+		private async void btnAceptar_Click(object sender, EventArgs e)
 		{
 
 			if (tipo.Equals(Tipo.Cuenta))
@@ -390,11 +394,11 @@ namespace BancoPresentacion
 					//}
 					if (clienteExistente)
 					{
-						GuardarCuenta();
+						await GuardarCuenta();
 					}
 					else
 					{
-						GuardarCuentaConCliente();
+						await GuardarCuentaConCliente();
 					}
 					
 				}
@@ -402,7 +406,7 @@ namespace BancoPresentacion
 				{
 					//validaciones
 
-					GuardarCuenta();
+					await GuardarCuenta ();
 				}
 			}
 			if (tipo.Equals(Tipo.Cliente))
@@ -411,17 +415,17 @@ namespace BancoPresentacion
 
 				if (modo.Equals(Accion.Create))
 				{
-					GuardarCuentaConCliente();
+					await GuardarCuentaConCliente ();
 				}
 				if (modo.Equals(Accion.Update))
 				{
-					GuardarCuenta();
+					await GuardarCuenta();
 				}
 
 			}
 			
 		}
-		private void GuardarCuentaConCliente()
+		private async Task GuardarCuentaConCliente()
 		{
 			Provincia provincia = new Provincia();
 			Barrio barrio = new Barrio();
@@ -463,11 +467,22 @@ namespace BancoPresentacion
 			}
 
 			oCliente.AgregarCuenta(oCuenta);
+
+			string url = "";
+			if (tipo.Equals(Tipo.Cuenta))
+			{
+				url = "https://localhost:44304/api/Cuenta/newCuenta";
+			}
+			if (tipo.Equals(Tipo.Cliente))
+			{
+				url = "";
+			}
 			
-			
+			var guardarOk = await GuardarCuentaAsync(oCliente, url);
+
 			if (modo.Equals(Accion.Create))
 			{
-				if (gestorCuenta.NuevaCuenta(oCliente))
+				if (guardarOk)
 				{
 					MessageBox.Show("Cuenta registrada con exito.", "Informe", MessageBoxButtons.OK, MessageBoxIcon.Information);
 					Close();
@@ -505,7 +520,8 @@ namespace BancoPresentacion
 						{
 							oCliente.Cuentas[i].TipoMoneda = "D";
 						}
-
+						string url = "https://localhost:44304/api/Cuenta/modifyCuenta";
+						var guardarOk = await EditarCuentaAsync(oCliente, url);
 					}
 					if (gestorCuenta.ModificarCuenta(oCliente))
 					{
@@ -544,7 +560,8 @@ namespace BancoPresentacion
 						oCliente.Cuentas[i].TipoMoneda = "D";
 					}
 
-					var guardarOk=await GuardarCuentaAsync(oCliente);
+					string url = "https://localhost:44304/api/Cuenta/newCuentaOnly";
+					var guardarOk=await GuardarCuentaAsync(oCliente,url);
 
 
 					if (guardarOk)
@@ -594,14 +611,20 @@ namespace BancoPresentacion
 
 		}
 
-		private async Task<bool> GuardarCuentaAsync(Cliente oCliente)
+		private async Task<bool> GuardarCuentaAsync(Cliente oCliente,string url)
 		{
 
 			string oClienteJson = JsonConvert.SerializeObject(oCliente);
 
-			string url = "https://localhost:44304/api/Cuenta/newCuentaOnly";
-
 			var result = await ClientSingleton.ObtenerInstancia().PostAsync(url, oClienteJson);
+
+			return result.Equals("true");
+		}
+		private async Task<bool> EditarCuentaAsync(Cliente oCliente, string url)
+		{
+			string oClienteJson = JsonConvert.SerializeObject(oCliente);
+
+			var result = await ClientSingleton.ObtenerInstancia().PutAsync(url, oClienteJson);
 
 			return result.Equals("true");
 		}
