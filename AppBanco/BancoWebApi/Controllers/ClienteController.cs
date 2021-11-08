@@ -21,7 +21,7 @@ namespace BancoWebApi.Controllers
 			service = new ServiceFactory().CrearClienteService();
 		}
 
-		[HttpPost("getFiltros")]
+		[HttpPost("consultaFiltros")]
 		public IActionResult GetClienteByFilters(List<Parametro> parametros)
 		{
 			return Ok(service.GetClienteByFilters(parametros));
@@ -45,14 +45,14 @@ namespace BancoWebApi.Controllers
 			return Ok(service.GetBarrios(parametro));
 		}
 
-		public List<Localidad> GetLocalidades(List<Parametro> parametro)
-		{
-			return service.GetLocalidades(parametro);
-		}
-		public List<Provincia> GetProvincias()
-		{
-			return service.GetProvincias();
-		}
+		//public List<Localidad> GetLocalidades(List<Parametro> parametro)
+		//{
+		//	return service.GetLocalidades(parametro);
+		//}
+		//public List<Provincia> GetProvincias()
+		//{
+		//	return service.GetProvincias();
+		//}
 
 		//public bool ModificarClienteSQL(List<Parametro> parametros)
 		//{

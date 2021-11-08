@@ -21,7 +21,7 @@ namespace BancoWebApi.Controllers
 			service = new ServiceFactory().CrearCuentaService();
 		}
 
-		[HttpPost("getFiltros")]
+		[HttpPost("consultaFiltros")]
 		public IActionResult GetCuentaByFilters(List<Parametro> parametros)
 		{
 			if (parametros==null || parametros.Count==0)
