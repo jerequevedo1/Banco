@@ -23,7 +23,7 @@ namespace BancoPresentacion
 		private IClienteService gestorCliente;
 		private Tipo tipo;
 		private Accion modo;
-		private ICuentaService gestorCuenta;
+		//private ICuentaService gestorCuenta;
 		private ITransaccionService gestorTrans;
 		//private Form activeForm;
 		//private List<Cliente> lst;
