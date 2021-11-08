@@ -138,7 +138,7 @@ namespace BancoAccesoDatos
 					parameter.Direction = ParameterDirection.Output;
 					cmd.Parameters.Add(parameter);
 
-					cmd.ExecuteNonQuery();
+					filasAfectadas=cmd.ExecuteNonQuery();
 					int nroCliente = Convert.ToInt32(parameter.Value);
 
 					SqlCommand cmdDet = new SqlCommand(spDetalle, cnn, trans);

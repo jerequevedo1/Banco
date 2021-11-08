@@ -44,28 +44,26 @@ namespace BancoPresentacion
 			//oCliente.Barrio = new Barrio();
 		}
 
-		private void btnNuevo_Click(object sender, EventArgs e)
+		private async void btnNuevo_Click(object sender, EventArgs e)
 		{
 			modo = Accion.Create;
 
 			if (tipo.Equals(Tipo.Cliente))
 			{
 				new FrmNuevoEditar(modo, Tipo.Cliente, oCliente).ShowDialog();
-				//CargarGrilla(tipo);
-				btnConsultar_Click(null,null);
+				await CargarGrilla (tipo);
 
 			}
 			if (tipo.Equals(Tipo.Cuenta))
 			{
 				new FrmNuevoEditar(modo, Tipo.Cuenta, oCliente).ShowDialog();
-				//CargarGrilla(tipo);
-				btnConsultar_Click(null, null);
+				await CargarGrilla (tipo);
 			}
 			
 		}
-		private void btnConsultar_Click(object sender, EventArgs e)
+		private async void btnConsultar_Click(object sender, EventArgs e)
 		{
-			CargarGrilla(tipo);
+			await CargarGrilla(tipo);
 		}
 
 		private async void FrmConsulta_Load(object sender, EventArgs e)
@@ -326,7 +324,7 @@ namespace BancoPresentacion
 			}
 		}
 
-		private void btnEditar_Click(object sender, EventArgs e)
+		private async void btnEditar_Click(object sender, EventArgs e)
 		{
 			modo = Accion.Update;
 			int nro = Convert.ToInt32(dgvConsulta.CurrentRow.Cells[0].Value.ToString());
@@ -337,7 +335,7 @@ namespace BancoPresentacion
 				{
 					oCliente = gestorCliente.GetClienteId(nro);
 					new FrmNuevoEditar(modo, Tipo.Cliente, oCliente).ShowDialog();
-					CargarGrilla(tipo);
+					await CargarGrilla(tipo);
 				}
 				else
 				{
@@ -352,7 +350,7 @@ namespace BancoPresentacion
 								
 					oCliente = gestorCuenta.GetCuentaById(nro);
 					new FrmNuevoEditar(modo, Tipo.Cuenta, oCliente).ShowDialog();
-					CargarGrilla(tipo);
+					await CargarGrilla (tipo);
 				}
 				else
 				{
@@ -419,14 +417,19 @@ namespace BancoPresentacion
 
 		}
 
-       	private void dgvConsulta_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+       	private async void dgvConsulta_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
 		{
 			modo = Accion.Read;
 			int nro = int.Parse(dgvConsulta.CurrentRow.Cells["cId"].Value.ToString());
 
 			if (tipo.Equals(Tipo.Cliente))
 			{
-				oCliente = gestorCliente.GetClienteId(nro);
+				string url = "https://localhost:44304/api/Cuenta/"+nro;
+				var data = await ClientSingleton.ObtenerInstancia().GetAsync(url);
+
+				oCliente = JsonConvert.DeserializeObject<Cliente>(data);
+
+				//oCliente = gestorCliente.GetClienteId(nro);
 				new FrmNuevoEditar(modo, Tipo.Cliente, oCliente).ShowDialog();
 			}
 
