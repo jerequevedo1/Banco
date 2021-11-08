@@ -204,5 +204,25 @@ namespace BancoAccesoDatos.Implementaciones
 
             return nro;
         }
+
+		public bool DeleteCuenta(int id)
+		{
+            bool estado = true;
+
+            List<Parametro> lst = new List<Parametro>();
+            lst.Add(new Parametro() { Nombre="@nro_cuenta",Valor=id});
+
+            try
+            {
+                estado = HelperDao.ObtenerInstancia().ModificarSQL("PA_DELETE_CUENTA", lst);
+            }
+            catch (Exception)
+            {
+                estado = false;
+            }
+
+            return estado;
+
+        }
     }
 }

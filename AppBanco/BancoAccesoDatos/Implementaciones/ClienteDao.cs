@@ -202,30 +202,39 @@ namespace BancoAccesoDatos.Implementaciones
             return lst;
         }
 
-        public bool ModificarClienteSQL(List<Parametro> parametros)
+        public bool ModificarClienteSQL(Cliente oCliente)
         {
-            bool estado = true;
+           bool resultado = true;
 
-            try
-            {
-                estado = HelperDao.ObtenerInstancia().ModificarSQL("PA_EDITAR_CLIENTE", parametros);
-            }
-            catch (Exception)
-            {
-                estado = false;
-            }
+            List<Parametro> lst = new List<Parametro>();
 
-            return estado;
+            
+            lst.Add(new Parametro("@id_cliente", oCliente.IdCliente));
+            lst.Add(new Parametro("@nom_cliente", oCliente.NomCliente));
+            lst.Add(new Parametro("@ape_cliente", oCliente.ApeCliente));
+            lst.Add(new Parametro("@dni", oCliente.Dni));
+            lst.Add(new Parametro("@cuil", oCliente.Cuil));
+            lst.Add(new Parametro("@direccion", oCliente.Direccion));
+            lst.Add(new Parametro("@telefono", oCliente.Telefono));
+            lst.Add(new Parametro("@email", oCliente.Email));
+            lst.Add(new Parametro("@id_barrio", oCliente.Provincia.lLocalidad[0].lBarrio[0].IdBarrio));
+
+			resultado = HelperDao.ObtenerInstancia().ModificarSQL("PA_EDITAR_CLIENTE", lst);
+
+            return resultado;
 
         }
 
-        public bool ActualizarSQL(string nombreSP, Parametro p)
+        public bool EliminarCliente(int id)
         {
             bool estado = true;
 
+            List<Parametro> lst = new List<Parametro>();
+            lst.Add(new Parametro() { Nombre = "@nro_cli", Valor = id });
+
             try
             {
-                estado = HelperDao.ObtenerInstancia().ActualizarSQL(nombreSP, p);
+                estado = HelperDao.ObtenerInstancia().ModificarSQL("PA_DELETE_CLIENTE", lst);
             }
             catch (Exception)
             {
@@ -233,8 +242,6 @@ namespace BancoAccesoDatos.Implementaciones
             }
 
             return estado;
-
-
         }
 
         public int ProximoID()

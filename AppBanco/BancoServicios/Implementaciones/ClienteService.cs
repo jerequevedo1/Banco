@@ -55,14 +55,14 @@ namespace BancoServicios.Implementaciones
             return daoCliente.GetProvincias();
         }
 
-        public bool ModificarClienteSQL(List<Parametro> parametros)
+        public bool ModificarClienteSQL(Cliente oCliente)
         {
-            return daoCliente.ModificarClienteSQL(parametros);
+            return daoCliente.ModificarClienteSQL(oCliente);
         }
 
-        public bool ActualizarSQL(string nombreSP, Parametro p)
+        public bool EliminarCliente(int id)
         {
-            return daoCliente.ActualizarSQL(nombreSP, p);
+            return daoCliente.EliminarCliente(id);
         }
 
         public int ProximoID()

@@ -195,13 +195,11 @@ namespace BancoAccesoDatos
 				}
 
 				filasdevueltas = cmd.ExecuteNonQuery();
-
-
 			}
-			catch (Exception)
+			catch (Exception ex)
 			{
-				throw;
-				estado = false;
+				//throw ex;
+				//estado = false;
 			}
 			finally
 			{
@@ -212,31 +210,31 @@ namespace BancoAccesoDatos
 
 		}
 
-		public bool ActualizarSQL(string nombreSP, Parametro p)
-		{
-			int filasdevueltas = 0;
-			bool estado = true;
-			try
-			{
-				cnn.Open();
-				cmd = new SqlCommand(nombreSP, cnn);
-				cmd.Parameters.Clear();
-				cmd.CommandType = CommandType.StoredProcedure;
-				cmd.Parameters.AddWithValue(p.Nombre, p.Valor);
-				filasdevueltas = cmd.ExecuteNonQuery();
-			}
-			catch (Exception)
-			{
-				throw;
-				estado = false;
-			}
-			finally
-			{
-				if (cnn.State == ConnectionState.Open) cnn.Close();
-			}
+		//public bool ActualizarSQL(string nombreSP, Parametro p)
+		//{
+		//	int filasdevueltas = 0;
+		//	bool estado = true;
+		//	try
+		//	{
+		//		cnn.Open();
+		//		cmd = new SqlCommand(nombreSP, cnn);
+		//		cmd.Parameters.Clear();
+		//		cmd.CommandType = CommandType.StoredProcedure;
+		//		cmd.Parameters.AddWithValue(p.Nombre, p.Valor);
+		//		filasdevueltas = cmd.ExecuteNonQuery();
+		//	}
+		//	catch (Exception)
+		//	{
+		//		throw;
+		//		estado = false;
+		//	}
+		//	finally
+		//	{
+		//		if (cnn.State == ConnectionState.Open) cnn.Close();
+		//	}
 
-			return estado;
-		}
+		//	return estado;
+		//}
 
 		public int ProximoID(string nombreSp) 
 		{

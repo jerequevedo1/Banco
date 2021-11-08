@@ -19,8 +19,8 @@ namespace BancoAccesoDatos.Interfaces
         List<Barrio> GetBarrios(List<Parametro> parametro);
         List<Localidad> GetLocalidades(List<Parametro> parametro);
         List<Provincia> GetProvincias();
-        bool ModificarClienteSQL(List<Parametro> parametros);
-        bool ActualizarSQL(string nombreSP, Parametro p);
+        bool ModificarClienteSQL(Cliente oCliente);
+        bool EliminarCliente(int id);
         int ProximoID();
     }
 }
