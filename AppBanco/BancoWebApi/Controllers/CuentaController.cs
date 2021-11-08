@@ -67,6 +67,11 @@ namespace BancoWebApi.Controllers
 		{
 			return Ok(service.ProximoID());
 		}
+		[HttpDelete("deleteCuenta/{id}")]
+		public IActionResult EliminarCuenta(int id)
+		{
+			return Ok(service.EliminarCuenta(id));
+		}
 
 	}
 }

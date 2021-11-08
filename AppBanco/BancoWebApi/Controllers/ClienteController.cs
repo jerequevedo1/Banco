@@ -45,28 +45,37 @@ namespace BancoWebApi.Controllers
 			return Ok(service.GetBarrios(parametro));
 		}
 
-		//public List<Localidad> GetLocalidades(List<Parametro> parametro)
-		//{
-		//	return service.GetLocalidades(parametro);
-		//}
-		//public List<Provincia> GetProvincias()
-		//{
-		//	return service.GetProvincias();
-		//}
+		[HttpPost("getLocalidades")]
+		public IActionResult GetLocalidades(List<Parametro> parametro)
+		{
+			return Ok(service.GetLocalidades(parametro));
+		}
 
-		//public bool ModificarClienteSQL(List<Parametro> parametros)
-		//{
-		//    return daoCliente.ModificarClienteSQL(parametros);
-		//}
+		[HttpGet("getProvincias")]
+		public IActionResult GetProvincias()
+		{
+			return Ok(service.GetProvincias());
+		}
+		[HttpPut("modifyCliente")]
+		public IActionResult ModificarClienteSQL(Cliente oCliente)
+		{
+			if (oCliente != null)
+			{
+				bool result = service.ModificarClienteSQL(oCliente);
+				return Ok(result);
+			}
+			return BadRequest("Parametro Requerido");
+		}
+		[HttpDelete("deleteCliente/{id}")]
+		public IActionResult EliminarCliente(int id)
+		{
+			return Ok(service.EliminarCliente(id));
+		}
 
-		//public bool ActualizarSQL(string nombreSP, Parametro p)
-		//{
-		//    return daoCliente.ActualizarSQL(nombreSP, p);
-		//}
-
-		//public int ProximoID()
-		//{
-		//    return daoCliente.ProximoID();
-		//}
+		[HttpGet("proximoId")]
+		public IActionResult ProximoID()
+		{
+			return Ok(service.ProximoID());
+		}
 	}
 }

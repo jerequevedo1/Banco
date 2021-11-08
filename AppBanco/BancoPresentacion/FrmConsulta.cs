@@ -371,7 +371,7 @@ namespace BancoPresentacion
 				}
 			}
 		}
-		private void btnEliminar_Click(object sender, EventArgs e)
+		private async void btnEliminar_Click(object sender, EventArgs e)
 		{
 			modo = Accion.Delete;
 			if (tipo.Equals(Tipo.Cliente))
@@ -383,8 +383,14 @@ namespace BancoPresentacion
 					if (MessageBox.Show("Seguro que desea dar de baja este cliente?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
 					{
 
-						Parametro p = new Parametro("@nro_cli", nro);
-						bool respuesta = gestorCliente.ActualizarSQL("PA_DELETE_CLIENTE", p);
+						//Parametro p = new Parametro("@nro_cli", nro);
+
+						//bool respuesta = gestorCliente.EliminarCliente(p);
+
+						string url = "https://localhost:44304/api/Cliente/deleteCliente/"+nro;
+						var data = await ClientSingleton.ObtenerInstancia().DeleteAsync(url);
+
+						bool respuesta = JsonConvert.DeserializeObject<bool>(data);
 
 						if (respuesta)
 						{
@@ -393,7 +399,7 @@ namespace BancoPresentacion
 						
 						}
 
-						CargarGrilla(tipo);
+						await CargarGrilla (tipo);
 					}
 				}
 				else
@@ -409,8 +415,13 @@ namespace BancoPresentacion
 					if (MessageBox.Show("Seguro que desea dar de baja esta cuenta?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
 					{
 
-						Parametro p = new Parametro("@nro_cuenta", nro);
-						bool respuesta = gestorCliente.ActualizarSQL("PA_DELETE_CUENTA", p);
+						//Parametro p = new Parametro("@nro_cuenta", nro);
+						//bool respuesta = gestorCliente.EliminarCliente("PA_DELETE_CUENTA", p);
+
+						string url = "https://localhost:44304/api/Cuenta/deleteCuenta/"+nro;
+						var data = await ClientSingleton.ObtenerInstancia().DeleteAsync(url);
+
+						bool respuesta = JsonConvert.DeserializeObject<bool>(data);
 
 						if (respuesta)
 						{
@@ -419,7 +430,7 @@ namespace BancoPresentacion
 
 						}
 
-						CargarGrilla(tipo);
+						await CargarGrilla (tipo);
 					}
 				}
 				else

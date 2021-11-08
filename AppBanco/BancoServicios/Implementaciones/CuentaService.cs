@@ -57,5 +57,10 @@ namespace BancoServicios.Implementaciones
         {
 			return daoCuenta.ProximoID();
 		}
-    }
+
+		public bool EliminarCuenta(int id)
+		{
+			return daoCuenta.DeleteCuenta(id);
+		}
+	}
 }
