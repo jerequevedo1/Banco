@@ -30,7 +30,7 @@ namespace BancoPresentacion
 
                 reportViewer1.ProcessingMode = ProcessingMode.Local;
                 string appFolder = Path.GetDirectoryName(Application.StartupPath);
-                var rutaRpt = Path.Combine(Application.StartupPath, @"~/Reportes\RptCuentasPorCliente.rdlc");
+                
                 //ubicacion del reporte
                 string pathAbosluto = Application.StartupPath;
                 string fullPath = Path.Combine(pathAbosluto, @"..\..\..\Reportes\RptCuentasPorCliente.rdlc");
@@ -41,18 +41,28 @@ namespace BancoPresentacion
                 //parametros de filtro del SP
                 DataSetCuentasCliente ds = new DataSetCuentasCliente();
                 List<Parametro> parametros = new List<Parametro>();
+                //Se filtra cuentas de clientes por saldo mínimo
                 parametros.Add(new Parametro("@saldoMinimo", saldoMin));
 
                 reportViewer1.LocalReport.DataSources.Clear();
 
                 //invocamos al SP con param
                 var datos = HelperDao.ObtenerInstancia().ConsultaSQLParametros("PA_REPORTE_CUENTAS_CLIENTE", parametros);
-                //seteamos el DATASOURCE al reporte
-                ReportDataSource reportDataSource = new ReportDataSource("DataSet1", datos);
-                this.reportViewer1.LocalReport.DataSources.Add(reportDataSource);
-                //refrescamos cambios
-                reportViewer1.Refresh();
-                this.reportViewer1.RefreshReport();
+               
+                if (datos != null)
+                {
+                    //seteamos el DATASOURCE al reporte
+                    ReportDataSource reportDataSource = new ReportDataSource("DataSet1", datos);
+                    this.reportViewer1.LocalReport.DataSources.Add(reportDataSource);
+                    //refrescamos cambios
+                    reportViewer1.Refresh();
+                    this.reportViewer1.RefreshReport();
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo generar el informe. Verifique datos del informe.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+               
             }
             catch (Exception ex)
             {
