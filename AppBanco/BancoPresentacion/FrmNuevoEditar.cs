@@ -29,6 +29,7 @@ namespace BancoPresentacion
 		private Cuenta oCuenta;
 		private bool clienteExistente;
 		private int nro;
+		private bool esPrimero;
 		public FrmNuevoEditar(Accion modo, Tipo tipo,Cliente cliente)
 		{
 			InitializeComponent();
@@ -43,8 +44,8 @@ namespace BancoPresentacion
 			{
 				oCliente = cliente;
 			}
-			
-			
+
+			esPrimero = true;
 			this.modo = modo;
 			this.tipo = tipo;
 			this.clienteExistente = false;
@@ -133,10 +134,9 @@ namespace BancoPresentacion
 				if (modo.Equals(Accion.Create))
 				{
 					this.Text = "Nueva Cuenta";
-					SetFormDefault();					
+					SetFormDefault();
 					this.Size = new Size(782, 454);
-					lblNroCliente.Text = "Nro Cliente: " + await ObtenerProximoCliente();
-					lblNroCuenta.Text = "Nro Cuenta: " + await ObtenerProximaCuenta();
+					await CargarProximos();
 				}
 
 				if (modo.Equals(Accion.Update))
@@ -145,8 +145,8 @@ namespace BancoPresentacion
 					CargarCliente(oCliente);
 					SetFormDefault();
 					SetFormCliente();
-					
-					lblNroCliente.Text= "Nro Cliente: "+oCliente.IdCliente.ToString();
+
+					lblNroCliente.Text = "Nro Cliente: " + oCliente.IdCliente.ToString();
 				}
 				if (modo.Equals(Accion.Read))
 				{
@@ -166,8 +166,7 @@ namespace BancoPresentacion
 				if (modo.Equals(Accion.Create))
 				{
 					this.Text = "Nueva Cuenta";
-					lblNroCliente.Text = "Nro Cliente: " + await ObtenerProximoCliente();
-					lblNroCuenta.Text = "Nro Cuenta: " + await ObtenerProximaCuenta();
+					await CargarProximos();
 				}
 				if (modo.Equals(Accion.Update))
 				{
@@ -190,7 +189,7 @@ namespace BancoPresentacion
 					SetFormDefault();
 					SetFormCuenta();
 					panelCuenta.Enabled = false;
-					
+
 					btnAceptar.Visible = false;
 					lblNroCliente.Text = "Nro Cliente: " + oCliente.IdCliente.ToString();
 					lblNroCuenta.Text = "Nro Cuenta: " + oCliente.Cuentas[0].IdCuenta.ToString();
@@ -201,6 +200,13 @@ namespace BancoPresentacion
 			btnNuevo.Visible = false;
 		}
 
+		private async Task CargarProximos()
+		{
+			int nroCliente = await ObtenerProximoCliente();
+			lblNroCliente.Text = "Nro Cliente: " + nroCliente;
+			int nroCuenta= await ObtenerProximaCuenta();
+			lblNroCuenta.Text = "Nro Cuenta: " + nroCuenta;
+		}
 		private void SetFormCuenta()
 		{
 			panelCliente.Enabled = false;
@@ -314,8 +320,7 @@ namespace BancoPresentacion
 			cboCliProvincia.DataSource = lstP;
 			cboCliProvincia.ValueMember = "IdProvincia";
 			cboCliProvincia.DisplayMember = "NomProvincia";
-			//cboCliProvincia.SelectedIndex = 0;
-
+			cboCliProvincia.SelectedIndex = 0;
 		}
 
 		private async Task CargarBarrios(int id_loc)
@@ -650,12 +655,24 @@ namespace BancoPresentacion
 
         private async void cboCliProvincia_SelectedIndexChanged(object sender, EventArgs e)
         {
+		
 
 			if(modo.Equals(Accion.Create))
 			{
-				int id_prov = Convert.ToInt32(cboCliProvincia.SelectedValue.GetHashCode());
 
-				await CargarLocalidades(id_prov);
+				if (esPrimero)
+				{
+					esPrimero = false;
+					return;
+				}
+				else
+				{
+					int id_prov = Convert.ToInt32(cboCliProvincia.SelectedValue.GetHashCode());
+					//int id_prov = Convert.ToInt32(Convert.ToInt32(cboCliProvincia.SelectedValue));
+					await CargarLocalidades(id_prov);
+
+				}
+
 			}
 			//else
 			//{
@@ -665,16 +682,13 @@ namespace BancoPresentacion
 		}
 
 		private async void cboCliLocalidad_SelectedIndexChanged(object sender, EventArgs e)
-        {
-					
+        {	
 			if (modo.Equals(Accion.Create))
 			{
 				int id_loc = Convert.ToInt32(cboCliLocalidad.SelectedValue.GetHashCode());
 
 				await CargarBarrios(id_loc);
 			}
-		
-
 		}
         private void txtCliNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
