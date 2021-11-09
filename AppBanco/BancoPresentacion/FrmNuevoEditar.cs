@@ -122,6 +122,7 @@ namespace BancoPresentacion
 				//}
 			}
 			txtCliente.Text = "";
+			txtCliente.Focus();
 		}
 
 		private async void FrmNuevoEditar_Load(object sender, EventArgs e)
