@@ -28,7 +28,11 @@ namespace BancoPresentacion
 			if (usuario.IdUsuario != -1)
 			{
 				Application.Run(new FrmPrincipal(usuario));
-				Application.Restart();
+				if (usuario.IdUsuario == 0)
+				{
+					Application.Restart();
+				}
+				
 			}
 			
 		}
