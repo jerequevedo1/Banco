@@ -13,6 +13,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static BancoPresentacion.Enumeraciones;
@@ -382,42 +383,51 @@ namespace BancoPresentacion
 			{
 				if (modo.Equals(Accion.Create))
 				{
-					//validaciones de campo antes de guardar por ejemplo:
-					//if (txtCliente.Text == "")
-					//{
-					//	MessageBox.Show("Debe especificar un cliente.", "Control", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-					//	txtCliente.Focus();
-					//	return;
-					//}
-					if (clienteExistente)
-					{
-						await GuardarCuenta();
-					}
-					else
-					{
-						await GuardarCuentaConCliente();
-					}
+                    //validaciones de campo antes de guardar por ejemplo:
+                    //if (txtCliente.Text == "")
+                    //{
+                    //	MessageBox.Show("Debe especificar un cliente.", "Control", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    //	txtCliente.Focus();
+                    //	return;
+                    //}
+                    if (ValidarAll())
+                    {
+						if (clienteExistente)
+						{
+							await GuardarCuenta();
+						}
+						else
+						{
+							await GuardarCuentaConCliente();
+						}
+					}				
 					
 				}
 				if (modo.Equals(Accion.Update))
 				{
 					//validaciones
-
-					await GuardarCuenta ();
+					if (ValidarAll())
+                    {
+						await GuardarCuenta();
+					}
+						
 				}
 			}
 			if (tipo.Equals(Tipo.Cliente))
 			{
 				//VALIDAR 
-
-				if (modo.Equals(Accion.Create))
-				{
-					await GuardarCuentaConCliente ();
+				if (ValidarAll())
+                {
+					if (modo.Equals(Accion.Create))
+					{
+						await GuardarCuentaConCliente();
+					}
+					if (modo.Equals(Accion.Update))
+					{
+						await GuardarCuenta();
+					}
 				}
-				if (modo.Equals(Accion.Update))
-				{
-					await GuardarCuenta();
-				}
+					
 
 			}
 			
@@ -689,31 +699,7 @@ namespace BancoPresentacion
 
 				await CargarBarrios(id_loc);
 			}
-		}
-        private void txtCliNombre_KeyPress(object sender, KeyPressEventArgs e)
-        {
-			Validar.SoloLetra(e);
-		}
-
-        private void txtCliApellido_KeyPress(object sender, KeyPressEventArgs e)
-        {
-			Validar.SoloLetra(e);
-		}
-
-        private void txtCliDNI_KeyPress(object sender, KeyPressEventArgs e)
-        {
-			Validar.SoloNumeros(e);
-		}
-
-        private void txtCliCuil_KeyPress(object sender, KeyPressEventArgs e)
-        {
-			Validar.SoloNumeros(e);
-		}
-
-        private void txtCliTel_KeyPress(object sender, KeyPressEventArgs e)
-        {
-			Validar.SoloNumeros(e);
-		}
+		}       
 
         private void txtCbu_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -729,6 +715,128 @@ namespace BancoPresentacion
         {
 			Validar.SoloTipoPlata(e);
 		}
-    }
+		private bool ValidarAll()
+		{
+			if ((txtCliNombre.Text == "") || (!Regex.IsMatch(txtCliNombre.Text, "([a-zA-ZñÑ]{3,30}\\s*)+")))
+			{
+				if (txtCliNombre.Text == "")
+				{
+					MessageBox.Show("Debe Ingresar un Nombre.", "Control",
+					MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+					txtCliNombre.Focus();
+					return false;
+				}
+				else
+				{
+					MessageBox.Show("Error, No se admiten numeros ni palabras menos de 3 letras.", "Control", MessageBoxButtons.OK,
+					MessageBoxIcon.Exclamation);
+					txtCliNombre.Focus();
+					return false;
+				}
+			}
+			if (txtCliApellido.Text == "" || (!Regex.IsMatch(txtCliApellido.Text, "([a-zA-ZñÑ]{3,30}\\s*)+")))
+			{
+				if (txtCliApellido.Text == "")
+				{
+					MessageBox.Show("Debe Ingresar un Apellido.", "Control",
+					MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+					txtCliApellido.Focus();
+					return false;
+				}
+				else
+				{
+					MessageBox.Show("Error, No se admiten numeros ni palabras menos de 3 letras.", "Control", MessageBoxButtons.OK,
+					MessageBoxIcon.Exclamation);
+					txtCliApellido.Focus();
+					return false;
+				}
+			}
+			if (txtCliDNI.Text == "" || (!Regex.IsMatch(txtCliDNI.Text, "([0-9]{8,10}\\s*)+")))
+			{
+				if (txtCliDNI.Text == "")
+				{
+					MessageBox.Show("Debe especificar un DNI.", "Control", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+					txtCliDNI.Focus();
+					return false;
+				}
+				else
+				{
+					MessageBox.Show("Error, No se admiten Letras ni menos de 8 Digitos.", "Control", MessageBoxButtons.OK,
+					MessageBoxIcon.Exclamation);
+					txtCliDNI.Focus();
+					return false;
+				}
+
+			}
+			if (txtCliCuil.Text == "" || (!Regex.IsMatch(txtCliCuil.Text, "([0-9]{11,12}\\s*)+")))
+			{
+				if (txtCliCuil.Text == "")
+				{
+					MessageBox.Show("Debe especificar un Cuil.", "Control", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+					txtCliCuil.Focus();
+					return false;
+				}
+				else
+				{
+					MessageBox.Show("Error, No se admiten Letras ni menos de 11 Digitos.", "Control", MessageBoxButtons.OK,
+					MessageBoxIcon.Exclamation);
+					txtCliCuil.Focus();
+					return false;
+				}
+			}
+			if (txtCliDire.Text == "" || (!Regex.IsMatch(txtCliDire.Text, "([0-9a-zA-ZñÑ]{5,30}\\s*)+")))
+			{
+				MessageBox.Show("Debe especificar una Direccion correcta.", "Control", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				txtCliDire.Focus();
+				return false;
+			}
+			if (txtCliTel.Text == "" || (!Regex.IsMatch(txtCliTel.Text, "([0-9]{9,15}\\s*)+")))
+			{
+				MessageBox.Show("Debe especificar un Telefono.", "Control", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				txtCliTel.Focus();
+				return false;
+			}
+			if (txtCliEmail.Text == "")
+			{
+				MessageBox.Show("Debe especificar un Email.", "Control", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				txtCliEmail.Focus();
+				return false;
+			}
+			if (!Regex.IsMatch(txtCliEmail.Text, "^([0-9a-zA-Z]([-\\.\\w]*[0-9a-zA])*@([0-9a-zA-Z][-\\w]*[0-9a-zA-Z]\\.)+[a-zA-Z]{2,9})$"))
+			{
+				MessageBox.Show("Debe Ingresar un Email Valido.", "Control", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				txtCliEmail.Focus();
+				return false;
+			}
+			//////////////////////////////
+			if (txtCbu.Text == "" || (!Regex.IsMatch(txtCliTel.Text, "([0-9]{22,30}\\s*)+")))
+			{
+				MessageBox.Show("No se ingreso un CBU o el Ingresado es erroneo", "Control", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				txtCbu.Focus();
+				return false;
+			}
+			if (txtAlias.Text == "")
+			{
+				MessageBox.Show("Debe especificar un Alias.", "Control", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				txtAlias.Focus();
+				return false;
+			}
+			if (cboTipoMoneda.Text.Equals(string.Empty))
+			{
+				MessageBox.Show("Debe seleccionar un Tipo de Moneda", "Control", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				cboTipoMoneda.Focus();
+				return false;
+			}
+			if (cboTipoCuenta.Text.Equals(string.Empty))
+			{
+				MessageBox.Show("Debe seleccionar un Tipo de Cuenta", "Control", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				cboTipoCuenta.Focus();
+				return false;
+			}
+			else
+				return true;
+		}
+
+	}
 
 }
