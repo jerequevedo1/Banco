@@ -12,6 +12,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static BancoPresentacion.Enumeraciones;
@@ -184,7 +185,14 @@ namespace BancoPresentacion
 			{
 
 				dgvConsulta.Rows.Clear();
+
 				//lst = gestorTrans.GetTransacciones(filtros);
+
+				string url = "https://localhost:44304/api/Transaccion/consultaTransaccion";
+				var result = await ClientSingleton.ObtenerInstancia().PostAsync(url, filtrosJson);
+
+				lst = JsonConvert.DeserializeObject<List<Cliente>>(result);
+
 
 				foreach (Cliente item in lst)
 				{
@@ -473,19 +481,7 @@ namespace BancoPresentacion
 				//aca puede haber una futura ventana con detalles de la transaccion
 			}
 
-		}
-
-		private void txtFiltro_KeyPress(object sender, KeyPressEventArgs e)
-		{
-			if (cboFiltro.Text.Equals("Numero de Cliente") || cboFiltro.Text.Equals("Numero de Cuenta") || cboFiltro.Text.Equals("Cbu"))
-			{
-				Validar.SoloNumeros(e);
-			}
-			if (cboFiltro.Text.Equals("Nombre Cliente") || (cboFiltro.Text.Equals("Alias")))
-			{
-				Validar.SoloLetra(e);
-			}
-		}
+		}	
 
 		private void cboFiltroFecha_SelectedIndexChanged_1(object sender, EventArgs e)
 		{
@@ -508,5 +504,24 @@ namespace BancoPresentacion
 					break;
 			}
 		}
+        private async void txtFiltro_TextChanged(object sender, EventArgs e)
+        {
+			if (Regex.IsMatch(txtFiltro.Text, "^(?!.*?([A-Za-znÑ])\\1\\1).+"))
+			{
+				await CargarGrilla(tipo);
+			}
+
+		}
+		private void txtFiltro_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (cboFiltro.Text.Equals("Numero de Cliente") || cboFiltro.Text.Equals("Numero de Cuenta") || cboFiltro.Text.Equals("Cbu"))
+            {
+                Validar.SoloNumeros(e);
+            }
+            if (cboFiltro.Text.Equals("Nombre Cliente") || (cboFiltro.Text.Equals("Alias")))
+            {
+                Validar.SoloLetra(e);
+            }
+        }
 	}
 }
