@@ -110,7 +110,7 @@ BEGIN
 	SELECT top 1 * from USUARIOS WHERE usuario=@usuario and contrasenia=@password;
 END
 GO
-alter PROC [dbo].[PA_CONSULTA_CLIENTE_FILTRO]
+create PROC [dbo].[PA_CONSULTA_CLIENTE_FILTRO]
 @nroCliente int =null,
 @ClienteNombre varchar(150)=null,
 @tipo int,
@@ -143,7 +143,7 @@ AS
 	    AND((@fechaDesde is null and @fechaHasta is  null) OR (convert(date,fecha_alta) > @fechaDesde AND convert(date,fecha_alta) <= @fechaHasta))
 		order by id_cliente asc
 GO
-alter PROC PA_CONSULTA_CUENTA_FILTRO
+create PROC PA_CONSULTA_CUENTA_FILTRO
 @nroCuenta int =null,
 @cbu varchar(22)=null,
 @alias varchar(22)=null,
@@ -293,7 +293,7 @@ BEGIN
 END
 go
 
-ALTER PROC PA_REPORTE_CUENTAS_CLIENTE 
+create PROC PA_REPORTE_CUENTAS_CLIENTE 
  @saldoMinimo decimal(18)
 as  
   SELECT 
