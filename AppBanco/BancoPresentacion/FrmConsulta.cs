@@ -184,7 +184,14 @@ namespace BancoPresentacion
 			{
 
 				dgvConsulta.Rows.Clear();
+
 				//lst = gestorTrans.GetTransacciones(filtros);
+
+				string url = "https://localhost:44304/api/Transaccion/consultaTransaccion";
+				var result = await ClientSingleton.ObtenerInstancia().PostAsync(url, filtrosJson);
+
+				lst = JsonConvert.DeserializeObject<List<Cliente>>(result);
+
 
 				foreach (Cliente item in lst)
 				{
