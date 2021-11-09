@@ -110,7 +110,7 @@ BEGIN
 	SELECT top 1 * from USUARIOS WHERE usuario=@usuario and contrasenia=@password;
 END
 GO
-create PROC [dbo].[PA_CONSULTA_CLIENTE_FILTRO]
+alter PROC [dbo].[PA_CONSULTA_CLIENTE_FILTRO]
 @nroCliente int =null,
 @ClienteNombre varchar(150)=null,
 @tipo int,
@@ -118,14 +118,13 @@ create PROC [dbo].[PA_CONSULTA_CLIENTE_FILTRO]
 @fechaHasta datetime=null,
 @activo varchar(1)
 AS
-	SET DATEFORMAT DMY
 	 if @tipo=0 --filtro por numero cliente 
 		select id_cliente 'ID Cliente', nom_cliente Nombre,ape_cliente Apellido, dni DNI,
 		direccion Direccion, telefono Telefono, email Email,fecha_baja fechaBaja,fecha_alta fechaAlta 
 		from Clientes
 		WHERE (@nroCliente is null OR id_cliente=@nroCliente)
 			 AND (@activo is null OR (@activo = 'S') OR (@activo = 'N' and fecha_baja IS  NULL))
-			AND((@fechaDesde is null and @fechaHasta is  null) OR (fecha_alta between @fechaDesde and @fechaHasta))
+			AND((@fechaDesde is null and @fechaHasta is  null) OR (convert(date,fecha_alta) > @fechaDesde AND convert(date,fecha_alta) <= @fechaHasta))
 		order by id_cliente asc     
 	 if @tipo=1 --filtro por cliente
 		select id_cliente 'ID Cliente', nom_cliente Nombre,ape_cliente Apellido, dni DNI,
@@ -133,7 +132,7 @@ AS
 		from Clientes
 		WHERE (@ClienteNombre is null OR (nom_cliente like '%' + @ClienteNombre + '%')OR(ape_cliente like '%' + @ClienteNombre + '%'))
 		 AND (@activo is null OR (@activo = 'S') OR (@activo = 'N' and fecha_baja IS  NULL))
-		 AND((@fechaDesde is null and @fechaHasta is  null) OR (fecha_alta between @fechaDesde and @fechaHasta))
+		 AND((@fechaDesde is null and @fechaHasta is  null) OR (convert(date,fecha_alta) > @fechaDesde AND convert(date,fecha_alta) <= @fechaHasta))
 		order by id_cliente asc  
     if @tipo=2 --filtro por bajas
 	   select id_cliente 'ID Cliente', nom_cliente Nombre,ape_cliente Apellido, dni DNI,
@@ -141,16 +140,16 @@ AS
 		from Clientes
 		WHERE (@activo = 'n' and fecha_baja IS  NULL) and 
 		(@ClienteNombre is null OR (nom_cliente like '%' + @ClienteNombre + '%')OR(ape_cliente like '%' + @ClienteNombre + '%'))
-	    AND((@fechaDesde is null and @fechaHasta is  null) OR (fecha_alta between @fechaDesde and @fechaHasta))
+	    AND((@fechaDesde is null and @fechaHasta is  null) OR (convert(date,fecha_alta) > @fechaDesde AND convert(date,fecha_alta) <= @fechaHasta))
 		order by id_cliente asc
 GO
-create PROC PA_CONSULTA_CUENTA_FILTRO
+alter PROC PA_CONSULTA_CUENTA_FILTRO
 @nroCuenta int =null,
 @cbu varchar(22)=null,
 @alias varchar(22)=null,
 @ClienteNombre varchar(150)=null,
-@fechaDesde datetime=null,
-@fechaHasta datetime=null,
+@fechaDesde date=null,
+@fechaHasta date=null,
 @tipo int,
 @activo varchar(1)
 AS
@@ -162,7 +161,7 @@ AS
 		join Tipos_Cuentas tc on tc.id_tipo_cuenta=c.id_tipo_cuenta
 		WHERE (@nroCuenta is null OR id_cuenta=@nroCuenta)
 			 AND (@activo is null OR (@activo = 'S') OR (@activo = 'N' and c.fecha_baja IS  NULL))
-			 AND((@fechaDesde is null and @fechaHasta is  null) OR (c.fecha_alta between @fechaDesde and @fechaHasta))
+			 AND((@fechaDesde is null and @fechaHasta is  null) OR (convert(date,c.fecha_alta) > @fechaDesde AND convert(date,c.fecha_alta) <= @fechaHasta))
 		order by id_cuenta asc     
 	 if @tipo=1 --filtro por cliente
 		select id_cuenta 'ID Cuenta',nom_cliente Nombre,ape_cliente Apellido, dni DNI,
@@ -172,7 +171,7 @@ AS
 		join Tipos_Cuentas tc on tc.id_tipo_cuenta=c.id_tipo_cuenta
 		WHERE (@ClienteNombre is null OR (nom_cliente like '%' + @ClienteNombre + '%')OR(ape_cliente like '%' + @ClienteNombre + '%'))
 		 AND (@activo is null OR (@activo = 'S') OR (@activo = 'N' and c.fecha_baja IS  NULL))
-		 AND((@fechaDesde is null and @fechaHasta is  null) OR (c.fecha_alta between @fechaDesde and @fechaHasta))
+		 AND((@fechaDesde is null and @fechaHasta is  null) OR (convert(date,c.fecha_alta) > @fechaDesde AND convert(date,c.fecha_alta) <= @fechaHasta))
 		order by id_cuenta asc  
     if @tipo=2 --filtro por cbu
 		select id_cuenta 'ID Cuenta',nom_cliente Nombre,ape_cliente Apellido, dni DNI,
@@ -180,9 +179,9 @@ AS
 		c.fecha_baja fechaBaja,c.fecha_alta fechaAlta,c.id_cliente,tc.id_tipo_cuenta
 		from Cuentas c join Clientes cl on c.id_cliente=cl.id_cliente 
 		join Tipos_Cuentas tc on tc.id_tipo_cuenta=c.id_tipo_cuenta
-		WHERE (@cbu is null OR cbu=@cbu)
+		WHERE (@cbu is null OR (cbu like '%' + trim(str(@cbu)) + '%'))
 			 AND (@activo is null OR (@activo = 'S') OR (@activo = 'N' and c.fecha_baja IS  NULL))
-			 AND((@fechaDesde is null and @fechaHasta is  null) OR (c.fecha_alta between @fechaDesde and @fechaHasta))
+			 AND((@fechaDesde is null and @fechaHasta is  null) OR (convert(date,c.fecha_alta) > @fechaDesde AND convert(date,c.fecha_alta) <= @fechaHasta))
 	    order by id_cuenta asc
 	if @tipo=3 --filtro por alias
 		select id_cuenta 'ID Cuenta',nom_cliente Nombre,ape_cliente Apellido, dni DNI,
@@ -190,9 +189,9 @@ AS
 		c.fecha_baja fechaBaja,c.fecha_alta fechaAlta,c.id_cliente,tc.id_tipo_cuenta
 		from Cuentas c join Clientes cl on c.id_cliente=cl.id_cliente 
 		join Tipos_Cuentas tc on tc.id_tipo_cuenta=c.id_tipo_cuenta
-		WHERE (@alias is null OR alias=@alias)
+		WHERE (@alias is null OR (alias like '%' + @alias + '%'))
 			 AND (@activo is null OR (@activo = 'S') OR (@activo = 'N' and c.fecha_baja IS  NULL))
-			 AND((@fechaDesde is null and @fechaHasta is  null) OR (c.fecha_alta between @fechaDesde and @fechaHasta))
+			 AND((@fechaDesde is null and @fechaHasta is  null) OR (convert(date,c.fecha_alta) > @fechaDesde AND convert(date,c.fecha_alta) <= @fechaHasta))
 	    order by id_cuenta asc
 	if @tipo=4 --filtro por bajas
 		select id_cuenta 'ID Cuenta',nom_cliente Nombre,ape_cliente Apellido, dni DNI,
@@ -202,9 +201,8 @@ AS
 		join Tipos_Cuentas tc on tc.id_tipo_cuenta=c.id_tipo_cuenta
 		WHERE (@activo = 'n' and c.fecha_baja IS  NULL) and 
 		(@ClienteNombre is null OR (nom_cliente like '%' + @ClienteNombre + '%')OR(ape_cliente like '%' + @ClienteNombre + '%'))
-	    AND((@fechaDesde is null and @fechaHasta is  null) OR (c.fecha_alta between @fechaDesde and @fechaHasta))
+	    AND((@fechaDesde is null and @fechaHasta is  null) OR (convert(date,c.fecha_alta) > @fechaDesde AND convert(date,c.fecha_alta) <= @fechaHasta))
 		order by id_cuenta asc
-
 go
 create PROC [dbo].[PA_CONSULTA_CLIENTE_SIMPLE]
 @ClienteNombre varchar(150)
@@ -295,13 +293,16 @@ BEGIN
 END
 go
 
-CREATE PROC PA_REPORTE_CUENTAS_CLIENTE
-
-as
-		SELECT Clientes.id_cliente, Clientes.nom_cliente, Clientes.ape_cliente, Cuentas.id_cuenta, Cuentas.cbu, Cuentas.saldo_actual, Cuentas.id_cliente AS Expr1
-                FROM   Clientes INNER JOIN
-                            	Cuentas ON Clientes.id_cliente = Cuentas.id_cliente 
+ALTER PROC PA_REPORTE_CUENTAS_CLIENTE 
+ @saldoMinimo decimal(18)
+as  
+  SELECT 
+  Clientes.id_cliente, Clientes.nom_cliente, Clientes.ape_cliente, Cuentas.id_cuenta, Cuentas.cbu, Cuentas.saldo_actual  
+    FROM   Clientes 
+	INNER JOIN  Cuentas ON Clientes.id_cliente = Cuentas.id_cliente   
+	where saldo_actual >= @saldoMinimo 
 go
+
 create PROC PA_EDITAR_CUENTA
 @id_cuenta int,
 @cbu varchar(22),
@@ -340,6 +341,10 @@ AS
 BEGIN
 	UPDATE Clientes SET fecha_baja = GETDATE()
 	WHERE id_cliente = @nro_cli;
+	UPDATE Cuentas SET fecha_baja = GETDATE()
+	WHERE id_cliente = @nro_cli;
+
+
 END
 
 GO

@@ -196,10 +196,33 @@ namespace BancoAccesoDatos.Implementaciones
             return oCliente;
         }
 
-        public int ProximoID(string nombreSP)
+        public int ProximoID()
         {
-            HelperDao helper = HelperDao.ObtenerInstancia();
-            return helper.ProximoID(nombreSP);
+            int nro = 0;
+
+            nro = HelperDao.ObtenerInstancia().ProximoID("PA_PROXIMA_CUENTA");
+
+            return nro;
+        }
+
+		public bool DeleteCuenta(int id)
+		{
+            bool estado = true;
+
+            List<Parametro> lst = new List<Parametro>();
+            lst.Add(new Parametro() { Nombre="@nro_cuenta",Valor=id});
+
+            try
+            {
+                estado = HelperDao.ObtenerInstancia().ModificarSQL("PA_DELETE_CUENTA", lst);
+            }
+            catch (Exception)
+            {
+                estado = false;
+            }
+
+            return estado;
+
         }
     }
 }

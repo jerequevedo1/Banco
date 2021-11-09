@@ -1,8 +1,10 @@
 ﻿using BancoAccesoDatos;
 using BancoPresentacion;
+using BancoPresentacion.Client;
 using BancoPresentacion.Entidades;
 using BancoServicios;
 using BancoServicios.Interfaces;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,7 +23,7 @@ namespace BancoPresentacion
 		private IClienteService gestorCliente;
 		private Tipo tipo;
 		private Accion modo;
-		private ICuentaService gestorCuenta;
+		//private ICuentaService gestorCuenta;
 		private ITransaccionService gestorTrans;
 		//private Form activeForm;
 		//private List<Cliente> lst;
@@ -30,40 +32,41 @@ namespace BancoPresentacion
 		public FrmConsulta(Tipo tipo)
 		{
 			InitializeComponent();
-			gestorCliente = new ServiceFactory().CrearClienteService(new DaoFactory());
-			gestorCuenta = new ServiceFactory().CrearCuentaService(new DaoFactory());
-			gestorTrans = new ServiceFactory().CrearTransaccionService(new DaoFactory());
+			//gestorCliente = new ServiceFactory().CrearClienteService(new DaoFactory());
+			//gestorCuenta = new ServiceFactory().CrearCuentaService(new DaoFactory());
+			//gestorTrans = new ServiceFactory().CrearTransaccionService(new DaoFactory());
+			//gestorCliente = new ServiceFactory().CrearClienteService();
+			//gestorCuenta = new ServiceFactory().CrearCuentaService();
+			gestorTrans = new ServiceFactory().CrearTransaccionService();
 			this.tipo = tipo;
 			//lst = new List<Cliente>();
 			oCliente= new Cliente();
 			//oCliente.Barrio = new Barrio();
 		}
 
-		private void btnNuevo_Click(object sender, EventArgs e)
+		private async void btnNuevo_Click(object sender, EventArgs e)
 		{
 			modo = Accion.Create;
 
 			if (tipo.Equals(Tipo.Cliente))
 			{
 				new FrmNuevoEditar(modo, Tipo.Cliente, oCliente).ShowDialog();
-				//CargarGrilla(tipo);
-				btnConsultar_Click(null,null);
+				await CargarGrilla (tipo);
 
 			}
 			if (tipo.Equals(Tipo.Cuenta))
 			{
 				new FrmNuevoEditar(modo, Tipo.Cuenta, oCliente).ShowDialog();
-				//CargarGrilla(tipo);
-				btnConsultar_Click(null, null);
+				await CargarGrilla (tipo);
 			}
 			
 		}
-		private void btnConsultar_Click(object sender, EventArgs e)
+		private async void btnConsultar_Click(object sender, EventArgs e)
 		{
-			CargarGrilla(tipo);
+			await CargarGrilla(tipo);
 		}
 
-		private void FrmConsulta_Load(object sender, EventArgs e)
+		private async void FrmConsulta_Load(object sender, EventArgs e)
 		{
 			if (tipo.Equals(Tipo.Cliente))
 			{
@@ -71,21 +74,21 @@ namespace BancoPresentacion
 				CargarFiltroFecha(tipo);
 				CargarHeaderGrid(tipo);
 				cboFiltroFecha.SelectedIndex = 4;
-				CargarGrilla(tipo);
+				await CargarGrilla(tipo);
 			}
 			if (tipo.Equals(Tipo.Cuenta))
 			{
 				CargarTiposFiltros(tipo);
 				CargarFiltroFecha(tipo);
 				CargarHeaderGrid(tipo);
-				CargarGrilla(tipo);
+				await CargarGrilla(tipo);
 			}
 			if (tipo.Equals(Tipo.Transaccion))
 			{
 				CargarTiposFiltros(tipo);
 				CargarFiltroFecha(tipo);
 				CargarHeaderGrid(tipo);
-				CargarGrilla(tipo);
+				await CargarGrilla (tipo);
 				btnNuevo.Visible = false;
 				btnEditar.Visible = false;
 				btnEliminar.Visible = false;
@@ -126,17 +129,22 @@ namespace BancoPresentacion
 			}
 		}
 
-		private void CargarGrilla(Tipo tipo)
+		private async Task CargarGrilla(Tipo tipo)
 		{
 			List<Parametro> filtros = CargarParametros(tipo);
+			List<Cliente> lst = new List<Cliente>();
+			string filtrosJson=JsonConvert.SerializeObject(filtros);
 
 			if (tipo.Equals(Tipo.Cliente))
 			{
-				List<Cliente> lst = new List<Cliente>();
+				
 
 				dgvConsulta.Rows.Clear();
-				lst = gestorCliente.GetClienteByFilters(filtros);
+				//lst = gestorCliente.GetClienteByFilters(filtros);
+				string url = "https://localhost:44304/api/Cliente/consultaFiltros";
+				var result = await ClientSingleton.ObtenerInstancia().PostAsync(url, filtrosJson);
 
+				lst = JsonConvert.DeserializeObject<List<Cliente>>(result);
 
 				foreach (Cliente item in lst)
 				{
@@ -145,11 +153,14 @@ namespace BancoPresentacion
 			}
 			if (tipo.Equals(Tipo.Cuenta))
 			{
-				List<Cliente> lst = new List<Cliente>();
 
 				dgvConsulta.Rows.Clear();
-				lst = gestorCuenta.GetCuentaByFilters(filtros);
+				//lst = gestorCuenta.GetCuentaByFilters(filtros);
 
+				string url = "https://localhost:44304/api/Cuenta/consultaFiltros";
+				var result = await ClientSingleton.ObtenerInstancia().PostAsync(url, filtrosJson);
+
+				lst = JsonConvert.DeserializeObject<List<Cliente>>(result);
 
 				foreach (Cliente item in lst)
 				{
@@ -171,10 +182,9 @@ namespace BancoPresentacion
 			}
 			if (tipo.Equals(Tipo.Transaccion))
 			{
-				List<Cliente> lst = new List<Cliente>();
 
 				dgvConsulta.Rows.Clear();
-				lst = gestorTrans.GetTransacciones(filtros);
+				//lst = gestorTrans.GetTransacciones(filtros);
 
 				foreach (Cliente item in lst)
 				{
@@ -195,8 +205,8 @@ namespace BancoPresentacion
 			object filtroTexto = DBNull.Value;
 			string conBaja = "N";
 
-			filtros.Add(new Parametro("@fechaDesde", dtpFechaDesde.Value));
-			filtros.Add(new Parametro("@fechaHasta", dtpFechaHasta.Value));
+			filtros.Add(new Parametro("@fechaDesde", dtpFechaDesde.Value.ToString("yyyy/MM/dd")));
+			filtros.Add(new Parametro("@fechaHasta", dtpFechaHasta.Value.ToString("yyyy/MM/dd")));
 
 			if (!String.IsNullOrEmpty(txtFiltro.Text))
 			{
@@ -317,7 +327,7 @@ namespace BancoPresentacion
 			}
 		}
 
-		private void btnEditar_Click(object sender, EventArgs e)
+		private async void btnEditar_Click(object sender, EventArgs e)
 		{
 			modo = Accion.Update;
 			int nro = Convert.ToInt32(dgvConsulta.CurrentRow.Cells[0].Value.ToString());
@@ -326,9 +336,14 @@ namespace BancoPresentacion
 			{
 				if (dgvConsulta.RowCount > 0)
 				{
-					oCliente = gestorCliente.GetClienteId(nro);
+					//oCliente = gestorCliente.GetClienteId(nro);
+					string url = "https://localhost:44304/api/Cliente/" + nro;
+					var data = await ClientSingleton.ObtenerInstancia().GetAsync(url);
+
+					oCliente = JsonConvert.DeserializeObject<Cliente>(data);
+
 					new FrmNuevoEditar(modo, Tipo.Cliente, oCliente).ShowDialog();
-					CargarGrilla(tipo);
+					await CargarGrilla(tipo);
 				}
 				else
 				{
@@ -340,10 +355,15 @@ namespace BancoPresentacion
 				
 				if (dgvConsulta.RowCount > 0)
 				{
-								
-					oCliente = gestorCuenta.GetCuentaById(nro);
+
+					//oCliente = gestorCuenta.GetCuentaById(nro);
+					string url = "https://localhost:44304/api/Cuenta/" + nro;
+					var data = await ClientSingleton.ObtenerInstancia().GetAsync(url);
+
+					oCliente = JsonConvert.DeserializeObject<Cliente>(data);
+
 					new FrmNuevoEditar(modo, Tipo.Cuenta, oCliente).ShowDialog();
-					CargarGrilla(tipo);
+					await CargarGrilla (tipo);
 				}
 				else
 				{
@@ -351,7 +371,7 @@ namespace BancoPresentacion
 				}
 			}
 		}
-		private void btnEliminar_Click(object sender, EventArgs e)
+		private async void btnEliminar_Click(object sender, EventArgs e)
 		{
 			modo = Accion.Delete;
 			if (tipo.Equals(Tipo.Cliente))
@@ -363,8 +383,14 @@ namespace BancoPresentacion
 					if (MessageBox.Show("Seguro que desea dar de baja este cliente?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
 					{
 
-						Parametro p = new Parametro("@nro_cli", nro);
-						bool respuesta = gestorCliente.ActualizarSQL("PA_DELETE_CLIENTE", p);
+						//Parametro p = new Parametro("@nro_cli", nro);
+
+						//bool respuesta = gestorCliente.EliminarCliente(p);
+
+						string url = "https://localhost:44304/api/Cliente/deleteCliente/"+nro;
+						var data = await ClientSingleton.ObtenerInstancia().DeleteAsync(url);
+
+						bool respuesta = JsonConvert.DeserializeObject<bool>(data);
 
 						if (respuesta)
 						{
@@ -373,7 +399,7 @@ namespace BancoPresentacion
 						
 						}
 
-						CargarGrilla(tipo);
+						await CargarGrilla (tipo);
 					}
 				}
 				else
@@ -389,8 +415,13 @@ namespace BancoPresentacion
 					if (MessageBox.Show("Seguro que desea dar de baja esta cuenta?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
 					{
 
-						Parametro p = new Parametro("@nro_cuenta", nro);
-						bool respuesta = gestorCliente.ActualizarSQL("PA_DELETE_CUENTA", p);
+						//Parametro p = new Parametro("@nro_cuenta", nro);
+						//bool respuesta = gestorCliente.EliminarCliente("PA_DELETE_CUENTA", p);
+
+						string url = "https://localhost:44304/api/Cuenta/deleteCuenta/"+nro;
+						var data = await ClientSingleton.ObtenerInstancia().DeleteAsync(url);
+
+						bool respuesta = JsonConvert.DeserializeObject<bool>(data);
 
 						if (respuesta)
 						{
@@ -399,7 +430,7 @@ namespace BancoPresentacion
 
 						}
 
-						CargarGrilla(tipo);
+						await CargarGrilla (tipo);
 					}
 				}
 				else
@@ -410,21 +441,31 @@ namespace BancoPresentacion
 
 		}
 
-       	private void dgvConsulta_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+       	private async void dgvConsulta_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
 		{
 			modo = Accion.Read;
 			int nro = int.Parse(dgvConsulta.CurrentRow.Cells["cId"].Value.ToString());
 
 			if (tipo.Equals(Tipo.Cliente))
 			{
-				oCliente = gestorCliente.GetClienteId(nro);
+				string url = "https://localhost:44304/api/Cliente/"+nro;
+				var data = await ClientSingleton.ObtenerInstancia().GetAsync(url);
+
+				oCliente = JsonConvert.DeserializeObject<Cliente>(data);
+
+				//oCliente = gestorCliente.GetClienteId(nro);
 				new FrmNuevoEditar(modo, Tipo.Cliente, oCliente).ShowDialog();
 			}
 
 			if (tipo.Equals(Tipo.Cuenta))
 			{
-				
-				oCliente = gestorCuenta.GetCuentaById(nro);
+
+				//oCliente = gestorCuenta.GetCuentaById(nro);
+				string url = "https://localhost:44304/api/Cuenta/" + nro;
+				var data = await ClientSingleton.ObtenerInstancia().GetAsync(url);
+
+				oCliente = JsonConvert.DeserializeObject<Cliente>(data);
+
 				new FrmNuevoEditar(modo, Tipo.Cuenta, oCliente).ShowDialog();
 			}
 			if (tipo.Equals(Tipo.Transaccion))

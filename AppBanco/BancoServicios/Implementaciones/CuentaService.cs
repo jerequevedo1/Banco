@@ -15,9 +15,14 @@ namespace BancoServicios.Implementaciones
 	{
 		private ICuentaDao daoCuenta;
 
-		public CuentaService(AbstractDaoFactory factory)
+		//public CuentaService(AbstractDaoFactory factory)
+		//{
+		//	daoCuenta = factory.CrearCuentaDao();
+
+		//}
+		public CuentaService()
 		{
-			daoCuenta = factory.CrearCuentaDao();
+			daoCuenta = new DaoFactory().CrearCuentaDao();
 
 		}
 		public List<Cliente> GetCuentaByFilters(List<Parametro> parametros)
@@ -48,9 +53,14 @@ namespace BancoServicios.Implementaciones
 			return daoCuenta.GetCuentaById(nro);
 		}
 
-        public int ProximoID(string nombreSP)
+        public int ProximoID()
         {
-			return daoCuenta.ProximoID(nombreSP);
+			return daoCuenta.ProximoID();
 		}
-    }
+
+		public bool EliminarCuenta(int id)
+		{
+			return daoCuenta.DeleteCuenta(id);
+		}
+	}
 }

@@ -17,7 +17,7 @@ namespace BancoAccesoDatos
 		public string ConnectionString { get; set; }
 
 		public SqlConnection cnn { get; }
-		public SqlCommand cmd { get; set; }
+		//public SqlCommand cmd { get; set; }
 
 
 		private HelperDao()
@@ -52,13 +52,21 @@ namespace BancoAccesoDatos
 			try
 			{
 				cnn.Open();
-				cmd = new SqlCommand(nombreSp, cnn);
+				SqlCommand cmd = new SqlCommand(nombreSp, cnn);
 				cmd.Parameters.Clear();
 				cmd.CommandType = CommandType.StoredProcedure;
 
 				foreach (Parametro p in parametros)
 				{
-					cmd.Parameters.AddWithValue(p.Nombre, p.Valor);
+					if (p.Valor!=null)
+					{
+						cmd.Parameters.AddWithValue(p.Nombre, p.Valor.ToString());
+					}
+					else
+					{
+						cmd.Parameters.AddWithValue(p.Nombre, DBNull.Value);
+					}
+					
 				}
 
 				tabla.Load(cmd.ExecuteReader());
@@ -71,7 +79,7 @@ namespace BancoAccesoDatos
 			}
 			finally
 			{
-				if (cnn.State == ConnectionState.Open) cnn.Close();
+				if (cnn != null && cnn.State == ConnectionState.Open) cnn.Close();
 			}
 
 			return tabla;
@@ -83,12 +91,10 @@ namespace BancoAccesoDatos
 			DataTable tabla = new DataTable();
 			try
 			{
-				cmd = new SqlCommand(nombreSP, cnn);
-				cmd.Parameters.Clear();
 				cnn.Open();
-				cmd.Connection = cnn;
+				SqlCommand cmd = new SqlCommand(nombreSP, cnn);
+				cmd.Parameters.Clear();
 				cmd.CommandType = CommandType.StoredProcedure;
-				cmd.CommandText = nombreSP;
 				tabla.Load(cmd.ExecuteReader());
 			}
 			catch (Exception)
@@ -97,8 +103,7 @@ namespace BancoAccesoDatos
 			}
 			finally
 			{
-				if (cnn.State == ConnectionState.Open)
-					cnn.Close();
+				if (cnn != null && cnn.State == ConnectionState.Open) cnn.Close();
 			}
 			return tabla;
 		}
@@ -115,7 +120,7 @@ namespace BancoAccesoDatos
 
 				if (modo == Accion.Create)
 				{
-					cmd = new SqlCommand(spMaestro, cnn, trans);
+					SqlCommand cmd = new SqlCommand(spMaestro, cnn, trans);
 					cmd.Parameters.Clear();
 					cmd.CommandType = CommandType.StoredProcedure;
 					cmd.Parameters.AddWithValue("@nom_cliente", oCliente.NomCliente);
@@ -130,7 +135,7 @@ namespace BancoAccesoDatos
 					parameter.Direction = ParameterDirection.Output;
 					cmd.Parameters.Add(parameter);
 
-					cmd.ExecuteNonQuery();
+					filasAfectadas=cmd.ExecuteNonQuery();
 					int nroCliente = Convert.ToInt32(parameter.Value);
 
 					SqlCommand cmdDet = new SqlCommand(spDetalle, cnn, trans);
@@ -177,7 +182,7 @@ namespace BancoAccesoDatos
 			try
 			{
 				cnn.Open();
-				cmd = new SqlCommand(nombreSP, cnn);
+				SqlCommand cmd = new SqlCommand(nombreSP, cnn);
 				cmd.Parameters.Clear();
 				cmd.CommandType = CommandType.StoredProcedure;
 
@@ -187,77 +192,48 @@ namespace BancoAccesoDatos
 				}
 
 				filasdevueltas = cmd.ExecuteNonQuery();
-
-
 			}
 			catch (Exception)
-			{
-				throw;
-				estado = false;
-			}
-			finally
-			{
-				if (cnn.State == ConnectionState.Open) cnn.Close();
-			}
-
-			return estado;
-
-		}
-
-		public bool ActualizarSQL(string nombreSP, Parametro p)
-		{
-			int filasdevueltas = 0;
-			bool estado = true;
-			try
-			{
-				cnn.Open();
-				cmd = new SqlCommand(nombreSP, cnn);
-				cmd.Parameters.Clear();
-				cmd.CommandType = CommandType.StoredProcedure;
-				cmd.Parameters.AddWithValue(p.Nombre, p.Valor);
-				filasdevueltas = cmd.ExecuteNonQuery();
-			}
-			catch (Exception)
-			{
-				throw;
-				estado = false;
-			}
-			finally
-			{
-				if (cnn.State == ConnectionState.Open) cnn.Close();
-			}
-
-			return estado;
-		}
-
-		public int ProximoID(string nombreSp) 
-		{
-			
-			SqlCommand cmd = new SqlCommand();	
-			try
 			{
 				
-				cnn.Open();
-				cmd.Connection = cnn;
-				cmd.CommandType = CommandType.StoredProcedure;
-				cmd.CommandText = nombreSp;
-				SqlParameter param = new SqlParameter("@next", SqlDbType.Int);
-				param.Direction = ParameterDirection.Output;
-				cmd.Parameters.Add(param);
-				cmd.ExecuteNonQuery();
-				return (int)param.Value;
-
-
-			}
-			catch (SqlException ex)
-			{
-				throw (ex);
+				estado = false;
 			}
 			finally
 			{
 				if (cnn != null && cnn.State == ConnectionState.Open) cnn.Close();
 			}
 
+			return estado;
+
+		}
+
+	
+		public int ProximoID(string nombreSp) 
+		{
+			int proximo = 0;
+			try
+			{
+				SqlConnection cnn = new SqlConnection(ConnectionString);
+				cnn.Open();
+				SqlCommand cmd = new SqlCommand(nombreSp,cnn);
+				cmd.Parameters.Clear();
+				cmd.CommandType = CommandType.StoredProcedure;
+				SqlParameter param = new SqlParameter("@next", SqlDbType.Int);
+				param.Direction = ParameterDirection.Output;
+				cmd.Parameters.Add(param);
+				cmd.ExecuteNonQuery();
+				
+				proximo=(int)param.Value;
+			}
+			catch (SqlException)
+			{
+				return 0;
+			}
+			finally
+			{
+				if (cnn != null && cnn.State == ConnectionState.Open) cnn.Close();
+			}
+			return proximo;
 		}
 
 

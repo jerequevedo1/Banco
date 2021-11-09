@@ -1,8 +1,10 @@
 ﻿using BancoAccesoDatos;
 using BancoPresentacion;
+using BancoPresentacion.Client;
 using BancoPresentacion.Entidades;
 using BancoServicios;
 using BancoServicios.Interfaces;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,7 +22,7 @@ namespace BancoPresentacion
 	public partial class FrmConsultaCliente : Form
 	{
 		//public Accion modo;
-		private IClienteService gestorCliente;
+		//private IClienteService gestorCliente;
 		private List<Parametro> parametro;
 		private List<Cliente> lst;
 		private int nro;
@@ -30,7 +32,8 @@ namespace BancoPresentacion
 			InitializeComponent();
 			this.parametro = parametro;
 			lst = new List<Cliente>();
-			gestorCliente = new ServiceFactory().CrearClienteService(new DaoFactory());
+			//gestorCliente = new ServiceFactory().CrearClienteService(new DaoFactory());
+			//gestorCliente = new ServiceFactory().CrearClienteService();
 			this.clienteExistente = false;
 		}
 
@@ -42,9 +45,15 @@ namespace BancoPresentacion
 
 		}
 
-		private void CargarClientes()
+		private async void CargarClientes()
 		{
-			lst = gestorCliente.GetClienteByName(parametro);
+			//lst = gestorCliente.GetClienteByName(parametro);
+
+			string url = "https://localhost:44304/api/Cliente/consultaNombre";
+			string filtroJson = JsonConvert.SerializeObject(parametro);
+			var result = await ClientSingleton.ObtenerInstancia().PostAsync(url, filtroJson);
+
+			lst = JsonConvert.DeserializeObject<List<Cliente>>(result);
 
 			dgvClientes.Rows.Clear();
 			foreach (Cliente item in lst)

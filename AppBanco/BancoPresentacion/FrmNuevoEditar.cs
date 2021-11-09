@@ -1,8 +1,11 @@
+
 using BancoAccesoDatos;
 using BancoPresentacion;
+using BancoPresentacion.Client;
 using BancoPresentacion.Entidades;
 using BancoServicios;
 using BancoServicios.Interfaces;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,19 +21,22 @@ namespace BancoPresentacion
 {
 	public partial class FrmNuevoEditar : Form
 	{
-		private IClienteService gestorCliente;
-		private ICuentaService gestorCuenta;
+		//private IClienteService gestorCliente;
+		//private ICuentaService gestorCuenta;
 		private Accion modo;
 		private Tipo tipo;
 		private Cliente oCliente;
 		private Cuenta oCuenta;
 		private bool clienteExistente;
 		private int nro;
+		private bool esPrimero;
 		public FrmNuevoEditar(Accion modo, Tipo tipo,Cliente cliente)
 		{
 			InitializeComponent();
-			gestorCliente = new ServiceFactory().CrearClienteService(new DaoFactory());
-			gestorCuenta = new ServiceFactory().CrearCuentaService(new DaoFactory());
+			//gestorCliente = new ServiceFactory().CrearClienteService(new DaoFactory());
+			//gestorCuenta = new ServiceFactory().CrearCuentaService(new DaoFactory());
+			//gestorCliente = new ServiceFactory().CrearClienteService();
+			//gestorCuenta = new ServiceFactory().CrearCuentaService();
 			oCliente = new Cliente();
 			oCuenta = new Cuenta();
 			//oCliente.Provincia = new Provincia();
@@ -38,14 +44,14 @@ namespace BancoPresentacion
 			{
 				oCliente = cliente;
 			}
-			
-			
+
+			esPrimero = true;
 			this.modo = modo;
 			this.tipo = tipo;
 			this.clienteExistente = false;
 		}
 
-		private void btnBuscar_Click(object sender, EventArgs e)
+		private async void btnBuscar_Click(object sender, EventArgs e)
 		{
 
 			if (!txtCliente.Text.Equals(string.Empty))
@@ -60,12 +66,17 @@ namespace BancoPresentacion
 				nro = frm.GetNroCliente();
 				clienteExistente = frm.GetClienteExistente();
 
-				oCliente = gestorCliente.GetClienteId(nro);
+				//oCliente = gestorCliente.GetClienteId(nro);
+
+				string url = "https://localhost:44304/api/Cliente/" + nro;
+				var data = await ClientSingleton.ObtenerInstancia().GetAsync(url);
+
+				oCliente = JsonConvert.DeserializeObject<Cliente>(data);
 
 				if (nro!=0)
 				{
 					CargarCliente(oCliente);
-					
+					lblNroCliente.Text = "Nro Cliente: " + nro;
 					txtCliente.Text = oCliente.NombreCompleto();
 					panelCliente.Enabled = false;
 					btnNuevo.Visible = true;
@@ -112,65 +123,41 @@ namespace BancoPresentacion
 			txtCliente.Text = "";
 		}
 
-		private void FrmNuevoEditar_Load(object sender, EventArgs e)
+		private async void FrmNuevoEditar_Load(object sender, EventArgs e)
 		{
-			CargarTipoCuenta();
+			await CargarTipoCuenta();
 			CargarTipoMoneda();
-			CargarProvincias();
+			await CargarProvincias();
 
 			if (tipo.Equals(Tipo.Cliente))
 			{
 				if (modo.Equals(Accion.Create))
 				{
 					this.Text = "Nueva Cuenta";
-					txtCliente.Visible = false;
-					btnBuscar.Visible = false;
-					lblBuscarCliente.Visible = false;					
+					SetFormDefault();
 					this.Size = new Size(782, 454);
-					lblNroCliente.Text = "Nro Cliente: " + gestorCliente.ProximoID("PA_PROXIMO_CLIENTE");
-					lblNroCuenta.Text = "Nro Cuenta: " + gestorCuenta.ProximoID("PA_PROXIMA_CUENTA");
-					
-
+					await CargarProximos();
 				}
 
 				if (modo.Equals(Accion.Update))
 				{
 					this.Text = "Editar Cliente";
 					CargarCliente(oCliente);
-					txtCliente.Visible = false;
-					btnBuscar.Visible = false;
-					lblBuscarCliente.Visible = false;
-					this.Size = new Size(782, 310);
-					panelCliente.Location = new Point(42, 40);
-					lblNroCliente.Location = new Point(19, 20);
-					panelCuenta.Visible = false;
-					lblNroCuenta.Visible = false;
-					lblNroCliente.Text= "Nro Cliente: "+oCliente.IdCliente.ToString();
+					SetFormDefault();
+					SetFormCliente();
 
-					cboCliProvincia.SelectedValue = oCliente.Provincia.IdProvincia;
-					cboCliLocalidad.SelectedValue = oCliente.Provincia.lLocalidad[0].IdLocalidad;
-					cboClienteBarrio.SelectedValue = oCliente.Provincia.lLocalidad[0].lBarrio[0].IdBarrio;
+					lblNroCliente.Text = "Nro Cliente: " + oCliente.IdCliente.ToString();
 				}
 				if (modo.Equals(Accion.Read))
 				{
 					this.Text = "Consulta Cliente";
 					CargarCliente(oCliente);
-					txtCliente.Visible = false;
-					btnBuscar.Visible = false;
-					lblBuscarCliente.Visible = false;
-					this.Size = new Size(782, 310);
-					panelCliente.Location = new Point(42, 40);
-					lblNroCliente.Location = new Point(19, 20);
-					panelCuenta.Visible = false;
-					lblNroCuenta.Visible = false;
+					SetFormDefault();
+					SetFormCliente();
+
 					panelCliente.Enabled = false;
 					btnAceptar.Visible = false;
 					lblNroCliente.Text = "Nro Cliente: " + oCliente.IdCliente.ToString();
-					cboCliProvincia.SelectedValue = oCliente.Provincia.IdProvincia;
-					//CargarLocalidades(oCliente.Provincia.IdProvincia);
-					cboCliLocalidad.SelectedValue = oCliente.Provincia.lLocalidad[0].IdLocalidad;
-					cboClienteBarrio.SelectedValue = oCliente.Provincia.lLocalidad[0].lBarrio[0].IdBarrio;
-
 				}
 
 			}
@@ -179,22 +166,17 @@ namespace BancoPresentacion
 				if (modo.Equals(Accion.Create))
 				{
 					this.Text = "Nueva Cuenta";
-					lblNroCliente.Text = "Nro Cliente: " + gestorCliente.ProximoID("PA_PROXIMO_CLIENTE");
-					lblNroCuenta.Text = "Nro Cuenta: " + gestorCuenta.ProximoID("PA_PROXIMA_CUENTA");
+					await CargarProximos();
 				}
 				if (modo.Equals(Accion.Update))
 				{
 					this.Text = "Editar Cuenta";
 					CargarCliente(oCliente);
 					CargarCuenta(oCliente);
-					txtCliente.Visible = false;
-					btnBuscar.Visible = false;
-					lblBuscarCliente.Visible = false;
-					panelCliente.Enabled = false;
-					this.Size = new Size(782, 454);
+					SetFormDefault();
+					SetFormCuenta();
 					lblNroCliente.Text = "Nro Cliente: " + oCliente.IdCliente.ToString();
 					lblNroCuenta.Text = "Nro Cuenta: " + oCliente.Cuentas[0].IdCuenta.ToString();
-					cboCliProvincia.SelectedValue = oCliente.Provincia.IdProvincia;
 					cboTipoCuenta.Enabled = false;
 					cboTipoMoneda.Enabled = false;
 					txtCbu.Enabled = false;
@@ -204,25 +186,62 @@ namespace BancoPresentacion
 					this.Text = "Consulta Cuenta";
 					CargarCliente(oCliente);
 					CargarCuenta(oCliente);
-					txtCliente.Visible = false;
-					btnBuscar.Visible = false;
-					lblBuscarCliente.Visible = false;
-					panelCliente.Enabled = false;
+					SetFormDefault();
+					SetFormCuenta();
 					panelCuenta.Enabled = false;
-					this.Size = new Size(782, 454);
+
 					btnAceptar.Visible = false;
 					lblNroCliente.Text = "Nro Cliente: " + oCliente.IdCliente.ToString();
 					lblNroCuenta.Text = "Nro Cuenta: " + oCliente.Cuentas[0].IdCuenta.ToString();
-					cboCliProvincia.SelectedValue = oCliente.Provincia.IdProvincia;
 				}
 
 			}
 
 			btnNuevo.Visible = false;
-			
-	
 		}
 
+		private async Task CargarProximos()
+		{
+			int nroCliente = await ObtenerProximoCliente();
+			lblNroCliente.Text = "Nro Cliente: " + nroCliente;
+			int nroCuenta= await ObtenerProximaCuenta();
+			lblNroCuenta.Text = "Nro Cuenta: " + nroCuenta;
+		}
+		private void SetFormCuenta()
+		{
+			panelCliente.Enabled = false;
+			this.Size = new Size(782, 454);
+		}
+
+		private void SetFormCliente()
+		{
+			this.Size = new Size(782, 310);
+			panelCliente.Location = new Point(42, 40);
+			lblNroCliente.Location = new Point(19, 20);
+			panelCuenta.Visible = false;
+			lblNroCuenta.Visible = false;
+		}
+
+		public void SetFormDefault()
+		{
+			txtCliente.Visible = false;
+			btnBuscar.Visible = false;
+			lblBuscarCliente.Visible = false;
+		}
+		private async Task<int> ObtenerProximoCliente()
+		{
+			string url = "https://localhost:44304/api/Cliente/proximoId";
+			var data = await ClientSingleton.ObtenerInstancia().GetAsync(url);
+			int nro = JsonConvert.DeserializeObject<int>(data);
+			return nro;
+		}
+		private async Task<int> ObtenerProximaCuenta()
+		{
+			string url = "https://localhost:44304/api/Cuenta/proximoId";
+			var data = await ClientSingleton.ObtenerInstancia().GetAsync(url);
+			int nro = JsonConvert.DeserializeObject<int>(data);
+			return nro;
+		}
 		private void CargarCuenta(Cliente oCliente)
 		{
 
@@ -246,56 +265,39 @@ namespace BancoPresentacion
 			}
 		}
 
-		//private void CargarCliente(int nro)
-		//{
-		//	Cliente oClienteAux= gestorCliente.GetClienteId(nro);
-
-		//	if (modo.Equals(Accion.Create) && tipo.Equals(Tipo.Cuenta))
-		//	{
-		//		oCliente = oClienteAux;
-		//	}
-
-		//	txtCliNombre.Text = oClienteAux.NomCliente;
-		//	txtCliApellido.Text = oClienteAux.ApeCliente;
-		//	txtCliDNI.Text = oClienteAux.Dni.ToString();
-		//	txtCliCuil.Text = oClienteAux.Cuil.ToString();
-		//	//cboClienteBarrio.SelectedValue = oClienteAux.Barrio.IdBarrio;
-		//	cboCliProvincia.SelectedValue = oClienteAux.Provincia.IdProvincia;
-
-		//	cboCliLocalidad.SelectedValue = oClienteAux.Provincia.lLocalidad[0].IdLocalidad;
-		//	cboClienteBarrio.SelectedValue = oClienteAux.Provincia.lLocalidad[0].lBarrio[0].IdBarrio;
-
-		//	txtCliDire.Text = oClienteAux.Direccion;
-		//	txtCliTel.Text = oClienteAux.Telefono;
-		//	txtCliEmail.Text = oClienteAux.Email;
-
-		//}
-		private void CargarCliente(Cliente oCliente)
+		private async void CargarCliente(Cliente oCliente)
 		{
 				
 			txtCliNombre.Text = oCliente.NomCliente;
 			txtCliApellido.Text = oCliente.ApeCliente;
 			txtCliDNI.Text = oCliente.Dni.ToString();
 			txtCliCuil.Text = oCliente.Cuil.ToString();
-			//cboClienteBarrio.SelectedValue = oClienteAux.Barrio.IdBarrio;
-			cboCliProvincia.SelectedValue = oCliente.Provincia.IdProvincia;
 
+			cboCliProvincia.SelectedValue = oCliente.Provincia.IdProvincia;
+			await CargarLocalidades(oCliente.Provincia.IdProvincia);
 			cboCliLocalidad.SelectedValue = oCliente.Provincia.lLocalidad[0].IdLocalidad;
+			await CargarBarrios(oCliente.Provincia.lLocalidad[0].IdLocalidad);
 			cboClienteBarrio.SelectedValue = oCliente.Provincia.lLocalidad[0].lBarrio[0].IdBarrio;
 
 			txtCliDire.Text = oCliente.Direccion;
 			txtCliTel.Text = oCliente.Telefono;
 			txtCliEmail.Text = oCliente.Email;
-
 		}
-		private void CargarLocalidades(int id_prov)
+		private async Task CargarLocalidades(int id_prov)
 		{
 			List<Localidad> lst = new List<Localidad>();
 			List<Parametro> parametro = new List<Parametro>();
 
 			parametro.Add(new Parametro("@id_prov", id_prov));
 
-			lst = gestorCliente.GetLocalidades(parametro);
+			string parametrosJson = JsonConvert.SerializeObject(parametro);
+
+			string url = "https://localhost:44304/api/Cliente/getLocalidades";
+			var result = await ClientSingleton.ObtenerInstancia().PostAsync(url, parametrosJson);
+
+			lst = JsonConvert.DeserializeObject<List<Localidad>>(result);
+
+			//lst = gestorCliente.GetLocalidades(parametro);
 
 			//cboCliLocalidad.Items.Clear();
 			cboCliLocalidad.DataSource = lst;
@@ -305,27 +307,37 @@ namespace BancoPresentacion
 
 		}
 
-		private void CargarProvincias()
+		private async Task CargarProvincias()
 		{
 			List<Provincia> lstP = new List<Provincia>();
-			lstP = gestorCliente.GetProvincias();
+			//lstP = gestorCliente.GetProvincias();
+
+			string url = "https://localhost:44304/api/Cliente/getProvincias";
+			var data = await ClientSingleton.ObtenerInstancia().GetAsync(url);
+			lstP = JsonConvert.DeserializeObject<List<Provincia>>(data);
 
 			//cboCliProvincia.Items.Clear();
 			cboCliProvincia.DataSource = lstP;
 			cboCliProvincia.ValueMember = "IdProvincia";
 			cboCliProvincia.DisplayMember = "NomProvincia";
-			//cboCliProvincia.SelectedIndex = 0;
-
+			cboCliProvincia.SelectedIndex = 0;
 		}
 
-		private void CargarBarrios(int id_loc)
+		private async Task CargarBarrios(int id_loc)
 		{
 			List<Barrio> lstB = new List<Barrio>();
 			List<Parametro> parametro = new List<Parametro>();
 
 			parametro.Add(new Parametro("@id_loc", id_loc));
 
-			lstB = gestorCliente.GetBarrios(parametro);
+			string parametrosJson = JsonConvert.SerializeObject(parametro);
+
+			string url = "https://localhost:44304/api/Cliente/getBarrios";
+			var result = await ClientSingleton.ObtenerInstancia().PostAsync(url, parametrosJson);
+
+			lstB = JsonConvert.DeserializeObject<List<Barrio>>(result);
+
+			//lstB = gestorCliente.GetBarrios(parametro);
 
 			//cboClienteBarrio.Items.Clear();
 			cboClienteBarrio.DataSource = lstB;
@@ -345,11 +357,16 @@ namespace BancoPresentacion
 			cboTipoMoneda.SelectedIndex=0;
 		}
 
-		private void CargarTipoCuenta()
+		private async Task CargarTipoCuenta()
 		{
 			List<TipoCuenta> lstTC = new List<TipoCuenta>();
 
-			lstTC = gestorCuenta.GetTipoCuenta();
+			string url = "https://localhost:44304/api/Cuenta/tipoCuenta";
+			var data = await ClientSingleton.ObtenerInstancia().GetAsync(url);
+
+			lstTC = JsonConvert.DeserializeObject<List<TipoCuenta>>(data);
+
+			//lstTC = gestorCuenta.GetTipoCuenta();
 
 			cboTipoCuenta.Items.Clear();
 			cboTipoCuenta.DataSource = lstTC;
@@ -358,7 +375,7 @@ namespace BancoPresentacion
 			cboTipoCuenta.SelectedIndex = 0;
 		}
 
-		private void btnAceptar_Click(object sender, EventArgs e)
+		private async void btnAceptar_Click(object sender, EventArgs e)
 		{
 
 			if (tipo.Equals(Tipo.Cuenta))
@@ -374,11 +391,11 @@ namespace BancoPresentacion
 					//}
 					if (clienteExistente)
 					{
-						GuardarCuenta();
+						await GuardarCuenta();
 					}
 					else
 					{
-						GuardarCuentaConCliente();
+						await GuardarCuentaConCliente();
 					}
 					
 				}
@@ -386,7 +403,7 @@ namespace BancoPresentacion
 				{
 					//validaciones
 
-					GuardarCuenta();
+					await GuardarCuenta ();
 				}
 			}
 			if (tipo.Equals(Tipo.Cliente))
@@ -395,17 +412,17 @@ namespace BancoPresentacion
 
 				if (modo.Equals(Accion.Create))
 				{
-					GuardarCuentaConCliente();
+					await GuardarCuentaConCliente ();
 				}
 				if (modo.Equals(Accion.Update))
 				{
-					GuardarCuenta();
+					await GuardarCuenta();
 				}
 
 			}
 			
 		}
-		private void GuardarCuentaConCliente()
+		private async Task GuardarCuentaConCliente()
 		{
 			Provincia provincia = new Provincia();
 			Barrio barrio = new Barrio();
@@ -447,11 +464,22 @@ namespace BancoPresentacion
 			}
 
 			oCliente.AgregarCuenta(oCuenta);
+
+			string url = "";
+			if (tipo.Equals(Tipo.Cuenta))
+			{
+				url = "https://localhost:44304/api/Cuenta/newCuenta";
+			}
+			if (tipo.Equals(Tipo.Cliente))
+			{
+				url = "";
+			}
 			
-			
+			var guardarOk = await GuardarCuentaAsync(oCliente, url);
+
 			if (modo.Equals(Accion.Create))
 			{
-				if (gestorCuenta.NuevaCuenta(oCliente))
+				if (guardarOk)
 				{
 					MessageBox.Show("Cuenta registrada con exito.", "Informe", MessageBoxButtons.OK, MessageBoxIcon.Information);
 					Close();
@@ -462,7 +490,7 @@ namespace BancoPresentacion
 				}
 			}
 		}
-		private void GuardarCuenta()
+		private async Task GuardarCuenta()
 		{
 			if (tipo.Equals(Tipo.Cuenta))
 			{
@@ -489,9 +517,12 @@ namespace BancoPresentacion
 						{
 							oCliente.Cuentas[i].TipoMoneda = "D";
 						}
-
+						
 					}
-					if (gestorCuenta.ModificarCuenta(oCliente))
+					string url = "https://localhost:44304/api/Cuenta/modifyCuenta";
+					var guardarOk = await EditarAsync(oCliente, url);
+
+					if (guardarOk)
 					{
 						MessageBox.Show("Cuenta del Cliente " + oCliente.NombreCompleto() + " actualizada con exito.", "Informe", MessageBoxButtons.OK, MessageBoxIcon.Information);
 						Close();
@@ -505,7 +536,11 @@ namespace BancoPresentacion
 				// insertar una cuenta cliente existente
 				if (modo.Equals(Accion.Create))
 				{
-					oCliente.AgregarCuenta(oCuenta);
+					if (oCliente.Cuentas.Count==0)
+					{
+						oCliente.AgregarCuenta(oCuenta);
+					}
+					
 					int i = 0;
 					oCuenta.Cbu = txtCbu.Text;
 					oCuenta.Alias = txtAlias.Text;
@@ -524,7 +559,11 @@ namespace BancoPresentacion
 						oCliente.Cuentas[i].TipoMoneda = "D";
 					}
 
-					if (gestorCuenta.NuevaCuentaClienteExist(oCliente))
+					string url = "https://localhost:44304/api/Cuenta/newCuentaOnly";
+					var editarOk=await GuardarCuentaAsync(oCliente,url);
+
+
+					if (editarOk)
 					{
 						MessageBox.Show("Cuenta registrada al Cliente " + oCliente.NombreCompleto() + " con exito.", "Informe", MessageBoxButtons.OK, MessageBoxIcon.Information);
 						Close();
@@ -543,19 +582,32 @@ namespace BancoPresentacion
 				
 				if (tipo.Equals(Tipo.Cliente))
 				{
-					List<Parametro> parametro = new List<Parametro>();
-					parametro.Add(new Parametro("@id_cliente", oCliente.IdCliente));
-					parametro.Add(new Parametro("@nom_cliente", txtCliNombre.Text.ToString()));
-					parametro.Add(new Parametro("@ape_cliente", txtCliApellido.Text.ToString()));
-					parametro.Add(new Parametro("@dni", int.Parse(txtCliDNI.Text)));
-					parametro.Add(new Parametro("@cuil", long.Parse(txtCliCuil.Text)));
-					parametro.Add(new Parametro("@direccion", txtCliDire.Text.ToString()));
-					parametro.Add(new Parametro("@telefono", txtCliTel.Text.ToString()));
-					parametro.Add(new Parametro("@email", txtCliEmail.Text.ToString()));
-					parametro.Add(new Parametro("@id_barrio", Convert.ToInt32(cboClienteBarrio.SelectedValue)));
-
 					
-					if (gestorCliente.ModificarClienteSQL(parametro))
+					Provincia provincia = new Provincia();
+					Barrio barrio = new Barrio();
+					Localidad localidad = new Localidad();
+					provincia.AgregarLocalidad(localidad);
+					localidad.AgregarBarrio(barrio);
+					oCliente.Provincia = provincia;
+
+					oCliente.NomCliente = txtCliNombre.Text;
+					oCliente.ApeCliente = txtCliApellido.Text;
+					oCliente.Dni = int.Parse(txtCliDNI.Text);
+					oCliente.Cuil = long.Parse(txtCliCuil.Text);
+					oCliente.Direccion = txtCliDire.Text;
+					oCliente.Telefono = txtCliTel.Text;
+					oCliente.Email = txtCliEmail.Text;
+
+					oCliente.Provincia.IdProvincia = Convert.ToInt32(cboCliProvincia.SelectedValue);
+					oCliente.Provincia.lLocalidad[0].IdLocalidad = Convert.ToInt32(cboCliLocalidad.SelectedValue);
+
+					oCliente.Provincia.lLocalidad[0].lBarrio[0].IdBarrio = Convert.ToInt32(cboClienteBarrio.SelectedValue);
+
+					string url = "https://localhost:44304/api/Cliente/modifyCliente";
+
+					bool editarOk=await EditarAsync(oCliente,url);
+
+					if (editarOk)
 					{
 						MessageBox.Show("El cliente se actualizo correctamente!!!", "Notificación", MessageBoxButtons.OK, MessageBoxIcon.Information);
 						this.Dispose();
@@ -571,43 +623,72 @@ namespace BancoPresentacion
 
 		}
 
+		private async Task<bool> GuardarCuentaAsync(Cliente oCliente,string url)
+		{
+
+			string oClienteJson = JsonConvert.SerializeObject(oCliente);
+
+			var result = await ClientSingleton.ObtenerInstancia().PostAsync(url, oClienteJson);
+
+			return result.Equals("true");
+		}
+		private async Task<bool> EditarAsync(Cliente oCliente, string url)
+		{
+			string oClienteJson = JsonConvert.SerializeObject(oCliente);
+
+			var result = await ClientSingleton.ObtenerInstancia().PutAsync(url, oClienteJson);
+
+			return result.Equals("true");
+		}
+		//private async Task<bool> EditarClienteAsync(List<Parametro> parametro, string url)
+		//{
+		//	string parametroJson = JsonConvert.SerializeObject(parametro);
+
+		//	var result = await ClientSingleton.ObtenerInstancia().PutAsync(url, parametroJson);
+
+		//	return result.Equals("true");
+		//}
 		private void btnCancelar_Click(object sender, EventArgs e)
 		{
 			this.Close();
 		}
 
-        private void cboCliProvincia_SelectedIndexChanged(object sender, EventArgs e)
+        private async void cboCliProvincia_SelectedIndexChanged(object sender, EventArgs e)
         {
+		
 
-			//if (cboCliProvincia.SelectedValue.ToString() != null)
-			//{	
-			//
-			if (modo.Equals(Accion.Update) && tipo.Equals(Tipo.Cliente))
+			if(modo.Equals(Accion.Create))
 			{
-				CargarLocalidades(oCliente.Provincia.IdProvincia);
-			}
-			else
-			{
-				int id_prov = Convert.ToInt32(cboCliProvincia.SelectedValue.GetHashCode());
 
-				CargarLocalidades(id_prov);
-			}
+				if (esPrimero)
+				{
+					esPrimero = false;
+					return;
+				}
+				else
+				{
+					int id_prov = Convert.ToInt32(cboCliProvincia.SelectedValue.GetHashCode());
+					//int id_prov = Convert.ToInt32(Convert.ToInt32(cboCliProvincia.SelectedValue));
+					await CargarLocalidades(id_prov);
 
-				
+				}
+
+			}
+			//else
+			//{
+			//	await CargarLocalidades(oCliente.Provincia.IdProvincia);
 			//}
 
 		}
 
-		private void cboCliLocalidad_SelectedIndexChanged(object sender, EventArgs e)
-        {
-			//if (cboCliLocalidad.SelectedValue.ToString() != null)
-			//{
+		private async void cboCliLocalidad_SelectedIndexChanged(object sender, EventArgs e)
+        {	
+			if (modo.Equals(Accion.Create))
+			{
 				int id_loc = Convert.ToInt32(cboCliLocalidad.SelectedValue.GetHashCode());
 
-				CargarBarrios(id_loc);
-
-			//}
-
+				await CargarBarrios(id_loc);
+			}
 		}
         private void txtCliNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
