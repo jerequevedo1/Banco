@@ -138,7 +138,7 @@ AS
 	   select id_cliente 'ID Cliente', nom_cliente Nombre,ape_cliente Apellido, dni DNI,
         direccion Direccion, telefono Telefono, email Email,fecha_baja fechaBaja,fecha_alta fechaAlta 
 		from Clientes
-		WHERE (@activo = 'n' and fecha_baja IS  NULL) and 
+		WHERE ((@activo = 'N' or @activo = 'S') and fecha_baja IS NOT NULL) and
 		(@ClienteNombre is null OR (nom_cliente like '%' + @ClienteNombre + '%')OR(ape_cliente like '%' + @ClienteNombre + '%'))
 	    AND((@fechaDesde is null and @fechaHasta is  null) OR (convert(date,fecha_alta) > @fechaDesde AND convert(date,fecha_alta) <= @fechaHasta))
 		order by id_cliente asc
@@ -199,7 +199,7 @@ AS
 		c.fecha_baja fechaBaja,c.fecha_alta fechaAlta,c.id_cliente,tc.id_tipo_cuenta
 		from Cuentas c join Clientes cl on c.id_cliente=cl.id_cliente 
 		join Tipos_Cuentas tc on tc.id_tipo_cuenta=c.id_tipo_cuenta
-		WHERE (@activo = 'n' and c.fecha_baja IS  NULL) and 
+		WHERE ((@activo = 'N' or @activo = 'S') and c.fecha_baja IS NOT NULL) and 
 		(@ClienteNombre is null OR (nom_cliente like '%' + @ClienteNombre + '%')OR(ape_cliente like '%' + @ClienteNombre + '%'))
 	    AND((@fechaDesde is null and @fechaHasta is  null) OR (convert(date,c.fecha_alta) > @fechaDesde AND convert(date,c.fecha_alta) <= @fechaHasta))
 		order by id_cuenta asc
