@@ -212,7 +212,8 @@ namespace BancoAccesoDatos
 		{
 			int proximo = 0;
 			try
-			{				
+			{
+				SqlConnection cnn = new SqlConnection(ConnectionString);
 				cnn.Open();
 				SqlCommand cmd = new SqlCommand(nombreSp,cnn);
 				cmd.Parameters.Clear();
