@@ -211,8 +211,9 @@ as
 			select id_cliente,nom_cliente,ape_cliente,dni,cuil,direccion,telefono,email,b.id_barrio,l.id_localidad,p.id_provincia
 			from Clientes c join Barrios b on b.id_barrio=c.id_barrio
 				join Localidades l on l.id_localidad=b.id_localidad
-				join Provincias p on p.id_provincia=l.id_localidad
-			WHERE (nom_cliente like '%' + @ClienteNombre + '%')OR(ape_cliente like '%' + @ClienteNombre + '%')
+				join Provincias p on p.id_provincia=l.id_provincia
+			WHERE ((nom_cliente like '%' + @ClienteNombre + '%')OR(ape_cliente like '%' + @ClienteNombre + '%'))
+			and c.fecha_baja is null
 			order by id_cliente asc 
 go
 Create PROC PA_CONSULTA_TIPO_CUENTA
