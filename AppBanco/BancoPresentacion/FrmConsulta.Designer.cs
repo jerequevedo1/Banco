@@ -57,7 +57,7 @@ namespace BancoPresentacion
             // 
             this.lblFechaDesde.AutoSize = true;
             this.lblFechaDesde.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblFechaDesde.Location = new System.Drawing.Point(360, 39);
+            this.lblFechaDesde.Location = new System.Drawing.Point(360, 44);
             this.lblFechaDesde.Name = "lblFechaDesde";
             this.lblFechaDesde.Size = new System.Drawing.Size(59, 18);
             this.lblFechaDesde.TabIndex = 2;
@@ -81,7 +81,7 @@ namespace BancoPresentacion
             // 
             this.dtpFechaDesde.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.dtpFechaDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaDesde.Location = new System.Drawing.Point(423, 37);
+            this.dtpFechaDesde.Location = new System.Drawing.Point(423, 39);
             this.dtpFechaDesde.Name = "dtpFechaDesde";
             this.dtpFechaDesde.Size = new System.Drawing.Size(143, 26);
             this.dtpFechaDesde.TabIndex = 3;
@@ -100,7 +100,7 @@ namespace BancoPresentacion
             // 
             this.lblFechaHasta.AutoSize = true;
             this.lblFechaHasta.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblFechaHasta.Location = new System.Drawing.Point(588, 39);
+            this.lblFechaHasta.Location = new System.Drawing.Point(588, 44);
             this.lblFechaHasta.Name = "lblFechaHasta";
             this.lblFechaHasta.Size = new System.Drawing.Size(52, 18);
             this.lblFechaHasta.TabIndex = 4;
@@ -126,7 +126,7 @@ namespace BancoPresentacion
             // 
             this.dtpFechaHasta.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.dtpFechaHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaHasta.Location = new System.Drawing.Point(647, 37);
+            this.dtpFechaHasta.Location = new System.Drawing.Point(644, 39);
             this.dtpFechaHasta.Name = "dtpFechaHasta";
             this.dtpFechaHasta.Size = new System.Drawing.Size(143, 26);
             this.dtpFechaHasta.TabIndex = 5;
@@ -312,6 +312,7 @@ namespace BancoPresentacion
             this.Controls.Add(this.dtpFechaHasta);
             this.Controls.Add(this.btnConsultar);
             this.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmConsulta";
             this.Text = "Consultas";
             this.Load += new System.EventHandler(this.FrmConsulta_Load);
@@ -344,5 +345,7 @@ namespace BancoPresentacion
 		private System.Windows.Forms.DataGridViewTextBoxColumn cTipoCuenta;
 		private System.Windows.Forms.DataGridViewTextBoxColumn cSaldo;
 		private System.Windows.Forms.DataGridViewTextBoxColumn cUltimoMov;
-	}
+        private System.Windows.Forms.PictureBox btnMinimize;
+        private System.Windows.Forms.PictureBox btnClose;
+    }
 }
