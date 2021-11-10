@@ -561,7 +561,7 @@ namespace BancoPresentacion
             this.Controls.Add(this.panelCliente);
             this.Name = "FrmNuevoEditar";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "FrmNuevoEditarCuenta";
+            this.Text = "Crear/Editar Clientes y Cuentas";
             this.Load += new System.EventHandler(this.FrmNuevoEditar_Load);
             this.panelCliente.ResumeLayout(false);
             this.panelCliente.PerformLayout();
