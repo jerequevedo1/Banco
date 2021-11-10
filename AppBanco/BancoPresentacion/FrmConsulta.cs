@@ -520,10 +520,10 @@ namespace BancoPresentacion
 		}
         private async void txtFiltro_TextChanged(object sender, EventArgs e)
         {
-			if (Regex.IsMatch(txtFiltro.Text, "^(?!.*?([A-Za-znÑ])\\1\\1).+"))
-			{
+			//if (Regex.IsMatch(txtFiltro.Text, "^(?!.*?([A-Za-znÑ])\\1\\1).+"))
+			//{
 				await CargarGrilla(tipo);
-			}
+			//}
 
 		}
 		private void txtFiltro_KeyPress(object sender, KeyPressEventArgs e)
