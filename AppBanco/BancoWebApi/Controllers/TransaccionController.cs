@@ -19,7 +19,11 @@ namespace BancoWebApi.Controllers
         {
             service = new ServiceFactory().CrearTransaccionService();
         }
-
+        /// <summary>
+        /// Obtiene información de las transacciones del banco por parametros
+        /// </summary>
+        /// <param name="parametros">nroTransaccion, nom_cliente, fechaDesde, FechaHasta</param>
+        /// <returns>Lista de clientes</returns>
         [HttpPost("consultaTransaccion")]
         public IActionResult GetTransaccion(List<Parametro> parametros)
         {
