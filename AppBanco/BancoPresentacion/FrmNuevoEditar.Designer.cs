@@ -80,6 +80,7 @@ namespace BancoPresentacion
             this.lblNroCuenta.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lblNroCuenta.AutoSize = true;
             this.lblNroCuenta.Font = new System.Drawing.Font("Century Gothic", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblNroCuenta.ForeColor = System.Drawing.Color.Black;
             this.lblNroCuenta.Location = new System.Drawing.Point(19, 290);
             this.lblNroCuenta.Name = "lblNroCuenta";
             this.lblNroCuenta.Size = new System.Drawing.Size(112, 19);
@@ -90,6 +91,7 @@ namespace BancoPresentacion
             // 
             this.lblCbu.AutoSize = true;
             this.lblCbu.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblCbu.ForeColor = System.Drawing.Color.Black;
             this.lblCbu.Location = new System.Drawing.Point(9, 8);
             this.lblCbu.Name = "lblCbu";
             this.lblCbu.Size = new System.Drawing.Size(36, 17);
@@ -119,6 +121,7 @@ namespace BancoPresentacion
             // 
             this.lblAlias.AutoSize = true;
             this.lblAlias.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblAlias.ForeColor = System.Drawing.Color.Black;
             this.lblAlias.Location = new System.Drawing.Point(9, 63);
             this.lblAlias.Name = "lblAlias";
             this.lblAlias.Size = new System.Drawing.Size(37, 17);
@@ -138,6 +141,7 @@ namespace BancoPresentacion
             // 
             this.lblDepositoInicial.AutoSize = true;
             this.lblDepositoInicial.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblDepositoInicial.ForeColor = System.Drawing.Color.Black;
             this.lblDepositoInicial.Location = new System.Drawing.Point(185, 63);
             this.lblDepositoInicial.Name = "lblDepositoInicial";
             this.lblDepositoInicial.Size = new System.Drawing.Size(107, 17);
@@ -147,7 +151,7 @@ namespace BancoPresentacion
             // txtCliente
             // 
             this.txtCliente.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtCliente.Location = new System.Drawing.Point(111, 25);
+            this.txtCliente.Location = new System.Drawing.Point(100, 27);
             this.txtCliente.MaxLength = 30;
             this.txtCliente.Name = "txtCliente";
             this.txtCliente.Size = new System.Drawing.Size(384, 23);
@@ -157,7 +161,8 @@ namespace BancoPresentacion
             // 
             this.lblBuscarCliente.AutoSize = true;
             this.lblBuscarCliente.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblBuscarCliente.Location = new System.Drawing.Point(51, 28);
+            this.lblBuscarCliente.ForeColor = System.Drawing.Color.Black;
+            this.lblBuscarCliente.Location = new System.Drawing.Point(40, 30);
             this.lblBuscarCliente.Name = "lblBuscarCliente";
             this.lblBuscarCliente.Size = new System.Drawing.Size(61, 18);
             this.lblBuscarCliente.TabIndex = 0;
@@ -176,6 +181,7 @@ namespace BancoPresentacion
             // 
             this.lblLimiteDesc.AutoSize = true;
             this.lblLimiteDesc.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblLimiteDesc.ForeColor = System.Drawing.Color.Black;
             this.lblLimiteDesc.Location = new System.Drawing.Point(185, 8);
             this.lblLimiteDesc.Name = "lblLimiteDesc";
             this.lblLimiteDesc.Size = new System.Drawing.Size(127, 17);
@@ -189,7 +195,7 @@ namespace BancoPresentacion
             this.btnBuscar.FlatAppearance.BorderSize = 0;
             this.btnBuscar.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnBuscar.ForeColor = System.Drawing.Color.White;
-            this.btnBuscar.Location = new System.Drawing.Point(506, 24);
+            this.btnBuscar.Location = new System.Drawing.Point(523, 20);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(80, 35);
             this.btnBuscar.TabIndex = 2;
@@ -204,7 +210,7 @@ namespace BancoPresentacion
             this.btnNuevo.FlatAppearance.BorderSize = 0;
             this.btnNuevo.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnNuevo.ForeColor = System.Drawing.Color.White;
-            this.btnNuevo.Location = new System.Drawing.Point(593, 24);
+            this.btnNuevo.Location = new System.Drawing.Point(621, 20);
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(80, 35);
             this.btnNuevo.TabIndex = 3;
@@ -216,6 +222,7 @@ namespace BancoPresentacion
             // 
             this.lblTipoCuenta.AutoSize = true;
             this.lblTipoCuenta.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblTipoCuenta.ForeColor = System.Drawing.Color.Black;
             this.lblTipoCuenta.Location = new System.Drawing.Point(366, 63);
             this.lblTipoCuenta.Name = "lblTipoCuenta";
             this.lblTipoCuenta.Size = new System.Drawing.Size(87, 17);
@@ -226,6 +233,7 @@ namespace BancoPresentacion
             // 
             this.lblTipoMoneda.AutoSize = true;
             this.lblTipoMoneda.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblTipoMoneda.ForeColor = System.Drawing.Color.Black;
             this.lblTipoMoneda.Location = new System.Drawing.Point(366, 8);
             this.lblTipoMoneda.Name = "lblTipoMoneda";
             this.lblTipoMoneda.Size = new System.Drawing.Size(92, 17);
@@ -290,6 +298,7 @@ namespace BancoPresentacion
             // 
             this.lblCliProvincia.AutoSize = true;
             this.lblCliProvincia.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblCliProvincia.ForeColor = System.Drawing.Color.Black;
             this.lblCliProvincia.Location = new System.Drawing.Point(9, 64);
             this.lblCliProvincia.Name = "lblCliProvincia";
             this.lblCliProvincia.Size = new System.Drawing.Size(68, 17);
@@ -312,6 +321,7 @@ namespace BancoPresentacion
             // 
             this.lblLocalidad.AutoSize = true;
             this.lblLocalidad.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblLocalidad.ForeColor = System.Drawing.Color.Black;
             this.lblLocalidad.Location = new System.Drawing.Point(185, 64);
             this.lblLocalidad.Name = "lblLocalidad";
             this.lblLocalidad.Size = new System.Drawing.Size(73, 17);
@@ -343,6 +353,7 @@ namespace BancoPresentacion
             // 
             this.lblCliEmail.AutoSize = true;
             this.lblCliEmail.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblCliEmail.ForeColor = System.Drawing.Color.Black;
             this.lblCliEmail.Location = new System.Drawing.Point(366, 122);
             this.lblCliEmail.Name = "lblCliEmail";
             this.lblCliEmail.Size = new System.Drawing.Size(47, 17);
@@ -362,6 +373,7 @@ namespace BancoPresentacion
             // 
             this.lblClienteTel.AutoSize = true;
             this.lblClienteTel.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblClienteTel.ForeColor = System.Drawing.Color.Black;
             this.lblClienteTel.Location = new System.Drawing.Point(185, 122);
             this.lblClienteTel.Name = "lblClienteTel";
             this.lblClienteTel.Size = new System.Drawing.Size(62, 17);
@@ -372,6 +384,7 @@ namespace BancoPresentacion
             // 
             this.lblCliBarrio.AutoSize = true;
             this.lblCliBarrio.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblCliBarrio.ForeColor = System.Drawing.Color.Black;
             this.lblCliBarrio.Location = new System.Drawing.Point(366, 64);
             this.lblCliBarrio.Name = "lblCliBarrio";
             this.lblCliBarrio.Size = new System.Drawing.Size(44, 17);
@@ -402,6 +415,7 @@ namespace BancoPresentacion
             // 
             this.lblCliDire.AutoSize = true;
             this.lblCliDire.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblCliDire.ForeColor = System.Drawing.Color.Black;
             this.lblCliDire.Location = new System.Drawing.Point(9, 122);
             this.lblCliDire.Name = "lblCliDire";
             this.lblCliDire.Size = new System.Drawing.Size(69, 17);
@@ -421,6 +435,7 @@ namespace BancoPresentacion
             // 
             this.lblCliApellido.AutoSize = true;
             this.lblCliApellido.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblCliApellido.ForeColor = System.Drawing.Color.Black;
             this.lblCliApellido.Location = new System.Drawing.Point(185, 13);
             this.lblCliApellido.Name = "lblCliApellido";
             this.lblCliApellido.Size = new System.Drawing.Size(61, 17);
@@ -440,6 +455,7 @@ namespace BancoPresentacion
             // 
             this.lblClienteCuil.AutoSize = true;
             this.lblClienteCuil.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblClienteCuil.ForeColor = System.Drawing.Color.Black;
             this.lblClienteCuil.Location = new System.Drawing.Point(526, 13);
             this.lblClienteCuil.Name = "lblClienteCuil";
             this.lblClienteCuil.Size = new System.Drawing.Size(33, 17);
@@ -459,6 +475,7 @@ namespace BancoPresentacion
             // 
             this.lblCliDNI.AutoSize = true;
             this.lblCliDNI.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblCliDNI.ForeColor = System.Drawing.Color.Black;
             this.lblCliDNI.Location = new System.Drawing.Point(366, 13);
             this.lblCliDNI.Name = "lblCliDNI";
             this.lblCliDNI.Size = new System.Drawing.Size(35, 17);
@@ -478,6 +495,7 @@ namespace BancoPresentacion
             // 
             this.lblCliNombre.AutoSize = true;
             this.lblCliNombre.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblCliNombre.ForeColor = System.Drawing.Color.Black;
             this.lblCliNombre.Location = new System.Drawing.Point(9, 13);
             this.lblCliNombre.Name = "lblCliNombre";
             this.lblCliNombre.Size = new System.Drawing.Size(61, 17);
@@ -489,6 +507,7 @@ namespace BancoPresentacion
             this.lblNroCliente.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lblNroCliente.AutoSize = true;
             this.lblNroCliente.Font = new System.Drawing.Font("Century Gothic", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblNroCliente.ForeColor = System.Drawing.Color.Black;
             this.lblNroCliente.Location = new System.Drawing.Point(19, 72);
             this.lblNroCliente.Name = "lblNroCliente";
             this.lblNroCliente.Size = new System.Drawing.Size(105, 19);
@@ -548,6 +567,7 @@ namespace BancoPresentacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(766, 483);
             this.Controls.Add(this.panelCuenta);
             this.Controls.Add(this.lblNroCliente);
@@ -559,6 +579,8 @@ namespace BancoPresentacion
             this.Controls.Add(this.lblBuscarCliente);
             this.Controls.Add(this.lblNroCuenta);
             this.Controls.Add(this.panelCliente);
+            this.ForeColor = System.Drawing.Color.Black;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmNuevoEditar";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Crear/Editar Clientes y Cuentas";
@@ -616,5 +638,5 @@ namespace BancoPresentacion
 		private System.Windows.Forms.Label lblNroCliente;
 		private System.Windows.Forms.Panel panelCliente;
 		private System.Windows.Forms.Panel panelCuenta;
-	}
+    }
 }
