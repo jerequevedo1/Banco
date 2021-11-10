@@ -64,7 +64,7 @@ namespace BancoPresentacion
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMenu.Location = new System.Drawing.Point(0, 0);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(220, 700);
+            this.panelMenu.Size = new System.Drawing.Size(220, 744);
             this.panelMenu.TabIndex = 0;
             // 
             // btnConocenos
@@ -95,7 +95,7 @@ namespace BancoPresentacion
             this.btnSalir.ForeColor = System.Drawing.Color.Silver;
             this.btnSalir.Image = global::BancoPresentacion.Properties.Resources._06;
             this.btnSalir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSalir.Location = new System.Drawing.Point(0, 630);
+            this.btnSalir.Location = new System.Drawing.Point(0, 674);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(220, 70);
             this.btnSalir.TabIndex = 5;
@@ -206,7 +206,7 @@ namespace BancoPresentacion
             this.panelTitleBar.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.panelTitleBar.Location = new System.Drawing.Point(220, 0);
             this.panelTitleBar.Name = "panelTitleBar";
-            this.panelTitleBar.Size = new System.Drawing.Size(880, 99);
+            this.panelTitleBar.Size = new System.Drawing.Size(930, 99);
             this.panelTitleBar.TabIndex = 1;
             this.panelTitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTitleBar_MouseDown);
             this.panelTitleBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelTitleBar_MouseDown);
@@ -226,7 +226,7 @@ namespace BancoPresentacion
             this.btnMinimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMinimize.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnMinimize.Image = global::BancoPresentacion.Properties.Resources.ic_min;
-            this.btnMinimize.Location = new System.Drawing.Point(825, 11);
+            this.btnMinimize.Location = new System.Drawing.Point(875, 11);
             this.btnMinimize.Margin = new System.Windows.Forms.Padding(2);
             this.btnMinimize.Name = "btnMinimize";
             this.btnMinimize.Size = new System.Drawing.Size(20, 18);
@@ -240,7 +240,7 @@ namespace BancoPresentacion
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClose.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnClose.Image = global::BancoPresentacion.Properties.Resources.ic_close;
-            this.btnClose.Location = new System.Drawing.Point(849, 11);
+            this.btnClose.Location = new System.Drawing.Point(899, 11);
             this.btnClose.Margin = new System.Windows.Forms.Padding(2);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(20, 18);
@@ -255,7 +255,7 @@ namespace BancoPresentacion
             this.panelChild.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelChild.Location = new System.Drawing.Point(220, 99);
             this.panelChild.Name = "panelChild";
-            this.panelChild.Size = new System.Drawing.Size(880, 558);
+            this.panelChild.Size = new System.Drawing.Size(930, 600);
             this.panelChild.TabIndex = 2;
             this.panelChild.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelTitleBar_MouseDown);
             // 
@@ -264,7 +264,7 @@ namespace BancoPresentacion
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(59)))), ((int)(((byte)(104)))));
-            this.ClientSize = new System.Drawing.Size(1100, 700);
+            this.ClientSize = new System.Drawing.Size(1150, 744);
             this.Controls.Add(this.panelChild);
             this.Controls.Add(this.panelTitleBar);
             this.Controls.Add(this.panelMenu);
