@@ -40,7 +40,7 @@ namespace BancoPresentacion
             this.button1.BackColor = System.Drawing.Color.DimGray;
             this.button1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(633, 404);
+            this.button1.Location = new System.Drawing.Point(707, 508);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(135, 33);
             this.button1.TabIndex = 0;
@@ -54,13 +54,13 @@ namespace BancoPresentacion
             this.reportViewer1.Location = new System.Drawing.Point(0, 0);
             this.reportViewer1.Name = "ReportViewer";
             this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(800, 400);
+            this.reportViewer1.Size = new System.Drawing.Size(855, 505);
             this.reportViewer1.TabIndex = 0;
             // 
             // txtSaldoMinimo
             // 
             this.txtSaldoMinimo.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtSaldoMinimo.Location = new System.Drawing.Point(493, 409);
+            this.txtSaldoMinimo.Location = new System.Drawing.Point(554, 514);
             this.txtSaldoMinimo.Name = "txtSaldoMinimo";
             this.txtSaldoMinimo.Size = new System.Drawing.Size(114, 23);
             this.txtSaldoMinimo.TabIndex = 1;
@@ -71,17 +71,17 @@ namespace BancoPresentacion
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(316, 412);
+            this.label1.Location = new System.Drawing.Point(377, 517);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(169, 16);
+            this.label1.Size = new System.Drawing.Size(168, 16);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Saldo minimo en cuenta:";
+            this.label1.Text = "Saldo mínimo en cuenta:";
             // 
             // FrmReporte
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(855, 546);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtSaldoMinimo);
             this.Controls.Add(this.button1);

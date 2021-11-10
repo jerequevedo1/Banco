@@ -313,7 +313,7 @@ namespace BancoPresentacion
             this.Controls.Add(this.btnConsultar);
             this.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Name = "FrmConsulta";
-            this.Text = "FrmConsulta";
+            this.Text = "Consultas";
             this.Load += new System.EventHandler(this.FrmConsulta_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvConsulta)).EndInit();
             this.ResumeLayout(false);
