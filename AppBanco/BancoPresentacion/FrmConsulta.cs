@@ -82,6 +82,7 @@ namespace BancoPresentacion
 				CargarTiposFiltros(tipo);
 				CargarFiltroFecha(tipo);
 				CargarHeaderGrid(tipo);
+				dgvConsulta.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 				await CargarGrilla(tipo);
 			}
 			if (tipo.Equals(Tipo.Transaccion))
@@ -131,8 +132,6 @@ namespace BancoPresentacion
 				this.dgvConsulta.Columns[3].HeaderText = "CLIENTE";
 				this.dgvConsulta.Columns[4].HeaderText = "MONTO";
 				this.dgvConsulta.Columns[5].HeaderText = "DESCRIPCION";
-				this.dgvConsulta.Columns.Add("cFechaAlta", "FECHA ALTA");
-				this.dgvConsulta.Columns.Add("cFechaBaja", "ESTADO");
 			}
 		}
 
@@ -541,16 +540,20 @@ namespace BancoPresentacion
 
 		private void dgvConsulta_SelectionChanged(object sender, EventArgs e)
 		{
-			if (dgvConsulta.CurrentRow.Cells["cFechaBaja"].Value.ToString() == "Inactivo")
+			if (!tipo.Equals(Tipo.Transaccion))
 			{
-				btnEditar.Enabled = false;
-				btnEliminar.Enabled = false;
+				if (dgvConsulta.CurrentRow.Cells["cFechaBaja"].Value.ToString() == "Inactivo")
+				{
+					btnEditar.Enabled = false;
+					btnEliminar.Enabled = false;
+				}
+				else
+				{
+					btnEditar.Enabled = true;
+					btnEliminar.Enabled = true;
+				}
 			}
-			else
-			{
-				btnEditar.Enabled = true;
-				btnEliminar.Enabled = true;
-			}
+		
 		}
 	}
 }

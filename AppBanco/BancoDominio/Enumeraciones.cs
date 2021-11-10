@@ -12,8 +12,7 @@ namespace BancoPresentacion
 		{
 			Cuenta,
 			Cliente,
-			Transaccion,
-			Configuracion
+			Transaccion
 		}
 
 		public enum Accion
