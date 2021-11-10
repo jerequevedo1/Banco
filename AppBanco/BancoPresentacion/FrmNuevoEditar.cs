@@ -385,15 +385,15 @@ namespace BancoPresentacion
 			{
 				if (modo.Equals(Accion.Create))
 				{
-                    //validaciones de campo antes de guardar por ejemplo:
-                    //if (txtCliente.Text == "")
-                    //{
-                    //	MessageBox.Show("Debe especificar un cliente.", "Control", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    //	txtCliente.Focus();
-                    //	return;
-                    //}
-                    if (ValidarAll())
-                    {
+					//validaciones de campo antes de guardar por ejemplo:
+					//if (txtCliente.Text == "")
+					//{
+					//	MessageBox.Show("Debe especificar un cliente.", "Control", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+					//	txtCliente.Focus();
+					//	return;
+					//}
+					if (ValidarCliente() && ValidarCuenta())
+					{
 						if (clienteExistente)
 						{
 							await GuardarCuenta();
@@ -408,7 +408,7 @@ namespace BancoPresentacion
 				if (modo.Equals(Accion.Update))
 				{
 					//validaciones
-					if (ValidarAll())
+					if (ValidarCliente() && ValidarCuenta())
                     {
 						await GuardarCuenta();
 					}
@@ -418,17 +418,23 @@ namespace BancoPresentacion
 			if (tipo.Equals(Tipo.Cliente))
 			{
 				//VALIDAR 
-				if (ValidarAll())
-                {
-					if (modo.Equals(Accion.Create))
-					{
+				if (modo.Equals(Accion.Create))
+				{
+                    if (ValidarCliente() && ValidarCuenta())
+                    {
 						await GuardarCuentaConCliente();
 					}
-					if (modo.Equals(Accion.Update))
-					{
+					
+				}
+				if (modo.Equals(Accion.Update))
+				{
+					if (ValidarCliente())
+                    {
 						await GuardarCuenta();
 					}
+						
 				}
+				
 					
 
 			}
@@ -717,7 +723,7 @@ namespace BancoPresentacion
         {
 			Validar.SoloTipoPlata(e);
 		}
-		private bool ValidarAll()
+		private bool ValidarCliente()
 		{
 			if ((txtCliNombre.Text == "") || (!Regex.IsMatch(txtCliNombre.Text, "([a-zA-ZñÑ]{3,30}\\s*)+")))
 			{
@@ -810,7 +816,11 @@ namespace BancoPresentacion
 				txtCliEmail.Focus();
 				return false;
 			}
-			//////////////////////////////
+			else
+				return true;
+		}
+		private bool ValidarCuenta()
+		{
 			if (txtCbu.Text == "" || (!Regex.IsMatch(txtCbu.Text, "([0-9]{22,30}\\s*)+")))
 			{
 				MessageBox.Show("No se ingreso un CBU o el Ingresado es erroneo", "Control", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -838,6 +848,7 @@ namespace BancoPresentacion
 			else
 				return true;
 		}
+
 
 	}
 
