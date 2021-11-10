@@ -89,6 +89,7 @@ namespace BancoPresentacion
 			else
 			{
 				MessageBox.Show("Debe especificar un cliente.", "Control", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				txtCliente.Focus();
 			}
 			
 		}
@@ -122,6 +123,7 @@ namespace BancoPresentacion
 				//}
 			}
 			txtCliente.Text = "";
+			txtCliente.Focus();
 		}
 
 		private async void FrmNuevoEditar_Load(object sender, EventArgs e)

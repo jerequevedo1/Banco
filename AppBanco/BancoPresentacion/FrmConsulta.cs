@@ -108,6 +108,8 @@ namespace BancoPresentacion
 				this.dgvConsulta.Columns[3].HeaderText = "DIRECCION";
 				this.dgvConsulta.Columns[4].HeaderText = "TELEFONO";
 				this.dgvConsulta.Columns[5].HeaderText = "EMAIL";
+				this.dgvConsulta.Columns.Add("cFechaAlta", "FECHA ALTA");
+				this.dgvConsulta.Columns.Add("cFechaBaja", "ESTADO");
 			}
 			if (tipo.Equals(Tipo.Cuenta))
 			{
@@ -117,7 +119,9 @@ namespace BancoPresentacion
 				this.dgvConsulta.Columns[3].HeaderText = "TIPO CUENTA";
 				this.dgvConsulta.Columns[4].HeaderText = "CBU";
 				this.dgvConsulta.Columns[5].HeaderText = "ALIAS";
-				this.dgvConsulta.Columns.Add("cExtra", "SALDO");
+				this.dgvConsulta.Columns.Add("cSaldo", "SALDO");
+				this.dgvConsulta.Columns.Add("cFechaAlta", "FECHA ALTA");
+				this.dgvConsulta.Columns.Add("cFechaBaja", "ESTADO");
 			}
 			if (tipo.Equals(Tipo.Transaccion))
 			{
@@ -127,6 +131,8 @@ namespace BancoPresentacion
 				this.dgvConsulta.Columns[3].HeaderText = "CLIENTE";
 				this.dgvConsulta.Columns[4].HeaderText = "MONTO";
 				this.dgvConsulta.Columns[5].HeaderText = "DESCRIPCION";
+				this.dgvConsulta.Columns.Add("cFechaAlta", "FECHA ALTA");
+				this.dgvConsulta.Columns.Add("cFechaBaja", "ESTADO");
 			}
 		}
 
@@ -149,7 +155,10 @@ namespace BancoPresentacion
 
 				foreach (Cliente item in lst)
 				{
-					dgvConsulta.Rows.Add(new object[] { item.IdCliente, item.NombreCompleto(), item.Dni, item.Direccion.ToString(), item.Telefono, item.Email.ToString()/*item.GetFechaBajaFormato()*/ });
+					dgvConsulta.Rows.Add(new object[] 
+					{ item.IdCliente, item.NombreCompleto(), item.Dni, item.Direccion.ToString(), item.Telefono, 
+						item.Email.ToString(),item.FechaAlta.ToString("dd/MM/yyyy"),item.GetFechaBajaFormato() 
+					});
 				}
 			}
 			if (tipo.Equals(Tipo.Cuenta))
@@ -169,13 +178,19 @@ namespace BancoPresentacion
 					if (item.Cuentas[i].TipoMoneda.Equals("P"))
 					{
 
-						dgvConsulta.Rows.Add(new object[] { item.Cuentas[i].IdCuenta, item.NombreCompleto(), item.Dni, item.Cuentas[i].TipoCuenta.DescTipoCuenta, item.Cuentas[i].Cbu, item.Cuentas[i].Alias, "$ " + item.Cuentas[i].Saldo });
+						dgvConsulta.Rows.Add(new object[] 
+						{ item.Cuentas[i].IdCuenta, item.NombreCompleto(), item.Dni, item.Cuentas[i].TipoCuenta.DescTipoCuenta, item.Cuentas[i].Cbu, 
+							item.Cuentas[i].Alias, "$ " + item.Cuentas[i].Saldo,item.Cuentas[i].FechaAlta.ToString("dd/MM/yyyy"),item.Cuentas[i].GetFechaBajaFormato()
+						});
 
 					}
 					if (item.Cuentas[i].TipoMoneda.Equals("D"))
 					{
 
-						dgvConsulta.Rows.Add(new object[] { item.Cuentas[i].IdCuenta, item.NombreCompleto(), item.Dni, item.Cuentas[i].TipoCuenta.DescTipoCuenta, item.Cuentas[i].Cbu, item.Cuentas[i].Alias, "U$S " + item.Cuentas[i].Saldo });
+						dgvConsulta.Rows.Add(new object[] 
+						{ item.Cuentas[i].IdCuenta, item.NombreCompleto(), item.Dni, item.Cuentas[i].TipoCuenta.DescTipoCuenta,item.Cuentas[i].Cbu, 
+							item.Cuentas[i].Alias, "U$S " + item.Cuentas[i].Saldo,item.Cuentas[i].FechaAlta.ToString("dd/MM/yyyy"),item.Cuentas[i].GetFechaBajaFormato()
+						});
 					}
 					i++;
 				}
@@ -523,5 +538,19 @@ namespace BancoPresentacion
                 Validar.SoloLetra(e);
             }
         }
+
+		private void dgvConsulta_SelectionChanged(object sender, EventArgs e)
+		{
+			if (dgvConsulta.CurrentRow.Cells["cFechaBaja"].Value.ToString() == "Inactivo")
+			{
+				btnEditar.Enabled = false;
+				btnEliminar.Enabled = false;
+			}
+			else
+			{
+				btnEditar.Enabled = true;
+				btnEliminar.Enabled = true;
+			}
+		}
 	}
 }

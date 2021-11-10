@@ -1,4 +1,4 @@
-﻿
+
 namespace BancoPresentacion
 {
 	partial class FrmConsulta
@@ -224,17 +224,19 @@ namespace BancoPresentacion
             this.dgvConsulta.AllowUserToAddRows = false;
             this.dgvConsulta.AllowUserToDeleteRows = false;
             this.dgvConsulta.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvConsulta.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvConsulta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvConsulta.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cId,
-            this.cCliente,
-            this.cCbu,
-            this.cTipoCuenta,
-            this.cSaldo,
-            this.cUltimoMov});
+			this.dgvConsulta.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+			this.dgvConsulta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dgvConsulta.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+        this.cId,
+        this.cCliente,
+        this.cCbu,
+        this.cTipoCuenta,
+        this.cSaldo,
+        this.cUltimoMov});
+			      this.dgvConsulta.SelectionChanged += new System.EventHandler(this.dgvConsulta_SelectionChanged);	
             this.dgvConsulta.Location = new System.Drawing.Point(14, 186);
             this.dgvConsulta.Name = "dgvConsulta";
             this.dgvConsulta.ReadOnly = true;
@@ -319,6 +321,7 @@ namespace BancoPresentacion
             ((System.ComponentModel.ISupportInitialize)(this.dgvConsulta)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+
 
 		}
 

@@ -34,12 +34,12 @@ namespace BancoAccesoDatos.Implementaciones
                     oCliente.Dni = Convert.ToInt32(row["DNI"].ToString());
                     oCliente.Telefono = row["Telefono"].ToString();
                     oCliente.Email = row["Email"].ToString();
+                    oCliente.FechaAlta = Convert.ToDateTime(row["fechaAlta"].ToString());
 
-                   // oCliente.FechaAlta=Convert.ToDateTime( row["Email"].ToString());
+                    
                     if (!row["fechaBaja"].Equals(DBNull.Value))
                     {
-                        //aca se agrega el campo si existe fecha de baja, dejo a modo ejemplo hasta que agreguemos esto en bd
-                        //oPedido.FechaBaja = Convert.ToDateTime(row["fecha_baja"].ToString());
+                        oCliente.FechaBaja = Convert.ToDateTime(row["fechaBaja"].ToString());
                     }
 
                     lst.Add(oCliente);

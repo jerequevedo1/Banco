@@ -19,8 +19,10 @@ namespace BancoPresentacion.Entidades
         public string Email { get; set; }
         public List<Cuenta> Cuentas { get; set; }
 		public DateTime FechaAlta { get; set; }
+        public DateTime FechaBaja { get; set; }
 
-		public Cliente(int idCliente, string nomCliente, string apeCliente, int dni, long cuil, string direccion, Provincia provincia, string telefono, string email)
+        public Cliente(int idCliente, string nomCliente, string apeCliente, int dni, long cuil, string direccion, Provincia provincia, 
+            string telefono, string email,DateTime fechaBaja, DateTime fechaAlta)
         {
             IdCliente = idCliente;
             NomCliente = nomCliente;
@@ -31,6 +33,8 @@ namespace BancoPresentacion.Entidades
             Provincia = provincia;
             Telefono = telefono;
             Email = email;
+            FechaAlta = fechaAlta;
+            FechaBaja = fechaBaja;
             Cuentas = new List<Cuenta>();
         }
 
@@ -57,7 +61,12 @@ namespace BancoPresentacion.Entidades
         {
             Cuentas.RemoveAt(indice);
         }
-
+        public string GetFechaBajaFormato()
+        {
+            string aux = FechaBaja.ToString("dd/MM/yyyy");
+            //return aux.Equals("01/01/0001") ? "" : aux;
+            return aux.Equals("01/01/0001") ? "Activo" : "Inactivo";
+        }
 
     }
 }

@@ -27,9 +27,9 @@ namespace BancoAccesoDatos
 			//Ricky
 			//ConnectionString = @"Data Source=DESKTOP-DUIDE87\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
 			//Jere
-			//ConnectionString = @"Data Source=NOTEBOOK-JERE\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
+			ConnectionString = @"Data Source=NOTEBOOK-JERE\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
 			//Ger
-			ConnectionString = @"Data Source=DESKTOP-CBSH5U3\SQLEXPRESS;Initial Catalog=BancoJJRGv2;Integrated Security=True";
+			//ConnectionString = @"Data Source=DESKTOP-CBSH5U3\SQLEXPRESS;Initial Catalog=BancoJJRGv2;Integrated Security=True";
 			//Intruso
 			//ConnectionString = @"Data Source=HOME\SQLEXPRESS;Initial Catalog=BancoJJRG;Integrated Security=True";
 
@@ -50,6 +50,7 @@ namespace BancoAccesoDatos
 			DataTable tabla = new DataTable();
 			try
 			{
+				SqlConnection cnn = new SqlConnection(ConnectionString);
 				cnn.Open();
 				SqlCommand cmd = new SqlCommand(nombreSp, cnn);
 				cmd.Parameters.Clear();
@@ -90,6 +91,7 @@ namespace BancoAccesoDatos
 			DataTable tabla = new DataTable();
 			try
 			{
+				SqlConnection cnn = new SqlConnection(ConnectionString);
 				cnn.Open();
 				SqlCommand cmd = new SqlCommand(nombreSP, cnn);
 				cmd.Parameters.Clear();
@@ -113,6 +115,7 @@ namespace BancoAccesoDatos
 
 			try
 			{
+				SqlConnection cnn = new SqlConnection(ConnectionString);
 				cnn.Open();
 				trans = cnn.BeginTransaction();
 
@@ -180,6 +183,7 @@ namespace BancoAccesoDatos
 			bool estado = true;
 			try
 			{
+				SqlConnection cnn = new SqlConnection(ConnectionString);
 				cnn.Open();
 				SqlCommand cmd = new SqlCommand(nombreSP, cnn);
 				cmd.Parameters.Clear();
