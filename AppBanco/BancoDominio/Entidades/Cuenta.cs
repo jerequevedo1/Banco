@@ -22,7 +22,7 @@ namespace BancoPresentacion.Entidades
         public double LimiteDescubierto { get; set; }
 
 		public Cuenta(int idCuenta, string cbu, string alias, double saldo, string ultiMovi, int saldoDescubierto, 
-                        TipoCuenta tipoCuenta, string tipoMoneda,double limiteDescubierto)
+                        TipoCuenta tipoCuenta, string tipoMoneda,double limiteDescubierto,DateTime fechaBaja, DateTime fechaAlta)
         {
             IdCuenta = idCuenta;
             Cbu = cbu;
@@ -34,6 +34,8 @@ namespace BancoPresentacion.Entidades
             TipoCuenta = tipoCuenta;
             TipoMoneda = tipoMoneda;
             LimiteDescubierto = limiteDescubierto;
+            FechaAlta = fechaAlta;
+            FechaBaja = fechaBaja;
         }
 
         public Cuenta()
@@ -45,5 +47,11 @@ namespace BancoPresentacion.Entidades
 		{
             Ltransaccion.Add(transaccion);
 		}
+        public string GetFechaBajaFormato()
+        {
+            string aux = FechaBaja.ToString("dd/MM/yyyy");
+            //return aux.Equals("01/01/0001") ? "" : aux;
+            return aux.Equals("01/01/0001") ? "Activo" : "Inactivo";
+        }
     }
 }
