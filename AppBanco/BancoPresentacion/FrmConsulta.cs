@@ -69,6 +69,7 @@ namespace BancoPresentacion
 
 		private async void FrmConsulta_Load(object sender, EventArgs e)
 		{
+			txtFiltro.Focus();
 			if (tipo.Equals(Tipo.Cliente))
 			{
 				CargarTiposFiltros(tipo);
