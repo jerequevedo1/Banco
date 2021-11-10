@@ -1,139 +1,117 @@
--- Datos Insertados - BD Farmacéutica
-set dateformat dmy
---Provincias
+USE [BancoJJRG]
+GO
 
-Insert into Provincias (nom_provincia) values ('Córdoba')
-Insert into Provincias (nom_provincia) values ('San Luis')
-Insert into Provincias (nom_provincia) values ('Santa Fe')
-Insert into Provincias (nom_provincia) values ('Buenos Aires')
+INSERT [dbo].[Provincias] ([id_provincia], [nom_provincia]) VALUES (1, N'Córdoba')
+INSERT [dbo].[Provincias] ([id_provincia], [nom_provincia]) VALUES (2, N'San Luis')
+INSERT [dbo].[Provincias] ([id_provincia], [nom_provincia]) VALUES (3, N'Santa Fe')
+INSERT [dbo].[Provincias] ([id_provincia], [nom_provincia]) VALUES (4, N'Buenos Aires')
 
---Select *
---From Provincias
-
---Localidades
-
-Insert into Localidades (id_provincia, nom_localidad) values (1,'Córdoba Capital')
-Insert into Localidades (id_provincia, nom_localidad) values (1, 'Villa Allende')
-Insert into Localidades (id_provincia, nom_localidad) values (1, 'Alta Gracia')
-Insert into Localidades (id_provincia, nom_localidad) values (1, 'Mendiolaza')
-
-Insert into Localidades (id_provincia, nom_localidad) values (2,'San Luis Capital')
-Insert into Localidades (id_provincia, nom_localidad) values (2, 'Villa Mercedes')
-Insert into Localidades (id_provincia, nom_localidad) values (2, 'Villa de Merlo')
-Insert into Localidades (id_provincia, nom_localidad) values (2, 'La Punta')
-
-Insert into Localidades (id_provincia, nom_localidad) values (3,'Santa Fe Capital')
-Insert into Localidades (id_provincia, nom_localidad) values (3, 'Rosario')
-Insert into Localidades (id_provincia, nom_localidad) values (3, 'Rafaela')
-Insert into Localidades (id_provincia, nom_localidad) values (3, 'Sunchales')
-
-Insert into Localidades (id_provincia, nom_localidad) values (4,'CABA')
-Insert into Localidades (id_provincia, nom_localidad) values (4, 'La Plata')
-Insert into Localidades (id_provincia, nom_localidad) values (4, 'Avellaneda')
-Insert into Localidades (id_provincia, nom_localidad) values (4, 'Morón')
-
---Select *
---From Localidades
-
---Barrios
-
-Insert into Barrios (id_localidad, nom_barrio) values (1, 'Centro')
-Insert into Barrios (id_localidad, nom_barrio) values (1, 'Alberdi')
-Insert into Barrios (id_localidad, nom_barrio) values (1, 'Nueva Córdoba')
-Insert into Barrios (id_localidad, nom_barrio) values (1, 'Cerro de las Rosas')
-Insert into Barrios (id_localidad, nom_barrio) values (2, 'San Isidro')
-Insert into Barrios (id_localidad, nom_barrio) values (2, 'San Martín')
-Insert into Barrios (id_localidad, nom_barrio) values (3, 'Parque del Virrey')
-Insert into Barrios (id_localidad, nom_barrio) values (3, 'Portales del Sol')
-Insert into Barrios (id_localidad, nom_barrio) values (4, 'El Talar')
-
-Insert into Barrios (id_localidad, nom_barrio) values (5, 'Unión')
-Insert into Barrios (id_localidad, nom_barrio) values (6, 'Jardín del Sur')
-Insert into Barrios (id_localidad, nom_barrio) values (7, 'Barranca Colorada')
-Insert into Barrios (id_localidad, nom_barrio) values (8, 'La Candelaria')
-
-Insert into Barrios (id_localidad, nom_barrio) values (9, 'Sur')
-Insert into Barrios (id_localidad, nom_barrio) values (9, 'Centro')
-Insert into Barrios (id_localidad, nom_barrio) values (10, 'Parque')
-Insert into Barrios (id_localidad, nom_barrio) values (10, 'Abasto')
-Insert into Barrios (id_localidad, nom_barrio) values (11, '2 de Abril')
-Insert into Barrios (id_localidad, nom_barrio) values (11, 'Barranquitas')
-Insert into Barrios (id_localidad, nom_barrio) values (12, 'Colón')
-
-Insert into Barrios (id_localidad, nom_barrio) values (13, 'Almagro')
-Insert into Barrios (id_localidad, nom_barrio) values (13, 'Parque Avellaneda')
-Insert into Barrios (id_localidad, nom_barrio) values (14, 'Carmen Oeste')
-Insert into Barrios (id_localidad, nom_barrio) values (15, 'Sarandí')
-Insert into Barrios (id_localidad, nom_barrio) values (16, 'Santa Laura')
-
---Select *
---From Barrios
-
---Usuarios
-
-Insert into Usuarios (usuario, contrasenia) values ('jpoltenguerci', 'C123456')
-Insert into Usuarios (usuario, contrasenia) values ('jquevedo', '102030$')
-Insert into Usuarios (usuario, contrasenia) values ('gmedrano', '405060$')
-Insert into Usuarios (usuario, contrasenia) values ('rmedina', '708090$')
-
---Select *
---From Usuarios
-
---Tipos de Cuentas
-
-Insert into Tipos_Cuentas (descripcion) values ('Caja de Ahorro')
-Insert into Tipos_Cuentas (descripcion) values ('Cuenta Corriente')
-Insert into Tipos_Cuentas (descripcion) values ('Cuenta Sueldo')
-
---Select *
---From Tipos_Cuentas
-
---Tipos de Transacciones
-
-Insert into Tipos_Transacciones (descripcion) values ('Depósito')
-Insert into Tipos_Transacciones (descripcion) values ('Transferencia')
-Insert into Tipos_Transacciones (descripcion) values ('Acreditación')
-Insert into Tipos_Transacciones (descripcion) values ('Acreditación de haberes')
-Insert into Tipos_Transacciones (descripcion) values ('Pago de Servicio')
-Insert into Tipos_Transacciones (descripcion) values ('Extracción Por Cajero')
-
---Select *
---From Tipos_Transacciones
-
---Clientes
-
-Insert into Clientes (nom_cliente, ape_cliente, dni, cuil, direccion, telefono, email, id_barrio,fecha_alta,fecha_baja) values ('Rosalia', 'Suarez', 33567844, 27335678446, 'Tucuman 348', '3516598223', 'rosisuarez@gmail.com', 1,getdate(),null)
-Insert into Clientes (nom_cliente, ape_cliente, dni, cuil, direccion, telefono, email, id_barrio,fecha_alta,fecha_baja) values ('Francisco', 'Flores', 28733499, 20287334995, 'San Martin 1145', '3515451109', 'fflores@hotmail.com', 10,getdate(),null)
-Insert into Clientes (nom_cliente, ape_cliente, dni, cuil, direccion, telefono, email, id_barrio,fecha_alta,fecha_baja) values ('Ismael', 'Rodriguez', 30045283, 20300452837, 'Rodriguez del Busto 2040', '3512498709', 'rodiguezismael05@hotmail.com', 4,getdate(),null)
-
---Select *
---From Clientes
-
---Cuentas
-
-Insert into Cuentas (cbu, alias, saldo_actual, ultimo_movimiento, saldo_en_descubierto,limite_descubierto, id_cliente, id_tipo_cuenta, tipo_moneda,fecha_alta,fecha_baja) values ('0200557341000007712948', 'rosalia.suarez', 34785, 'Extracción por Cajero Automático Banco Macro Suc 1189', 0,1000, 1, 3, 'P',getdate(),null)
-Insert into Cuentas (cbu, alias, saldo_actual, ultimo_movimiento, saldo_en_descubierto,limite_descubierto, id_cliente, id_tipo_cuenta, tipo_moneda,fecha_alta,fecha_baja) values ('0200746241000006183303', 'fran.flores', 12790, 'Depósito por ventanilla Banco Galicia Suc 04689', 0,3000, 2, 1, 'P',getdate(),null)
-Insert into Cuentas (cbu, alias, saldo_actual, ultimo_movimiento, saldo_en_descubierto,limite_descubierto, id_cliente, id_tipo_cuenta, tipo_moneda,fecha_alta,fecha_baja) values ('0200746241000436456803', 'Ismael.Rodriguez', 15000, 'Acreditacion de haberes', 0,5000, 3, 1, 'P',getdate(),null)
+GO
 
 
---Select *
---From Cuentas
+INSERT [dbo].[Localidades] ([id_localidad], [nom_localidad], [id_provincia]) VALUES (1, N'Córdoba Capital', 1)
+INSERT [dbo].[Localidades] ([id_localidad], [nom_localidad], [id_provincia]) VALUES (2, N'Villa Allende', 1)
+INSERT [dbo].[Localidades] ([id_localidad], [nom_localidad], [id_provincia]) VALUES (3, N'Alta Gracia', 1)
+INSERT [dbo].[Localidades] ([id_localidad], [nom_localidad], [id_provincia]) VALUES (4, N'Mendiolaza', 1)
+INSERT [dbo].[Localidades] ([id_localidad], [nom_localidad], [id_provincia]) VALUES (5, N'San Luis Capital', 2)
+INSERT [dbo].[Localidades] ([id_localidad], [nom_localidad], [id_provincia]) VALUES (6, N'Villa Mercedes', 2)
+INSERT [dbo].[Localidades] ([id_localidad], [nom_localidad], [id_provincia]) VALUES (7, N'Villa de Merlo', 2)
+INSERT [dbo].[Localidades] ([id_localidad], [nom_localidad], [id_provincia]) VALUES (8, N'La Punta', 2)
+INSERT [dbo].[Localidades] ([id_localidad], [nom_localidad], [id_provincia]) VALUES (9, N'Santa Fe Capital', 3)
+INSERT [dbo].[Localidades] ([id_localidad], [nom_localidad], [id_provincia]) VALUES (10, N'Rosario', 3)
+INSERT [dbo].[Localidades] ([id_localidad], [nom_localidad], [id_provincia]) VALUES (11, N'Rafaela', 3)
+INSERT [dbo].[Localidades] ([id_localidad], [nom_localidad], [id_provincia]) VALUES (12, N'Sunchales', 3)
+INSERT [dbo].[Localidades] ([id_localidad], [nom_localidad], [id_provincia]) VALUES (13, N'CABA', 4)
+INSERT [dbo].[Localidades] ([id_localidad], [nom_localidad], [id_provincia]) VALUES (14, N'La Plata', 4)
+INSERT [dbo].[Localidades] ([id_localidad], [nom_localidad], [id_provincia]) VALUES (15, N'Avellaneda', 4)
+INSERT [dbo].[Localidades] ([id_localidad], [nom_localidad], [id_provincia]) VALUES (16, N'Morón', 4)
 
---Transacciones
-
-Insert into Transacciones (fecha, monto, id_tipo_transac, id_cuenta) values ('10/05/2021', 105000, 4, 1)
-Insert into Transacciones (fecha, monto, id_tipo_transac, id_cuenta) values ('12/05/2021', 5000, 5, 1)
-Insert into Transacciones (fecha, monto, id_tipo_transac, id_cuenta) values ('12/05/2021', 15200, 2, 1)
-Insert into Transacciones (fecha, monto, id_tipo_transac, id_cuenta) values ('27/05/2021', 25000, 5, 1)
-Insert into Transacciones (fecha, monto, id_tipo_transac, id_cuenta) values ('02/06/2021', 105000, 5, 1)
-
-Insert into Transacciones (fecha, monto, id_tipo_transac, id_cuenta) values ('24/07/2021', 14500, 3, 2)
-Insert into Transacciones (fecha, monto, id_tipo_transac, id_cuenta) values ('04/08/2021', 97000, 3, 2)
-Insert into Transacciones (fecha, monto, id_tipo_transac, id_cuenta) values ('19/08/2021', 30000, 3, 2)
-Insert into Transacciones (fecha, monto, id_tipo_transac, id_cuenta) values ('20/08/2021', 20000, 1, 2)
+GO
 
 
---Select *
---From Transacciones
+INSERT [dbo].[Barrios] ([id_barrio], [nom_barrio], [id_localidad]) VALUES (1, N'Centro', 1)
+INSERT [dbo].[Barrios] ([id_barrio], [nom_barrio], [id_localidad]) VALUES (2, N'Alberdi', 1)
+INSERT [dbo].[Barrios] ([id_barrio], [nom_barrio], [id_localidad]) VALUES (3, N'Nueva Córdoba', 1)
+INSERT [dbo].[Barrios] ([id_barrio], [nom_barrio], [id_localidad]) VALUES (4, N'Cerro de las Rosas', 1)
+INSERT [dbo].[Barrios] ([id_barrio], [nom_barrio], [id_localidad]) VALUES (5, N'San Isidro', 2)
+INSERT [dbo].[Barrios] ([id_barrio], [nom_barrio], [id_localidad]) VALUES (6, N'San Martín', 2)
+INSERT [dbo].[Barrios] ([id_barrio], [nom_barrio], [id_localidad]) VALUES (7, N'Parque del Virrey', 3)
+INSERT [dbo].[Barrios] ([id_barrio], [nom_barrio], [id_localidad]) VALUES (8, N'Portales del Sol', 3)
+INSERT [dbo].[Barrios] ([id_barrio], [nom_barrio], [id_localidad]) VALUES (9, N'El Talar', 4)
+INSERT [dbo].[Barrios] ([id_barrio], [nom_barrio], [id_localidad]) VALUES (10, N'Unión', 5)
+INSERT [dbo].[Barrios] ([id_barrio], [nom_barrio], [id_localidad]) VALUES (11, N'Jardín del Sur', 6)
+INSERT [dbo].[Barrios] ([id_barrio], [nom_barrio], [id_localidad]) VALUES (12, N'Barranca Colorada', 7)
+INSERT [dbo].[Barrios] ([id_barrio], [nom_barrio], [id_localidad]) VALUES (13, N'La Candelaria', 8)
+INSERT [dbo].[Barrios] ([id_barrio], [nom_barrio], [id_localidad]) VALUES (14, N'Sur', 9)
+INSERT [dbo].[Barrios] ([id_barrio], [nom_barrio], [id_localidad]) VALUES (15, N'Centro', 9)
+INSERT [dbo].[Barrios] ([id_barrio], [nom_barrio], [id_localidad]) VALUES (16, N'Parque', 10)
+INSERT [dbo].[Barrios] ([id_barrio], [nom_barrio], [id_localidad]) VALUES (17, N'Abasto', 10)
+INSERT [dbo].[Barrios] ([id_barrio], [nom_barrio], [id_localidad]) VALUES (18, N'2 de Abril', 11)
+INSERT [dbo].[Barrios] ([id_barrio], [nom_barrio], [id_localidad]) VALUES (19, N'Barranquitas', 11)
+INSERT [dbo].[Barrios] ([id_barrio], [nom_barrio], [id_localidad]) VALUES (20, N'Colón', 12)
+INSERT [dbo].[Barrios] ([id_barrio], [nom_barrio], [id_localidad]) VALUES (21, N'Almagro', 13)
+INSERT [dbo].[Barrios] ([id_barrio], [nom_barrio], [id_localidad]) VALUES (22, N'Parque Avellaneda', 13)
+INSERT [dbo].[Barrios] ([id_barrio], [nom_barrio], [id_localidad]) VALUES (23, N'Carmen Oeste', 14)
+INSERT [dbo].[Barrios] ([id_barrio], [nom_barrio], [id_localidad]) VALUES (24, N'Sarandí', 15)
+INSERT [dbo].[Barrios] ([id_barrio], [nom_barrio], [id_localidad]) VALUES (25, N'Santa Laura', 16)
+
+GO
+
+
+INSERT [dbo].[Clientes] ([id_cliente], [nom_cliente], [ape_cliente], [dni], [cuil], [direccion], [telefono], [email], [id_barrio], [fecha_alta], [fecha_baja]) VALUES (1, N'Rosalia', N'Suarez', 33567844, 27335678446, N'Tucuman 348', N'3516598223', N'rosisuarez@gmail.com', 1, CAST(N'2021-11-10T00:41:38.360' AS DateTime), NULL)
+INSERT [dbo].[Clientes] ([id_cliente], [nom_cliente], [ape_cliente], [dni], [cuil], [direccion], [telefono], [email], [id_barrio], [fecha_alta], [fecha_baja]) VALUES (2, N'Francisco', N'Flores', 28733499, 20287334995, N'San Martin 1145', N'3515451109', N'fflores@hotmail.com', 10, CAST(N'2021-11-10T00:41:38.360' AS DateTime), NULL)
+INSERT [dbo].[Clientes] ([id_cliente], [nom_cliente], [ape_cliente], [dni], [cuil], [direccion], [telefono], [email], [id_barrio], [fecha_alta], [fecha_baja]) VALUES (3, N'Ismael', N'Rodriguez', 30045283, 20300452837, N'Rodriguez del Busto 2040', N'3512498709', N'rodiguezismael05@hotmail.com', 4, CAST(N'2021-11-10T00:41:38.363' AS DateTime), NULL)
+INSERT [dbo].[Clientes] ([id_cliente], [nom_cliente], [ape_cliente], [dni], [cuil], [direccion], [telefono], [email], [id_barrio], [fecha_alta], [fecha_baja]) VALUES (4, N'Jeremias', N'Quevedo', 12432342, 43534534345, N'9 de julio', N'3516132261', N'jere@gmail.com', 2, CAST(N'2021-11-10T00:47:17.937' AS DateTime), NULL)
+INSERT [dbo].[Clientes] ([id_cliente], [nom_cliente], [ape_cliente], [dni], [cuil], [direccion], [telefono], [email], [id_barrio], [fecha_alta], [fecha_baja]) VALUES (5, N'Pedrito', N'Clavito', 34242342, 32423423532, N'direccion', N'13423525332', N'email@gmail.com', 21, CAST(N'2021-11-10T01:02:48.777' AS DateTime), CAST(N'2021-11-10T01:02:55.880' AS DateTime))
+
+GO
+
+
+INSERT [dbo].[Tipos_Cuentas] ([id_tipo_cuenta], [descripcion]) VALUES (1, N'Caja de Ahorro')
+INSERT [dbo].[Tipos_Cuentas] ([id_tipo_cuenta], [descripcion]) VALUES (2, N'Cuenta Corriente')
+INSERT [dbo].[Tipos_Cuentas] ([id_tipo_cuenta], [descripcion]) VALUES (3, N'Cuenta Sueldo')
+SET IDENTITY_INSERT [dbo].[Tipos_Cuentas] OFF
+GO
+
+
+INSERT [dbo].[Cuentas] ([id_cuenta], [cbu], [alias], [saldo_actual], [ultimo_movimiento], [saldo_en_descubierto], [limite_descubierto], [id_cliente], [id_tipo_cuenta], [tipo_moneda], [fecha_alta], [fecha_baja]) VALUES (1, N'0200557341000007712948', N'rosalia.suarez', CAST(34785 AS Decimal(18, 0)), N'Extracción por Cajero Automático Banco Macro Suc 1189', CAST(0 AS Decimal(18, 0)), CAST(1000 AS Decimal(18, 0)), 1, 3, N'P', CAST(N'2021-11-10T00:41:38.363' AS DateTime), NULL)
+INSERT [dbo].[Cuentas] ([id_cuenta], [cbu], [alias], [saldo_actual], [ultimo_movimiento], [saldo_en_descubierto], [limite_descubierto], [id_cliente], [id_tipo_cuenta], [tipo_moneda], [fecha_alta], [fecha_baja]) VALUES (2, N'0200746241000006183303', N'fran.flores', CAST(12790 AS Decimal(18, 0)), N'Depósito por ventanilla Banco Galicia Suc 04689', CAST(0 AS Decimal(18, 0)), CAST(3000 AS Decimal(18, 0)), 2, 1, N'P', CAST(N'2021-11-10T00:41:38.367' AS DateTime), NULL)
+INSERT [dbo].[Cuentas] ([id_cuenta], [cbu], [alias], [saldo_actual], [ultimo_movimiento], [saldo_en_descubierto], [limite_descubierto], [id_cliente], [id_tipo_cuenta], [tipo_moneda], [fecha_alta], [fecha_baja]) VALUES (3, N'0200746241000436456803', N'Ismael.Rodriguez', CAST(15000 AS Decimal(18, 0)), N'Acreditacion de haberes', CAST(0 AS Decimal(18, 0)), CAST(5000 AS Decimal(18, 0)), 3, 1, N'P', CAST(N'2021-11-10T00:41:38.367' AS DateTime), NULL)
+INSERT [dbo].[Cuentas] ([id_cuenta], [cbu], [alias], [saldo_actual], [ultimo_movimiento], [saldo_en_descubierto], [limite_descubierto], [id_cliente], [id_tipo_cuenta], [tipo_moneda], [fecha_alta], [fecha_baja]) VALUES (4, N'1342342342342323423333', N'jere.alias', CAST(0 AS Decimal(18, 0)), N'', CAST(0 AS Decimal(18, 0)), CAST(0 AS Decimal(18, 0)), 4, 1, N'P', CAST(N'2021-11-10T00:47:17.940' AS DateTime), NULL)
+INSERT [dbo].[Cuentas] ([id_cuenta], [cbu], [alias], [saldo_actual], [ultimo_movimiento], [saldo_en_descubierto], [limite_descubierto], [id_cliente], [id_tipo_cuenta], [tipo_moneda], [fecha_alta], [fecha_baja]) VALUES (5, N'1423423423424434253434', N'jere.al', CAST(10300 AS Decimal(18, 0)), N'', CAST(0 AS Decimal(18, 0)), CAST(5000 AS Decimal(18, 0)), 4, 3, N'P', CAST(N'2021-11-10T00:48:14.690' AS DateTime), NULL)
+INSERT [dbo].[Cuentas] ([id_cuenta], [cbu], [alias], [saldo_actual], [ultimo_movimiento], [saldo_en_descubierto], [limite_descubierto], [id_cliente], [id_tipo_cuenta], [tipo_moneda], [fecha_alta], [fecha_baja]) VALUES (6, N'3424324234234234233433', N'alias.pruebapab', CAST(0 AS Decimal(18, 0)), N'', CAST(0 AS Decimal(18, 0)), CAST(0 AS Decimal(18, 0)), 5, 1, N'P', CAST(N'2021-11-10T01:02:48.790' AS DateTime), CAST(N'2021-11-10T01:02:55.880' AS DateTime))
+
+GO
+
+
+INSERT [dbo].[Tipos_Transacciones] ([id_tipo_transac], [descripcion]) VALUES (1, N'Depósito')
+INSERT [dbo].[Tipos_Transacciones] ([id_tipo_transac], [descripcion]) VALUES (2, N'Transferencia')
+INSERT [dbo].[Tipos_Transacciones] ([id_tipo_transac], [descripcion]) VALUES (3, N'Acreditación')
+INSERT [dbo].[Tipos_Transacciones] ([id_tipo_transac], [descripcion]) VALUES (4, N'Acreditación de haberes')
+INSERT [dbo].[Tipos_Transacciones] ([id_tipo_transac], [descripcion]) VALUES (5, N'Pago de Servicio')
+INSERT [dbo].[Tipos_Transacciones] ([id_tipo_transac], [descripcion]) VALUES (6, N'Extracción Por Cajero')
+
+GO
+
+
+INSERT [dbo].[Transacciones] ([id_transaccion], [fecha], [monto], [id_tipo_transac], [id_cuenta]) VALUES (1, CAST(N'2021-05-10T00:00:00.000' AS DateTime), CAST(105000 AS Decimal(18, 0)), 4, 1)
+INSERT [dbo].[Transacciones] ([id_transaccion], [fecha], [monto], [id_tipo_transac], [id_cuenta]) VALUES (2, CAST(N'2021-05-12T00:00:00.000' AS DateTime), CAST(5000 AS Decimal(18, 0)), 5, 1)
+INSERT [dbo].[Transacciones] ([id_transaccion], [fecha], [monto], [id_tipo_transac], [id_cuenta]) VALUES (3, CAST(N'2021-05-12T00:00:00.000' AS DateTime), CAST(15200 AS Decimal(18, 0)), 2, 1)
+INSERT [dbo].[Transacciones] ([id_transaccion], [fecha], [monto], [id_tipo_transac], [id_cuenta]) VALUES (4, CAST(N'2021-05-27T00:00:00.000' AS DateTime), CAST(25000 AS Decimal(18, 0)), 5, 1)
+INSERT [dbo].[Transacciones] ([id_transaccion], [fecha], [monto], [id_tipo_transac], [id_cuenta]) VALUES (5, CAST(N'2021-06-02T00:00:00.000' AS DateTime), CAST(105000 AS Decimal(18, 0)), 5, 1)
+INSERT [dbo].[Transacciones] ([id_transaccion], [fecha], [monto], [id_tipo_transac], [id_cuenta]) VALUES (6, CAST(N'2021-07-24T00:00:00.000' AS DateTime), CAST(14500 AS Decimal(18, 0)), 3, 2)
+INSERT [dbo].[Transacciones] ([id_transaccion], [fecha], [monto], [id_tipo_transac], [id_cuenta]) VALUES (7, CAST(N'2021-08-04T00:00:00.000' AS DateTime), CAST(97000 AS Decimal(18, 0)), 3, 2)
+INSERT [dbo].[Transacciones] ([id_transaccion], [fecha], [monto], [id_tipo_transac], [id_cuenta]) VALUES (8, CAST(N'2021-08-19T00:00:00.000' AS DateTime), CAST(30000 AS Decimal(18, 0)), 3, 2)
+INSERT [dbo].[Transacciones] ([id_transaccion], [fecha], [monto], [id_tipo_transac], [id_cuenta]) VALUES (9, CAST(N'2021-08-20T00:00:00.000' AS DateTime), CAST(20000 AS Decimal(18, 0)), 1, 2)
+
+GO
+
+
+INSERT [dbo].[Usuarios] ([id_usuario], [usuario], [contrasenia]) VALUES (1, N'jpoltenguerci', N'C123456')
+INSERT [dbo].[Usuarios] ([id_usuario], [usuario], [contrasenia]) VALUES (2, N'jquevedo', N'102030$')
+INSERT [dbo].[Usuarios] ([id_usuario], [usuario], [contrasenia]) VALUES (3, N'gmedrano', N'405060$')
+INSERT [dbo].[Usuarios] ([id_usuario], [usuario], [contrasenia]) VALUES (4, N'rmedina', N'708090$')
+
+GO
 
 
