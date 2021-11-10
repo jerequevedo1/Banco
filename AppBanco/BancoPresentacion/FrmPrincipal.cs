@@ -67,20 +67,38 @@ namespace BancoPresentacion
 		}
 		private void btnCuenta_Click(object sender, EventArgs e)
 		{
+			btnCuenta.BackColor = Color.DimGray;
+			btnCliente.BackColor = panelMenu.BackColor;
+			btnTransaccion.BackColor = panelMenu.BackColor;
+			btnConocenos.BackColor = panelMenu.BackColor;
+			btnReportes.BackColor = panelMenu.BackColor;
 			tipo = Tipo.Cuenta;
 			OpenChildForm(new FrmConsulta(tipo), sender);
+			
 		}
 
 		private void btnCliente_Click(object sender, EventArgs e)
 		{
+			btnCliente.BackColor = Color.DimGray;
+			btnCuenta.BackColor = panelMenu.BackColor;
+			btnTransaccion.BackColor = panelMenu.BackColor;
+			btnConocenos.BackColor = panelMenu.BackColor;
+			btnReportes.BackColor = panelMenu.BackColor;
 			tipo = Tipo.Cliente;
 			OpenChildForm(new FrmConsulta(tipo), sender); ;
+			
 		}
 
 		private void btnTransaccion_Click(object sender, EventArgs e)
 		{
+			btnTransaccion.BackColor = Color.DimGray;
+			btnCuenta.BackColor = panelMenu.BackColor;
+			btnCliente.BackColor = panelMenu.BackColor;
+			btnConocenos.BackColor = panelMenu.BackColor;
+			btnReportes.BackColor = panelMenu.BackColor;
 			tipo = Tipo.Transaccion;
 			OpenChildForm(new FrmConsulta(tipo), sender);
+			
 		}
 
 
@@ -104,11 +122,22 @@ namespace BancoPresentacion
 
 		private void btnReportes_Click(object sender, EventArgs e)
 		{
+			btnReportes.BackColor = Color.DimGray;
+			btnCuenta.BackColor = panelMenu.BackColor;
+			btnCliente.BackColor = panelMenu.BackColor;
+			btnConocenos.BackColor = panelMenu.BackColor;
+			btnTransaccion.BackColor = panelMenu.BackColor;
 			OpenChildForm(new FrmReporte(), sender);
+			
 		}
 
 		private void btnConocenos_Click(object sender, EventArgs e)
 		{
+			btnConocenos.BackColor = Color.DimGray;
+			btnCliente.BackColor = panelMenu.BackColor;
+			btnTransaccion.BackColor = panelMenu.BackColor;
+			btnReportes.BackColor = panelMenu.BackColor;
+			btnCuenta.BackColor = panelMenu.BackColor;
 			OpenChildForm(new FrmConocenos(), sender);
 		}
 
