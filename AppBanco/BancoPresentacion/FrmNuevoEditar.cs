@@ -484,7 +484,7 @@ namespace BancoPresentacion
 			}
 			if (tipo.Equals(Tipo.Cliente))
 			{
-				url = "";
+				url = "https://localhost:44304/api/Cuenta/newCuenta";
 			}
 			
 			var guardarOk = await GuardarCuentaAsync(oCliente, url);
@@ -811,7 +811,7 @@ namespace BancoPresentacion
 				return false;
 			}
 			//////////////////////////////
-			if (txtCbu.Text == "" || (!Regex.IsMatch(txtCliTel.Text, "([0-9]{22,30}\\s*)+")))
+			if (txtCbu.Text == "" || (!Regex.IsMatch(txtCbu.Text, "([0-9]{22,30}\\s*)+")))
 			{
 				MessageBox.Show("No se ingreso un CBU o el Ingresado es erroneo", "Control", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 				txtCbu.Focus();

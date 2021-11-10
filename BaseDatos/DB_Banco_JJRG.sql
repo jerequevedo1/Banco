@@ -393,7 +393,7 @@ FROM Transacciones t join Tipos_Transacciones tt on t.id_tipo_transac=tt.id_tipo
 	join Cuentas c on c.id_cuenta=t.id_cuenta
 	join Clientes cl on  cl.id_cliente=c.id_cliente
 WHERE (@nroTransaccion is null OR id_transaccion=@nroTransaccion)
-		AND((@fechaDesde is null and @fechaHasta is  null) OR (c.fecha_alta between @fechaDesde and @fechaHasta))
+		AND((@fechaDesde is null and @fechaHasta is  null) OR (convert(date,c.fecha_alta) > @fechaDesde AND convert(date,c.fecha_alta) <= @fechaHasta))
 if @tipo=1
 SELECT id_transaccion,fecha,c.id_cuenta,ape_cliente,nom_cliente, monto,tt.descripcion
 FROM Transacciones t join Tipos_Transacciones tt on t.id_tipo_transac=tt.id_tipo_transac
@@ -401,7 +401,7 @@ FROM Transacciones t join Tipos_Transacciones tt on t.id_tipo_transac=tt.id_tipo
 	join Clientes cl on  cl.id_cliente=c.id_cliente
 WHERE (@nom_cliente is null OR (nom_cliente like '%' + @nom_cliente + '%')
 		OR(ape_cliente like '%' + @nom_cliente + '%'))
-		AND((@fechaDesde is null and @fechaHasta is  null) OR (c.fecha_alta between @fechaDesde and @fechaHasta))
+		AND((@fechaDesde is null and @fechaHasta is  null) OR (convert(date,c.fecha_alta) > @fechaDesde AND convert(date,c.fecha_alta) <= @fechaHasta))
 GO
 CREATE PROC PA_PROXIMA_CUENTA
 @next int OUTPUT
