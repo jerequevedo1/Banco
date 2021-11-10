@@ -213,6 +213,16 @@ namespace BancoPresentacion.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap img_jjrg {
+            get {
+                object obj = ResourceManager.GetObject("img_jjrg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Jere_Avatar {
             get {
                 object obj = ResourceManager.GetObject("Jere_Avatar", resourceCulture);

@@ -43,12 +43,15 @@ namespace BancoPresentacion
 			this.btnMinimize = new System.Windows.Forms.PictureBox();
 			this.btnClose = new System.Windows.Forms.PictureBox();
 			this.panelChild = new System.Windows.Forms.Panel();
+			this.pictureBox2 = new System.Windows.Forms.PictureBox();
 			this.panelMenu.SuspendLayout();
 			this.panelIcono.SuspendLayout();
 			this.panelTitleBar.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.btnMinimize)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.btnClose)).BeginInit();
+			this.panelChild.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// panelMenu
@@ -252,12 +255,24 @@ namespace BancoPresentacion
 			// panelChild
 			// 
 			this.panelChild.BackColor = System.Drawing.Color.Gray;
+			this.panelChild.Controls.Add(this.pictureBox2);
 			this.panelChild.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panelChild.Location = new System.Drawing.Point(220, 99);
 			this.panelChild.Name = "panelChild";
 			this.panelChild.Size = new System.Drawing.Size(926, 600);
 			this.panelChild.TabIndex = 2;
 			this.panelChild.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelTitleBar_MouseDown);
+			// 
+			// pictureBox2
+			// 
+			this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pictureBox2.Image = global::BancoPresentacion.Properties.Resources.img_jjrg;
+			this.pictureBox2.Location = new System.Drawing.Point(0, 0);
+			this.pictureBox2.Name = "pictureBox2";
+			this.pictureBox2.Size = new System.Drawing.Size(926, 600);
+			this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+			this.pictureBox2.TabIndex = 0;
+			this.pictureBox2.TabStop = false;
 			// 
 			// FrmPrincipal
 			// 
@@ -281,6 +296,8 @@ namespace BancoPresentacion
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.btnMinimize)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.btnClose)).EndInit();
+			this.panelChild.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -301,6 +318,7 @@ namespace BancoPresentacion
         private System.Windows.Forms.PictureBox btnMinimize;
         private System.Windows.Forms.PictureBox btnClose;
         private System.Windows.Forms.PictureBox pictureBox1;
-    }
+		private System.Windows.Forms.PictureBox pictureBox2;
+	}
 }
 
